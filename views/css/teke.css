@@ -234,15 +234,17 @@ form input[type="text"], form input[type="password"], form select {
 /* INDEX */
 div#index-hints {
 	position: relative;
-	width: 800px;
+	width: 812px;
 	margin: 30px auto 0 auto;
 }
 
 div#index-hints div.hint {
 	height: auto;
 	width: 250px;
+	height: 250px;
 	float: left;
 	margin-right: 25px;
+	border: 2px dashed grey;
 }
 
 div#index-hints div.hint:last-child {
