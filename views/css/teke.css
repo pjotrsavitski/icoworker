@@ -225,3 +225,40 @@ form input[type="text"], form input[type="password"], form select {
     height: auto !important;
     height: 100%;
 }
+
+/* iCoworker */
+.clearfloat {
+	clear: both;
+}
+
+/* INDEX */
+div#index-hints {
+	position: relative;
+	width: 800px;
+	margin: 30px auto 0 auto;
+}
+
+div#index-hints div.hint {
+	height: auto;
+	width: 250px;
+	float: left;
+	margin-right: 25px;
+}
+
+div#index-hints div.hint:last-child {
+	margin-right: 0px;
+}
+
+h1#index-heading {
+	text-align: center;
+}
+
+div#index-language-selction {
+	margin: 30px auto 0 auto;
+	text-align: center;
+}
+
+div#index-facebook-login {
+	margin: 90px auto 0 auto;
+	text-align: center;
+}

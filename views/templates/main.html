@@ -1,7 +1,6 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:i18n="http://xml.zope.org/namespaces/i18n" metal:define-macro="main" i18n:domain="teke">
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:fb="http://www.facebook.com/2008/fbml" xmlns:i18n="http://xml.zope.org/namespaces/i18n" metal:define-macro="main" i18n:domain="teke">
     <tal:block tal:define="is_logged_in teke/is_logged_in | nothing;
-                           is_examinee teke/is_examinee | nothing;
                            user teke/get_logged_in_user | nothing;
 					      ">
         <head>
@@ -13,7 +12,7 @@
         </head>
         <body>
     		<tal:block metal:use-macro="system_messages.html/system_messages" />
-            <tal:block metal:use-macro="top_bar.html/top_bar" condition="php:is_logged_in OR is_examinee" />
+            <tal:block metal:use-macro="top_bar.html/top_bar" condition="php:is_logged_in" />
             <div id="container" tal:condition="is_logged_in">
                 <div id="navigation">
                     <tal:block metal:use-macro="navigation.html/navigation" />

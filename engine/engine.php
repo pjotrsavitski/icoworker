@@ -1,8 +1,10 @@
 <?php
 require_once(dirname(dirname(__FILE__))."/config/config.php");
-if (file_exists(SESSION_SAVE_PATH)) {
-    session_save_path(SESSION_SAVE_PATH);
-    ini_set('session.gc_probability', 1);
+if (defined("SESSION_SAVE_PATH")) {
+    if (file_exists(SESSION_SAVE_PATH)) {
+        session_save_path(SESSION_SAVE_PATH);
+        ini_set('session.gc_probability', 1);
+    }
 }
 session_name(PLUGIN);
 session_start();

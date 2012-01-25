@@ -1,3 +1,15 @@
+var teke = teke || {};
+
+teke.config = {};
+
+teke.get_site_url = function() {
+	return teke.config.wwwroot;
+};
+
+teke.get_facebook_app_id = function() {
+	return teke.config.facebook_app_id;
+}
+
 $(document).ready(function() {
     $('span.system_message_close').click(function() {
         $('#system_messages').stop();
