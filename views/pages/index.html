@@ -1,0 +1,39 @@
+<tal:block metal:use-macro="main.html/main" tal:omit-tag="" tal:define="is_logged_in teke/is_logged_in | nothing; base php:is_logged_in?false:true; is_examinee teke/is_examinee | nothing; language teke/get_language" i18n:domain="teke">
+
+    <tal:block tal:condition="php:!is_logged_in AND !is_examinee" metal:fill-slot="content_body">
+
+        <form name="loginform" method="post" action="index.php" tal:attributes="action php:WWW_ROOT . 'actions/login.php'">
+        
+            <div align="center" class="centralized to_middle">            
+                <table align="center" id="loginbox">
+                    <tr>
+                        <td align="center" colspan="2">
+                            <input type="radio" name="language" value="et" onChange="setLanguage('et')" tal:attributes="checked php:language=='et'?'checked':''" />
+                            EESTI KEELES
+                            <input type="radio" name="language" value="ru" onChange="setLanguage('ru')" tal:attributes="checked php:language=='ru'?'checked':''" />
+                            ПO-РУССКИ
+                            <input type="radio" name="language" value="en" onChange="setLanguage('en')" tal:attributes="checked php:language=='en'?'checked':''"/>
+                            IN ENGLISH
+                        </td>
+                    </tr>
+                    <tr>
+                        <td i18n:translate="">Username</td>
+                        <td><input type="text" name="username" id="username" /></td>
+                    </tr>
+                    <tr>
+                        <td i18n:translate="">Password</td>
+                        <td><input type="password" name="password" id="password" /></td>
+                    </tr>
+                    <tr>
+                        <td align="center" colspan="2">
+                            <input type="submit" name="Login" value="Login" i18n:attributes="value Login"/>
+                        </td>
+                    </tr>
+                </table>             
+            </div>
+           
+        </form>
+    
+    </tal:block>
+    
+</tal:block>

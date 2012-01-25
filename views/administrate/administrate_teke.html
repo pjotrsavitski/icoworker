@@ -1,0 +1,11 @@
+<tal:block metal:use-macro="main.html/main" i18n:domain="teke" tal:omit-tag="">
+
+    <tal:block metal:fill-slot="content_body">
+        <tal:block condition="teke/is_admin">
+
+            <a href="" i18n:translate="" tal:attributes="href string:${WWW_ROOT}">Back</a>
+
+        </tal:block>
+    </tal:block>
+    
+</tal:block>

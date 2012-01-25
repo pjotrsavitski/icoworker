@@ -1,0 +1,2 @@
+# revision 367
+ALTER TABLE prefix_users ADD COLUMN facebook_id BIGINT(20) DEFAULT NULL;

@@ -1,0 +1,31 @@
+<tal:block metal:use-macro="main.html/main" i18n:domain="teke" tal:omit-tag="">
+
+    <tal:block metal:fill-slot="content_body">
+        <tal:block condition="teke/is_admin">
+
+            <tal:block define="users teke/user/getAllUsers">
+
+                <div tal:repeat="user users">
+                    <span tal:content="user/username"></span>
+                </div>
+
+            </tal:block>
+
+            <br /><br />
+            <h2>Unapproved users</h2>
+            <tal:block define="unapproved_users teke/user/getUnapprovedUsers">
+            <form name="unapproved_users_form" method="post" action="index.php" tal:attributes="action php:WWW_ROOT . 'actions/users_approve.php'">
+                <div tal:repeat="user unapproved_users">
+                    <input type="checkbox" name="user" value="" tal:attributes="value user/id" />
+                    <span tal:content="user/username"></span>                     
+                </div>
+
+                <input type="submit" value="Approve" />
+            </form>
+            </tal:block>
+
+
+        </tal:block>
+    </tal:block>
+    
+</tal:block>

@@ -1,0 +1,23 @@
+<tal:block metal:define-macro="top_bar" i18n:domain="teke">
+    <div id="top_bar">
+        <div id="top_bar_right">
+            <tal:block tal:condition="php: is_logged_in OR is_examinee">
+                <tal:block condition="is_logged_in">
+                    <tal:block tal:condition="teke/is_admin">
+                        <a href="" i18n:translate="" tal:attributes="href string:${WWW_ROOT}administrate/teke">Administration</a>
+                    </tal:block>
+                    <a href="#" tal:attributes="href teke/user/getURL | nothing" 
+                        tal:content="teke/user/getFullName | nothing"></a>
+                </tal:block> 
+                <tal:block condition="is_examinee">
+                    <span i18n:translate="">Examinee ID:</span>
+                    <span tal:content="teke/examinee/getUsername | nothing"></span>
+                </tal:block> 
+                <input type="button" class="logout_button" onclick="" tal:attributes="onclick string:javascript:window.location='${WWW_ROOT}actions/logout.php'" value="Log out" i18n:attributes="value" />
+            </tal:block>
+            <tal:block tal:condition="php: !is_logged_in AND !is_examinee">
+            <a href="#" tal:attributes="href string:${WWW_ROOT}login">Log in</a>
+            </tal:block>
+        </div>
+	</div>	
+</tal:block>

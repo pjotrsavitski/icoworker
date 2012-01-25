@@ -1,0 +1,1167 @@
+# Estonian translation for TeKe package.
+# Copyright (C) 2011 Dippler team
+# This file is distributed under the same license as the TeKe package.
+# Meelis Mets <meelis.mets@tlu.ee>, 2011.
+#
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Early\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2011-09-08 18:16+0300\n"
+"PO-Revision-Date: 2011-02-25 14:45+0200\n"
+"Last-Translator: Meelis Mets <meelis.mets@tlu.ee>\n"
+"Language-Team: Estonian <et@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../views/library/library_SoundTesting.html:22
+msgid "${WWW_ROOT}sounds/psyhvel/sound_test_et.wav"
+msgstr "${WWW_ROOT}sounds/psyhvel/sound_test_et.wav"
+
+#: ../views/library/library_ChoiceTask.html:99
+msgid "100%"
+msgstr "100%"
+
+#: ../views/library/library_ChoiceTask.html:101
+msgid "150%"
+msgstr "150%"
+
+#: ../views/library/library_ChoiceTask.html:103
+msgid "200%"
+msgstr "200%"
+
+#: ../views/library/library_ChoiceTask.html:97
+msgid "50%"
+msgstr "50%"
+
+#: ../objects/Test.php:259
+msgid "Add Test"
+msgstr "Lisa uus test"
+
+#: ../views/library/library_ChoiceTask.html:173
+#: ../views/library/library_KeeperTask.html:113
+#: ../views/library/library_Questionnaire.html:134
+msgid "Additional instruction"
+msgstr "Lisa juhend"
+
+#: ../views/macros/object_macros.html:39
+msgid "Already checked"
+msgstr "Eelnevalt valitud"
+
+#: ../views/library/library_ChoiceTask.html:153
+#: ../views/library/library_Questionnaire.html:123
+#: ../views/library/library_SoundTask.html:134
+msgid "Answer required"
+msgstr "Vastus on nõutav"
+
+#: ../views/library/library_HedgehogTask.html:119
+msgid "Ask number of steps"
+msgstr "Küsi sammude arvu"
+
+#: ../views/library/library_view.html:43
+msgid "Assign"
+msgstr "Kasuta testina"
+
+#: ../actions/psyhvel_object_actions.php:114
+msgid "Assigning test failed!"
+msgstr "Testi andmine nurjus!"
+
+#: ../actions/psyhvel_object_actions.php:73
+msgid "At least one of the copied items could not be created."
+msgstr "Kopeerimise käigus nurjus vähemalt ühe asja kopeerimine."
+
+#: ../actions/psyhvel_object_actions.php:27
+msgid "At least one of the deletions failed."
+msgstr "Vähemalt ühe asja kustutamine valitutest nurjus."
+
+#: ../actions/psyhvel_object_edit.php:22
+msgid "At least one of the required parameters is empty."
+msgstr "Vähemalt üks nõutud parameetritest on tühi."
+
+#: ../views/library/library_TestFolder.html:149
+#: ../views/templates/base_edit.html:83
+msgid "Authors"
+msgstr "Autorid"
+
+#: ../views/library/library_TMTTask.html:54
+msgid "Begin"
+msgstr "Algus"
+
+#: ../views/library/library_TextStimulus.html:27
+msgid "Body"
+msgstr "Sisu"
+
+#: ../views/library/library_ChoiceTask.html:75
+#: ../views/library/library_PictureStimulus.html:30
+msgid "Body image"
+msgstr "Pilt"
+
+#: ../views/library/library_ChoiceTask.html:90
+msgid "Body video"
+msgstr "Video"
+
+#: ../views/library/library_KeeperTask.html:218
+msgid "Bottom"
+msgstr "All"
+
+#: ../views/macros/object_macros.html:26
+msgid "Button bottom"
+msgstr "Valik all"
+
+#: ../views/macros/object_macros.html:28
+msgid "Button left"
+msgstr "Valik vasakul"
+
+#: ../views/library/library_Questionnaire.html:158
+msgid "Cancel"
+msgstr "Tühista"
+
+#: ../objects/ChoiceObject.php:142
+#, fuzzy
+msgid "Choice"
+msgstr "Valikud"
+
+msgid "Choice Object"
+msgstr "Valiku objekt"
+
+msgid "Choice Task"
+msgstr "Valikutega ülesanne"
+
+msgid "ChoiceObject"
+msgstr "ValikuObjekt"
+
+msgid "ChoiceTask"
+msgstr "Valikutega ülesanne"
+
+#: ../views/library/library_Questionnaire.html:96
+msgid "Choices"
+msgstr "Valikud"
+
+#: ../views/library/library_Questionnaire.html:115
+msgid "Choices have border"
+msgstr "Valikutel on raam"
+
+#: ../objects/ChoiceTask.php:225 ../objects/SoundTask.php:185
+msgid "Choices per page"
+msgstr "Valikuid lehel"
+
+#: ../views/library/library_TMTTask.html:82
+msgid ""
+"Click buttons 1 or A for creating new elements. 1 creats a number element "
+"and A an alphabetical element. Order of creating is important, because this "
+"is order that are used in testing also. Drag em to right place and save"
+msgstr ""
+"Kliki nuppe 1 või A, et lisada elemente. 1 loob numbrilisi, A alfabeetilisi. "
+"Loomise järjekord on oluline! Lohista elemendid oma kohale ja salvesta "
+"ülesanne!"
+
+#: ../objects/ChoiceTask.php:26 ../objects/FlowerTask.php:12
+#: ../objects/HedgehogTask.php:14 ../objects/KeeperTask.php:18
+#: ../objects/KSTask.php:10 ../objects/MultiPictureStimulus.php:14
+msgid "Compose"
+msgstr "Loo"
+
+#: ../actions/psyhvel_object_compose.php:11
+#, fuzzy
+msgid "Compose failed"
+msgstr "Loomine nurjus"
+
+#: ../actions/psyhvel_object_compose.php:21
+#, fuzzy
+msgid "Composed"
+msgstr "Loodud"
+
+#: ../views/library/library_KSTask.html:71
+#: ../views/library/library_KeeperTask.html:229
+msgid "Content"
+msgstr "Sisu"
+
+#: ../actions/psyhvel_object_actions.php:49
+msgid "Copy"
+msgstr "Kopeeri"
+
+#: ../objects/TestFolder.php:72
+msgid "Copy of"
+msgstr "Koopia"
+
+#: ../views/macros/object_macros.html:48
+msgid "Correct"
+msgstr "Õige"
+
+#: ../views/library/library_TestFolder.html:87
+#: ../views/library/library_view.html:20
+msgid "Created"
+msgstr "Loodud"
+
+#: ../views/library/library_TestFolder.html:83
+#: ../views/library/library_view.html:16
+msgid "Creator"
+msgstr "Looja"
+
+#: ../views/library/library_Questionnaire.html:236
+#: ../views/library/library_TestFolder.html:112
+#: ../views/library/library_view.html:42
+msgid "Delete"
+msgstr "Kustuta"
+
+#: ../views/library/library_ChoiceTask.html:83
+#: ../views/library/library_PictureStimulus.html:38
+msgid "Delete current image"
+msgstr "Kustuta praegune pilt"
+
+#: ../views/library/library_SoundStimulus.html:60
+#: ../views/library/library_SoundTask.html:89
+#: ../views/library/library_SoundTesting.html:70
+msgid "Delete current sound"
+msgstr "Kustuta praegune heli"
+
+#: ../actions/psyhvel_object_actions.php:15
+msgid "Delete failed"
+msgstr "Kustutamine nurjus"
+
+#: ../views/macros/object_macros.html:19
+msgid "Delete image"
+msgstr "Kustuta praegune pilt"
+
+#: ../views/macros/object_macros.html:75
+msgid "Delete this choice"
+msgstr "Kustuta see valik"
+
+#: ../actions/psyhvel_object_actions.php:43
+msgid "Deleted"
+msgstr "Kustuta"
+
+#: ../views/library/library_TestFolder.html:134
+#: ../views/library/library_view.html:33
+msgid "Description"
+msgstr "Kirjeldus"
+
+#: ../objects/KeeperTask.php:113
+msgid "Different squares"
+msgstr "Erinevad ruudud"
+
+#: ../views/library/library_MultiPictureStimulus.html:60
+msgid "Display all pictures"
+msgstr "Näita kõiki pilte korraga"
+
+#: ../views/library/library_WordStimulus.html:60
+msgid "Display all words"
+msgstr "Näita kõiki sõnu korraga"
+
+#: ../views/library/library_SoundTesting.html:26
+msgid "Do you have headphones on?"
+msgstr "Kas sul on kõrvaklapid peas?"
+
+#: ../views/library/library_KeeperTask.html:214
+msgid "Doors"
+msgstr "Uksed"
+
+#: ../objects/ChoiceTask.php:26 ../objects/FlowerTask.php:12
+#: ../objects/HedgehogTask.php:14 ../objects/KeeperTask.php:18
+#: ../objects/KSTask.php:10 ../objects/MultiPictureStimulus.php:14
+msgid "Edit"
+msgstr "Toimeta"
+
+#: ../actions/psyhvel_object_edit.php:15
+msgid "Edit failed"
+msgstr "Toimetamine nurjus"
+
+#: ../views/library/library_KSTask.html:69
+#: ../views/library/library_KeeperTask.html:199
+msgid "Element"
+msgstr "Element"
+
+#: ../views/library/library_KeeperTask.html:202
+msgid "Empty"
+msgstr "Tühi"
+
+#: ../views/library/library_TMTTask.html:55
+msgid "End"
+msgstr "Lõpp"
+
+#: ../views/library/library_KSTask.html:78
+msgid "End element"
+msgstr "Lõpu element"
+
+#: ../objects/KeeperTask.php:112 ../objects/KSTask.php:78
+#, fuzzy
+msgid "End time"
+msgstr "Lõpu aeg"
+
+#: ../objects/TestFolder.php:408 ../objects/TestFolder.php:470
+msgid "Examinee"
+msgstr "Testitav"
+
+#: ../views/library/library_KeeperTask.html:209
+msgid "Floor"
+msgstr "Korrus"
+
+msgid "Flower Task"
+msgstr "Lillega ülesanne"
+
+msgid "FlowerTask"
+msgstr "Lillega ülesanne"
+
+#: ../views/library/library_KSTask.html:42
+msgid "Free selection with connections"
+msgstr "Ühendustega vabavalik"
+
+#: ../views/library/library_KSTask.html:43
+msgid "Free selection without connections"
+msgstr "Ühendusteta vabavalik"
+
+msgid "Hedgehog Task"
+msgstr "Siiliga ülesanne"
+
+msgid "HedgehogTask"
+msgstr "Siiliga ülesanne"
+
+#: ../views/library/library_KeeperTask.html:210
+msgid "I"
+msgstr "I korrus"
+
+#: ../views/library/library_KeeperTask.html:211
+msgid "II"
+msgstr "II korrus"
+
+#: ../views/library/library_SoundTesting.html:27
+msgid "If not, put them on."
+msgstr "Kui ei ole, siis pane pähe."
+
+#: ../views/macros/object_macros.html:9
+msgid "Image"
+msgstr "Pilt"
+
+#: ../views/library/library_TestFolder.html:44
+#: ../views/library/library_import.html:19
+msgid "Import"
+msgstr "Impordi"
+
+#: ../actions/psyhvel_import.php:5
+msgid "Import failed file not sent"
+msgstr "Import nurjus, faili ei saadetud"
+
+#: ../actions/psyhvel_import.php:19
+msgid "Import failed."
+msgstr "Import nurjus"
+
+#: ../views/library/library_TestFolder.html:34
+#: ../views/library/library_import.html:7
+msgid "Import test"
+msgstr "Impordi test"
+
+#: ../objects/TestFolder.php:28
+msgid "Import test asset"
+msgstr "Impordi testiosa"
+
+#: ../handler/handler_library.php:39
+msgid "Import test folder"
+msgstr "Impordi testikaust"
+
+#: ../views/library/library_TestFolder.html:139
+#: ../views/templates/base_edit.html:73
+msgid "Info"
+msgstr "Info"
+
+#: ../views/templates/base_edit.html:44
+msgid "Instruction position"
+msgstr "Juhendi asukoht"
+
+#: ../views/library/library_TestFolder.html:100
+#: ../views/templates/base_edit.html:39
+msgid "Instructions"
+msgstr "Juhend"
+
+#: ../views/library/library_KeeperTask.html:29
+msgid "KEEPERS ROOM"
+msgstr "VALVURI RUUM"
+
+msgid "KS Task"
+msgstr "Käitumisstrateegiate ülesanne"
+
+msgid "KSTask"
+msgstr "KS ülesanne"
+
+#: ../views/library/library_KeeperTask.html:203
+msgid "Keeper"
+msgstr "Valvur"
+
+#: ../views/library/library_KeeperTask.html:204
+msgid "Keepers room"
+msgstr "Valvuri ruum"
+
+#: ../views/library/library_SoundStimulus.html:31
+#: ../views/library/library_SoundTask.html:44
+msgid "LISTEN!"
+msgstr "KUULA!"
+
+#: ../views/library/library_KeeperTask.html:219
+msgid "Left"
+msgstr "Vasakul"
+
+#: ../psyhvel.php:33
+msgid "Library"
+msgstr "Testikogu"
+
+#: ../actions/psyhvel_object_actions.php:126
+msgid "Moved"
+msgstr "Liigutatud"
+
+#: ../objects/KeeperTask.php:115
+msgid "Moves"
+msgstr "Liigutusi"
+
+msgid "Multi Picture Stimulus"
+msgstr "Mitme pildiga stiimul"
+
+msgid "MultiPictureStimulus"
+msgstr "MitmePildigaStiimul"
+
+#: ../views/library/library_ChoiceTask.html:145
+#: ../views/library/library_Questionnaire.html:119
+#: ../views/library/library_SoundTask.html:129
+msgid "Multiple choices"
+msgstr "Vali mitut"
+
+#: ../views/library/library_Questionnaire.html:253
+msgid "New"
+msgstr "Uus"
+
+#: ../handler/handler_tests.php:31
+msgid "New test"
+msgstr "Uus test"
+
+#: ../objects/TestFolder.php:28
+msgid "New test asset"
+msgstr "Uus testiosa"
+
+#: ../handler/handler_library.php:39
+msgid "New test folder"
+msgstr "Uus testikaust"
+
+#: ../actions/answer.php:20
+msgid "Next failed"
+msgstr "Ei õnnestunud edasi minna"
+
+#: ../views/library/library_KeeperTask.html:80
+#: ../views/templates/base_test.html:37 ../views/templates/base_view.html:38
+msgid "Next!"
+msgstr "Edasi!"
+
+#: ../views/library/library_SoundTesting.html:37
+msgid "No"
+msgstr "Ei"
+
+#: ../actions/psyhvel_object_actions.php:137
+msgid "No action"
+msgstr "Tegevus puudub"
+
+#: ../views/macros/object_macros.html:15
+msgid "No image"
+msgstr "Pilti ei ole"
+
+#: ../actions/answer.php:10
+msgid "No player."
+msgstr "Mängija puudub"
+
+#: ../objects/ChoiceTask.php:149 ../objects/ChoiceTask.php:175
+#: ../objects/KeeperTask.php:159 ../objects/KSTask.php:98
+#: ../objects/Question.php:165 ../objects/Question.php:191
+msgid "None"
+msgstr "Ei ole"
+
+#: ../views/library/library_KSTask.html:76
+msgid "Normal element"
+msgstr "Tavaline element"
+
+#: ../actions/psyhvel_object_compose.php:17
+#, fuzzy
+msgid "Not composed."
+msgstr "Loomine nurjus"
+
+#: ../actions/psyhvel_object_edit.php:23
+msgid "Not saved."
+msgstr "Salvestamine nurjus"
+
+#: ../views/library/library_SoundTesting.html:29
+msgid "Now click here"
+msgstr "Nüüd vajuta siia"
+
+#: ../views/library/library_KSTask.html:83
+msgid "Oval"
+msgstr "Ovaal"
+
+#: ../actions/psyhvel_object_actions.php:93
+msgid "Paste"
+msgstr "Kleebi"
+
+#: ../actions/psyhvel_object_actions.php:53
+msgid "Paste failed"
+msgstr "Kleepimine nurjus"
+
+msgid "Picture Stimulus"
+msgstr "Pildiga stiimul"
+
+msgid "PictureStimulus"
+msgstr "PildigaStiimul"
+
+#: ../actions/answer.php:12
+msgid "Please make your choice."
+msgstr "Palun tee oma valik."
+
+#: ../objects/ChoiceTask.php:239 ../objects/FlowerTask.php:112
+#: ../objects/HedgehogTask.php:104 ../objects/KeeperTask.php:189
+#: ../objects/MultiPictureStimulus.php:90 ../objects/SoundTask.php:199
+msgid "Problems with fields"
+msgstr "Väljade täitmisel on probleeme."
+
+#: ../views/library/library_Questionnaire.html:73
+msgid "Question"
+msgstr "Küsimus"
+
+#: ../views/library/library_Questionnaire.html:85
+#, fuzzy
+msgid "Question margin bottom"
+msgstr "Valik all"
+
+#: ../views/library/library_Questionnaire.html:81
+msgid "Question margin top"
+msgstr "Vaba ruum küsimuse kohal"
+
+#: ../views/library/library_Questionnaire.html:89
+msgid "Question position"
+msgstr "Küsimuse asukoht"
+
+msgid "Questionnaire"
+msgstr "Ankeet"
+
+#: ../views/library/library_Questionnaire.html:52
+msgid "Questions are related"
+msgstr "Küsimustel sama formaat"
+
+#: ../views/library/library_Questionnaire.html:43
+msgid "Questions per page"
+msgstr "Küsimusi lehel"
+
+#: ../views/library/library_KSTask.html:82
+msgid "Rectangle"
+msgstr "Ristkülik"
+
+#: ../actions/psyhvel_object_actions.php:123
+msgid "Repositioning failed."
+msgstr "Ümberpaigutamine nurjus."
+
+#: ../views/library/library_TMTTask.html:124
+msgid "Reset"
+msgstr "Lähtesta"
+
+#: ../objects/TestFolder.php:26
+msgid "Results"
+msgstr "Tulemused"
+
+#: ../views/library/library_KeeperTask.html:217
+msgid "Right"
+msgstr "Paremal"
+
+#: ../views/library/library_TestFolder.html:144
+#: ../views/templates/base_edit.html:78
+msgid "Rights"
+msgstr "Õigused"
+
+#: ../views/library/library_KeeperTask.html:205
+msgid "Room"
+msgstr "Ruum"
+
+#: ../views/library/library_SoundTesting.html:25
+msgid "SOUND TESTING"
+msgstr "HELI TEST"
+
+#: ../views/library/library_ChoiceTask.html:258
+#: ../views/library/library_KSTask.html:106
+#: ../views/library/library_KeeperTask.html:239
+msgid "Save"
+msgstr "Salvesta"
+
+#: ../actions/psyhvel_object_edit.php:27
+msgid "Saved"
+msgstr "Salvestatud"
+
+#: ../views/library/library_TestFolder.html:95
+#: ../views/library/library_view.html:28
+msgid "Security"
+msgstr "Turvalisus"
+
+#: ../views/library/library_TestFolder.html:36
+msgid "Select Psyhvel ZIP file to import..."
+msgstr "Vali Psyhvli importfail..."
+
+#: ../views/library/library_TestFolder.html:53
+#: ../views/library/library_new.html:7
+msgid "Select test"
+msgstr "Vali test"
+
+#: ../objects/ChoiceTask.php:155 ../objects/Question.php:171
+msgid "Selection"
+msgstr "Valik"
+
+#: ../views/library/library_KSTask.html:81
+msgid "Shape"
+msgstr "Kujund"
+
+#: ../views/macros/object_macros.html:11
+msgid "Show image"
+msgstr "Näita pilti"
+
+#: ../views/templates/base_edit.html:64
+msgid "Show next button when time is set"
+msgstr "Näita 'Edasi' nuppu, kui ajapiirang on kasutusel"
+
+#: ../views/library/library_SoundStimulus.html:52
+#: ../views/library/library_SoundTask.html:81
+#: ../views/library/library_SoundTesting.html:65
+msgid "Sound"
+msgstr "Heli"
+
+msgid "Sound Stimulus"
+msgstr "Heliga stiimul"
+
+msgid "Sound Task"
+msgstr "Heliga ülesanne"
+
+msgid "Sound Testing"
+msgstr "Heli testimine"
+
+#: ../views/library/library_SoundStimulus.html:68
+#: ../views/library/library_SoundTask.html:97
+msgid "Sound autoplay"
+msgstr "Heli automaatne mängimine"
+
+msgid "SoundStimulus"
+msgstr "HeligaStiimul"
+
+msgid "SoundTask"
+msgstr "Heliga ülesanne"
+
+msgid "SoundTesting"
+msgstr "HeliTestimine"
+
+#: ../views/library/library_KeeperTask.html:206
+msgid "Stairs"
+msgstr "Trepp"
+
+#: ../views/library/library_KSTask.html:77
+msgid "Start element"
+msgstr "Alguse element"
+
+#: ../actions/answer.php:17
+msgid "Start failed"
+msgstr "Start nurjus"
+
+#: ../objects/KeeperTask.php:111 ../objects/KSTask.php:77
+msgid "Start time"
+msgstr "Alguse aeg"
+
+#: ../views/library/library_KSTask.html:41
+msgid "Start to end with connections"
+msgstr "Algusest lõpuni ühendustega"
+
+#: ../views/library/library_TestFolder.html:91
+#: ../views/library/library_view.html:24
+msgid "Status"
+msgstr "Olek"
+
+#: ../objects/KeeperTask.php:116
+msgid "Steps"
+msgstr "Sammud"
+
+#: ../actions/psyhvel_import.php:15
+msgid "Success"
+msgstr "Edu"
+
+msgid "TMT Task"
+msgstr "TMT ülesanne"
+
+msgid "TMTTask"
+msgstr "TMT ülesanne"
+
+#: ../views/library/library_ChoiceTask.html:137
+#: ../views/library/library_MultiPictureStimulus.html:84
+#: ../views/library/library_SoundTask.html:121
+msgid "Table has border"
+msgstr "Tabelil on raam"
+
+#: ../objects/ChoiceTask.php:207 ../objects/FlowerTask.php:100
+#: ../objects/HedgehogTask.php:87 ../objects/KeeperTask.php:170
+#: ../objects/MultiPictureStimulus.php:76 ../objects/SoundTask.php:167
+msgid "Table height"
+msgstr "Tabeli kõrgus"
+
+#: ../objects/ChoiceTask.php:214 ../objects/FlowerTask.php:107
+#: ../objects/HedgehogTask.php:94 ../objects/KeeperTask.php:177
+#: ../objects/MultiPictureStimulus.php:83 ../objects/SoundTask.php:174
+msgid "Table width"
+msgstr "Tabeli laius"
+
+#: ../views/library/library_HedgehogTask.html:109
+#: ../views/library/library_KSTask.html:40
+msgid "Task type"
+msgstr "Ülesande tüüp"
+
+#: ../views/library/library_KSTask.html:60
+#: ../views/library/library_KeeperTask.html:179
+msgid "Tee asju"
+msgstr ""
+
+#: ../objects/Test.php:240 ../objects/Test.php:243 ../objects/Test.php:245
+msgid "Test"
+msgstr "Test"
+
+#: ../views/library/library_TestFolder.html:68
+msgid "Test Contents"
+msgstr "Testiosad"
+
+msgid "Test Folder"
+msgstr "Testikaust"
+
+#: ../views/library/library_view.html:8
+msgid "Test Folders"
+msgstr "Testikaustad"
+
+#: ../actions/psyhvel_object_actions.php:117
+msgid "Test assigned"
+msgstr "Test antud"
+
+msgid "TestFolder"
+msgstr "TestiKaust"
+
+#: ../psyhvel.php:34
+msgid "Tests"
+msgstr "Testid"
+
+#: ../views/library/library_Questionnaire.html:149
+msgid "Texfield position"
+msgstr "Tekstivälja asukoht"
+
+#: ../objects/ChoiceTask.php:133 ../objects/KeeperTask.php:118
+#: ../objects/Question.php:149
+msgid "Text"
+msgstr "Tekst"
+
+msgid "Text Stimulus"
+msgstr "Tekstiga stiimul"
+
+#: ../views/library/library_KSTask.html:86
+msgid "Text size"
+msgstr "Teksti suurus"
+
+msgid "TextStimulus"
+msgstr "TekstigaStiimul"
+
+#: ../views/library/library_Questionnaire.html:131
+msgid "Textfield before choices"
+msgstr "Tekstiväli on enne valikuid"
+
+#: ../views/library/library_ChoiceTask.html:183
+#: ../views/library/library_KeeperTask.html:123
+#: ../views/library/library_SoundTask.html:164
+msgid "Textfield cols"
+msgstr "Tekstivälja laius"
+
+#: ../views/library/library_ChoiceTask.html:178
+#: ../views/library/library_KeeperTask.html:118
+#: ../views/library/library_Questionnaire.html:138
+msgid "Textfield default value (optional)"
+msgstr "Tekstivälja vaikimisi väärtus (soovi korral)"
+
+#: ../views/library/library_ChoiceTask.html:193
+#: ../views/library/library_KeeperTask.html:133
+#: ../views/library/library_SoundTask.html:174
+msgid "Textfield position"
+msgstr "Tekstivälja asukoht"
+
+#: ../views/library/library_ChoiceTask.html:188
+#: ../views/library/library_KeeperTask.html:128
+#: ../views/library/library_SoundTask.html:169
+msgid "Textfield rows"
+msgstr "Tekstivälja kõrgus"
+
+#: ../views/library/library_Questionnaire.html:142
+msgid "Textfield size"
+msgstr "Tekstivälja suurus"
+
+#: ../views/library/library_TMTTask.html:32
+msgid "The task is not yet finished!"
+msgstr "Ülesanne ei ole veel valmis!"
+
+#: ../views/templates/base_edit.html:55
+msgid "Time"
+msgstr "Ajapiirang"
+
+#: ../views/library/library_TestFolder.html:129
+#: ../views/macros/object_macros.html:5 ../views/templates/base_edit.html:34
+msgid "Title"
+msgstr "Pealkiri"
+
+#: ../views/library/library_SoundStimulus.html:27
+#: ../views/library/library_SoundTask.html:40
+msgid "To listen to the words, click here"
+msgstr "Sõnade kuulamiseks vajuta siia"
+
+#: ../views/library/library_KeeperTask.html:216
+msgid "Top"
+msgstr "Peal"
+
+#: ../objects/KeeperTask.php:114
+msgid "Trough wall"
+msgstr "Läbi seina"
+
+#: ../views/library/library_KSTask.html:75
+#: ../views/library/library_KeeperTask.html:201
+#: ../views/library/library_TestFolder.html:79
+msgid "Type"
+msgstr "Tüüp"
+
+#: ../views/library/library_Questionnaire.html:78
+msgid "Use question title"
+msgstr "Kasuta küsimuse pealkirja"
+
+#: ../views/library/library_ChoiceTask.html:169
+#: ../views/library/library_KeeperTask.html:109
+#: ../views/library/library_Questionnaire.html:127
+msgid "Use textfield"
+msgstr "Kasuta vabatekstivastust"
+
+#: ../views/macros/object_macros.html:32
+msgid "Use title as text"
+msgstr "Kasuta pealkirja"
+
+#: ../views/library/library_ChoiceTask.html:107
+msgid "Video autoplay"
+msgstr "Video automaatne mängimine"
+
+#: ../views/library/library_ChoiceTask.html:95
+msgid "Video zoom"
+msgstr "Video zoom"
+
+#: ../handler/handler_library.php:39 ../handler/handler_tests.php:31
+#: ../objects/ChoiceTask.php:26 ../objects/FlowerTask.php:12
+#: ../objects/HedgehogTask.php:14 ../objects/KeeperTask.php:18
+msgid "View"
+msgstr "Vaade"
+
+#: ../views/library/library_KeeperTask.html:222
+msgid "Walls"
+msgstr "Seinad"
+
+#: ../views/library/library_ChoiceTask.html:240
+#: ../views/library/library_SoundTask.html:221
+msgid ""
+"Warning! Do not use this form for submitting large ammount of objects. "
+"Maximum recommendable is 24 objects with text and 16 objects including "
+"images. When submitting this form please be patient, it may take a long "
+"time, it depends on number of objects and size of images. It is recommended "
+"to upload small images (not bigger than 250kb each). Program allows to "
+"upload bigger images, but it can take a long time or crash whole sytem."
+msgstr ""
+"Hoiatus! Ära kasuta seda vormi väga suure hulga andmete lisamiseks "
+"ühekorraga. Suur andmete hulk võib koormata liigselt serverit. Maksimaalne "
+"objektide hulk oleks 24 objekti teksti kujul ning 16 objekti millel ka pilt "
+"lisaks. Samuti võimalusel ära kasuta suuri pilte, pildi mahuks võiks olla "
+"umbkaudu 250kb. Programm ei sätesta piiranguid, kuid võib lakata töötamast. "
+"Piltide lisamisel märkida kindlasti pealkiri, ilma pealkirjata objekte ei "
+"looda. Kui soovid kasutada ainult pealkirja ilma pildita siis märkige vastav "
+"märkeruut, vastasel juhul jääb valik testis lihtsalt tühjaks. Kui soovid "
+"olemasoleva pildi vahetada välja uue vastu, vali lihtsalt uus pilt ja "
+"salvesta vorm."
+
+#: ../views/library/library_MultiPictureStimulus.html:106
+#: ../views/library/library_WordStimulus.html:106
+msgid ""
+"Warning! Do not use this form for submitting large amount of objects. "
+"Maximum recommendable is 24 objects with text and 16 objects including "
+"images. When submitting this form please be patient, it may take a long "
+"time, it depends on number of objects and size of images. It is recommended "
+"to upload small images (not bigger than 250kb each). Program allows to "
+"upload bigger images, but it can take a long time or crash whole sytem."
+msgstr ""
+"Hoiatus! Ära kasuta seda vormi väga suure hulga andmete lisamiseks "
+"ühekorraga. Suur andmete hulk võib koormata liigselt serverit. Maksimaalne "
+"objektide hulk oleks 24 objekti teksti kujul ning 16 objekti millel ka pilt "
+"lisaks. Samuti võimalusel ära kasuta suuri pilte, pildi mahuks võiks olla "
+"umbkaudu 250kb. Programm ei sätesta piiranguid, kuid võib lakata töötamast. "
+"Piltide lisamisel märkida kindlasti pealkiri, ilma pealkirjata objekte ei "
+"looda. Kui soovid kasutada ainult pealkirja ilma pildita siis märkige vastav "
+"märkeruut, vastasel juhul jääb valik testis lihtsalt tühjaks. Kui soovid "
+"olemasoleva pildi vahetada välja uue vastu, vali lihtsalt uus pilt ja "
+"salvesta vorm."
+
+msgid "Word Stimulus"
+msgstr "Sõnadega stiimul"
+
+msgid "WordStimulus"
+msgstr "SõnadegaStiimul"
+
+#: ../views/macros/object_macros.html:64
+msgid "Wrong"
+msgstr "Vale"
+
+#: ../views/library/library_SoundTesting.html:37
+msgid "Yes"
+msgstr "Jah"
+
+#: ../views/library/library_TMTTask.html:31
+msgid "Your choice was wrong, please select another object"
+msgstr "Sinu valik oli vale, palun valin mõni teine"
+
+#: ../views/library/library_ChoiceTask.html:195
+#: ../views/library/library_KeeperTask.html:135
+#: ../views/library/library_Questionnaire.html:92
+msgid "bottom"
+msgstr "all"
+
+#. Default: "Ready!"
+#: ../views/library/library_HedgehogTask.html:74
+#: ../views/library/library_TMTTask.html:35
+msgid "button_ready"
+msgstr "Valmis!"
+
+#: ../views/library/library_Questionnaire.html:145
+msgid "columns"
+msgstr "tähemärke"
+
+#: ../views/library/library_TestFolder.html:96
+msgid "content/security"
+msgstr ""
+
+#: ../views/library/library_HedgehogTask.html:114
+msgid "dog"
+msgstr "koer"
+
+msgid "draft"
+msgstr "poolik"
+
+#. Default: "Please make your choice :)"
+#: ../views/library/library_TMTTask.html:28
+msgid "error_choosing"
+msgstr "Palun tee oma valik :)"
+
+msgid "final"
+msgstr "valmis"
+
+#: ../views/library/library_view.html:29
+msgid "folder/security"
+msgstr ""
+
+#: ../views/library/library_HedgehogTask.html:113
+msgid "hedgehog"
+msgstr "siil"
+
+#: ../views/library/library_ChoiceTask.html:197
+#: ../views/library/library_KeeperTask.html:137
+#: ../views/library/library_Questionnaire.html:93
+msgid "left"
+msgstr "vasakul"
+
+#: ../views/library/library_ChoiceTask.html:85
+#: ../views/library/library_PictureStimulus.html:40
+#: ../views/library/library_SoundStimulus.html:62
+msgid "or upload new"
+msgstr "või lae uus"
+
+msgid "private"
+msgstr "privaatne"
+
+msgid "public"
+msgstr "avalik"
+
+#: ../views/library/library_ChoiceTask.html:201
+#: ../views/library/library_KeeperTask.html:141
+#: ../views/library/library_Questionnaire.html:91
+msgid "right"
+msgstr "paremal"
+
+#: ../views/library/library_Questionnaire.html:143
+msgid "rows"
+msgstr "ridu"
+
+#. Default: "Call your supervisor!"
+#: ../views/library/library_SoundTesting.html:33
+msgid "string:_call_supervisor"
+msgstr "Kutsu juhendaja enda juurde!"
+
+#. Default: "Choose position of instruction. If you want to see instruction text in top or other way it is shown in bottom side."
+#: ../views/templates/base_edit.html:45
+msgid "string:_desc_description_is_top"
+msgstr "Vali kas soovid paigutada juhendi ülesande alla või peale"
+
+#. Default: "Answering time, if set, form will be submitted automatically when running out of time, default is 0 - submit is manual."
+#: ../views/templates/base_edit.html:56
+msgid "string:_desc_time"
+msgstr ""
+"Kui ajapiirang on märgitud (sekundites) siis peale aja lõppemist postitatkse "
+"vastused automaatselt, ka siis kui ei valitud ühtegi varianti. Vaikimisi on "
+"ajaks 0 sekundit - lehekülje vahetamine või vastuste salvestamine toimub "
+"kasutaja nupuvajutuse peale."
+
+#. Default: "Let user press next button before automate submit triggers."
+#: ../views/templates/base_edit.html:65
+msgid "string:_desc_time_button"
+msgstr "Näitab kasutajale 'Edasi' nuppu ka siis kui ajapiirang on kasutusel."
+
+#. Default: "Did you hear something?"
+#: ../views/library/library_SoundTesting.html:35
+msgid "string:_did_you_hear_voices"
+msgstr "Kas Sa kuulsid, mida arvuti ütles?"
+
+#. Default: "Please make your choice :)"
+#: ../views/library/library_ChoiceTask.html:48
+msgid "string:_error_choosing"
+msgstr "Palun tee oma valik :)"
+
+#. Default: "Wrong number of choices!"
+#: ../views/library/library_ChoiceTask.html:52
+msgid "string:_error_choosing_wrong_number"
+msgstr "Vale arv valikuid!"
+
+#. Default: "Please walk keeper into keepers room!"
+#: ../views/library/library_KeeperTask.html:69
+msgid "string:_error_keeper_not_in_his_room"
+msgstr "Palun juhata valvur valvuri ruumi!"
+
+#. Default: "Please write somthing into textarea!"
+#: ../views/library/library_KeeperTask.html:73
+msgid "string:_error_text_area_empty"
+msgstr "Palun kirjuta midagi tekstivälja sisse!"
+
+#. Default: "Check if answer is required."
+#: ../views/library/library_ChoiceTask.html:154
+#: ../views/library/library_SoundTask.html:135
+msgid "string:_helptext_answer_required"
+msgstr ""
+"Märgi, kui vastamine on kohustuslik, (enne ei saa edasi kui on mingi variant "
+"valitud)."
+
+#. Default: "Check if you want to get number of steps answered by user."
+#: ../views/library/library_HedgehogTask.html:120
+msgid "string:_helptext_ask_number_of_steps"
+msgstr "Märgi, kui soovid kasutaja poolt valitud sammude arvu. "
+
+#. Default: "How many choices are maximum in task, if \"0\" then task has no limits."
+#: ../views/library/library_ChoiceTask.html:161
+#: ../views/library/library_SoundTask.html:142
+msgid "string:_helptext_choices_per_page"
+msgstr ""
+"Mitu valikut peab lahendaja tegema, et lõpetada ülesanne. Kui märgitud 0 "
+"siis valikute tegemisel ei ole arvulisi limiite"
+
+#. Default: "Check if you want to display all pictures in the same time, other way pictures are shown separately."
+#: ../views/library/library_MultiPictureStimulus.html:61
+msgid "string:_helptext_display_all_pictures"
+msgstr ""
+"Kui märkimata siis näidatakse pilte ükshaaval, allpool ajapiiranguna "
+"märgitud aja tagant, kui märgitud, siis tabelisse paigutatult."
+
+#. Default: "Check if you want to display all words in the same time, other way words are shown separately."
+#: ../views/library/library_WordStimulus.html:61
+msgid "string:_helptext_display_all_words"
+msgstr ""
+"Kui märkimata siis näidatakse sõnu ükshaaval, allpool ajapiiranguna märgitud "
+"aja tagant, kui märgitud, siis tabelisse paigutatult."
+
+#. Default: "Select actor type, hedgehog or dog, test properties like number of steps in different landscape are depending on that."
+#: ../views/library/library_HedgehogTask.html:110
+msgid "string:_helptext_hedgehog_task_type"
+msgstr "Vali kas soovid ülesandes kasutada siili või koera."
+
+#. Default: "Check if there is more than one right answer for this question."
+#: ../views/library/library_ChoiceTask.html:146
+msgid "string:_helptext_multiple_choice"
+msgstr ""
+"Märgi, kui ülesande vastuse variantidest võib olla õigeid rohkem kui üks."
+
+#. Default: "How many questionss are shown in one page. If more questions, then will be generated two separete pages."
+#: ../views/library/library_Questionnaire.html:44
+msgid "string:_helptext_questions_per_page"
+msgstr ""
+"Kui palju küsimusi näidatakse ühel lehel. Kui küsimusi on rohkem, siis "
+"näidatakse neid mitmel eraldi lehel"
+
+#. Default: "If checked, questions are related by formation. Else each question has own format."
+#: ../views/library/library_Questionnaire.html:53
+msgid "string:_helptext_questions_related"
+msgstr ""
+"Kui valitud, siis on küsimused ühtse formaadiga tabelis. Muidu on küsimustel "
+"kõigil omal eraldi formaat."
+
+#. Default: "If not checked sound will wait for clicking PLAY."
+#: ../views/library/library_SoundStimulus.html:69
+#: ../views/library/library_SoundTask.html:98
+msgid "string:_helptext_sound_autoplay"
+msgstr ""
+"Vali kui soovid, et helifaili hakatakse mängima kohe kui leht on laetud."
+
+#. Default: "Upload sound file here."
+#: ../views/library/library_SoundStimulus.html:53
+#: ../views/library/library_SoundTask.html:82
+msgid "string:_helptext_sound_file"
+msgstr "Siia lae ülesse helifail, mida soovid ette mängida."
+
+#. Default: "Check if you want to add border to objects."
+#: ../views/library/library_ChoiceTask.html:138
+#: ../views/library/library_MultiPictureStimulus.html:85
+#: ../views/library/library_SoundTask.html:122
+msgid "string:_helptext_table_has_border"
+msgstr "Märgi, kui soovid objektile raami ümber."
+
+#. Default: "How many objects are in table by vertically."
+#: ../views/library/library_ChoiceTask.html:121
+#: ../views/library/library_FlowerTask.html:57
+#: ../views/library/library_HedgehogTask.html:94
+msgid "string:_helptext_table_height"
+msgstr "Näitab kui palju objekte on tabeli tulbas - ülevalt alla."
+
+#. Default: "How many objects are in table by horizontally."
+#: ../views/library/library_ChoiceTask.html:129
+#: ../views/library/library_FlowerTask.html:65
+#: ../views/library/library_HedgehogTask.html:102
+msgid "string:_helptext_table_width"
+msgstr "Näitab kui palju objekte on tabeli reas - vasakult paremale."
+
+#. Default: "Select different tools and fill table. Use empty frame to mark a element as right answer"
+#: ../views/library/library_FlowerTask.html:87
+msgid "string:_instruction_for_flower_task_creation"
+msgstr ""
+"Kasuta erinevaid tööriistu, et täita tabelit. Õige vastuse märkimiseks "
+"kasuta tühja raami kujulist tööriista, mis teeb vastuseks olevale kujundile "
+"raami ümber."
+
+#. Default: "Select different tools and fill table. You can use actor (hedgehog or dog) only once, if you want to change its location, delete it first."
+#: ../views/library/library_HedgehogTask.html:141
+msgid "string:_instruction_for_hedgehog_task_creation"
+msgstr ""
+"Kasuta erinevaid tööriistu, et täita tabelit. Siili või koera saab asetada "
+"tabelisse vaid ühe korra kui ta on valitud liikuvaks tegelaseks. Et teda "
+"ringi paigutada tuleb ta enne kustutada. Kustutamiseks kasuta tühja ruutu."
+
+#. Default: "Please make your choice :)"
+#: ../views/library/library_HedgehogTask.html:27
+#: ../views/library/library_SoundTask.html:54
+msgid "string:error_choosing"
+msgstr "Palun tee oma valik :)"
+
+#. Default: "Wrong number of choices!"
+#: ../views/library/library_SoundTask.html:58
+msgid "string:error_choosing_wrong_number"
+msgstr "Vale arv valikuid!"
+
+#: ../views/library/library_ChoiceTask.html:199
+#: ../views/library/library_KeeperTask.html:139
+#: ../views/library/library_Questionnaire.html:90
+msgid "top"
+msgstr "üleval"
+
+#~ msgid "confirm"
+#~ msgstr "Oled kindel, et soovid valitud objektid kustutada?"

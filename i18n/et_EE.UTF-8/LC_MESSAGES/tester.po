@@ -1,0 +1,758 @@
+# Estonian translation for TeKe tester plugin.
+# Copyright (c) 2011 HTK
+# This file is distributed under the same license as the TeKe package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Early\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2011-12-19 17:26+0200\n"
+"PO-Revision-Date: 2011-02-25 14:45+0200\n"
+"Last-Translator: Aili Madisson <ayly@tlu.ee>\n"
+"Language-Team: Estonian <et@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: \n"
+
+#: ../views/assessments/assessments_assessment.html:250
+msgid ".. or add candidates instead"
+msgstr "või lisa hoopis sooritajad"
+
+#: ../views/tests/tests_test.html:138
+msgid "Add"
+msgstr "Lisa"
+
+#: ../views/macros/candidates_macro.html:4
+msgid "Add Candidate"
+msgstr "Lisa sooritaja"
+
+#: ../views/items/items_multipleChoice.html:27
+#: ../views/items/items_multipleResponse.html:30
+msgid "Add Choice"
+msgstr "Lisa valik"
+
+#: ../handler/handler_assessments.php:38 ../handler/handler_items.php:44
+#: ../handler/handler_tests.php:44 ../handler/handler_users.php:27
+msgid "Add New"
+msgstr "Lisa uus"
+
+#: ../views/assessments/assessments_assessment.html:220
+msgid "Add Proctor"
+msgstr "Lisa koordinaator"
+
+#: ../views/tests/tests_test.html:125
+msgid "Add to Section"
+msgstr "Lisa sektsiooni"
+
+#: ../views/users/users_view.html:19
+msgid "Added"
+msgstr "Lisatud"
+
+#: ../views/assessments/assessments_assessment.html:120
+msgid "After which candidate cannot start assessment anymore."
+msgstr "Aeg, peale mida sooritaja ei saa enam teadmistekontrolli alustada."
+
+#: ../views/assessments/assessments_assessment.html:132
+msgid "All"
+msgstr "kõik"
+
+#: ../views/assessments/assessments_assessment.html:138
+msgid "Allow proctor to see items"
+msgstr "Võimalda koordinaatoril küsimusi näha"
+
+#: ../views/macros/candidates_macro.html:47
+msgid "Assessment URL"
+msgstr "Teadmistekontrolli URL"
+
+#: ../views/pages/assessment.html:93
+msgid "Assessment completed on"
+msgstr "Teadmistekontroll lõpetatud"
+
+#: ../views/pages/assessment.html:80
+msgid "Assessment isn't active anymore."
+msgstr "Teadmistekontroll ei ole enam aktiivne."
+
+#: ../handler/handler_assessments.php:18 ../tester.php:53
+msgid "Assessments"
+msgstr "Teadmistekontrollid"
+
+#: ../actions/item_import.php:15
+msgid "At least one item import failed."
+msgstr "Vähemalt ühe küsimuse import ebaõnnestus."
+
+#: ../actions/test_actions.php:59 ../actions/test_actions.php:73
+msgid "At least one of the copied items could not be created."
+msgstr ""
+
+#: ../actions/assessment_actions.php:25 ../actions/candidate_actions.php:27
+#: ../actions/item_actions.php:27 ../actions/test_actions.php:25
+#: ../actions/test_items_edit.php:46 ../actions/user_actions.php:26
+msgid "At least one of the deletions failed."
+msgstr ""
+
+#: ../actions/proctor_edit.php:23 ../actions/register.php:28
+#: ../actions/user_edit.php:22
+msgid "At least one of the parameters is empty."
+msgstr ""
+
+#: ../actions/assessment_edit.php:26 ../actions/candidate_edit.php:20
+#: ../actions/item_edit.php:22 ../actions/test_edit.php:18
+msgid "At least one of the required parameters is empty."
+msgstr ""
+
+#: ../views/assessments/assessments_assessment.html:34
+#: ../views/assessments/assessments_view.html:16
+#: ../views/macros/candidates_macro.html:49
+msgid "Beginning"
+msgstr "Algus"
+
+#: ../objects/assessment.php:195 ../objects/assessment.php:200
+msgid "Candidates"
+msgstr "Sooritajad"
+
+#: ../views/items/items_view.html:22 ../views/templates/base_edit.html:119
+msgid "Category"
+msgstr "Kategooria"
+
+#: ../actions/user_edit.php:38
+msgid "Changes saved."
+msgstr "Muudatused salvestatud."
+
+#: ../views/assessments/assessments_view.html:14
+#: ../views/items/items_view.html:18 ../views/tests/tests_view.html:17
+msgid "Check All"
+msgstr "Märgi kõik"
+
+#: ../views/items/items_multipleChoice.html:13
+#: ../views/items/items_multipleResponse.html:12
+msgid "Choices"
+msgstr "Valikud"
+
+#: ../views/assessments/assessments_assessment.html:203
+msgid "Choose Proctor"
+msgstr "Vali koordinaator"
+
+#: ../actions/assessment_proctor.php:15
+msgid "Choose proctor."
+msgstr "Vali koordinaator."
+
+#: ../actions/assessment_test.php:15
+msgid "Choose test"
+msgstr ""
+
+#: ../views/macros/candidates_macro.html:66
+msgid "Completed"
+msgstr "Lõpetatud"
+
+#: ../actions/test_actions.php:35
+msgid "Copy"
+msgstr ""
+
+#: ../views/items/items_view.html:24 ../views/tests/tests_view.html:21
+msgid "Created"
+msgstr "Loodud"
+
+#: ../views/assessments/assessments_view.html:18
+#: ../views/items/items_view.html:23 ../views/tests/tests_view.html:20
+msgid "Creator"
+msgstr "Looja"
+
+#: ../views/assessments/assessments_view.html:39
+#: ../views/items/items_view.html:55 ../views/macros/candidates_macro.html:91
+msgid "Delete"
+msgstr "Kustuta"
+
+#: ../actions/assessment_actions.php:15 ../actions/candidate_actions.php:17
+#: ../actions/test_actions.php:15 ../actions/test_items_edit.php:34
+msgid "Delete failed"
+msgstr ""
+
+#: ../actions/assessment_actions.php:29 ../actions/candidate_actions.php:31
+#: ../actions/item_actions.php:30 ../actions/test_actions.php:29
+#: ../actions/test_items_edit.php:50 ../actions/user_actions.php:30
+msgid "Deleted"
+msgstr ""
+
+#: ../views/assessments/assessments_assessment.html:55
+#: ../views/templates/base_edit.html:94 ../views/tests/tests_test.html:33
+msgid "Description"
+msgstr "Kirjeldus"
+
+#: ../views/items/items_view.html:21 ../views/macros/general_macros.html:19
+#: ../views/templates/base_edit.html:111
+msgid "Difficulty"
+msgstr "Raskusaste"
+
+#: ../views/items/items_view.html:47 ../views/templates/base_edit.html:82
+msgid "Draft"
+msgstr "poolik"
+
+#: ../views/pages/assessment.html:15
+msgid "Duration"
+msgstr "Kestvus"
+
+#: ../handler/handler_users.php:25 ../objects/BaseItem.php:202
+#: ../objects/BaseItem.php:205
+msgid "Edit"
+msgstr "Toimeta"
+
+#: ../actions/item_edit.php:16
+msgid "Edit failed"
+msgstr ""
+
+#: ../objects/assessment.php:438
+msgid "Email"
+msgstr "E-post"
+
+#: ../actions/proctor_edit.php:26 ../actions/register.php:37
+#: ../actions/user_edit.php:25
+msgid "Email is not valid."
+msgstr "E-post ei ole valiidne."
+
+#: ../objects/assessment.php:439
+msgid "Ending"
+msgstr "Lõpp"
+
+#: ../views/items/items_view.html:54
+msgid "Export"
+msgstr "Ekspordi"
+
+#: ../views/items/items_import.html:12
+msgid "File"
+msgstr "Fail"
+
+#: ../views/templates/base_edit.html:83
+msgid "Final"
+msgstr "valmis"
+
+#: ../views/pages/assessment.html:56
+msgid "Finish"
+msgstr "Lõpeta"
+
+#: ../objects/candidate.php:318
+msgid "Finished"
+msgstr "Lõpetatud"
+
+#: ../views/assessments/assessments_assessment.html:227
+#: ../views/macros/candidates_macro.html:12 ../views/users/users_user.html:47
+msgid "First Name"
+msgstr "Eesnimi"
+
+#: ../views/pages/index.html:21
+msgid "Forgot password?"
+msgstr "Unustasid parooli?"
+
+#: ../views/macros/candidates_macro.html:67
+msgid "Gave Up"
+msgstr "Loobus"
+
+#: ../objects/assessment.php:192 ../objects/assessment.php:204
+msgid "General Information"
+msgstr "Üldine info"
+
+#: ../views/pages/assessment.html:38
+msgid "Give Up"
+msgstr "Loobun"
+
+#: ../objects/candidate.php:315
+msgid "Haven't Started"
+msgstr "Ei ole alustanud"
+
+# , php-format
+#: ../objects/candidate.php:117
+msgid ""
+"Hi %s,\n"
+"\n"
+msgstr ""
+"Tere %s,\n"
+"\n"
+
+msgid ""
+"Hi %s,\n"
+"\n"
+"%s has added you to assessment: %s.\n"
+"\n"
+"Your assessment is located at:\n"
+"%s\n"
+"\n"
+"Best,\n"
+"%s\n"
+"\n"
+"--\n"
+"Please do not reply to this message."
+msgstr ""
+"Tere %s,\n"
+"\n"
+"%s lisas sind teadmistekontrolli: %s.\n"
+"\n"
+"Sinu teadmistekontroll asub aadressil:\n"
+"%s\n"
+"\n"
+"Parimat,\n"
+"%s\n"
+"\n"
+"--\n"
+"Palun ära vasta sellele kirjale."
+
+msgid ""
+"Hi %s,\n"
+"\n"
+"You have been registered to %s.\n"
+"\n"
+"Here are your login information:\n"
+"User Identificator: %s\n"
+"Password: %s\n"
+"\n"
+"Best,\n"
+"%s\n"
+"\n"
+"--\n"
+"Please do not reply to this message."
+msgstr ""
+"Tere %s,\n"
+"\n"
+"Sind on registreeritud %s kasutajaks.\n"
+"\n"
+"Siin on sisselogimiseks vajalik info:\n"
+"Kasutajatunnus: %s\n"
+"Parool: %s\n"
+"\n"
+"Parimat,\n"
+"%s\n"
+"\n"
+"--\n"
+"Palun ära vasta sellele kirjale."
+
+#: ../views/assessments/assessments_assessment.html:125
+msgid "If set, candidate will have time limit for completing assessment."
+msgstr ""
+"Kui sätitud, siis on sooritajal ajalimiit, mis ajaga ta peab oma "
+"teadmistekontrolli lõpetama."
+
+#: ../handler/handler_items.php:45
+msgid "Import"
+msgstr "Impordi"
+
+#: ../views/macros/candidates_macro.html:31
+msgid ""
+"Import .csv file. Each line should contain first name, last name and email, "
+"separated by comma. Only thing that can be left blank is email."
+msgstr ""
+
+#: ../views/macros/candidates_macro.html:5
+msgid "Import Candidates"
+msgstr "Impordi sooritajad"
+
+#: ../actions/item_import.php:7 ../actions/item_import.php:19
+msgid "Import failed."
+msgstr "Import ebaõnnestus."
+
+#: ../objects/candidate.php:320
+msgid "In Progress"
+msgstr "Pooleli"
+
+#: ../views/assessments/assessments_assessment.html:205
+#: ../views/users/users_user.html:67 ../views/users/users_view.html:18
+msgid "Institution"
+msgstr "Asutus"
+
+#: ../views/assessments/assessments_assessment.html:60
+msgid "Instructions"
+msgstr "Instruktsioonid"
+
+#: ../views/assessments/assessments_assessment.html:110
+msgid "Instructions for candidate."
+msgstr "Instruktsioonid sooritajale."
+
+#: ../handler/handler_items.php:21 ../objects/test.php:251
+#: ../objects/test.php:254 ../tester.php:51
+msgid "Items"
+msgstr "Küsimused"
+
+#: ../views/macros/candidates_macro.html:6
+msgid "Items Statistics"
+msgstr "Küsimuste statistika"
+
+#: ../views/assessments/assessments_assessment.html:129
+msgid "Items per Page"
+msgstr "Küsimusi lehel"
+
+#: ../views/items/items_view.html:20 ../views/macros/general_macros.html:13
+#: ../views/templates/base_edit.html:103
+msgid "Language"
+msgstr "Keel"
+
+#: ../views/users/users_view.html:20
+msgid "Last Login"
+msgstr "Viimane sisselogimine"
+
+#: ../views/assessments/assessments_assessment.html:231
+#: ../views/macros/candidates_macro.html:16 ../views/users/users_user.html:51
+msgid "Last Name"
+msgstr "Perekonnanimi"
+
+#: ../views/pages/index.html:23
+msgid "Log In"
+msgstr "Logi sisse"
+
+#: ../views/pages/index.html:48
+msgid "Manage Assessments"
+msgstr "Halda teadmistekontrolle"
+
+#: ../views/pages/index.html:40
+msgid "Manage Items"
+msgstr "Halda küsimusi"
+
+#: ../views/pages/index.html:44
+msgid "Manage Tests"
+msgstr "Halda teste"
+
+#: ../views/pages/index.html:36
+msgid "Manage Users"
+msgstr "Halda kasutajaid"
+
+#: ../objects/test.php:250 ../objects/test.php:253
+msgid "Metadata"
+msgstr "Metaandmed"
+
+#: ../views/assessments/assessments_view.html:19
+#: ../views/items/items_view.html:25 ../views/tests/tests_view.html:22
+msgid "Modified"
+msgstr "Muudetud"
+
+#: ../items.php:14
+msgid "Multiple Choice"
+msgstr "Üks mitmest"
+
+#: ../items.php:15
+msgid "Multiple Response"
+msgstr "Mitu mitmest"
+
+#: ../objects/assessment.php:437
+msgid "Name"
+msgstr "Nimi"
+
+#: ../actions/assessment_actions.php:31
+#: ../actions/assessment_results_csv.php:19
+#: ../actions/candidate_actions.php:45 ../actions/item_actions.php:54
+msgid "No action"
+msgstr ""
+
+#: ../actions/candidates_import.php:15
+msgid "No file selected."
+msgstr ""
+
+#: ../views/macros/candidates_macro.html:68
+msgid "Not Finished"
+msgstr "Lõpetamata"
+
+#: ../views/macros/candidates_macro.html:65
+msgid "Not Started"
+msgstr "Ei ole alustanud"
+
+#: ../actions/assessment_edit.php:27 ../actions/candidate_edit.php:21
+#: ../actions/item_edit.php:23 ../actions/test_edit.php:19
+msgid "Not saved."
+msgstr ""
+
+#: ../views/assessments/assessments_assessment.html:131
+msgid "One"
+msgstr "üks"
+
+#: ../views/pages/index.html:15
+msgid "Password"
+msgstr "Parool"
+
+#: ../actions/register.php:43
+msgid "Passwords did not match."
+msgstr ""
+
+#: ../actions/test_actions.php:79
+msgid "Paste"
+msgstr ""
+
+#: ../actions/test_actions.php:39
+msgid "Paste failed"
+msgstr ""
+
+#: ../views/macros/candidates_macro.html:52
+msgid "Percent"
+msgstr "Protsent"
+
+#: ../objects/BaseItem.php:203 ../objects/BaseItem.php:206
+msgid "Preview"
+msgstr "Eelvaade"
+
+#: ../views/templates/base_edit.html:90
+msgid "Private"
+msgstr "privaatne"
+
+#: ../objects/multipleChoice.php:124 ../objects/multipleResponse.php:135
+msgid "Problems with fields"
+msgstr ""
+
+#: ../objects/assessment.php:194 ../objects/assessment.php:199
+msgid "Proctor"
+msgstr "Koordinaator"
+
+#: ../actions/assessment_edit.php:16
+msgid "Provide a title."
+msgstr "Sisesta pealkiri."
+
+#: ../views/templates/base_edit.html:89
+msgid "Public"
+msgstr "avalik"
+
+#: ../views/templates/base_edit.html:63
+msgid "Question"
+msgstr "Küsimus"
+
+#: ../actions/proctor_edit.php:35 ../actions/register.php:52
+#: ../actions/user_edit.php:49
+msgid "Registration failed."
+msgstr "Registreerimine ebaõnnestus."
+
+# , php-format
+#: ../views/macros/candidates_macro.html:94
+msgid "Remainder Text"
+msgstr "Meeldetuletuse tekst"
+
+# , php-format
+#: ../objects/candidate.php:116
+msgid "Reminder: %s"
+msgstr "Meeldetuletus: %s"
+
+#: ../views/macros/candidates_macro.html:83
+msgid "Results"
+msgstr "Tulemused"
+
+#: ../views/users/users_user.html:59 ../views/users/users_view.html:17
+msgid "Role"
+msgstr "Roll"
+
+#: ../views/templates/main.html:9
+msgid "SITE_NAME"
+msgstr ""
+
+#: ../views/assessments/assessments_assessment.html:142
+#: ../views/macros/candidates_macro.html:25
+#: ../views/templates/base_edit.html:70
+msgid "Save"
+msgstr "Salvesta"
+
+#: ../actions/assessment_edit.php:30 ../actions/candidate_edit.php:24
+#: ../actions/candidates_import.php:47 ../actions/item_edit.php:27
+msgid "Saved"
+msgstr "Salvestatud."
+
+#: ../actions/user_edit.php:41
+msgid "Saving failed."
+msgstr ""
+
+#: ../views/items/items_multipleChoice.html:29
+#: ../views/items/items_multipleResponse.html:13
+#: ../views/macros/candidates_macro.html:51
+msgid "Score"
+msgstr "Punktid"
+
+#: ../views/macros/general_macros.html:10
+msgid "Search"
+msgstr "Otsi"
+
+#: ../views/tests/tests_test.html:129
+msgid "Section"
+msgstr "Sektsioon"
+
+#: ../views/tests/tests_test.html:50
+msgid "Sections in Test"
+msgstr "Sektsioone testis"
+
+#: ../views/templates/base_edit.html:87
+msgid "Security"
+msgstr "Turvalisus"
+
+#: ../views/macros/candidates_macro.html:97
+msgid "Send Reminder"
+msgstr "Saada meeldetuletus"
+
+#: ../views/templates/base_edit.html:99 ../views/tests/tests_test.html:38
+msgid "Separate with comma."
+msgstr "Eralda komaga."
+
+#: ../views/assessments/assessments_assessment.html:198
+msgid "Set New Proctor"
+msgstr "Säti uus koordinaator"
+
+#: ../views/assessments/assessments_assessment.html:115
+msgid "Since when assessment will be available for candidate."
+msgstr "Alates mis ajast saab sooritaja teadmistekontrolli alustada."
+
+#: ../views/js/tester_translator.php:8
+msgid ""
+"Some items are still unanswered. Are you sure you want to finish assessment?"
+msgstr ""
+"Teadmistekontrollis on vastamata küsimusi. Kas oled kindel, et soovid "
+"teadmistekontrolli lõpetada?"
+
+#: ../views/pages/assessment.html:34
+msgid "Start Assessment"
+msgstr "Alusta teadmistekontrolli"
+
+#: ../views/macros/candidates_macro.html:48
+#: ../views/templates/base_edit.html:80
+msgid "Status"
+msgstr "Staatus"
+
+#: ../views/pages/assessment.html:76
+msgid "Submit"
+msgstr "Vasta"
+
+#: ../actions/item_import.php:13 ../actions/proctor_edit.php:33
+#: ../actions/register.php:50
+msgid "Success"
+msgstr ""
+
+#: ../actions/user_edit.php:47
+msgid "Success."
+msgstr ""
+
+#: ../views/templates/base_edit.html:98 ../views/tests/tests_test.html:37
+msgid "Tags"
+msgstr "Märksõnad"
+
+#: ../objects/assessment.php:193 ../objects/assessment.php:197
+msgid "Test"
+msgstr "Test"
+
+#: ../handler/handler_tests.php:22 ../tester.php:52
+msgid "Tests"
+msgstr "Testid"
+
+#: ../views/macros/candidates_macro.html:95
+msgid "This text will be part of the email content."
+msgstr "See tekst lisatakse meeldetuletuse meili sisule."
+
+#: ../views/assessments/assessments_assessment.html:42
+#: ../views/pages/assessment.html:24
+msgid "Time Limit"
+msgstr "Ajalimiit"
+
+#: ../views/assessments/assessments_assessment.html:101
+#: ../views/assessments/assessments_view.html:15
+#: ../views/items/items_view.html:19
+msgid "Title"
+msgstr "Pealkiri"
+
+#: ../views/pages/assessment.html:112
+msgid "Total"
+msgstr "Kokku"
+
+#: ../views/templates/base_edit.html:121
+msgid "Unselect"
+msgstr "Deselekteeri"
+
+#: ../views/items/items_import.html:15
+#: ../views/macros/candidates_macro.html:36
+msgid "Upload"
+msgstr "Lae üles"
+
+#: ../actions/proctor_edit.php:29 ../actions/register.php:40
+#: ../actions/user_edit.php:28 ../actions/user_edit.php:33
+msgid "User with that email already exists."
+msgstr "Sellise e-posti aadressiga kasutaja on juba olemas."
+
+#: ../actions/register.php:34
+#, fuzzy
+msgid "User with that username already exists."
+msgstr "Sellise e-posti aadressiga kasutaja on juba olemas."
+
+#: ../actions/register.php:31
+msgid "Username cannot contain special symbols."
+msgstr ""
+
+#: ../handler/handler_users.php:23 ../tester.php:50
+msgid "Users"
+msgstr "Kasutajad"
+
+msgid ""
+"Your assessment is located at:\n"
+"%s\n"
+"\n"
+"Best,\n"
+"%s\n"
+"\n"
+"--\n"
+"Please do not reply to this message."
+msgstr ""
+"Sinu teadmistekontroll asub aadressil:\n"
+"%s\n"
+"\n"
+"Parimat,\n"
+"%s\n"
+"\n"
+"--\n"
+"Palun ära vasta sellele kirjale."
+
+#: ../tester.php:219
+msgid "admin"
+msgstr "administraator"
+
+#: ../tester.php:227
+msgid "advanced"
+msgstr "edasijõudnu"
+
+#: ../tester.php:225
+msgid "beginner"
+msgstr "algaja"
+
+#: ../tester.php:226
+msgid "intermediate"
+msgstr "kesktase"
+
+#: ../views/assessments/assessments_assessment.html:217
+msgid "or"
+msgstr "või"
+
+#: ../tester.php:217
+msgid "proctor"
+msgstr "koordinaator"
+
+#: ../tester.php:192
+msgid "registration"
+msgstr "registreerimine"
+
+#. Default: "All Items: ${items_count}"
+#: ../views/tests/tests_test.html:173
+msgid "string:_all_items_count"
+msgstr "Küsimusi kokku: ${items_count}"
+
+#. Default: "If you think, that you don't have enough knowledge and you don't wanna do this assessment, then press \"Give Up\" button."
+#: ../views/pages/assessment.html:36
+msgid "string:_assessment_give_up_instructions"
+msgstr ""
+"Kui sa arvad, et sul ei ole piisavalt teadmisi ja sa ei soovi seda "
+"teadmistekontrolli teha, siis vajuta nuppu \"Loobun\"."
+
+#. Default: "Items: ${items_count}"
+#: ../views/tests/tests_test.html:150
+msgid "string:_items_count"
+msgstr "Küsimusi: ${items_count}"
+
+#. Default: "You can import QTI 2.1 compatible multiple choice and multiple response item types."
+#: ../views/items/items_import.html:7
+msgid "string:_items_import_instructions"
+msgstr ""
+"Sa saad üles laadida QTI 2.1 spetsifikatsioonile vastavaid üks mitmest ja "
+"mitu mitmest küsimusetüüpe."
+
+#: ../tester.php:218
+msgid "test constructor"
+msgstr "eksaminaator"
+
+#, fuzzy
+#~ msgid "Timelimit"
+#~ msgstr "Ajalimiit"
+
+#~ msgid "Add to"
+#~ msgstr "Lisa"

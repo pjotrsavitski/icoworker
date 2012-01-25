@@ -1,0 +1,84 @@
+<tal:block metal:use-macro="main.html/main" tal:omit-tag="">
+
+    <tal:block metal:fill-slot="header">
+        <script type="text/javascript" src="" tal:attributes="src string:${WWW_ROOT}views/js/password_strength_plugin.js"></script>
+        <script type="text/javascript">
+            $(document).ready( function() {
+                $(".password_test").passStrength({
+                    userid: "#username"
+                });
+            });
+        </script>
+    </tal:block>
+
+
+    <tal:block metal:fill-slot="content_body"
+        define="facebook_user_id teke/facebook/getFacebookUser | nothing;"
+        condition="facebook_user_id" >
+        
+        <div>
+            You haven't logged in with facebook before. If you already have account insert your username and password. If not register for new account.
+        </div>
+        <br /><br />
+        <form name="facebookconnectform" class="dataform" method="post" action="index.php" tal:attributes="action php:WWW_ROOT . 'actions/facebook_connect.php'">
+            Connect your account with facebook account
+            <br />
+            <div class="row">
+                <label>Username</label>
+                <input type="text" name="username" />
+            </div>
+            <div class="row">
+                <label>Password</label>
+                <input type="text" name="password" />
+            </div>
+            <input type="hidden" name="facebook_user_id" value="" tal:attributes="value facebook_user_id" />
+            <input type="submit" value="Connect facebook with your account" />
+        </form>
+
+        <br />
+        <div>or register for new account</div>
+        <br />
+
+        <form name="registerform" class="dataform" method="post" action="index.php" tal:attributes="action php:WWW_ROOT . 'actions/register.php'">
+
+            <tal:block omit-tag="" 
+                tal:define="facebook_user_id teke/facebook/getFacebookUser | nothing;
+                            first_name input_values/first_name | teke/facebook/getFirstName | nothing;
+                            last_name input_values/last_name | teke/facebook/getLastName | nothing;
+                            email input_values/email | teke/facebook/getEmail | nothing;
+                            username input_values/username | nothing;">
+
+                <div class="row">
+                    <label i18n:translate="">First name</label>
+                    <input type="text" name="first_name" id="first_name" tal:attributes="value first_name" />
+                </div>
+                <div class="row">
+                    <label i18n:translate="">Last name</label>
+                    <input type="text" name="last_name" id="last_name" tal:attributes="value last_name" />
+                </div>
+                <div class="row">
+                    <label i18n:translate="">Email</label>
+                    <input type="text" name="email" id="email" tal:attributes="value email" />
+                </div>
+                <div class="row">
+                    <label i18n:translate="">Username</label>
+                    <input type="text" name="username" id="username" tal:attributes="value username" />
+                </div>
+                <div class="row">
+                    <label i18n:translate="">Password</label>
+                    <input class="password_test" type="password" name="password" id="password" />
+                </div>
+                <div class="row">
+                    <label i18n:translate="">Confirm password</label>
+                    <input type="password" name="password_confirm" id="password_confirm" />
+                </div>
+                <input type="hidden" name="facebook_user_id" value="" tal:attributes="value facebook_user_id" />
+                <input type="submit" name="Register" value="Register" i18n:attributes="value" />
+            
+            </tal:block>
+           
+        </form>
+        
+    </tal:block>
+
+</tal:block>

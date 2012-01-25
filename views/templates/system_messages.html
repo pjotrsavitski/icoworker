@@ -1,0 +1,9 @@
+<tal:block metal:define-macro="system_messages" i18n:domain="teke">
+    <div id="system_messages" tal:define="system_messages teke/get_system_messages">
+	    <tal:block tal:repeat="system_message system_messages"> 
+		<div id="" class="" tal:attributes="class string:system_message_${system_message/type}; id string:system_message_${repeat/system_message/index}">
+			<tal:block tal:content="system_message/message" /> <span class="system_message_close" i18n:translate="">Close</span>
+		</div>
+		</tal:block>
+	</div>	
+</tal:block>

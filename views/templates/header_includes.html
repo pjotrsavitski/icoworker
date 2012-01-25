@@ -1,0 +1,21 @@
+<tal:block metal:define-macro="css">
+    <link rel="stylesheet" href="" type="text/css" tal:attributes="href string:${WWW_ROOT}views/css/teke.css" />
+    <link rel="stylesheet" href="" type="text/css" tal:attributes="href string:${WWW_ROOT}views/css/overcast/jquery-ui-1.8.11.custom.css" />
+</tal:block>
+
+<tal:block metal:define-macro="javascript" i18n:domain="teke">
+    <script type="text/javascript" src="" tal:attributes="src string:${WWW_ROOT}views/js/jquery-1.5.1.min.js"></script>
+    <script type="text/javascript" src="" tal:attributes="src string:${WWW_ROOT}views/js/jquery-ui-1.8.11.custom.min.js"></script>
+    <script type="text/javascript" src="" tal:attributes="src string:${WWW_ROOT}views/js/jquery.drawinglibrary.js"></script>
+    <script type="text/javascript" src="" tal:attributes="src string:${WWW_ROOT}views/js/jquery.confirm.js"></script>
+    <script type="text/javascript" src="" tal:attributes="src string:${WWW_ROOT}views/js/teke_translator.php"></script>
+    <script type="text/javascript" src="" tal:attributes="src string:${WWW_ROOT}views/js/teke_main.js"></script>
+    <script type="text/javascript" src="" tal:attributes="src string:${WWW_ROOT}views/js/tiny_mce/tiny_mce.js"></script>
+
+	<script type="text/javascript">
+        <!--<tal:block content="structure string:var locale = '${dippler/get_locale}';" />-->
+        <tal:block content="structure string:var WWW_ROOT = '${WWW_ROOT}';" />
+        <tal:block content="structure string:var PLUGIN_ROOT = '${PLUGIN_ROOT}';" />
+    </script>
+    
+</tal:block>

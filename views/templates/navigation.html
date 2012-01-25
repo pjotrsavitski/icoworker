@@ -1,0 +1,11 @@
+<tal:block metal:define-macro="navigation" i18n:domain="teke">
+    <div id="navigation_content" tal:define="items teke/get_navigation_items | NULL">
+        <ul class="horizontal_menu">
+            <tal:block repeat="item items">
+                <li tal:define="current item/current | NULL" tal:attributes="class php:current?'current':''">
+                    <a href="" tal:attributes="href string:${WWW_ROOT}${item/url}" i18n:translate="item/title">Item 1</a>
+                </li>  
+            </tal:block>
+        </ul>
+    </div>	
+</tal:block>

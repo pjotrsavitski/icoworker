@@ -1,0 +1,13 @@
+# Psyhvel plugin:
+#
+# Database
+#     make database tables from includes/psyhvel/psyhvel.sql
+# Python for unpickler
+#     make sure that python path is good in actions/psyhvel/unpickler.py
+
+# Create folders:
+# Datastore - data like images and other files for config::DATA_STORE
+# session - session data for config::SESSION_SAVE_PATH
+# Datastore can contain session folder
+# edit config.php to point them out
+# makse sure that apache can write into them 

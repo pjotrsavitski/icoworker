@@ -1,0 +1,63 @@
+<?php
+    /**********************
+    *    Site Settings    *
+    **********************/
+    DEFINE("WWW_ROOT", 'http://localhost/teke/');
+    DEFINE("SITE_NAME", "TeKe");
+    DEFINE("ACCESS_CAN_VIEW", 1);
+    DEFINE("ACCESS_CAN_EDIT", 5);
+    DEFINE("EXAMINEES", true); // turn ON / OFF examinee user type
+    
+    /*******************
+    * Session settings *
+    *******************/
+    DEFINE("SESSION_SAVE_PATH", "/tmp/session"); //without trailing slash
+    
+    /**********************
+    * Database Connection *
+    **********************/
+    DEFINE("DB_HOST", '');
+    DEFINE("DB_USERNAME", 'root');
+    DEFINE("DB_PASSWORD", 'kalakala');
+    DEFINE("DB_NAME", 'teke');
+    DEFINE("DB_PREFIX", 'teke_');
+    
+    /***********************
+    * Locale and encodings *
+    ***********************/
+    DEFINE("LOCALE_et", 'et_EE'); //for windows server use 'est_EST'
+    DEFINE("LOCALE_en", 'en_GB'); 
+    DEFINE("LOCALE_ru", 'ru_RU');
+    DEFINE("DEFAULT_LANGUAGE", "et");
+    DEFINE("DEFAULT_ENCODING", ".UTF-8"); //for windows server use empty string ''
+    DEFINE("DEFAULT_DOMAIN", 'teke'); 
+    DEFINE("TIME_ZONE", "Europe/Tallinn");
+    
+    /***************
+    * File system *
+    ****************/
+    DEFINE("DATA_STORE", ""); //with trailing slash
+    DEFINE("PHPTAL_TMP", "/tmp/phptal/"); //with trailing slash 
+    
+    /***********
+    * Facebook *
+    ***********/
+    DEFINE("FACEBOOK", false);
+    DEFINE("FACEBOOK_APP_ID", "");
+    DEFINE("FACEBOOK_APP_SECRET", "");
+    
+    /**********
+    * Youtube *
+    **********/
+    DEFINE("YOUTUBE_DEFAULT_PLAYER", "html5"); //html5 as3
+
+    /***************
+    * Running mode *
+    ****************/
+    DEFINE("DEV_MODE", true);
+    
+    /***************
+    * Used plugins *
+    ****************/
+    DEFINE("PLUGIN", "psyhvel");
+?>
