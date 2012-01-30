@@ -11,7 +11,6 @@ session_start();
 require_once(dirname(__FILE__)."/lib/phptal/PHPTAL.php");
 require_once(dirname(__FILE__)."/lib/database/database.php");
 require_once(dirname(__FILE__)."/lib/user/user.php");
-require_once(dirname(__FILE__)."/lib/examinees/examinees.php");
 require_once(dirname(__FILE__)."/lib/group/group.php");
 require_once(dirname(__FILE__)."/lib/image/Image.php");
 require_once(dirname(__FILE__)."/lib/sound/Sound.php");
@@ -61,25 +60,17 @@ if (is_file(dirname(dirname(__FILE__))."/includes/".PLUGIN."/".PLUGIN.".php")) {
 }
 
 /*******************
-* Examinees Loader *
-*******************/
-// Triggers when examinees are turned ON in config
-if (EXAMINEES) {
-    $examinee = new Examinees();
-    if (isset($_SESSION["examinee"])) {
-        $examinee->load($_SESSION["examinee"]);
-    }
-    $TeKe->examinee = $examinee;
-}
-
-/*******************
  * FACEBOOK LOADER *
  ******************/
 
 if (FACEBOOK) {
     require_once(dirname(__FILE__)."/lib/facebook/facebook.php");
-    require_once(dirname(__FILE__)."/lib/facebook/FacebookUser.php");
-    $facebook = new FacebookUser();
+    $facebook = new Facebook(array(
+        'appId' => FACEBOOK_APP_ID,
+        'secret' => FACEBOOK_APP_SECRET,
+        'fileUpload' => false,
+        'cookie' => true
+    ));
     $TeKe->facebook = $facebook;
 }
 
@@ -224,11 +215,6 @@ function admin_gatekeeper() {
     if (!is_admin()) {
         forward("index");
     }
-}
-
-function get_examinee() {
-    global $TeKe;
-    return $TeKe->examinee;
 }
 
 function console_log($message, $title=false) {

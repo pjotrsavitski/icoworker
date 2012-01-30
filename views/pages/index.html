@@ -26,12 +26,12 @@
             IN ENGLISH
 		</div>
 
-		<tal:block xmlns:fb="http://www.facebook.com/2008/fbml">
-		    <div id="index-facebook-login">
-		        <fb:login-button autologoutlink="false" show-faces="false" width="200" max-rows="1" scope="email"></fb:login-button>
-		    </div>
-		</tal:block>
-    
+		<div id="index-facebook-login" condition="not:is_logged_in">
+			<a href="" title="Login with Facebook" tal:attributes="href php:teke.facebook.getLoginUrl(array('scope' => 'email', 'redirect_uri' => teke.get_site_url() . 'actions/login.php'))" i18n:attributes="title">
+				<img src="" alt="facebook logo" tal:attributes="src string:${WWW_ROOT}views/graphics/f_logo.png" />
+			</a>
+		</div>
+
     </tal:block>
     
 </tal:block>

@@ -5,10 +5,6 @@
         unset($_SESSION["user"]);
         session_destroy();
         session_start();
-	} else if (isset($_SESSION["examinee"])) {
-        unset($_SESSION["examinee"]);
-        session_destroy();
-        session_start();
 	} else {
 		$TeKe->add_system_message(_("No authenticated user found."), 'error');
 	}

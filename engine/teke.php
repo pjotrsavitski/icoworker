@@ -266,5 +266,9 @@ class TeKe {
         return $string;
     }
 
+    function get_site_url() {
+        return WWW_ROOT;
+    }
+
 }
 ?>

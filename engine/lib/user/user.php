@@ -1,123 +1,5 @@
 <?php
 
-    class UserDetails {
-        
-        private $id;
-        private $userid;
-        private $username;
-        private $firstname = "";
-        private $lastname = "";
-        private $email = "";
-        private $sex = "boy";
-        private $homepage = "";
-        private $language = DEFAULT_LANGUAGE;
-        
-        function __construct($uid) {
-            global $db;
-            $q = "SELECT * FROM " . DB_PREFIX . "userinfo WHERE userid=".$uid;
-            $ret = $db->query($q);
-            $num = mysql_num_rows($ret);
-            if ( $num == 1) { // OK
-                $res = mysql_fetch_array($ret);
-                $this->id = $res['id'];
-                $this->userid = $res['userid'];
-                $this->email = $res['email'];
-                $this->firstname = $res['firstname'];
-                $this->lastname = $res['lastname'];
-                $this->homepage = $res['homepage'];
-                $this->sex = $res['sex'];
-                $this->language = $res['language'];
-            } else {
-                if ( $uid != -1 ) {
-                    $this->create($uid);
-                }
-            }
-        }
-        
-        function getFullName() {
-            return $this->first_name." ".$this->last_name;
-        }
-
-        function getFullnameDisplay() {
-            $fn = $this->getFullname();
-            if ($fn == "" || $fn == NULL || strlen(trim($fn)) == 0 ){
-                return $this->username;
-            }
-            return $fn;
-        }
-
-        function setUsername($un) {
-            $this->username = $un;
-        }
-
-        function getFirstname()  {
-            return $this->firstname;
-        }
-        
-        function setFirstname($val) {
-            $this->firstname = $val;
-        }
-        
-        function getLastname()  {
-            return $this->lastname;
-        }
-        
-        function setLastname($val)  {
-            $this->lastname = $val;
-        }
-        
-        function getEmail() {
-            return $this->email;
-        }
-        
-        function setEmail($val) {
-            $this->email = $val;
-        }
-        
-        function getSex() {
-            return $this->sex;
-        }
-        
-        function setSex($val) {
-            $this->sex = $val;
-        }
-        
-        function getLanguage() {
-            return $this->language;
-        }
-        
-        function setLanguage($val) {
-            $this->language = $val;
-        }
-        
-        function getHomepage() {
-            return $this->homepage;
-        }
-        
-        function setHomepage($val) {
-            $this->homepage = $val;
-        }
-        
-        function update() {
-            global $db;
-            $q = "UPDATE " . DB_PREFIX . "userinfo SET ";
-            $q .= " firstname='".$this->firstname."'";
-            $q .= ", lastname='".$this->lastname."'";
-            $q .= ", email='".$this->email."'";
-            $q .= ", sex='".$this->sex."'";
-            $q .= ", homepage='".$this->homepage."'";
-            $q .= ", language='".$this->language."'";
-            $q .= " WHERE id=".$this->id." AND userid=".$this->userid;
-            $db->query($q);
-        }
-        
-        private function create($uid) {
-            global $db;
-            $q = "INSERT INTO " . DB_PREFIX . "userinfo (userid, sex, language) values (".$uid.", '".$this->sex."', '".$this->language."')";
-            $db->query($q);
-        }
-    }
-    
 class User {
         public $id = NULL;
         public $username = "Anonymous";
@@ -125,9 +7,6 @@ class User {
         public $last_name = "";
         public $email = "";
         public $language = "et";
-        public $approved = 0;
-        public $details = null;
-        public $groups = array();
         public $level = 1;
         
         function __construct($id = NULL) {
@@ -154,17 +33,25 @@ class User {
             if ( $ret) {
                 $this->id = $ret->id;
                 $this->username = $ret->username;
+                $this->facebook_id = $ret->facebook_id;
                 $this->first_name = $ret->first_name;
                 $this->last_name = $ret->last_name;
                 $this->email = $ret->email;
                 $this->language = $ret->language;
-                $this->approved = $ret->approved;
                 $this->level = $ret->role;
             }
         }
         
+        function getId() {
+            return $this->id;
+        }
+        
         function getUsername() {
             return $this->username;
+        }
+
+        function getfacebookId() {
+            return $this->facebook_id;
         }
         
         function getFirstName() {
@@ -193,10 +80,6 @@ class User {
         
         function getRoles() {
             return $this->roles;
-        }
-        
-        function getGroups() {
-            return $this->groups;
         }
         
         function hasAnyRole($required) {
@@ -228,19 +111,6 @@ class User {
             return False;
         }
         
-        function getDetails() {
-            if ($this->details == null) {
-                $ud = new UserDetails($this->id);
-                $ud->setUsername($this->username);
-                $this->details = $ud;
-            }
-            return $this->details;
-        }
-        
-        function getId() {
-            return $this->id;
-        }
-
         function getUserIdByUname($uname) {
             global $db;
             $q = "SELECT id FROM " . DB_PREFIX . "users WHERE uname='".$uname."'";
@@ -263,7 +133,7 @@ class User {
         
         function getUsers() {
             global $db;
-            return $db->query("SELECT *, concat(firstname, ' ', lastname) AS fullname FROM " . DB_PREFIX . "users LEFT JOIN " . DB_PREFIX . "userinfo ON " . DB_PREFIX . "users.id=" . DB_PREFIX . "userinfo.userid WHERE approved");
+            return $db->query("SELECT *, concat(firstname, ' ', lastname) AS fullname FROM " . DB_PREFIX . "users LEFT JOIN " . DB_PREFIX . "userinfo ON " . DB_PREFIX . "users.id=" . DB_PREFIX . "userinfo.userid");
         }
         
         function getUserById($id=false) {
@@ -280,26 +150,16 @@ class User {
             return $res;
         }
 
-        function getUnapprovedUsers() {
-            $res = query_rows("SELECT * FROM " . DB_PREFIX . "users WHERE approved=0;");
-            return $res;
-        }
-        
-        function user_approve($id) {
-            $q = "UPDATE " . DB_PREFIX . "users SET approved=1 WHERE id={$id}";
-            return query($q);
-        }
-        
         public function make_admin($uid) {
             $roles = "111111";
-            $approved = 1;
-            $res = $this->db->query("UPDATE " . DB_PREFIX . "users SET roles='{$roles}', approved={$approved} WHERE id={$uid}");
+            $res = $this->db->query("UPDATE " . DB_PREFIX . "users SET roles='{$roles}' WHERE id={$uid}");
             if ($res) return 1;
             return 0;
         }
 
+        // XXX This is incorrect
         function isAuthenticationCorrect($username, $password) {
-            $res = query("SELECT * FROM "  . DB_PREFIX . "users WHERE username='{$username}' AND approved=1");
+            $res = query("SELECT * FROM "  . DB_PREFIX . "users WHERE username='{$username}'");
             $check = mysql_fetch_array($res);
             if ($this->valid_password($password, $check["password"], $check["salt"])){
                return $check["id"]; 
@@ -307,8 +167,9 @@ class User {
             return false;
         } 
 
+        // XXX This is incorrect
         function authenticate_user($username, $password) {
-            $res = query("SELECT * FROM "  . DB_PREFIX . "users WHERE username='{$username}' AND approved=1");
+            $res = query("SELECT * FROM "  . DB_PREFIX . "users WHERE username='{$username}'");
             $check = mysql_fetch_array($res);
             if ($this->valid_password($password, $check["password"], $check["salt"])){
                 $this->load($check["id"]);
@@ -323,6 +184,12 @@ class User {
 
         function check_username_exists($username) {
             $res = query("SELECT count(username) FROM " . DB_PREFIX . "users WHERE username='{$username}'");
+            $check = mysql_fetch_row($res);
+            return $check[0];
+        }
+
+        function check_facebook_id_exists($facebook_id) {
+            $res = query("SELECT count(facebook_id) FROM " . DB_PREFIX . "users WHERE facebook_id=$facebook_id");
             $check = mysql_fetch_row($res);
             return $check[0];
         }
@@ -355,13 +222,19 @@ class User {
             $this->load($res->id);
             return $this;  
         }
+
+        function get_user_by_facebook_id($facebook_id) {
+            $res = query_row("SELECT * FROM " . DB_PREFIX . "users WHERE facebook_id=$facebook_id");
+            if (!$res) {
+                return false;
+            }
+            $this->load($res->id);
+            return $this;
+        }
         
-        public function create($username, $email, $password, $firstname, $lastname) {
-            $salt = $this->generate_salt($username);
-            $hash = $this->hash_password($password, $salt);
+        public function create($username, $email, $facebook_id, $firstname, $lastname) {
             $roles = "000000";
-            $approved = 0;
-            $q = "INSERT INTO " . DB_PREFIX . "users (first_name, last_name, email, username, password, salt, registered) values ('".$firstname."', '".$lastname."', '".$email."', '".$username."', '".$hash."', '".$salt."', NOW())";
+            $q = "INSERT INTO " . DB_PREFIX . "users (username, email, facebook_id, first_name, last_name, registered) values ('$username', '$email', $facebook_id, '$firstname', '$lastname', NOW())";
             $uid = query_insert($q);
             if ($uid) return $uid;
             return 0;
@@ -372,20 +245,24 @@ class User {
             return query($q);
         }
 
+        // XXX unneeded
         private function generate_salt($username) {  
            $salt = sha1('~'.$username.'~'.microtime(TRUE).'~');  
            $salt = substr($salt, rand(0,30), 10);  
            return $salt;  
         }  
-        
+
+        // XXX unneeded
         private function hash_password($password, $salt) {  
             return sha1('~'.$password.'~'.$salt.'~');  
         }  
         
+        // XXX unneeded
         private function valid_password($password, $hash, $salt) {
             return $this->hash_password($password, $salt) == $hash;  
         } 
 
+        // XXX unneeded
         private function create_password_reset_token($user) {
             $q = query("SELECT * FROM "  . DB_PREFIX . "users WHERE id='{$user->id}'");
             $res = mysql_fetch_array($q);
@@ -396,10 +273,12 @@ class User {
             return $token . '-' . $expiration_time;
         }
 
+        // XXX unneeded
         function create_token($expiration_time, $hash, $salt) {
             return sha1('~'.$expiration_time.'~'.$hash.'~'.$salt.'~');
         }
 
+        // XXX unneeded
         function send_password_reset_mail($user) {
             global $TeKe;
             $subject = _("Password reset");
@@ -420,6 +299,7 @@ class User {
             return $TeKe->send_mail($user, $subject, $msg);
         }
 
+        // XXX unneeded
         public function isValidToken($email, $token) {
             if (!$token) {
                 return false;
@@ -445,6 +325,7 @@ class User {
             return true;
         }
 
+        // XXX unneeded
         function reset_password($email, $password) {
             $q = query("SELECT * FROM " . DB_PREFIX . "users WHERE email='{$email}'");
             $res = mysql_fetch_array($q);
@@ -455,6 +336,7 @@ class User {
             return query($q);
         }
 
+        // XXX unneeded
         function change_password($user, $password) {
             $salt = $this->generate_salt($user->username);
             $hash = $this->hash_password($password, $salt);
@@ -462,6 +344,7 @@ class User {
             return query($q);
         }
         
+        // XXX unneeded
         function is_password_correct($user, $password) {
             $q = query("SELECT * FROM "  . DB_PREFIX . "users WHERE id={$user->id}");
             $res = mysql_fetch_array($q);

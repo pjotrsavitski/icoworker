@@ -264,3 +264,8 @@ div#index-facebook-login {
 	margin: 90px auto 0 auto;
 	text-align: center;
 }
+
+div#index-facebook-login img {
+	width: 25px;
+	height: 25px;
+}

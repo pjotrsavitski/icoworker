@@ -1,3 +1,4 @@
+-- XXX deleteme -- 
 CREATE TABLE IF NOT EXISTS prefix_site (
     id bigint(20) UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,
     url char(255) NOT NULL UNIQUE KEY,
@@ -10,21 +11,19 @@ CREATE TABLE IF NOT EXISTS prefix_site (
 CREATE TABLE IF NOT EXISTS prefix_users (
     id BIGINT(20) UNSIGNED NOT NULL AUTO_INCREMENT,
     username VARCHAR(128) NOT NULL,
-    password VARCHAR(40) NOT NULL,
-    salt VARCHAR(10) NOT NULL,
+	facebook_id BIGINT(20) NOT NULL,
     first_name VARCHAR(255) DEFAULT '',
     last_name VARCHAR(255) DEFAULT '',
     email VARCHAR(255) DEFAULT NULL,
     language VARCHAR(6) NOT NULL DEFAULT 'et',
     registered DATETIME NOT NULL DEFAULT '0000-00-00 00:00:00',
-    approved TINYINT(1) NOT NULL DEFAULT 0,
     role INT(1) NOT NULL DEFAULT 1,
     last_login DATETIME NOT NULL DEFAULT '0000-00-00 00:00:00',
     PRIMARY KEY (id),
     UNIQUE INDEX username (username)
 ) ENGINE = InnoDB DEFAULT CHARSET=UTF8;
 
-
+-- XXX deleteme --
 CREATE TABLE IF NOT EXISTS prefix_examinees (
     id BIGINT(20) UNSIGNED NOT NULL AUTO_INCREMENT,
     username VARCHAR(128) NOT NULL,
@@ -34,6 +33,7 @@ CREATE TABLE IF NOT EXISTS prefix_examinees (
     UNIQUE INDEX username (username)
 ) ENGINE=InnoDB DEFAULT CHARSET=UTF8;
 
+-- XXX deleteme --
 CREATE TABLE IF NOT EXISTS prefix_userinfo (
     id bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
     userid bigint(20) UNSIGNED default NULL UNIQUE KEY,
@@ -46,6 +46,7 @@ CREATE TABLE IF NOT EXISTS prefix_userinfo (
     FOREIGN KEY (userid) REFERENCES prefix_users (id) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=UTF8;
 
+-- XXX deleteme --
 CREATE TABLE IF NOT EXISTS prefix_groups (
     id bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
     creator bigint(20) UNSIGNED default NULL,
@@ -53,6 +54,7 @@ CREATE TABLE IF NOT EXISTS prefix_groups (
     FOREIGN KEY (creator) REFERENCES prefix_users (id) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=UTF8;
 
+-- XXX deleteme --
 CREATE TABLE IF NOT EXISTS prefix_group_relations (
     group_id bigint(20) UNSIGNED NOT NULL,
     examinee_id bigint(20) UNSIGNED NOT NULL,
@@ -75,6 +77,7 @@ CREATE TABLE IF NOT EXISTS prefix_images (
     FOREIGN KEY (creator) REFERENCES prefix_users (id) ON DELETE SET NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=UTF8;
 
+-- XXX deleteme --
 CREATE TABLE IF NOT EXISTS prefix_sounds (
     id bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
     creator bigint(20) UNSIGNED default NULL,
