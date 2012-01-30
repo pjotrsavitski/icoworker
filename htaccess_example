@@ -97,20 +97,8 @@ RewriteEngine on
 RewriteRule ^user\/(.*)$ ?handler=user&page=$1&%{QUERY_STRING}
 RewriteRule ^user$ ?handler&%{QUERY_STRING}
 
-RewriteRule ^examinees\/(.*)$ ?handler=examinees&page=$1&%{QUERY_STRING}
-RewriteRule ^examinees$ ?handler&%{QUERY_STRING}
-
-RewriteRule ^group\/(.*)$ ?handler=group&page=$1&%{QUERY_STRING}
-RewriteRule ^group$ ?handler&%{QUERY_STRING}
-
 RewriteRule ^library\/(.*)$ ?handler=library&page=$1&%{QUERY_STRING}
 RewriteRule ^library$ ?handler&%{QUERY_STRING}
-
-RewriteRule ^tests\/(.*)$ ?handler=tests&page=$1&%{QUERY_STRING}
-RewriteRule ^tests$ ?handler&%{QUERY_STRING}
-
-RewriteRule ^test\/(.*)$ ?handler=test&page=$1&%{QUERY_STRING}
-RewriteRule ^test$ ?handler=test&%{QUERY_STRING}
 
 RewriteRule ^profile\/(.*)$ ?handler=profile&page=$1&%{QUERY_STRING}
 RewriteRule ^profile$ ?handler&%{QUERY_STRING}
@@ -120,12 +108,6 @@ RewriteRule ^administrate$ ?handler&%{QUERY_STRING}
 
 RewriteRule ^users\/(.*)$ ?handler=users&page=$1&%{QUERY_STRING}
 RewriteRule ^users$ ?handler&%{QUERY_STRING}
-
-RewriteRule ^items\/(.*)$ ?handler=items&page=$1&%{QUERY_STRING}
-RewriteRule ^items$ ?handler&%{QUERY_STRING}
-
-RewriteRule ^assessments\/(.*)$ ?handler=assessments&page=$1&%{QUERY_STRING}
-RewriteRule ^assessments$ ?handler&%{QUERY_STRING}
 
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d

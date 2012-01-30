@@ -30,7 +30,7 @@ class TeKe {
     }
     
     private function setTemplateRepository() {
-        $repository_folders = array("templates", "user", "examinees", "group", "pages", "administrate");
+        $repository_folders = array("templates", "user", "pages", "administrate");
         $repos_path = dirname(dirname(__FILE__));
         if (is_dir(dirname(dirname(__FILE__))."/includes/".PLUGIN)) {
              $this->plugin_loaded = dirname(dirname(__FILE__))."/includes/".PLUGIN."/";
@@ -64,9 +64,6 @@ class TeKe {
     function setNavigation() {
         if ($this->plugin AND method_exists($this->plugin, "setNavigation")) {
             $this->plugin->setNavigation($this);
-        }
-        if (EXAMINEES) {
-            $this->navigation['examinees'] = array('title'=>_('Examinees'), 'url'=>"examinees/view", 'current'=>$this->is_current_main('examinees'), 'level'=>0);
         }
         if (is_admin()) {
             $this->navigation['administration'] = array('title'=>_('Administration'), 'url'=>"administrate/teke", 'current'=>$this->is_current_main('administrate'), 'level'=>0);
@@ -113,7 +110,7 @@ class TeKe {
                 } else {
                     $template = "page_not_found";
                 }
-            } else if (is_file(dirname(dirname(__FILE__))."/includes/".PLUGIN."/handler/handler_".$handler.".php") || in_array($handler, array("user", "examinees", "group", "administrate"))) {
+            } else if (is_file(dirname(dirname(__FILE__))."/includes/".PLUGIN."/handler/handler_".$handler.".php") || in_array($handler, array("user", "administrate"))) {
                 $hn = ucfirst($handler."Handler");
                 if (class_exists($hn)) {
                     $this->handler = new $hn($page);
@@ -226,13 +223,6 @@ class TeKe {
         return false;
     }
     
-    public function is_examinee() {
-        if (isset($_SESSION['examinee'])) {
-            return true;
-        }
-        return false;
-    }
-
     public function is_admin() {
         return $this->has_access(9);
     }

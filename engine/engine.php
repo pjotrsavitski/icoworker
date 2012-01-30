@@ -95,7 +95,7 @@ if (class_exists($plugin)) {
 /**************
 * TeKe Engine *
 **************/ 
-if ($TeKe->is_logged_in() || $TeKe->is_examinee() || (count($page) > 0 && in_array($page[0], array("facebook_connect", "register", "login", "password_recovery", "password_reset", "assessment")))) {
+if ($TeKe->is_logged_in() || $TeKe->is_examinee() || (count($page) > 0 && in_array($page[0], array()))) {
     $TeKe->group = new Group();
     
     $handler = get_input("handler", "pages");
