@@ -81,6 +81,10 @@ class User {
         function getRoles() {
             return $this->roles;
         }
+
+        function getLanguage() {
+            return $this->language;
+        }
         
         function hasAnyRole($required) {
             $lstr = "";
@@ -123,17 +127,9 @@ class User {
             return -1;
         }
         
-        /*function getUserById($usid) {
-            global $db;
-            $q = "SELECT * FROM " . DB_PREFIX . "users LEFT JOIN userinfo ON " . DB_PREFIX . "users.id=" . DB_PREFIX . "userinfo.userid WHERE " . DB_PREFIX . "users.id=".$usid;
-            $ret = $db->query($q);
-            $res = mysql_fetch_array($ret);
-            return $res;
-        }*/
-        
         function getUsers() {
             global $db;
-            return $db->query("SELECT *, concat(firstname, ' ', lastname) AS fullname FROM " . DB_PREFIX . "users LEFT JOIN " . DB_PREFIX . "userinfo ON " . DB_PREFIX . "users.id=" . DB_PREFIX . "userinfo.userid");
+            return $db->query("SELECT *, concat(firstname, ' ', lastname) AS fullname FROM " . DB_PREFIX . "users");
         }
         
         function getUserById($id=false) {
@@ -146,7 +142,7 @@ class User {
         }
         
         function getAllUsers() {
-            $res = query_rows("SELECT *, concat(first_name, ' ', last_name) AS fullname FROM " . DB_PREFIX . "users");
+            $res = query_rows("SELECT *, concat(first_name, ' ', last_name) AS fullname FROM " . DB_PREFIX . "users", 'User');
             return $res;
         }
 

@@ -4,26 +4,39 @@
         <tal:block condition="teke/is_admin">
 
             <tal:block define="users teke/user/getAllUsers">
+			    <table id="administrate-users">
+                    <tbody>
+						<tr>
+							<th i18n:translate="">Username</th>
+							<th i18n:translate="">Fullname</th>
+							<th i18n:translate="">Email</th>
+							<th i18n:translate="">Language</th>
+							<th i18n:translate="">Registered</th>
+							<th i18n:translate="">Last login</th>
+							<th i18n:translate="">Role</th>
+						</tr>
 
-                <div tal:repeat="user users">
-                    <span tal:content="user/username"></span>
-                </div>
+						<tr tal:repeat="user users">
+							<td>
+								<a href="" tal:attributes="href user/getURL" tal:content="user/getUsername"></a>
+							</td>
+							<td tal:content="user/getFullName"></td>
+							<td>
+								<tal:block define="value user/getEmail" metal:use-macro="outputs.html/email" />
+							</td>
+							<td tal:content="user/getLanguage"></td>
+							<td>
+								<tal:block define="value php:strtotime(user.registered)" metal:use-macro="outputs.html/fulldate" />
+							</td>
+							<td>
+								<tal:block define="value php:strtotime(user.last_login)" metal:use-macro="outputs.html/fulldate" />
+							</td>
+							<td tal:content="user/getRole"></td>
+						</tr>
+					</tbody>
+				</table>
 
             </tal:block>
-
-            <br /><br />
-            <h2>Unapproved users</h2>
-            <tal:block define="unapproved_users teke/user/getUnapprovedUsers">
-            <form name="unapproved_users_form" method="post" action="index.php" tal:attributes="action php:WWW_ROOT . 'actions/users_approve.php'">
-                <div tal:repeat="user unapproved_users">
-                    <input type="checkbox" name="user" value="" tal:attributes="value user/id" />
-                    <span tal:content="user/username"></span>                     
-                </div>
-
-                <input type="submit" value="Approve" />
-            </form>
-            </tal:block>
-
 
         </tal:block>
     </tal:block>

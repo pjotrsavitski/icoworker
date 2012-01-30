@@ -95,7 +95,7 @@ if (class_exists($plugin)) {
 /**************
 * TeKe Engine *
 **************/ 
-if ($TeKe->is_logged_in() || $TeKe->is_examinee() || (count($page) > 0 && in_array($page[0], array()))) {
+if ($TeKe->is_logged_in() || (count($page) > 0 && in_array($page[0], array()))) {
     $TeKe->group = new Group();
     
     $handler = get_input("handler", "pages");
@@ -138,11 +138,14 @@ function query_row($sql) {
     return false;
 }
 
-function query_rows($sql) {
+function query_rows($sql, $classname = NULL) {
+    if (!$classname) {
+        $classname = 'stdClass';
+    }
     $res = query($sql);
     $rows = array();
     if(mysql_num_rows($res)) {
-        while($row = mysql_fetch_object($res)) {
+        while($row = mysql_fetch_object($res, $classname)) {
             $rows []= $row;
         }
     }

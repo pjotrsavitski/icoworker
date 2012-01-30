@@ -269,3 +269,12 @@ div#index-facebook-login img {
 	width: 25px;
 	height: 25px;
 }
+
+/* ADMINISTRATE */
+table#administrate-users {
+	width: 100%;
+}
+
+table#administrate-users th {
+	background-color: #cccccc;
+}

@@ -1,7 +1,5 @@
 <?php
 require_once("handler_user.php");
-require_once("handler_examinees.php");
-require_once("handler_group.php");
 require_once("handler_administrate.php");
 
 class BaseHandler {

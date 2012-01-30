@@ -16,7 +16,6 @@ class UserHandler extends BaseHandler {
         $this->navigation []= array('title'=>_('View'), 'url'=>"user/view/{$uname}", 'current'=>$this->is_current_page($this->page[0], "view"));
         //$this->navigation []= array('title'=>_('Edit profile'), 'url'=>"user/edit/{$uname}", 'current'=>$this->is_current_page($this->page[0], "edit"));
         $this->navigation []= array('title'=>_('Edit settings'), 'url'=>"user/settings/{$uname}", 'current'=>$this->is_current_page($this->page[0], "settings"));
-        $this->navigation []= array('title'=>_('Change password'), 'url'=>"user/password/{$uname}", 'current'=>$this->is_current_page($this->page[0], "password"));
     }
 
     public function getUserByUserName() {
