@@ -129,10 +129,13 @@ function query($sql) {
     return $TeKe->db->query($sql);
 }
 
-function query_row($sql) {
+function query_row($sql, $classname = NULL) {
+    if (!$classname) {
+        $classname = 'stdClass';
+    }
     $res = query($sql);
     if ($res) {
-        $ret = mysql_fetch_object($res);
+        $ret = mysql_fetch_object($res, $classname);
         return $ret;
     }
     return false;

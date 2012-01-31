@@ -2,7 +2,7 @@
 
 class User {
         public $id = NULL;
-        public $username = "Anonymous";
+        public $username = "";
         public $first_name = "";
         public $last_name = "";
         public $email = "";
@@ -39,6 +39,10 @@ class User {
                 $this->email = $ret->email;
                 $this->language = $ret->language;
                 $this->level = $ret->role;
+            } else {
+                // Set username and id to defaults, this way it is possible to check if loading failed
+                $this->id = NULL;
+                $this->username = "";
             }
         }
         

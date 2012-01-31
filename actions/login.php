@@ -10,8 +10,11 @@
             $user_profile = $TeKe->facebook->api("/me");
             $exists = $TeKe->user->check_facebook_id_exists($user_profile['id']);
             if (!$exists) {
-                $TeKe->user->create($user_profile['username'], $user_profile['email'], $user_profile['id'], $user_profile['first_name'], $user_profile['last_name']);
-                // XXX probably need to check if user got created
+                // If "username" is missing, use "fb."."id" instead
+                $user_created = $TeKe->user->create(isset($user_profile['username']) ? $user_profile['username'] : "fb.".$user_profile['id'], $user_profile['email'], $user_profile['id'], $user_profile['first_name'], $user_profile['last_name']);
+                if (!$user_created) {
+                    $TeKe->add_system_message('Account could not be created. Please contact administrator.', 'error');
+                }
             }
             $user = $TeKe->user->get_user_by_facebook_id($user_profile['id']);
             if ($user) {

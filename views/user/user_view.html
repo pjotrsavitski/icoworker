@@ -5,9 +5,19 @@
     
         <tal:block define="user teke/handler/getUserByUsername;">
 
-            <div tal:content="user/getFullName | nothing"></div>
-            <div tal:content="user/email | nothing"></div>
-            <div tal:content="user/language"></div>
+		    <tal:block define="user_exists user/id | false">
+			
+			    <tal:block condition="user_exists">
+                    <div tal:content="user/getFullName | nothing"></div>
+                    <div tal:content="user/email | nothing"></div>
+                    <div tal:content="user/language | nothing"></div>
+			    </tal:block>
+
+			    <tal:block condition="not:user_exists">
+			        <div i18n:translate="">No such user.</div>
+				</tal:block>
+
+		    </tal:block>
 
         </tal:block>
 
