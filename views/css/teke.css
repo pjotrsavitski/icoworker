@@ -285,3 +285,16 @@ table#administrate-users {
 table#administrate-users th {
 	background-color: #cccccc;
 }
+
+div#add-new-project-form label {
+	display: block;
+}
+
+.input-datepicker {
+	font-size: 10px;
+}
+
+div.input-datepicker {
+	display: inline;
+	float: left;
+}

@@ -33,5 +33,44 @@
 		</div>
 
     </tal:block>
+
+	<tal:block tal:condition="is_logged_in" metal:fill-slot="content_body">
+	    <button id="add-new-project" i18n:translate="">Add New Project</button>
+	    <div id="add-new-project-form" title="Add New Project" i18n:attributes="title">
+			<fieldset>
+				<label for="title" i18n:translate="">Title</label>
+				<input type="text" name="title" id="title" class="text ui-widget-content ui-corner-all" />
+				<label for="goal" i18n:translate="">Goal</label>
+				<textarea rows="3" cols="50" name="goal" id="goal" class="text ui-widget-content ui-corner-all"></textarea>
+				<label for="startdate" i18n:translate="">Start/end dates</label>
+				<div id="startdate" class="input-datepicker"></div>
+				<div id="enddate" class="input-datepicker"></div>
+				<script type="text/javascript">
+					jQuery('.input-datepicker').datepicker();
+					jQuery('#add-new-project-form').dialog({
+					    autoOpen: false,
+						height: 500,
+						width: 500,
+						modal: true,
+						buttons: {
+						    "Add": function() {
+							    jQuery(this).dialog('close');
+							},
+							"Return": function() {
+							    jQuery(this).dialog('close');
+							}
+						},
+						close: function() {
+							jQuery(this).find('input:text').val("").removeClass('ui-state-error');
+							jQuery(this).find('textarea').val("").removeClass('ui-state-error');
+						}
+				    });
+					jQuery('#add-new-project').button().click(function(e) {
+						jQuery('#add-new-project-form').dialog('open');
+				    });
+				</script>
+			</fieldset>
+		</div>
+	</tal:block>
     
 </tal:block>
