@@ -1,12 +1,15 @@
 <tal:block metal:define-macro="top_bar" i18n:domain="teke">
     <div id="top_bar">
+		<div id="top_bar_left">
+			<a href="#" tal:attributes="href teke/get_site_url; title SITE_NAME" i18n:translate="SITE_NAME"></a>
+		</div>
         <div id="top_bar_right">
             <tal:block tal:condition="php: is_logged_in">
                 <tal:block condition="is_logged_in">
                     <tal:block tal:condition="teke/is_admin">
-                        <a href="" i18n:translate="" tal:attributes="href string:${WWW_ROOT}administrate/teke">Administration</a>
+                        <a href="" title="Administration" i18n:translate="" i18n:attributes="title" tal:attributes="href string:${WWW_ROOT}administrate/teke">Administration</a>
                     </tal:block>
-                    <a href="#" tal:attributes="href teke/user/getURL | nothing" 
+                    <a href="#" title="" tal:attributes="href teke/user/getURL | nothingi; title teke/user/getFullName | nothing" 
                         tal:content="teke/user/getFullName | nothing"></a>
                 </tal:block> 
                 <input type="button" class="logout_button" onclick="" tal:attributes="onclick string:javascript:window.location='${WWW_ROOT}actions/logout.php'" value="Log out" i18n:attributes="value" />

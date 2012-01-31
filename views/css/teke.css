@@ -42,6 +42,13 @@ tr.odd {
 	width: 100%;
 }
 
+#top_bar_left {
+	float: left;
+	color: #fff;
+	padding-left: 20px;
+	padding-top: 3px;
+}
+
 #top_bar_right {
 	float: right;
 	color: #fff;
