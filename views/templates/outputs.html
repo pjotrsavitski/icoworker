@@ -1,6 +1,6 @@
 <tal:block metal:define-macro="fulldate" i18n:domain="teke">
     <tal:block condition="php:is_numeric(value)">
-	    <tal:block content="php:date('d.m.Y h:i:s')" />
+	    <tal:block content="php:date('d.m.Y h:i:s', value)" />
 	</tal:block>
 	<tal:block condition="php:!is_numeric(value)">
 	    <tal:block content="php:htmlentities(value, ENT_QUOTES, 'UTF-8')" /> 
