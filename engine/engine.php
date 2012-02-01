@@ -10,10 +10,14 @@ session_name(PLUGIN);
 session_start();
 require_once(dirname(__FILE__)."/lib/phptal/PHPTAL.php");
 require_once(dirname(__FILE__)."/lib/database/database.php");
+// TODO Consider making UserManager as with Projectand ProjectManager
 require_once(dirname(__FILE__)."/lib/user/user.php");
-require_once(dirname(__FILE__)."/lib/group/group.php");
+require_once(dirname(__FILE__)."/lib/project/ProjectManager.php");
+// TODO is image needed
 require_once(dirname(__FILE__)."/lib/image/Image.php");
+// TODO sound is not needed
 require_once(dirname(__FILE__)."/lib/sound/Sound.php");
+// TODO video is not needed
 require_once(dirname(__FILE__)."/lib/video/YoutubeVideo.php");
 require_once(dirname(__FILE__)."/lib/handler/handler.php");
 require_once(dirname(__FILE__)."/lib/firephp/FirePHP.class.php");
@@ -96,7 +100,6 @@ if (class_exists($plugin)) {
 * TeKe Engine *
 **************/ 
 if ($TeKe->is_logged_in() || (count($page) > 0 && in_array($page[0], array()))) {
-    $TeKe->group = new Group();
     
     $handler = get_input("handler", "pages");
     
@@ -167,6 +170,14 @@ function query_update($sql) {
     $res = query($sql);
     if ($res) {
         return true;
+    }
+    return false;
+}
+
+function query_delete($sql) {
+    $res = query($sql);
+    if ($res) {
+        return mysql_affected_rows();
     }
     return false;
 }

@@ -82,6 +82,7 @@ class User {
             return WWW_ROOT."user/view/".$this->username;
 	    }
         
+        // TODO possibly not needed
         function getRoles() {
             return $this->roles;
         }
@@ -90,6 +91,7 @@ class User {
             return $this->language;
         }
         
+        // TODO possibly not needed
         function hasAnyRole($required) {
             $lstr = "";
             foreach ( $required as $r) {
@@ -112,6 +114,7 @@ class User {
             return False;
         }
         
+        // TODO possibly not needed
         function hasRole($role) {
             if ( $this->roles[$role] == 1) {
                 return True;
@@ -150,6 +153,7 @@ class User {
             return $res;
         }
 
+        // XXX deleteme
         public function make_admin($uid) {
             $roles = "111111";
             $res = $this->db->query("UPDATE " . DB_PREFIX . "users SET roles='{$roles}' WHERE id={$uid}");
@@ -157,7 +161,7 @@ class User {
             return 0;
         }
 
-        // XXX This is incorrect
+        // XXX This is not needed
         function isAuthenticationCorrect($username, $password) {
             $res = query("SELECT * FROM "  . DB_PREFIX . "users WHERE username='{$username}'");
             $check = mysql_fetch_array($res);
@@ -167,7 +171,7 @@ class User {
             return false;
         } 
 
-        // XXX This is incorrect
+        // XXX This is not needed
         function authenticate_user($username, $password) {
             $res = query("SELECT * FROM "  . DB_PREFIX . "users WHERE username='{$username}'");
             $check = mysql_fetch_array($res);
@@ -194,6 +198,7 @@ class User {
             return $check[0];
         }
 
+        // TODO possibly not needed
         function is_valid_username($username) {
             return preg_match('/^[a-zA-Z0-9_]+$/', $username);
         }
@@ -317,6 +322,7 @@ class User {
             return $this->create_token($timestamp, $hash, $salt) == $token;
         }
 
+        // XXX possibly unneeded
         function isLinkExpired($timestamp) {
             $current_timestamp = time();
             if ($current_timestamp > $timestamp) {
