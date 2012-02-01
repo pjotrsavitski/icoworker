@@ -8,6 +8,8 @@ class AdministrateHandler extends BaseHandler {
         if (is_file(dirname(dirname(dirname(dirname(__FILE__)))).'/views/administrate/'.$this->name."_".$page[0].'.html')) {
             
             $this->setTemplate($this->name."_".$page[0]);
+        } else {
+            $this->template = "page_not_found";
         }
     }
     

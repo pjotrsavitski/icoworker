@@ -6,6 +6,8 @@ class UserHandler extends BaseHandler {
     function __construct($page) {
         if (is_file(dirname(dirname(dirname(dirname(__FILE__)))).'/views/user/'.$this->name."_".$page[0].'.html')) {
             $this->template = $this->name."_".$page[0];
+        } else {
+            $this->template = "page_not_found";
         }
         parent::__construct($page);
     }

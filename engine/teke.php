@@ -30,7 +30,7 @@ class TeKe {
     }
     
     private function setTemplateRepository() {
-        $repository_folders = array("templates", "user", "pages", "administrate");
+        $repository_folders = array("templates", "user", "project", "pages", "administrate");
         $repos_path = dirname(dirname(__FILE__));
         if (is_dir(dirname(dirname(__FILE__))."/includes/".PLUGIN)) {
              $this->plugin_loaded = dirname(dirname(__FILE__))."/includes/".PLUGIN."/";
@@ -110,7 +110,7 @@ class TeKe {
                 } else {
                     $template = "page_not_found";
                 }
-            } else if (is_file(dirname(dirname(__FILE__))."/includes/".PLUGIN."/handler/handler_".$handler.".php") || in_array($handler, array("user", "administrate"))) {
+            } else if (is_file(dirname(dirname(__FILE__))."/includes/".PLUGIN."/handler/handler_".$handler.".php") || in_array($handler, array("user", "administrate", "project"))) {
                 $hn = ucfirst($handler."Handler");
                 if (class_exists($hn)) {
                     $this->handler = new $hn($page);
