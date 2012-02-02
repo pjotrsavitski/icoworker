@@ -13,4 +13,9 @@ class ProjectManager {
         $q = "SELECT * FROM " . DB_PREFIX . "projects WHERE creator = $user_id";
         return query_rows($q, 'Project');
     }
+
+    public function getProjectById($project_id) {
+        $q = "SELECY * FROM " . DB_PREFIX . "projects WHERE id = $id";
+        return query_row($q, 'Project');
+    }
 }

@@ -20,6 +20,7 @@ class Project {
     public function load($id = NULL) {
         $ret = false;
         if ($id) {
+            $this->id = $id;
             $q = "SELECT * FROM " . DB_PREFIX . "projects WHERE id = {$this->id}";
             $ret = query_row($q);
         }
