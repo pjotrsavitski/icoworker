@@ -27,7 +27,7 @@ class Project {
         if ($ret) {
             // TODO Consider just running a for cycle on attributes
             $this->id = $ret->id;
-            $this->creator = $res->creator;
+            $this->creator = $ret->creator;
             $this->title = $ret->title;
             $this->goal = $ret->goal;
             $this->start_date = $ret->start_date;
@@ -93,7 +93,7 @@ class Project {
     }
 
     public function addMember($user_id) {
-        $q = "INSERT INTO " . DB_PREFIX . "project_members WHERE project_id={$this->id} AND user_id=$user_id";
+        $q = "INSERT INTO " . DB_PREFIX . "project_members (project_id, user_id) VALUES ({$this->id}, $user_id)";
         return query_insert($q);
     }
 
@@ -111,7 +111,7 @@ class Project {
         $title = mysql_real_escape_string($title);
         $goal = mysql_real_escape_string($goal);
         // TODO Check if start_date and end_date need to be processed
-        $q = "INSERT INTO " . DB_PREFIX . "projects (creator, title, goal, start_date, end_date, created, updated) VALUES ($creator, '$title', '$goal', '$start_date', '$end_date', NOW(), NOW())";
+        $q = "INSERT INTO " . DB_PREFIX . "projects (creator, title, goal, start_date, end_date, created, updated) VALUES ($creator, '$title', '$goal', FROM_UNIXTIME('$start_date'), FROM_UNIXTIME('$end_date'), NOW(), NOW())";
         $uid = query_insert($q);
         if ($uid) {
             // Add project creator to members
