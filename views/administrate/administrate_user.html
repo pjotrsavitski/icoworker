@@ -26,10 +26,10 @@
 							</td>
 							<td tal:content="user/getLanguage"></td>
 							<td>
-								<tal:block define="value php:strtotime(user.registered)" metal:use-macro="outputs.html/fulldate" />
+								<tal:block define="value php:strtotime(user.registered); format string:d.m.y h:i:s" metal:use-macro="outputs.html/date" />
 							</td>
 							<td>
-								<tal:block define="value php:strtotime(user.last_login)" metal:use-macro="outputs.html/fulldate" />
+								<tal:block define="value php:strtotime(user.last_login); format string:d.m.y h:i:s" metal:use-macro="outputs.html/date" />
 							</td>
 							<td tal:content="user/getRole"></td>
 						</tr>
