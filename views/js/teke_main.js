@@ -8,9 +8,9 @@ teke.get_site_url = function() {
 
 teke.get_facebook_app_id = function() {
 	return teke.config.facebook_app_id;
-}
+};
 
-$(document).ready(function() {
+teke.animate_system_messages = function() {
     $('span.system_message_close').click(function() {
         $('#system_messages').stop();
         $('#system_messages').fadeOut(400);
@@ -22,7 +22,18 @@ $(document).ready(function() {
     });
 
     $("div[id^='system_message_']").delay(5000).fadeOut(1600);
+};
 
+teke.set_language = function(lang) {
+	window.location = this.get_site_url()+"?set_language=true&language="+lang;
+};
+
+$(document).ready(function() {
+	teke.animate_system_messages();
+
+	$('#language-selection').find('input:radio[name="language"]').click(function() {
+		teke.set_language($(this).val());
+    });
 });
 
 function toggleSelect(elem, name) {
@@ -55,8 +66,4 @@ window.onload = function (e) {
 // disable image dragging
 function disableDragging(e) {
     e.preventDefault();
-}
-
-function setLanguage(lang) {
-    window.location = WWW_ROOT+"?set_language=true&language="+lang;
 }

@@ -17,16 +17,16 @@
 		</div>
 		<div class="clearfloat"></div>
 
-		<div id="index-language-selction">
-            <input type="radio" name="language" value="et" onChange="setLanguage('et')" tal:attributes="checked php:language=='et'?'checked':''" />
+		<div id="language-selection" class="index-language-selection">
+            <input type="radio" name="language" value="et" tal:attributes="checked php:language=='et'?'checked':''" />
             IN ESTONIAN
-            <input type="radio" name="language" value="ru" onChange="setLanguage('ru')" tal:attributes="checked php:language=='ru'?'checked':''" />
+            <input type="radio" name="language" value="ru" tal:attributes="checked php:language=='ru'?'checked':''" />
 			IN RUSSIAN
-            <input type="radio" name="language" value="en" onChange="setLanguage('en')" tal:attributes="checked php:language=='en'?'checked':''"/>
+            <input type="radio" name="language" value="en" tal:attributes="checked php:language=='en'?'checked':''"/>
             IN ENGLISH
 		</div>
 
-		<div id="index-facebook-login" condition="not:is_logged_in">
+		<div id="index-facebook-login" tal:condition="not:is_logged_in">
 			<a href="" title="Login with Facebook" tal:attributes="href php:teke.facebook.getLoginUrl(array('scope' => 'email', 'redirect_uri' => teke.get_site_url() . 'actions/login.php'))" i18n:attributes="title">
 				<img src="" alt="facebook logo" tal:attributes="src string:${WWW_ROOT}views/graphics/f_logo.png" />
 			</a>
@@ -110,6 +110,14 @@
 				    });
 				</script>
 			</fieldset>
+		</div>
+
+		<div id="all-projects" tal:define="projects php: ProjectManager::getProjects()">
+			<div tal:repeat="project projects">
+				<div title="" tal:content="project/getTitle" tal:attributes="title project/getGoal"></div>
+				<div><tal:block content="project/getStartDate" /> - <tal:block content="project/getEndDate" /></div>
+				<div tal:content="project/getMembersCount"></div>
+			</div>
 		</div>
 	</tal:block>
     

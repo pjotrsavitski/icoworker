@@ -106,6 +106,15 @@ class Project {
         return query_delete($q);
     }
 
+    public function getMembersCount() {
+        $q = "SELECT COUNT(*) as count FROM " . DB_PREFIX . "project_members WHERE project_id={$this->id}";
+        $result = query_row($q);
+        if ($result && ((int)$result->count > 0)) {
+            return (int)$result->count;
+        }
+        return 0;
+    }
+
     public function create($creator, $title, $goal, $start_date, $end_date) {
         $creator = (int)$creator;
         $title = mysql_real_escape_string($title);

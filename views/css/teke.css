@@ -141,7 +141,7 @@ tr.odd {
 	background: #D3EC94;
 	color: #000000;
 	cursor: pointer;
-	width: 970px;
+	width: 878px;
 	margin-left: 150px;
 	margin-right: auto;
     height: 15px;
@@ -153,7 +153,7 @@ tr.odd {
 	background: #DE5959;
 	color: #000000;
 	cursor: pointer;
-	width: 970px;
+	width: 878px;
     margin-left: 150px;
 	margin-right: auto;
     height: 15px;
@@ -262,7 +262,7 @@ h1#index-heading {
 	text-align: center;
 }
 
-div#index-language-selction {
+div.index-language-selection {
 	margin: 30px auto 0 auto;
 	text-align: center;
 }
