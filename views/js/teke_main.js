@@ -24,6 +24,12 @@ teke.animate_system_messages = function() {
     $("div[id^='system_message_']").delay(5000).fadeOut(1600);
 };
 
+teke.replace_system_messages = function(messages) {
+	$('#system_messages').show();
+	$('#system_messages').html(messages);
+	teke.animate_system_messages();
+};
+
 teke.set_language = function(lang) {
 	window.location = this.get_site_url()+"?set_language=true&language="+lang;
 };

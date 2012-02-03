@@ -4,10 +4,8 @@
     global $TeKe;
 
     if ($TeKe->is_logged_in() && $TeKe->has_access(ACCESS_CAN_EDIT)) {
-        // Initialize response (think about using custom class)
-        $response = array('state' => 0, 'errors' => array());
-        $errors = array();
-        // Defile fields array
+        $response = new AJAXResponse();
+        // Define fields array
         $fields = array('title' => true, 'goal' => true, 'start_date' => true, 'end_date' => true);
         $inputs = array();
 
@@ -17,22 +15,22 @@
                 $inputs[$key] = strtotime($inputs[$key]);
             }
             if (!$inputs[$key]) {
-                $errors[] = $key;
+                $response->addError($key);
             }
         }
 
-        if (sizeof($errors) == 0) {
+        if (sizeof($response->getErrors()) == 0) {
             $creator = $TeKe->user->getId();
-            $project = new Project();
-            if ($project->create($creator, $inputs['title'], $inputs['goal'], $inputs['start_date'], $inputs['end_date'])) {
-                $response['state'] = 1;
+            if (Project::create($creator, $inputs['title'], $inputs['goal'], $inputs['start_date'], $inputs['end_date'])) {
+                $response->setStateSuccess();
+                $TeKe->add_system_message(_("New project created."));
             }
         } else {
-            $response['errors'] = $errors;
+            $TeKe->add_system_message(_("New project could not be created."), 'error');
         }
+        $response->setMessages();
 
-        echo json_encode($response);
+        echo $response->getJSON();
         exit;
-
     }
 ?>

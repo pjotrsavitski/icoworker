@@ -298,3 +298,45 @@ div.input-datepicker {
 	display: inline;
 	float: left;
 }
+
+/* PROJECTS */
+table#all-projects {
+	width: 100%;
+	border: 1px solid black;
+	border-collapse: collapse;
+}
+
+table#all-projects td {
+	border: 1px solid black;
+	padding: 5px;
+}
+
+table#all-projects td.project-info {
+	width: 25%;
+}
+
+table#all-projects td.project-timeline {
+	width: 75%;
+}
+
+span.project-info-extended-toggler {
+	display: inline-block;
+	float: right;
+	background: transparent url(../graphics/arrow_right.png);
+	width: 16px;
+	height: 16px;
+	cursor: pointer;
+}
+
+span.project-info-extended-toggler-toggled {
+	display: inline-block;
+	float: right;
+	background: transparent url(../graphics/arrow_down.png);
+	width: 16px;
+	height: 16px;
+	cursor: pointer;
+}
+
+div.project-info-extended {
+	padding-left: 5px;
+}

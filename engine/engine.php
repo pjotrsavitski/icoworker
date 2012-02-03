@@ -10,6 +10,7 @@ session_name(PLUGIN);
 session_start();
 require_once(dirname(__FILE__)."/lib/phptal/PHPTAL.php");
 require_once(dirname(__FILE__)."/lib/database/database.php");
+require_once(dirname(__FILE__)."/lib/ajax/AJAXResponse.php");
 // TODO Consider making UserManager as with Projectand ProjectManager
 require_once(dirname(__FILE__)."/lib/user/user.php");
 require_once(dirname(__FILE__)."/lib/project/ProjectManager.php");

@@ -78,9 +78,10 @@
 									success: function(data) {
 									    console.log(data);
 										if (data.state == 1) {
-										    console.log("success");
-											alert("success");
 											current_form.dialog("close");
+											if (data.messages != "") {
+											    teke.replace_system_messages(data.messages);
+											}
 										} else {
 										    for (var key in data.errors) {
 											    $('#'+data.errors[key]).addClass('ui-state-error');
@@ -112,13 +113,33 @@
 			</fieldset>
 		</div>
 
-		<div id="all-projects" tal:define="projects php: ProjectManager::getProjects()">
-			<div tal:repeat="project projects">
-				<div title="" tal:content="project/getTitle" tal:attributes="title project/getGoal"></div>
-				<div><tal:block content="project/getStartDate" /> - <tal:block content="project/getEndDate" /></div>
-				<div tal:content="project/getMembersCount"></div>
-			</div>
-		</div>
+		<table id="all-projects" tal:define="projects php: ProjectManager::getProjects()">
+			<tbody>
+				<tr tal:repeat="project projects">
+					<td class="project-info">
+						<a href="#" tal:attributes="href project/getURL" tal:content="project/getTitle"></a> <span class="project-info-extended-toggler" onClick="$(this).next('div.project-info-extended').toggle();$(this).toggleClass('project-info-extended-toggler-toggled')"></span>
+						<div class="project-info-extended" style="display:none;">
+							<tal:block metal:use-macro="outputs.html/plaintext" define="value project/getGoal" />
+							<div>
+								<label i18n:translate="">Start date</label>
+								<tal:block metal:use-macro="outputs.html/date" define="value php:strtotime(project.getStartDate())" />
+							</div>
+							<div>
+								<label i18n:translate="">End date</label>
+								<tal:block metal:use-macro="outputs.html/date" define="value php: strtotime(project.getEndDate())" />
+							</div>
+							<div>
+								<label i18n:translate="">Members</label>
+								<tal:block content="project/getmembersCount" />
+							</div>
+						</div>
+					</td>
+					<td class="project-timeline">
+						I AM A TIMELINE, I AM NOT DONE YET
+					</td>
+				</tr>
+			</tbody>
+		</table>
 	</tal:block>
     
 </tal:block>
