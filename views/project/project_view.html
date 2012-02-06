@@ -1,0 +1,77 @@
+<tal:block metal:use-macro="main.html/main" i18n:domain="teke" tal:omit-tag="">
+
+    <tal:block metal:fill-slot="content_body">
+        <tal:block condition="teke/is_logged_in">
+
+        <tal:block define="project teke/handler/getProjectById;">
+
+            <tal:block define="project_exists project/id | false; is_member php:project_exists AND project.isMember(get_logged_in_user_id()) | false">
+
+                <tal:block condition="php:project_exists AND is_member">
+				    <article class="single-project">
+                        <h1 tal:content="project/title"></h1>
+
+						<aside>
+						    <ul>
+								<li>
+								    <fieldset>
+										<legend i18n:translate="">Tasks</legend>
+										<span class="teke-toggler"></span>
+										<div class="teke-togglable">
+											CONTENTS PLACEHOLDER
+										</div>
+									</fieldset>
+								</li>
+                                <li tal:define="members project/getMembers">
+								    <fieldset>
+										<legend i18n:translate="">Participants</legend>
+                                        <span class="teke-toggler"></span>
+										<div class="teke-togglable">
+											<tal:block repeat="member members">
+											    <a href="" class="project-member" title="" tal:attributes="href member/getURL; title member/getFullname">
+												    <img src="" alt="profile_image" tal:attributes="src member/getImageURL" />
+												</a>
+											</tal:block>
+										</div>
+									</fieldset>
+								</li>
+                                <li>
+								    <fieldset>
+										<legend i18n:translate="">Resources</legend>
+                                        <span class="teke-toggler"></span>
+										<div class="teke-togglable">
+											CONTENTS PLACEHOLDER
+										</div>
+									</fieldset>
+								</li>
+                                <li>
+								    <fieldset>
+										<legend i18n:translate="">Diary and Messages</legend>
+                                        <span class="teke-toggler"></span>
+										<div class="teke-togglable">
+											CONTENTS PLACEHOLDER
+										</div>
+
+									</fieldset>
+								</li>
+						    </ul>
+						</aside>
+					</article>
+                </tal:block>
+
+                <tal:block condition="php:project_exists AND NOT is_member">
+				    <div i18n:translate="">No rights to see the project.</div>
+                </tal:block>
+
+                <tal:block condition="not:project_exists">
+                    <div i18n:translate="">No such project.</div>
+                </tal:block>
+
+            </tal:block>
+
+        </tal:block>
+
+        </tal:block>
+    </tal:block>
+
+</tal:block>

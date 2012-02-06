@@ -319,7 +319,26 @@ table#all-projects td.project-timeline {
 	width: 75%;
 }
 
-span.project-info-extended-toggler {
+div.project-info-extended {
+	padding-left: 5px;
+}
+
+/* PROJECT */
+article.single-project aside {
+	width: 200px;
+	float: right;
+}
+
+article.single-project aside ul {
+	list-style: none;
+}
+
+article.single-project aside li fieldset {
+	padding: 5px;
+}
+
+/* TOGGLER */
+.teke-toggler {
 	display: inline-block;
 	float: right;
 	background: transparent url(../graphics/arrow_right.png);
@@ -328,7 +347,7 @@ span.project-info-extended-toggler {
 	cursor: pointer;
 }
 
-span.project-info-extended-toggler-toggled {
+.teke-toggler-toggled {
 	display: inline-block;
 	float: right;
 	background: transparent url(../graphics/arrow_down.png);
@@ -337,6 +356,7 @@ span.project-info-extended-toggler-toggled {
 	cursor: pointer;
 }
 
-div.project-info-extended {
-	padding-left: 5px;
+.teke-togglable {
+	display: none;
+	clear: both;
 }

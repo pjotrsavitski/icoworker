@@ -77,14 +77,20 @@
 									dataType: "json",
 									success: function(data) {
 									    console.log(data);
-										if (data.state == 1) {
+										if (data.state == 0) {
 											current_form.dialog("close");
+											if (data.forward != "") {
+											    window.location = data.forward;
+											}
 											if (data.messages != "") {
 											    teke.replace_system_messages(data.messages);
 											}
 										} else {
 										    for (var key in data.errors) {
 											    $('#'+data.errors[key]).addClass('ui-state-error');
+											}
+                                            if (data.messages != "") {
+											    teke.replace_system_messages(data.messages);
 											}
 										}
 									},
@@ -117,8 +123,9 @@
 			<tbody>
 				<tr tal:repeat="project projects">
 					<td class="project-info">
-						<a href="#" tal:attributes="href project/getURL" tal:content="project/getTitle"></a> <span class="project-info-extended-toggler" onClick="$(this).next('div.project-info-extended').toggle();$(this).toggleClass('project-info-extended-toggler-toggled')"></span>
-						<div class="project-info-extended" style="display:none;">
+						<a href="#" tal:attributes="href project/getURL" tal:content="project/getTitle"></a>
+						<span class="teke-toggler"></span>
+						<div class="teke-togglable project-info-extended">
 							<tal:block metal:use-macro="outputs.html/plaintext" define="value project/getGoal" />
 							<div>
 								<label i18n:translate="">Start date</label>

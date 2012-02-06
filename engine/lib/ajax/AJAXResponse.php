@@ -1,7 +1,7 @@
 <?php
 
 class AJAXResponse {
-    public $state = 0;
+    public $state = -1;
     public $errors = array();
     public $messages = "";
     public $forward = "";
@@ -11,19 +11,19 @@ class AJAXResponse {
     }
 
     public function setStateError() {
-        $this->state = 0;
+        $this->state = -1;
     }
 
     public function setStateSuccess() {
-        $this->state = 1;
+        $this->state = 0;
     }
 
     public function isStateError() {
-        return ($this->state == 0) ? true : false;
+        return ($this->state == -1) ? true : false;
     }
 
     public function isStateSuccess() {
-        return ($this->state == 1) ? true : false;
+        return ($this->state == 0) ? true : false;
     }
 
     public function getErrors() {
@@ -43,8 +43,8 @@ class AJAXResponse {
     public function setMessages() {
         global $TeKe;
         $messages = $TeKe->get_system_messages();
+        $m_html = "";
         if (is_array($messages) && sizeof($messages)) {
-            $m_html = "";
             foreach ($messages as $key => $message) {
                 $m_html .= "<div id=\"system_message_$key\" class=\"system_message_{$message['type']}\">{$message['message']} <span class=\"system_message_close\">" . _("Close") . "</span></div>";
             }

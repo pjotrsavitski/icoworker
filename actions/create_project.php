@@ -21,14 +21,16 @@
 
         if (sizeof($response->getErrors()) == 0) {
             $creator = $TeKe->user->getId();
-            if (Project::create($creator, $inputs['title'], $inputs['goal'], $inputs['start_date'], $inputs['end_date'])) {
+            if ($created_id = Project::create($creator, $inputs['title'], $inputs['goal'], $inputs['start_date'], $inputs['end_date'])) {
+                $project = new Project($created_id);
                 $response->setStateSuccess();
+                $response->setForward($project->getURL());
                 $TeKe->add_system_message(_("New project created."));
             }
         } else {
             $TeKe->add_system_message(_("New project could not be created."), 'error');
+            $response->setMessages();
         }
-        $response->setMessages();
 
         echo $response->getJSON();
         exit;

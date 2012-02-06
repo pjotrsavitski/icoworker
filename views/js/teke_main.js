@@ -34,12 +34,26 @@ teke.set_language = function(lang) {
 	window.location = this.get_site_url()+"?set_language=true&language="+lang;
 };
 
+teke.initialize_language_selection = function() {
+    $('#language-selection').find('input:radio[name="language"]').click(function() {
+		teke.set_language($(this).val());
+    });
+};
+
+teke.initialize_togglers = function() {
+    $('.teke-toggler').click(function (e) {
+		e.preventDefault();
+		$(this).next('.teke-togglable').toggle();
+		$(this).toggleClass('teke-toggler-toggled');
+	});
+};
+
 $(document).ready(function() {
 	teke.animate_system_messages();
 
-	$('#language-selection').find('input:radio[name="language"]').click(function() {
-		teke.set_language($(this).val());
-    });
+	teke.initialize_language_selection();
+
+	teke.initialize_togglers();
 });
 
 function toggleSelect(elem, name) {

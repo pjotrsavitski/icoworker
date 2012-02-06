@@ -218,6 +218,14 @@ function get_logged_in_user() {
     return $TeKe->user;
 }
 
+function get_logged_in_user_id() {
+    global $TeKe;
+    if ($TeKe->is_logged_in()) {
+        return $TeKe->user->getId();
+    }
+    return false;
+}
+
 function is_admin() {
     global $TeKe;
     return $TeKe->is_admin();

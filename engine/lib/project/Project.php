@@ -83,7 +83,7 @@ class Project {
 
     public function isMember($user_id) {
         $q = "SELECT COUNT(*) as count FROM " . DB_PREFIX . "project_members WHERE project_id={$this->id} AND user_id=$user_id";
-        $ret = queryi_row($q);
+        $ret = query_row($q);
         if ($ret) {
             if ((int)$ret->count > 0) {
                 return true;
@@ -104,6 +104,11 @@ class Project {
         }
         $q = "DELETE FROM " . DB_PREFIX . "project_members WHERE project_id={$this->id} AND user_id=$user_id";
         return query_delete($q);
+    }
+
+    public function getMembers() {
+        $q = "SELECT * FROM " . DB_PREFIX . "users WHERE id IN (SELECT user_id FROM " . DB_PREFIX . "project_members WHERE project_id = {$this->id})";
+        return query_rows($q, 'User');
     }
 
     public function getMembersCount() {

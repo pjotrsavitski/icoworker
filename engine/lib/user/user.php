@@ -81,6 +81,18 @@ class User {
         function getURL() {
             return WWW_ROOT."user/view/".$this->username;
 	    }
+
+        public function getImageURL($size = NULL) {
+            $sizes = array('square', 'small', 'normal', 'large');
+            if (!(isset($size) || $size || in_array($size, $sizes))) {
+                $size = 'square';
+            }
+            $profile_name = $this->username;
+            if ($this->username == "fb.{$this->facebook_id}") {
+                $profile_name = $this->facebook_id;
+            }
+            return "http://graph.facebook.com/$profile_name/picture?type=$size";
+        }
         
         // TODO possibly not needed
         function getRoles() {
