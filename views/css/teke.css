@@ -361,3 +361,21 @@ article.single-project aside li fieldset {
 	display: none;
 	clear: both;
 }
+/* ADD AND REMOVE */
+.teke-add-button {
+	display: inline-block;
+	float: right;
+	background: transparent url(../graphics/add.png);
+	width: 16px;
+	height: 16px;
+	cursor: pointer;
+}
+
+.teke-delete-button {
+	display: inline-block;
+	float: right;
+	background: transparent url(../graphics/delete.png);
+	width: 16px;
+	height: 16px;
+	cursor: pointer;
+}

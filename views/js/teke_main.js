@@ -43,7 +43,7 @@ teke.initialize_language_selection = function() {
 teke.initialize_togglers = function() {
     $('.teke-toggler').click(function (e) {
 		e.preventDefault();
-		$(this).next('.teke-togglable').toggle();
+		$(this).nextAll('.teke-togglable').toggle();
 		$(this).toggleClass('teke-toggler-toggled');
 	});
 };
