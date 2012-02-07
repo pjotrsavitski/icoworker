@@ -30,7 +30,7 @@ class TeKe {
     }
     
     private function setTemplateRepository() {
-        $repository_folders = array("templates", "user", "project", "pages", "administrate");
+        $repository_folders = array("templates", "user", "project", "ajax", "pages", "administrate");
         $repos_path = dirname(dirname(__FILE__));
         if (is_dir(dirname(dirname(__FILE__))."/includes/".PLUGIN)) {
              $this->plugin_loaded = dirname(dirname(__FILE__))."/includes/".PLUGIN."/";
@@ -102,6 +102,11 @@ class TeKe {
         if (in_array(end($page), array("add", "edit", "compose", "new", "import", "results", "items", "candidates", "preview", "test", "proctor")) && $this->has_access(ACCESS_CAN_EDIT)) {
             $this->action = end($page);
         }
+        // If action file is not defined (then 404 should be given)
+        if ($template == 'actions') {
+            header("HTTP/1.0 404 Not Found");
+            exit;
+        }
         if ($handler) {
             if ($handler == "pages") {
                 // check if that file exists in teke pages or plugin pages folder
@@ -110,7 +115,7 @@ class TeKe {
                 } else {
                     $template = "page_not_found";
                 }
-            } else if (is_file(dirname(dirname(__FILE__))."/includes/".PLUGIN."/handler/handler_".$handler.".php") || in_array($handler, array("user", "administrate", "project"))) {
+            } else if (is_file(dirname(dirname(__FILE__))."/includes/".PLUGIN."/handler/handler_".$handler.".php") || in_array($handler, array("user", "administrate", "project", "ajax"))) {
                 $hn = ucfirst($handler."Handler");
                 if (class_exists($hn)) {
                     $this->handler = new $hn($page);

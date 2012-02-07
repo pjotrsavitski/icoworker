@@ -10,6 +10,7 @@
         <tal:block define="project teke/handler/getProjectById;">
 
             <tal:block define="project_exists project/id | false; is_member php:project_exists AND project.isMember(get_logged_in_user_id()) | false">
+			<input type="hidden" id="project_id" value="" tal:attributes="value project/getId" />
 
                 <tal:block condition="php:project_exists AND is_member">
 				    <article class="single-project">
@@ -22,7 +23,7 @@
 										<legend i18n:translate="">Tasks</legend>
 										<span class="teke-toggler"></span>
 										<span class="teke-delete-button"></span>
-										<span class="teke-add-button"></span>
+										<span id="add-task-button" class="teke-add-button"></span>
 										<div class="teke-togglable">
 											CONTENTS PLACEHOLDER
 										</div>
@@ -66,6 +67,7 @@
 								</li>
 						    </ul>
 						</aside>
+
 					</article>
                 </tal:block>
 

@@ -5,15 +5,22 @@
 
     if ($TeKe->is_logged_in() && $TeKe->has_access(ACCESS_CAN_EDIT)) {
         $response = new AJAXResponse();
+        $project = ProjectManager::getProjectById(get_input('project_id'));
+
+        // TODO Possibly admin should be allowed to see stuff
+        if (!(($project instanceof Project) && ($project->isMember(get_logged_in_user_id())))) {
+            $TeKe->add_system_message(_("No project or insufficient privileges."), 'error');
+            $response->setMessages();
+            echo $response->getJSON();
+            exit;
+        }
+
         // Define fields array
-        $fields = array('title' => true, 'goal' => true, 'start_date' => true, 'end_date' => true);
+        $fields = array('title' => true, 'description' => false);
         $inputs = array();
 
         foreach ($fields as $key => $requirement) {
             $inputs[$key] = get_input($key);
-            if (in_array($key, array('start_date', 'end_date'))) {
-                $inputs[$key] = strtotime($inputs[$key]);
-            }
             if ($requirement && !$inputs[$key]) {
                 $response->addError($key);
             }
@@ -21,18 +28,15 @@
 
         if (sizeof($response->getErrors()) == 0) {
             $creator = $TeKe->user->getId();
-            if ($created_id = Project::create($creator, $inputs['title'], $inputs['goal'], $inputs['start_date'], $inputs['end_date'])) {
-                $project = new Project($created_id);
+            if ($created_id = 0) {
                 $response->setStateSuccess();
-                $response->setForward($project->getURL());
-                $TeKe->add_system_message(_("New project created."));
+                $TeKe->add_system_message(_("New task added."));
             }
         } else {
-            $TeKe->add_system_message(_("New project could not be created."), 'error');
+            $TeKe->add_system_message(_("New task could not be added."), 'error');
             $response->setMessages();
         }
 
         echo $response->getJSON();
         exit;
     }
-?>

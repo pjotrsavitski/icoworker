@@ -379,3 +379,16 @@ article.single-project aside li fieldset {
 	height: 16px;
 	cursor: pointer;
 }
+
+/* DIALOGS */
+div.teke-dialog-form label {
+	display: block;
+}
+
+div.teke-dialog-form fieldset {
+	padding: 10px;
+}
+
+div.teke-dialog-form input[type=text] {
+	width: 98%;
+}

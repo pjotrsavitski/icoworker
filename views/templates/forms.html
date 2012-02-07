@@ -1,0 +1,56 @@
+<tal:block metal:define-macro="add_project" i18n:domain="teke">
+    <div id="add-project" class="teke-dialog-form" title="Add New Project" i18n:attributes="title">
+		<fieldset>
+			<label for="title" i18n:translate="">Title</label>
+			<input type="text" name="title" id="title" class="text ui-widget-content ui-corner-all" />
+			<label for="goal" i18n:translate="">Goal</label>
+			<textarea rows="3" cols="50" name="goal" id="goal" class="text ui-widget-content ui-corner-all"></textarea>
+			<label for="start_end_date" i18n:translate="">Start/end dates</label>
+			<div id="start_date" class="input-datepicker"></div>
+			<div id="end_date" class="input-datepicker"></div>
+		</fieldset>
+	</div>
+</tal:block>
+
+<tal:block metal:define-macro="add_document" i18n:domain="teke">
+    <div id="add-document" class="teke-dialog-form" title="Create new Document" i18n:attributes="title">
+		<fieldset>
+			<label for="title" i18n:translate="">Document title</label>
+			<input type="text" name="title" id="title" class="text ui-widget-content ui-corner-all" />
+			<label for="url" i18n:translate="">Document URL</label>
+			<input type="text" name="url" id="url" class="text ui-widget-content ui-corner-all" />
+		</fieldset>
+	</div>
+</tal:block>
+
+<tal:block metal:define-macro="add_participant" i18n:domain="teke">
+    <div id="add-participant" class="teke-dialog-form" title="Add Participant" i18n:attributes="title">
+		<fieldset>
+			PLACEHOLDER
+		</fieldset>
+	</div>
+</tal:block>
+
+<tal:block metal:define-macro="add_task" i18n:domain="teke">
+    <div id="add-task" class="teke-dialog-form" title="Add new Task" i18n:attributes="title">
+		<fieldset>
+			<label for="title" i18n:translate="">Task title</label>
+			<input type="text" name="title" id="title" class="text ui-widget-content ui-corner-all" />
+			<label for="description" i18n:translate="">Task description</label>
+			<input type="text" name="description" id="description" class="text ui-widget-content ui-corner-all" />
+		</fieldset>
+	</div>
+</tal:block>
+
+<tal:block metal:define-macro="add_resource" i18n:domain="teke">
+    <div id="add-resource" class="teke-dialog-form" title="Add new Resource" i18n:attributes="title">
+		<fieldset>
+			<label for="title" i18n:translate="">Resource title</label>
+			<input type="text" name="title" id="title" class="text ui-widget-content ui-corner-all" />
+			<label for="description" i18n:translate="">Resource description</label>
+			<input type="text" name="description" id="description" class="text ui-widget-content ui-corner-all" />
+			<label for="url" i18n:translate="">Resource URL</label>
+			<input type="text" name="url" id="url" class="text ui-widget-content ui-corner-all" />
+		</fieldset>
+	</div>
+</tal:block>
