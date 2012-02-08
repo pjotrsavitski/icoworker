@@ -25,10 +25,9 @@
 										<span class="teke-delete-button"></span>
 										<span id="add-task-button" class="teke-add-button"></span>
 										<div class="clearfloat"></div>
-										<div class="teke-togglable">
+										<div class="teke-togglable" id="project-tasks">
 											<tal:block repeat="task tasks">
-											    <div class="single-task ui-corner-all" title="" tal:content="task/getTitle" tal:attributes="title task/getDescription">
-												</div>
+											    <tal:block metal:use-macro="project.html/task" />
 											</tal:block>
 										</div>
 									</fieldset>
@@ -41,9 +40,7 @@
                                         <span class="teke-add-button"></span>
 										<div class="teke-togglable">
 											<tal:block repeat="member members">
-											    <a href="" class="project-member" title="" tal:attributes="href member/getURL; title member/getFullname">
-												    <img src="" alt="profile_image" tal:attributes="src member/getImageURL" />
-												</a>
+											    <tal:block metal:use-macro="project.html/member" />
 											</tal:block>
 										</div>
 									</fieldset>

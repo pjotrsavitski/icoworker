@@ -31,6 +31,7 @@
             if ($created_id = Task::create($creator, $project->getId(), $inputs['title'], $inputs['description'])) {
                 $response->setStateSuccess();
                 $TeKe->add_system_message(_("New task added."));
+                $response->setMessages();
             }
         } else {
             $TeKe->add_system_message(_("New task could not be added."), 'error');

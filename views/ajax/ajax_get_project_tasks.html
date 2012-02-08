@@ -1,0 +1,11 @@
+<tal:block condition="php:teke.is_logged_in() AND is_array(teke.page) AND sizeof(teke.page) GE 2">
+
+    <tal:block define="project php:ProjectManager::getProjectById(teke.page[1])" condition="php: (project instanceof Project) AND project.isMember(get_logged_in_user_id())">
+        <tal:block define="tasks php:ProjectManager::getProjectTasks(project.getId())">
+	        <tal:block repeat="task tasks">
+			    <tal:block metal:use-macro="project.html/task" />
+		    </tal:block>
+	    </tal:block>
+    </tal:block>
+
+</tal:block>

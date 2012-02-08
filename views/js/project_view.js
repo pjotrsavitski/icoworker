@@ -76,9 +76,19 @@ $(document).ready(function() {
 							dataType: "json",
 							success: function(data) {
 							    if (data.state == 0) {
-								    // TODO either add tasks to tasks or just bring in new data and replace it
-									// XXX refresh for now, need a non-refresh approach
-									window.location.reload(true);
+                                    $.ajax({
+                                        cache: false,
+							            dataType: "html",
+							            type: "GET",
+							            url: teke.get_site_url()+"ajax/get_project_tasks/"+$('#project_id').val(),
+							            success: function(data) {
+							                $('#project-tasks').html(data);
+							            },
+                                        error: function() {
+							                alert("could not bring tasks");
+							            }
+						            });
+								    current_form.dialog('close');
 								} else {
 								    for (var key in data.errors) {
 									    $('#'+data.errors[key]).addClass('ui-state-error');

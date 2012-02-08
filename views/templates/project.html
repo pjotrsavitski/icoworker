@@ -5,3 +5,13 @@
         <tal:block content="message/getBody" />
     </div>
 </tal:block>
+
+<tal:block metal:define-macro="member">
+    <a href="" class="project-member" title="" tal:attributes="href member/getURL; title member/getFullname">
+		<img src="" alt="profile_image" tal:attributes="src member/getImageURL" />
+	</a>
+</tal:block>
+
+<tal:block metal:define-macro="task">
+    <div class="single-task ui-corner-all" title="" tal:content="task/getTitle" tal:attributes="title task/getDescription"></div>
+</tal:block>
