@@ -124,7 +124,6 @@ class Project {
         $creator = (int)$creator;
         $title = mysql_real_escape_string($title);
         $goal = mysql_real_escape_string($goal);
-        // TODO Check if start_date and end_date need to be processed
         $q = "INSERT INTO " . DB_PREFIX . "projects (creator, title, goal, start_date, end_date, created, updated) VALUES ($creator, '$title', '$goal', FROM_UNIXTIME('$start_date'), FROM_UNIXTIME('$end_date'), NOW(), NOW())";
         $uid = query_insert($q);
         if ($uid) {
@@ -139,13 +138,13 @@ class Project {
     public function update($project, $title, $goal, $start_date, $end_date) {
         $title = mysql_real_escape_string($title);
         $goal = mysql_real_escape_string($goal);
-        // TODO Check if start_date and end_date need to be processed
-        $q = "UPDATE " . DB_PREFIX . "projects SET title='$title', goal='$goal', start_date='$start_date', end_date='$end_date' WHERE id = {$project->id}";
+        $q = "UPDATE " . DB_PREFIX . "projects SET title='$title', goal='$goal', start_date=FROM_UNIXTIME('$start_date'), end_date=FROM_UNIXTIME('$end_date') WHERE id = {$project->id}";
         return query_update($q);
     }
 
     public function delete() {
         // TODO Check on how can delete is needed
+        // XXX This needs to be protected
         $q = "DELETE FROM " . DB_PREFIX . "projects WHERE id = {$this->id}";
         return query_delete($q);
     }

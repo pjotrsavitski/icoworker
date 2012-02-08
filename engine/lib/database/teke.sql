@@ -33,6 +33,43 @@ CREATE TABLE IF NOT EXISTS prefix_project_members (
 	PRIMARY KEY project_member (project_id, user_id)
 ) ENGINE=InnoDB DEFAULT CHARSET=UTF8;
 
+CREATE TABLE IF NOT EXISTS prefix_tasks (
+	id bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+	creator bigint(20) UNSIGNED NOT NULL,
+	project_id bigint(20) UNSIGNED NOT NULL,
+	title varchar(255) NOT NULL,
+	description text DEFAULT '',
+	created DATETIME NOT NULL DEFAULT '0000-00-00 00:00:00',
+	updated DATETIME NOT NULL DEFAULT '0000-00-00 00:00:00',
+	FOREIGN KEY (creator) REFERENCES prefix_users (id) ON DELETE CASCADE,
+	FOREIGN KEY (project_id) REFERENCES prefix_projects (id) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=UTF8;
+
+CREATE TABLE IF NOT EXISTS prefix_resources (
+	id bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+	creator bigint(20) UNSIGNED NOT NULL,
+	project_id bigint(20) UNSIGNED NOT NULL,
+	title varchar(255) NOT NULL,
+	description text DEFAULT '',
+	url varchar(255) DEFAULT '',
+	resource_type enum('document', 'spreadsheet', 'presentation', 'link') DEFAULT 'document',
+	created DATETIME NOT NULL DEFAULT '0000-00-00 00:00:00',
+	updated DATETIME NOT NULL DEFAULT '0000-00-00 00:00:00',
+	FOREIGN KEY (creator) REFERENCES prefix_users (id) ON DELETE CASCADE,
+	FOREIGN KEY (project_id) REFERENCES prefix_projects (id) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=UTF8;
+
+CREATE TABLE IF NOT EXISTS prefix_mesages (
+	id bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+	creator bigint(20) UNSIGNED NOT NULL,
+	project_id bigint(20) UNSIGNED NOT NULL,
+	body text NOT NULL,
+	created DATETIME NOT NULL DEFAULT '0000-00-00 00:00:00',
+	updated DATETIME NOT NULL DEFAULT '0000-00-00 00:00:00',
+	FOREIGN KEY (creator) REFERENCES prefix_users (id) ON DELETE CASCADE,
+	FOREIGN KEY (project_id) REFERENCES prefix_projects (id) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=UTF8;
+
 -- XXX consider a need of me --
 CREATE TABLE IF NOT EXISTS prefix_images (
     id bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
