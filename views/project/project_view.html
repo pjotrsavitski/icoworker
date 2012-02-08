@@ -18,21 +18,27 @@
 
 						<aside>
 						    <ul>
-								<li>
+								<li tal:define="tasks php:ProjectManager::getProjectTasks(project.getId())">
 								    <fieldset>
 										<legend i18n:translate="">Tasks</legend>
-										<span class="teke-toggler"></span>
+										<span class="teke-toggler teke-slide-toggler"></span>
 										<span class="teke-delete-button"></span>
 										<span id="add-task-button" class="teke-add-button"></span>
+										<div class="clearfloat"></div>
 										<div class="teke-togglable">
-											CONTENTS PLACEHOLDER
+											<tal:block repeat="task tasks">
+											    <div class="single-task ui-corner-all" title="" tal:content="task/getTitle" tal:attributes="title task/getDescription">
+												</div>
+											</tal:block>
 										</div>
 									</fieldset>
 								</li>
                                 <li tal:define="members project/getMembers">
 								    <fieldset>
 										<legend i18n:translate="">Participants</legend>
-                                        <span class="teke-toggler"></span>
+                                        <span class="teke-toggler teke-slide-toggler"></span>
+                                        <span class="teke-delete-button"></span>
+                                        <span class="teke-add-button"></span>
 										<div class="teke-togglable">
 											<tal:block repeat="member members">
 											    <a href="" class="project-member" title="" tal:attributes="href member/getURL; title member/getFullname">
@@ -45,7 +51,7 @@
                                 <li>
 								    <fieldset>
 										<legend i18n:translate="">Resources</legend>
-                                        <span class="teke-toggler"></span>
+                                        <span class="teke-toggler teke-slide-toggler"></span>
 										<span class="teke-delete-button"></span>
                                         <span class="teke-add-button"></span>
 										<div class="teke-togglable">
@@ -53,16 +59,29 @@
 										</div>
 									</fieldset>
 								</li>
-                                <li>
+                                <li tal:define="messages php:ProjectManager::getProjectMessages(project.getId())">
 								    <fieldset>
 										<legend i18n:translate="">Diary and Messages</legend>
-                                        <span class="teke-toggler"></span>
-										<span class="teke-delete-button"></span>
-                                        <span class="teke-add-button"></span>
+                                        <span class="teke-toggler teke-slide-toggler"></span>
 										<div class="teke-togglable">
-											CONTENTS PLACEHOLDER
+											<div id="project-diary-and-messages-flow">
+												<tal:block repeat="message messages">
+												    <tal:block metal:use-macro="project.html/message" />
+												</tal:block>
+											</div>
+											<div id="project-diary-and-messages-add">
+												<input type="text" name="body" value="" class="text ui-widget-content ui-corner-all" style="width:140px;"/>
+                                                <span class="teke-add-button"></span>
+											</div>
+											<div id="project-diary-and-messages-filter">
+												<tal:block i18n:translate="">Show:</tal:block>
+												<select>
+													<option value="everything">Everything</option>
+													<option value="activities">Activities</option>
+													<option value="messages">Messages</option>
+												</select>
+											</div>
 										</div>
-
 									</fieldset>
 								</li>
 						    </ul>

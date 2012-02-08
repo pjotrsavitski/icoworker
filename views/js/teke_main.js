@@ -43,7 +43,11 @@ teke.initialize_language_selection = function() {
 teke.initialize_togglers = function() {
     $('.teke-toggler').click(function (e) {
 		e.preventDefault();
-		$(this).nextAll('.teke-togglable').toggle();
+		if ($(this).hasClass('teke-slide-toggler')) {
+		    $(this).nextAll('.teke-togglable').slideToggle("slow");
+		} else {
+		    $(this).nextAll('.teke-togglable').toggle();
+		}
 		$(this).toggleClass('teke-toggler-toggled');
 	});
 };

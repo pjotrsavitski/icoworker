@@ -1,0 +1,7 @@
+<tal:block metal:define-macro="message">
+    <div class="single-message">
+        <img src="" alt="profile_image" tal:attributes="src message/getCreatorObject/getImageURL" />
+        <tal:block metal:use-macro="outputs.html/date" tal:define="value php:strtotime(message.getCreated())" />
+        <tal:block content="message/getBody" />
+    </div>
+</tal:block>

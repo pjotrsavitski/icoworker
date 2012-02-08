@@ -16,7 +16,7 @@
         }
 
         // Define fields array
-        $fields = array('title' => true, 'description' => false);
+        $fields = array('body' => true);
         $inputs = array();
 
         foreach ($fields as $key => $requirement) {
@@ -28,12 +28,13 @@
 
         if (sizeof($response->getErrors()) == 0) {
             $creator = $TeKe->user->getId();
-            if ($created_id = Task::create($creator, $project->getId(), $inputs['title'], $inputs['description'])) {
+            if ($created_id = Message::create($creator, $project->getId(), $inputs['body'])) {
                 $response->setStateSuccess();
-                $TeKe->add_system_message(_("New task added."));
+                $TeKe->add_system_message(_("New message added."));
+                $response->setMessages();
             }
         } else {
-            $TeKe->add_system_message(_("New task could not be added."), 'error');
+            $TeKe->add_system_message(_("Message could not be added."), 'error');
             $response->setMessages();
         }
 

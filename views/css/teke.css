@@ -338,6 +338,32 @@ article.single-project aside li fieldset {
 	background-color: white;
 }
 
+div.single-task {
+	border: 1px solid black;
+	padding: 5px 10px 5px 10px;
+	margin: 5px 10px 5px 10px;
+}
+
+div#project-diary-and-messages-flow {
+	border: 1px solid black;
+	height: 150px;
+	overflow: auto;
+}
+
+div#project-diary-and-messages-add, div#project-diary-and-messages-filter {
+	margin: 5px 10px 5px 10px;
+}
+
+div.single-message {
+	margin-left: 2px;
+	margin-right: 2px;
+}
+
+div.single-message img {
+	width: 25px;
+	height: 25px;
+}
+
 /* TOGGLER */
 .teke-toggler {
 	display: inline-block;

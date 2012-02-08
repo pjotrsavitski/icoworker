@@ -45,6 +45,7 @@ CREATE TABLE IF NOT EXISTS prefix_tasks (
 	FOREIGN KEY (project_id) REFERENCES prefix_projects (id) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=UTF8;
 
+-- XXX resource_type should be changed
 CREATE TABLE IF NOT EXISTS prefix_resources (
 	id bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
 	creator bigint(20) UNSIGNED NOT NULL,
@@ -59,7 +60,7 @@ CREATE TABLE IF NOT EXISTS prefix_resources (
 	FOREIGN KEY (project_id) REFERENCES prefix_projects (id) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=UTF8;
 
-CREATE TABLE IF NOT EXISTS prefix_mesages (
+CREATE TABLE IF NOT EXISTS prefix_messages (
 	id bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
 	creator bigint(20) UNSIGNED NOT NULL,
 	project_id bigint(20) UNSIGNED NOT NULL,
