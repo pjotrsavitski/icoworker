@@ -1,5 +1,9 @@
 <tal:block metal:use-macro="main.html/main" tal:omit-tag="" tal:define="is_logged_in teke/is_logged_in | nothing; base php:is_logged_in?false:true; language teke/get_language" i18n:domain="teke">
 
+    <tal:block condition="is_logged_in" metal:fill-slot="header">
+	    <script type="text/javascript" src="" tal:attributes="src string:${WWW_ROOT}views/js/projects_index.js"></script>
+    </tal:block>
+
     <tal:block tal:condition="not:is_logged_in" metal:fill-slot="content_body">
 
 	    <h1 id="index-heading" i18n:translate="SITE_NAME"></h1>
@@ -35,90 +39,15 @@
     </tal:block>
 
 	<tal:block tal:condition="is_logged_in" metal:fill-slot="content_body">
-	    <button id="add-new-project" i18n:translate="">Add New Project</button>
-	    <div id="add-new-project-form" title="Add New Project" i18n:attributes="title">
-			<fieldset>
-				<label for="title" i18n:translate="">Title</label>
-				<input type="text" name="title" id="title" class="text ui-widget-content ui-corner-all" />
-				<label for="goal" i18n:translate="">Goal</label>
-				<textarea rows="3" cols="50" name="goal" id="goal" class="text ui-widget-content ui-corner-all"></textarea>
-				<label for="start_end_date" i18n:translate="">Start/end dates</label>
-				<div id="start_date" class="input-datepicker"></div>
-				<div id="end_date" class="input-datepicker"></div>
-				<script type="text/javascript">
-					var dates = $('#start_date, #end_date').datepicker({
-                        onSelect: function( selectedDate ) {
-						    var option = this.id == "start_date" ? "minDate" : "maxDate",
-							instance = $(this).data("datepicker"),
-							date = $.datepicker.parseDate(
-								instance.settings.dateFormat ||
-								$.datepicker._defaults.dateFormat,
-								selectedDate, instance.settings
-								);
-							dates.not(this).datepicker("option", option, date);
-                        }
-					});
-					$('#add-new-project-form').dialog({
-					    autoOpen: false,
-						height: 500,
-						width: 500,
-						modal: true,
-						buttons: {
-						    "Add": function() {
-                                $(this).find('input:text').removeClass('ui-state-error');
-						        $(this).find('textarea').removeClass('ui-state-error');
-							    $(this).find('.input_datepicker').removeClass('ui-state-error');
-								var current_form = $(this);
-							    $.ajax({
-                                    cache: false,
-									type: "POST",
-									url: teke.get_site_url()+"actions/create_project.php",
-									data: {'title': $('#title').val(), 'goal': $('#goal').val(), 'start_date': $('#start_date').datepicker("getDate").toUTCString(), 'end_date': $('#end_date').datepicker('getDate').toUTCString()},
-									dataType: "json",
-									success: function(data) {
-									    console.log(data);
-										if (data.state == 0) {
-											current_form.dialog("close");
-											if (data.forward != "") {
-											    window.location = data.forward;
-											}
-											if (data.messages != "") {
-											    teke.replace_system_messages(data.messages);
-											}
-										} else {
-										    for (var key in data.errors) {
-											    $('#'+data.errors[key]).addClass('ui-state-error');
-											}
-                                            if (data.messages != "") {
-											    teke.replace_system_messages(data.messages);
-											}
-										}
-									},
-                                    error: function() {
-									    console.log("error occured");
-										alert("error occured");
-										current_form.dialog("close");
-                                    }
-							    });
-							    //$(this).dialog('close');
-							},
-							"Return": function() {
-							    $(this).dialog('close');
-							}
-						},
-						close: function() {
-						    $(this).find('input:text').val("").removeClass('ui-state-error');
-						    $(this).find('textarea').val("").removeClass('ui-state-error');
-							$(this).find('.input_datepicker').datepicker("setDate", '').removeClass('ui-state-error');
-						}
-				    });
-					$('#add-new-project').button().click(function(e) {
-						$('#add-new-project-form').dialog('open');
-				    });
-				</script>
-			</fieldset>
-		</div>
 
+	    <tal:block condition="php:teke.has_access(ACCESS_CAN_EDIT)">
+		    <div id="projects-index-actions">
+		        <a href="" id="add-new-project" title="Add new Project" i18n:attributes="title">
+		            <span class="teke-add-button"></span>
+				    <tal:block i18n:translate="">Add new Project</tal:block>
+			    </a>
+		    </div>
+		</tal:block>
 		<table id="all-projects" tal:define="projects php: ProjectManager::getProjects()">
 			<tbody>
 				<tr tal:repeat="project projects">
