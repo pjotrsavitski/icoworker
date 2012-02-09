@@ -70,7 +70,23 @@ class Resource {
     }
 
     public function getResourceType() {
-        return $this->resurce_type;
+        return $this->resource_type;
+    }
+
+    public function getResourceTypeURL() {
+        $type = $this->getResourceType();
+        // XXX override
+        $type = 'default';
+        return WWW_ROOT . "views/graphics/resource_{$type}.png";
+    }
+
+    public function getResourceTypes() {
+        return array(
+            1 => _('Default Document'),
+            2 => _('Text'),
+            3 => _('Spreadsheet'),
+            4 => _('Presentation')
+        );
     }
 
     public function getCreated() {
@@ -89,6 +105,7 @@ class Resource {
         $title = mysql_real_escape_string($title);
         $description = mysql_real_escape_string($description);
         $url = mysql_real_escape_string($url);
+        $resource_type = mysql_real_escape_string($resource_type);
         $q = "INSERT INTO " . DB_PREFIX . "resources (creator, project_id, title, description, url, resource_type, created, updated) VALUES ($creator, $project_id, '$title', '$description', '$url', '$resource_type', NOW(), NOW())";
         $uid = query_insert($q);
         if ($uid) {
@@ -98,10 +115,11 @@ class Resource {
         return false;
     }
 
-    public function update($resource, $title, $description, $url, $resurce_type) {
+    public function update($resource, $title, $description, $url, $resource_type) {
         $title = mysql_real_escape_string($title);
         $description = mysql_real_escape_string($description);
         $url = mysql_real_escape_string($url);
+        $resource_type = mysql_real_escape_string($resource_type);
         $q = "UPDATE " . DB_PREFIX . "resources SET title='$title', description='$description', url='$url', resource_type='$resource_type' WHERE id = {$resource->id}";
         return query_update($q);
     }

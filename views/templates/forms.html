@@ -51,6 +51,12 @@
 			<input type="text" name="description" id="description" class="text ui-widget-content ui-corner-all" />
 			<label for="url" i18n:translate="">Resource URL</label>
 			<input type="text" name="url" id="url" class="text ui-widget-content ui-corner-all" />
+			<label for="resource_type" i18n:translate="">Resource Type</label>
+			<select name="resource_type" tal:define="types php:Resource::getResourceTypes()">
+				<tal:block repeat="type types">
+				    <option value="" tal:attributes="value repeat/type/key" tal:content="type"></option>
+				</tal:block>
+			</select>
 		</fieldset>
 	</div>
 </tal:block>

@@ -45,14 +45,16 @@
 										</div>
 									</fieldset>
 								</li>
-                                <li>
+                                <li tal:define="resources php:ProjectManager::getProjectResources(project.getId())">
 								    <fieldset>
 										<legend i18n:translate="">Resources</legend>
                                         <span class="teke-toggler teke-slide-toggler project-side-widget-control"></span>
 										<span class="teke-delete-button project-side-widget-control"></span>
-                                        <span class="teke-add-button project-side-widget-control"></span>
-										<div class="teke-togglable">
-											CONTENTS PLACEHOLDER
+                                        <span id="add-resource-button" class="teke-add-button project-side-widget-control"></span>
+										<div class="teke-togglable" id="project-resources">
+											<tal:block repeat="resource resources">
+											    <tal:block metal:use-macro="project.html/resource" />
+											</tal:block>
 										</div>
 									</fieldset>
 								</li>

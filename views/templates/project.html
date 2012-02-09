@@ -15,3 +15,7 @@
 <tal:block metal:define-macro="task">
     <div class="single-task ui-corner-all" title="" tal:content="task/getTitle" tal:attributes="title task/getDescription"></div>
 </tal:block>
+
+<tal:block metal:define-macro="resource">
+    <img src="" title="" alt="resource" class="project-resource" tal:attributes="src resource/getResourceTypeURL; title resource/getTitle" />
+</tal:block>
