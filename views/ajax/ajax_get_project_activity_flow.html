@@ -1,11 +1,27 @@
 <tal:block condition="php:teke.is_logged_in() AND is_array(teke.page) AND sizeof(teke.page) GE 2">
 
-    <tal:block define="project php:ProjectManager::getProjectById(teke.page[1])" condition="php: (project instanceof Project) AND project.isMember(get_logged_in_user_id())">
-        <tal:block define="messages php:ProjectManager::getProjectMessages(project.getId())">
-	        <tal:block repeat="message messages">
-			    <tal:block metal:use-macro="project.html/message" />
-		    </tal:block>
+    <tal:block define="project php:ProjectManager::getProjectById(teke.page[1]); filter php:(isset(teke.page[2]) AND in_array(teke.page[2], array('everything', 'activities', 'messages'))) ? teke.page[2] : 'everything'" condition="php: (project instanceof Project) AND project.isMember(get_logged_in_user_id())">
+
+	    <tal:block condition="php:filter EQ 'everything'">
+            <tal:block define="messages php:ProjectManager::getProjectMessages(project.getId())">
+	            <tal:block repeat="message messages">
+			        <tal:block metal:use-macro="project.html/message" />
+		        </tal:block>
+			</tal:block>
 	    </tal:block>
+
+		<tal:block condition="php:filter EQ 'activities'">
+		    NOT IMPLEMENTED
+		</tal:block>
+
+		<tal:block condition="php:filter EQ 'messages'">
+            <tal:block define="messages php:ProjectManager::getProjectMessages(project.getId())">
+	            <tal:block repeat="message messages">
+			        <tal:block metal:use-macro="project.html/message" />
+		        </tal:block>
+			</tal:block>
+		</tal:block>
+
     </tal:block>
 
 </tal:block>

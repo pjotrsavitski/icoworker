@@ -56,7 +56,7 @@ class ProjectManager {
 
     public function getProjectMessages($id) {
         $id = (int)$id;
-        $q = "SELECT * FROM " . DB_PREFIX . "messages WHERE project_id = $id";
+        $q = "SELECT * FROM " . DB_PREFIX . "messages WHERE project_id = $id ORDER BY created DESC";
         return query_rows($q, 'Message');
     }
 }

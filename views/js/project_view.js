@@ -1,5 +1,5 @@
 $(document).ready(function() {
-    $('article.single-project > aside > ul').sortable();
+    $('article.single-project > aside > ul').sortable({ handle: 'legend' });
 	
 	// Message add
 	$('#project-diary-and-messages-add > span.teke-add-button').click(function() {
@@ -19,11 +19,12 @@ $(document).ready(function() {
                             cache: false,
 							dataType: "html",
 							type: "GET",
-							url: teke.get_site_url()+"ajax/get_project_activity_flow/"+$('#project_id').val(),
+							url: teke.get_site_url()+"ajax/get_project_activity_flow/"+$('#project_id').val()+"/"+$('#project-diary-and-messages-filter > select').val(),
 							success: function(data) {
 							    $('#project-diary-and-messages-flow').html(data);
 							},
                             error: function() {
+							    // TODO removeme
 							    alert("could not bring activity flow");
 							}
 						});
@@ -46,9 +47,19 @@ $(document).ready(function() {
 
 	// Message filter
 	$('#project-diary-and-messages-filter > select').on("change", function(e) {
-	    // TODO implement me
-		// This should update message flow contrents according to filter being selected
-		alert($(this).val());
+		$.ajax({
+            cache: false,
+			dataType: "html",
+			type: "GET",
+			url: teke.get_site_url()+"ajax/get_project_activity_flow/"+$('#project_id').val()+"/"+$(this).val(),
+			success: function(data) {
+			    $('#project-diary-and-messages-flow').html(data);
+			},
+            error: function() {
+			    // TODO removeme
+			    alert("could not bring activity flow");
+			}
+		});
 	});
 
 	// Add task functionality
