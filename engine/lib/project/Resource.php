@@ -75,8 +75,9 @@ class Resource {
 
     public function getResourceTypeURL() {
         $type = $this->getResourceType();
-        // XXX override
-        $type = 'default';
+        if (!array_key_exists($type, $this->getResourceTypes())) {
+            $type = 'default';
+        }
         return WWW_ROOT . "views/graphics/resource_{$type}.png";
     }
 
