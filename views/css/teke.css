@@ -372,13 +372,16 @@ div#project-diary-and-messages-add, div#project-diary-and-messages-filter {
 }
 
 div.single-message {
-	margin-left: 2px;
-	margin-right: 2px;
+	margin: 2px;
+	min-height: 25px;
+	clear: both;
 }
 
 div.single-message img {
 	width: 25px;
 	height: 25px;
+	float: left;
+	margin-right: 2px;
 }
 
 .project-side-widget-control {
