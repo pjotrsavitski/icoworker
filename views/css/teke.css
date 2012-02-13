@@ -388,6 +388,10 @@ div.single-message img {
 	float: right;
 }
 
+#add-project div#end_date {
+	margin-left: 15px;
+}
+
 /* TOGGLER */
 .teke-toggler {
 	display: inline-block;
