@@ -32,4 +32,3 @@
     }
 
     forward(WWW_ROOT);
-?>

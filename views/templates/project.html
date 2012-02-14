@@ -1,8 +1,12 @@
 <tal:block metal:define-macro="message">
     <div class="single-message">
-        <img src="" alt="profile_image" tal:attributes="src message/getCreatorObject/getImageURL" />
-        <tal:block metal:use-macro="outputs.html/date" tal:define="value php:strtotime(message.getCreated())" />
-        <tal:block content="message/getBody" />
+		<div class="single-message-image">
+            <img src="" alt="profile_image" tal:attributes="src message/getCreatorObject/getImageURL" />
+	    </div>
+		<div class="single-message-content">
+            <tal:block metal:use-macro="outputs.html/date" tal:define="value php:strtotime(message.getCreated())" />
+            <tal:block content="message/getBody" />
+	    </div>
     </div>
 </tal:block>
 
@@ -17,5 +21,17 @@
 </tal:block>
 
 <tal:block metal:define-macro="resource">
-    <img src="" title="" alt="resource" class="project-resource" tal:attributes="src resource/getResourceTypeURL; title resource/getTitle" />
+    <img src="" title="" alt="resource" class="project-resource teke-tooltip" tal:attributes="src resource/getResourceTypeURL; title resource/getTitle" />
+	<div class="teke-tooltip-content">
+		<tal:block condition="not:resource/getURL">
+		    <label tal:content="resource/getTitle"></label>
+		</tal:block>
+		<tal:block condition="resource/getURL">
+		    <label>
+		        <a href="" target="_blank" tal:attributes="href resource/getURL" tal:content="resource/getTitle"></a>
+		    </label>
+		</tal:block>
+		<br />
+		<tal:block condition="resource/getDescription" content="resource/getDescription" />
+	</div>
 </tal:block>

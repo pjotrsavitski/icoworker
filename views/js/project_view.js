@@ -1,4 +1,31 @@
+// Add tooltip initialization to teke object
+teke.project_initialize_tooltips = function() {
+	$('.teke-tooltip').qtip({
+	    content: {
+		    text: function(api) {
+			    return $(this).next('.teke-tooltip-content').html();
+			}
+		},
+        position: {
+		    my: "bottom center",
+			at: "top center"
+		},
+        show: {
+		    event: 'click'
+	    },
+        hide: {
+		    delay: 500,
+			fixed: true
+		},
+        style: {
+		    classes: 'ui-tooltip-light ui-tooltip-shadow ui-tooltip-rounded'
+		}
+	});
+};
+
 $(document).ready(function() {
+	// Initialize tooltips
+	teke.project_initialize_tooltips();
 	/**
 	 * Make aside widgets draggable (use <legend> as handle)
 	 */
@@ -187,6 +214,8 @@ $(document).ready(function() {
 							            url: teke.get_site_url()+"ajax/get_project_resources/"+$('#project_id').val(),
 							            success: function(data) {
 							                $('#project-resources').html(data);
+											// Reinitialize tooltips
+											teke.project_initialize_tooltips();
 							            },
                                         error: function() {
 										    // TODO removeme

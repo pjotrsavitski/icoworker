@@ -1,6 +1,8 @@
 <tal:block metal:use-macro="main.html/main" i18n:domain="teke" tal:omit-tag="">
 
     <tal:block metal:fill-slot="header">
+		<link type="text/css" rel="stylesheet" href="" tal:attributes="href string:${WWW_ROOT}views/css/jquery.qtip.min.css" />
+		<script type="text/javascript" src="" tal:attributes="src string:${WWW_ROOT}views/js/jquery.qtip.min.js"></script>
 	    <script type="text/javascript" src="" tal:attributes="src string:${WWW_ROOT}views/js/project_view.js"></script>
 	</tal:block>
 
@@ -39,9 +41,11 @@
                                         <span class="teke-delete-button project-side-widget-control"></span>
                                         <span class="teke-add-button project-side-widget-control"></span>
 										<div class="teke-togglable">
-											<tal:block repeat="member members">
-											    <tal:block metal:use-macro="project.html/member" />
-											</tal:block>
+											<div id="project-participants">
+											    <tal:block repeat="member members">
+											        <tal:block metal:use-macro="project.html/member" />
+											    </tal:block>
+										</div>
 										</div>
 									</fieldset>
 								</li>
