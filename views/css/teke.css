@@ -371,22 +371,22 @@ div#project-diary-and-messages-add, div#project-diary-and-messages-filter {
 	margin: 5px 10px 5px 10px;
 }
 
-div.single-message {
+div.single-message, div.single-activity {
 	margin: 2px;
 	min-height: 25px;
 	clear: both;
 }
 
-div.single-message .single-message-image {
+div.single-message .single-message-image, div.single-activity .single-activity-image {
 	float: left;
 }
 
-div.single-message .single-message-image img {
+div.single-message .single-message-image img, div.single-activity .single-activity-image img {
 	width: 25px;
 	height: 25px;
 }
 
-div.single-message .single-message-content {
+div.single-message .single-message-content, div.single-activity .single-activity-content {
 	float: left;
 	width: 138px;
 }

@@ -28,7 +28,7 @@
 
         if (sizeof($response->getErrors()) == 0) {
             $creator = $TeKe->user->getId();
-            if ($created_id = Message::create($creator, $project->getId(), $inputs['body'])) {
+            if ($created_id = Activity::create($creator, $project->getId(), 'message', '', $inputs['body'], '')) {
                 $response->setStateSuccess();
                 $TeKe->add_system_message(_("New message added."));
                 $response->setMessages();

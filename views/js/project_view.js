@@ -143,6 +143,8 @@ $(document).ready(function() {
 							            url: teke.get_site_url()+"ajax/get_project_tasks/"+$('#project_id').val(),
 							            success: function(data) {
 							                $('#project-tasks').html(data);
+											// Update activity flow
+											teke.project_update_messages_flow();
 							            },
                                         error: function() {
 										    // TODO removeme
@@ -222,6 +224,8 @@ $(document).ready(function() {
 							                $('#project-resources').html(data);
 											// Reinitialize tooltips
 											teke.project_initialize_tooltips();
+											// Update activity flow
+										    teke.project_update_messages_flow();
 							            },
                                         error: function() {
 										    // TODO removeme

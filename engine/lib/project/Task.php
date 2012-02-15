@@ -80,7 +80,8 @@ class Task {
         $q = "INSERT INTO " . DB_PREFIX . "tasks (creator, project_id, title, description, created, updated) VALUES ($creator, $project_id, '$title', '$description', NOW(), NOW())";
         $uid = query_insert($q);
         if ($uid) {
-            // TODO Possibly some activity needs to be added
+            // Add to activity stream
+            Activity::create($creator, $project_id, 'activity', 'add_task', '', array($title));
             return $uid;
         }
         return false;

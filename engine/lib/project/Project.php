@@ -94,7 +94,12 @@ class Project {
 
     public function addMember($user_id) {
         $q = "INSERT INTO " . DB_PREFIX . "project_members (project_id, user_id) VALUES ({$this->id}, $user_id)";
-        return query_insert($q);
+        $result = query_insert($q);
+        if ($this->isMember($user_id)) {
+            // Add to activity stream
+            Activity::create($user_id, $this->id, 'activity', 'join_project', '', '');
+        }
+        return $result;
     }
 
     public function removeMember($user_id) {
@@ -103,7 +108,11 @@ class Project {
             return false;
         }
         $q = "DELETE FROM " . DB_PREFIX . "project_members WHERE project_id={$this->id} AND user_id=$user_id";
-        return query_delete($q);
+        $result = query_delete($q);
+        if ($result) {
+            // Add to activity stream
+            Activity::create($user_id, $this->id, 'activity', 'leave_project', '', '');
+        }
     }
 
     public function getMembers() {

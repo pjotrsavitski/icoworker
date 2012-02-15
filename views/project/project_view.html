@@ -9,7 +9,7 @@
     <tal:block metal:fill-slot="content_body">
         <tal:block condition="teke/is_logged_in">
 
-        <tal:block define="project teke/handler/getProjectById;">
+        <tal:block define="project teke/handler/getProjectById;" condition="project/getId | false">
 
             <tal:block define="project_exists project/id | false; is_member php:project_exists AND project.isMember(get_logged_in_user_id()) | false">
 			<input type="hidden" id="project_id" value="" tal:attributes="value project/getId" />
@@ -62,14 +62,14 @@
 										</div>
 									</fieldset>
 								</li>
-                                <li tal:define="messages php:ProjectManager::getProjectMessages(project.getId())">
+                                <li tal:define="flow php:ProjectManager::getProjectActivity(project.getId())">
 								    <fieldset>
 										<legend i18n:translate="">Diary and Messages</legend>
                                         <span class="teke-toggler teke-slide-toggler project-side-widget-control"></span>
 										<div class="teke-togglable">
 											<div id="project-diary-and-messages-flow">
-												<tal:block repeat="message messages">
-												    <tal:block metal:use-macro="project.html/message" />
+												<tal:block repeat="activity flow">
+												    <tal:block metal:use-macro="project.html/activity" />
 												</tal:block>
 											</div>
 											<div id="project-diary-and-messages-add">

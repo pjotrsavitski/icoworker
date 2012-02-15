@@ -59,13 +59,15 @@ CREATE TABLE IF NOT EXISTS prefix_resources (
 	FOREIGN KEY (project_id) REFERENCES prefix_projects (id) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=UTF8;
 
-CREATE TABLE IF NOT EXISTS prefix_messages (
+CREATE TABLE IF NOT EXISTS prefix_activity (
 	id bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
 	creator bigint(20) UNSIGNED NOT NULL,
 	project_id bigint(20) UNSIGNED NOT NULL,
-	body text NOT NULL,
+	activity_type enum('message', 'activity') DEFAULT 'activity',
+	activity_subtype varchar(100) DEFAULT '',
+	body text DEFAULT '',
+	activity_data text DEFAULT '',
 	created DATETIME NOT NULL DEFAULT '0000-00-00 00:00:00',
-	updated DATETIME NOT NULL DEFAULT '0000-00-00 00:00:00',
 	FOREIGN KEY (creator) REFERENCES prefix_users (id) ON DELETE CASCADE,
 	FOREIGN KEY (project_id) REFERENCES prefix_projects (id) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=UTF8;

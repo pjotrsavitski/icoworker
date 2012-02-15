@@ -1,13 +1,31 @@
 <tal:block metal:define-macro="message">
     <div class="single-message">
 		<div class="single-message-image">
-            <img src="" alt="profile_image" tal:attributes="src message/getCreatorObject/getImageURL" />
+            <img src="" alt="profile_image" tal:attributes="src activity/getCreatorObject/getImageURL" />
 	    </div>
 		<div class="single-message-content">
-            <tal:block metal:use-macro="outputs.html/date" tal:define="value php:strtotime(message.getCreated())" />
-            <tal:block content="message/getBody" />
+            <tal:block metal:use-macro="outputs.html/date" tal:define="value php:strtotime(activity.getCreated())" />
+            <tal:block content="activity/getBody" />
 	    </div>
     </div>
+</tal:block>
+
+<tal:block metal:define-macro="activity">
+    <tal:block condition="php:activity.getActivityType() == 'message'">
+	    <tal:block metal:use-macro="project.html/message" />
+	</tal:block>
+
+	<tal:block condition="php:activity.getActivityType() == 'activity'">
+	    <div class="single-activity">
+			<div class="single-activity-image">
+                <img src="" alt="profile_image" tal:attributes="src activity/getCreatorObject/getImageURL" />
+			</div>
+			<div class="single-activity-content">
+                <tal:block metal:use-macro="outputs.html/date" tal:define="value php:strtotime(activity.getCreated())" />
+				<tal:block content="activity/getBody" />
+			</div>
+		</div>
+	</tal:block>
 </tal:block>
 
 <tal:block metal:define-macro="member">

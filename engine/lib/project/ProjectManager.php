@@ -3,7 +3,7 @@
 require_once(dirname(__FILE__).'/Project.php');
 require_once(dirname(__FILE__).'/Task.php');
 require_once(dirname(__FILE__).'/Resource.php');
-require_once(dirname(__FILE__).'/Message.php');
+require_once(dirname(__FILE__).'/Activity.php');
 
 class ProjectManager {
 
@@ -36,10 +36,14 @@ class ProjectManager {
         return query_row($q, "Resource");
     }
 
-    public function getMessageById($id) {
+    public function getActivityById($id) {
         $id = (int)$id;
-        $q = "SELECT * FROM " . DB_PREFIX . "messages WHERE id = $id";
-        return query_row($q, "Message");
+        $q = "SELECT * FROM " . DB_PREFIX . "activity WHERE id = $id";
+        return query_row($q, "Activity");
+    }
+    
+    public function getMessageById($id) {
+        return self::getActivityById($id);
     }
 
     public function getProjectTasks($id) {
@@ -56,7 +60,19 @@ class ProjectManager {
 
     public function getProjectMessages($id) {
         $id = (int)$id;
-        $q = "SELECT * FROM " . DB_PREFIX . "messages WHERE project_id = $id ORDER BY created DESC";
-        return query_rows($q, 'Message');
+        $q = "SELECT * FROM " . DB_PREFIX . "activity WHERE project_id = $id AND activity_type = 'message' ORDER BY created DESC";
+        return query_rows($q, 'Activity');
+    }
+
+    public function getProjectActivities($id) {
+        $id = (int)$id;
+        $q = "SELECT * FROM " . DB_PREFIX . "activity WHERE project_id = $id AND activity_type = 'activity' ORDER BY created DESC";
+        return query_rows($q, 'Activity');
+    }
+
+    public function getProjectActivity($id) {
+        $id = (int)$id;
+        $q = "SELECT * FROM " . DB_PREFIX . "activity WHERE project_id = $id ORDER BY created DESC";
+        return query_rows($q, 'Activity');
     }
 }

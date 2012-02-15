@@ -110,7 +110,8 @@ class Resource {
         $q = "INSERT INTO " . DB_PREFIX . "resources (creator, project_id, title, description, url, resource_type, created, updated) VALUES ($creator, $project_id, '$title', '$description', '$url', '$resource_type', NOW(), NOW())";
         $uid = query_insert($q);
         if ($uid) {
-            // TODO Possibly some activity needs to be added
+             // Add to activity stream
+            Activity::create($creator, $project_id, 'activity', 'add_resource', '', array($title));
             return $uid;
         }
         return false;
