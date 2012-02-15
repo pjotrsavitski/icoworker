@@ -23,6 +23,23 @@ teke.project_initialize_tooltips = function() {
 	});
 };
 
+// Updates message flow, respects filter
+teke.project_update_messages_flow = function() {
+	$.ajax({
+        cache: false,
+        dataType: "html",
+        type: "GET",
+        url: teke.get_site_url()+"ajax/get_project_activity_flow/"+$('#project_id').val()+"/"+$('#project-diary-and-messages-filter > select').val(),
+        success: function(data) {
+            $('#project-diary-and-messages-flow').html(data);
+		},
+        error: function() {
+            // TODO removeme
+            alert("could not bring activity flow");
+        }
+    });
+};
+
 $(document).ready(function() {
 	// Initialize tooltips
 	teke.project_initialize_tooltips();
@@ -49,19 +66,8 @@ $(document).ready(function() {
 				success: function(data) {
 				    if (data.state == 0) {
 						$('#project-diary-and-messages-add').children('input[name="body"]').val("");
-						$.ajax({
-                            cache: false,
-							dataType: "html",
-							type: "GET",
-							url: teke.get_site_url()+"ajax/get_project_activity_flow/"+$('#project_id').val()+"/"+$('#project-diary-and-messages-filter > select').val(),
-							success: function(data) {
-							    $('#project-diary-and-messages-flow').html(data);
-							},
-                            error: function() {
-							    // TODO removeme
-							    alert("could not bring activity flow");
-							}
-						});
+						// Update message flow
+						teke.project_update_messages_flow();
 					} else {
 					    $(this).prevAll('input[name="body"]').addClass('ui-state-error');
 					}
