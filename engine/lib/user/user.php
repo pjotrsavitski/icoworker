@@ -167,8 +167,7 @@ class User {
 
         // XXX deleteme
         public function make_admin($uid) {
-            $roles = "111111";
-            $res = $this->db->query("UPDATE " . DB_PREFIX . "users SET roles='{$roles}' WHERE id={$uid}");
+            $res = $this->db->query("UPDATE " . DB_PREFIX . "users SET role=9 WHERE id={$uid}");
             if ($res) return 1;
             return 0;
         }
@@ -250,8 +249,7 @@ class User {
         }
         
         public function create($username, $email, $facebook_id, $firstname, $lastname) {
-            $roles = "000000";
-            $q = "INSERT INTO " . DB_PREFIX . "users (username, email, facebook_id, first_name, last_name, registered) values ('$username', '$email', $facebook_id, '$firstname', '$lastname', NOW())";
+            $q = "INSERT INTO " . DB_PREFIX . "users (username, email, facebook_id, first_name, last_name, registered, role) values ('$username', '$email', $facebook_id, '$firstname', '$lastname', NOW(), 5)";
             $uid = query_insert($q);
             if ($uid) return $uid;
             return 0;
