@@ -75,4 +75,11 @@ class ProjectManager {
         $q = "SELECT * FROM " . DB_PREFIX . "activity WHERE project_id = $id ORDER BY created DESC";
         return query_rows($q, 'Activity');
     }
+
+    public function searchForParticipants($project_id, $criteria) {
+        $project_id = (int)$project_id;
+        $criteria = mysql_real_escape_string($criteria);
+        $q = "SELECT * FROM " . DB_PREFIX . "users WHERE (first_name LIKE '%$criteria%' OR last_name LIKE '%$criteria%' OR email = '$criteria') AND id NOT IN ( SELECT user_id FROM " . DB_PREFIX . "project_members WHERE project_id = $project_id)";
+        return query_rows($q, 'User');
+    }
 }

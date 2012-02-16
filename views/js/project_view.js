@@ -40,6 +40,22 @@ teke.project_update_messages_flow = function() {
     });
 };
 
+teke.update_project_participants = function() {
+    $.ajax({
+        cache: false,
+        dataType: "html",
+        type: "GET",
+        url: teke.get_site_url()+"ajax/get_project_participants/"+$('#project_id').val(),
+        success: function(data) {
+            $('#project-participants').html(data);
+		},
+        error: function() {
+            // TODO removeme
+            alert("could not bring participants");
+        }
+    });
+};
+
 $(document).ready(function() {
 	// Initialize tooltips
 	teke.project_initialize_tooltips();
@@ -264,5 +280,86 @@ $(document).ready(function() {
 			}
 		});
 	});
+
+    /**
+	 * Add participants functionality
+	 *  o Brings in the form
+	 *  o Creates a modal dialog
+	 *  o Refreshes participants on success
+	 *  o Upon completion or close dialog is being destroyed allong with the form
+	 */
+	$('#add-participant-button').click(function() {
+		$.ajax({
+		    cache: false,
+			dataType: "html",
+			type: "GET",
+			url: teke.get_site_url()+"ajax/add_participant_form",
+			success: function(data) {
+			    $(data).dialog({
+                    autoOpen: true,
+					height: 'auto',
+					width: 'auto',
+					modal: true,
+					buttons: {
+					    "Search": function() {
+						    var current_form = $(this);
+						    current_form.find('input:text').removeClass('ui-state-error');
+							if (current_form.find('input[name="criteria"]').val() != "") {
+							    $.ajax({
+								    cache: false,
+									dataType: "html",
+									type: "GET",
+									url: teke.get_site_url()+"ajax/search_for_participants/"+$('#project_id').val()+"/"+current_form.find('input[name="criteria"]').val(),
+									success: function(data) {
+									    current_form.find('[name="search_results"]').html(data);
+										current_form.find('.single-participant-result').click(function() {
+											$.ajax({
+                                                cache: false,
+												type: "POST",
+												url: teke.get_site_url()+"actions/add_participant.php",
+												data: { project_id: $('#project_id').val(), user_id: $(this).find('input[name^="single_participant_"]').val() },
+												dataType: "json",
+												success: function(data) {
+												    if (data.state == 0) {
+													    teke.update_project_participants();
+													    current_form.dialog('close');
+													}
+													if (data.messages != "") {
+													    teke.replace_system_messages(data.messages);
+												    }
+												},
+                                                error: function() {
+												    // TODO removeme
+													alert('add_participant failed');
+												}
+											});
+										});
+									},
+                                    error: function() {
+									    // TODO removeme
+										alert("could not bring participants");
+									}
+								});
+							} else {
+							    current_form.find('input[name="criteria"]').addClass('ui-state-error');
+							}
+						},
+						"Return": function() {
+						    $(this).dialog('close');
+						}
+					},
+					close: function() {
+					    $(this).dialog("destroy");
+						$(this).remove();
+					}
+				});
+			},
+            error: function() {
+			    // TODO removeme
+			    alert("error occured");
+			}
+		});
+	});
+
 
 });

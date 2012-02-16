@@ -95,7 +95,8 @@ class Project {
     public function addMember($user_id) {
         $q = "INSERT INTO " . DB_PREFIX . "project_members (project_id, user_id) VALUES ({$this->id}, $user_id)";
         $result = query_insert($q);
-        if ($this->isMember($user_id)) {
+        $result = $this->isMember($user_id);
+        if ($result) {
             // Add to activity stream
             Activity::create($user_id, $this->id, 'activity', 'join_project', '', '');
         }

@@ -1,0 +1,20 @@
+<tal:block condition="php:teke.is_logged_in() AND is_array(teke.page) AND sizeof(teke.page) GE 3" i18n:domain="teke">
+
+    <tal:block define="project php:ProjectManager::getProjectById(teke.page[1]); criteria php:teke.page[2]" condition="php: (project instanceof Project) AND project.isMember(get_logged_in_user_id())">
+        <tal:block define="participants php:ProjectManager::searchForParticipants(project.getId(), criteria)">
+		    <tal:block condition="php:is_array(participants) AND sizeof(participants) GT 0">
+			    <tal:block repeat="participant participants">
+				    <div class="single-participant-result">
+						 <img src="" title="" alt="profile_image" tal:attributes="src participant/getImageURL; title participant/getFullname" />
+						 <input type="hidden" name="" value="" tal:attributes="value participant/getId; name string:single_participant_${participant/getId}" />
+					</div>
+				</tal:block>
+			</tal:block>
+
+			<tal:block condition="not: php:is_array(participants) AND sizeof(participants) GT 0">
+		        <tal:block i18n:translate="">Nothing found</tal:block>
+			</tal:block>
+	    </tal:block>
+    </tal:block>
+
+</tal:block>

@@ -404,6 +404,16 @@ div.single-message .single-message-content, div.single-activity .single-activity
 	height: 25px;
 }
 
+div.single-participant-result {
+	margin: 2px;
+	float: left;
+}
+
+div.single-participant-result img {
+	width: 25px;
+	height: 25px;
+}
+
 /* TOOLTIPS */
 
 .teke-tooltip-content {

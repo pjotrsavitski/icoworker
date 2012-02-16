@@ -23,14 +23,6 @@
 	</div>
 </tal:block>
 
-<tal:block metal:define-macro="add_participant" i18n:domain="teke">
-    <div id="add-participant" class="teke-dialog-form" title="Add Participant" i18n:attributes="title">
-		<fieldset>
-			PLACEHOLDER
-		</fieldset>
-	</div>
-</tal:block>
-
 <tal:block metal:define-macro="add_task" i18n:domain="teke">
     <div id="add-task" class="teke-dialog-form" title="Add new Task" i18n:attributes="title">
 		<fieldset>
@@ -57,6 +49,17 @@
 				    <option value="" tal:attributes="value repeat/type/key" tal:content="type"></option>
 				</tal:block>
 			</select>
+		</fieldset>
+	</div>
+</tal:block>
+
+<tal:block metal:define-macro="add_participant" i18n:domain="teke">
+    <div id="add-participant" class="teke-dialog-form" title="Add Participant" i18n:attributes="title">
+		<fieldset>
+			<label for="criteria" i18n:translate="">Search Criteria</label>
+			<input type="text" name="criteria" class="text ui-widget-content ui-corner-all" />
+			<div name="search_results">
+			</div>
 		</fieldset>
 	</div>
 </tal:block>
