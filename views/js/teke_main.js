@@ -1,6 +1,7 @@
 var teke = teke || {};
 
 teke.config = {};
+teke.translations = {};
 
 teke.get_site_url = function() {
 	return teke.config.wwwroot;
@@ -10,6 +11,7 @@ teke.get_facebook_app_id = function() {
 	return teke.config.facebook_app_id;
 };
 
+/* SYSTEM MESAGES */
 teke.animate_system_messages = function() {
     $('span.system_message_close').click(function() {
         $('#system_messages').stop();
@@ -30,6 +32,19 @@ teke.replace_system_messages = function(messages) {
 	teke.animate_system_messages();
 };
 
+/* TRANSLATIONS */
+teke.add_translation = function(msgid, msgstr) {
+	return this.translations[msgid] = msgstr;
+};
+
+teke.translate = function(msgid) {
+	if (msgid in this.translations) {
+		return this.translations[msgid];
+	}
+	return msgid;
+};
+
+/* HELPERS */
 teke.set_language = function(lang) {
 	window.location = this.get_site_url()+"?set_language=true&language="+lang;
 };

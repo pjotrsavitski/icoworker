@@ -141,53 +141,59 @@ $(document).ready(function() {
 					height: 'auto',
 					width: 'auto',
 					modal: true,
-					buttons: {
-					    "Add": function() {
-						var current_form = $(this);
-						current_form.find('input:text').removeClass('ui-state-error');
-						$.ajax({
-                            cache: false,
-							type: "POST",
-							url: teke.get_site_url()+"actions/add_task.php",
-							data: { project_id: $('#project_id').val(), title: current_form.find('input[name="title"]').val(), description: current_form.find('input[name="description"]').val() },
-							dataType: "json",
-							success: function(data) {
-							    if (data.state == 0) {
-                                    $.ajax({
-                                        cache: false,
-							            dataType: "html",
-							            type: "GET",
-							            url: teke.get_site_url()+"ajax/get_project_tasks/"+$('#project_id').val(),
-							            success: function(data) {
-							                $('#project-tasks').html(data);
-											// Update activity flow
-											teke.project_update_messages_flow();
-							            },
-                                        error: function() {
-										    // TODO removeme
-							                alert("could not bring tasks");
-							            }
-						            });
-								    current_form.dialog('close');
-								} else {
-								    for (var key in data.errors) {
-									    $('#'+data.errors[key]).addClass('ui-state-error');
-									}
-								}
-								if (data.messages != "") {
-								    teke.replace_system_messages(data.messages);
-								}
-							},
-                            error: function() {
-							    // TODO removeme
-							    alert("add_task failed");
-							}
-						});
+					buttons: [
+					    {
+					        text: teke.translate('button_add'),
+						    click: function() {
+						        var current_form = $(this);
+						        current_form.find('input:text').removeClass('ui-state-error');
+						        $.ajax({
+                                    cache: false,
+							        type: "POST",
+							        url: teke.get_site_url()+"actions/add_task.php",
+							        data: { project_id: $('#project_id').val(), title: current_form.find('input[name="title"]').val(), description: current_form.find('input[name="description"]').val() },
+							        dataType: "json",
+							        success: function(data) {
+							            if (data.state == 0) {
+                                            $.ajax({
+                                                cache: false,
+							                    dataType: "html",
+							                    type: "GET",
+							                    url: teke.get_site_url()+"ajax/get_project_tasks/"+$('#project_id').val(),
+							                    success: function(data) {
+							                        $('#project-tasks').html(data);
+											        // Update activity flow
+											        teke.project_update_messages_flow();
+							                    },
+                                                error: function() {
+										            // TODO removeme
+							                        alert("could not bring tasks");
+							                   }
+						                    });
+								            current_form.dialog('close');
+								        } else {
+								            for (var key in data.errors) {
+									            $('#'+data.errors[key]).addClass('ui-state-error');
+									        }
+								        }
+								        if (data.messages != "") {
+								            teke.replace_system_messages(data.messages);
+								        }
+							        },
+                                    error: function() {
+							            // TODO removeme
+							            alert("add_task failed");
+							        }
+						        });
+						    }
 						},
-						"Return": function() {
-						    $(this).dialog('close');
-						}
-					},
+						{
+						    text: teke.translate('button_return'),
+							click: function() {
+						        $(this).dialog('close');
+						    }
+					    }
+				    ],
 					close: function() {
 					    $(this).dialog("destroy");
 						$(this).remove();
@@ -220,55 +226,61 @@ $(document).ready(function() {
 					height: 'auto',
 					width: 'auto',
 					modal: true,
-					buttons: {
-					    "Add": function() {
-						var current_form = $(this);
-						current_form.find('input:text').removeClass('ui-state-error');
-						$.ajax({
-                            cache: false,
-							type: "POST",
-							url: teke.get_site_url()+"actions/add_resource.php",
-							data: { project_id: $('#project_id').val(), title: current_form.find('input[name="title"]').val(), description: current_form.find('input[name="description"]').val(), url: current_form.find('input[name="url"]').val(), resource_type: current_form.find('select[name="resource_type"]').val() },
-							dataType: "json",
-							success: function(data) {
-							    if (data.state == 0) {
-                                    $.ajax({
-                                        cache: false,
-							            dataType: "html",
-							            type: "GET",
-							            url: teke.get_site_url()+"ajax/get_project_resources/"+$('#project_id').val(),
-							            success: function(data) {
-							                $('#project-resources').html(data);
-											// Reinitialize tooltips
-											teke.project_initialize_tooltips();
-											// Update activity flow
-										    teke.project_update_messages_flow();
-							            },
-                                        error: function() {
-										    // TODO removeme
-							                alert("could not bring resources");
-							            }
-						            });
-								    current_form.dialog('close');
-								} else {
-								    for (var key in data.errors) {
-									    $('#'+data.errors[key]).addClass('ui-state-error');
-									}
-								}
-								if (data.messages != "") {
-								    teke.replace_system_messages(data.messages);
-								}
-							},
-                            error: function() {
-							    // TODO removeme
-							    alert("add_resource failed");
-							}
-						});
+					buttons: [
+					    {
+					        text: teke.translate('button_add'),
+						    click: function() {
+						        var current_form = $(this);
+						        current_form.find('input:text').removeClass('ui-state-error');
+						        $.ajax({
+                                    cache: false,
+							        type: "POST",
+							        url: teke.get_site_url()+"actions/add_resource.php",
+							        data: { project_id: $('#project_id').val(), title: current_form.find('input[name="title"]').val(), description: current_form.find('input[name="description"]').val(), url: current_form.find('input[name="url"]').val(), resource_type: current_form.find('select[name="resource_type"]').val() },
+							        dataType: "json",
+							        success: function(data) {
+							            if (data.state == 0) {
+                                            $.ajax({
+                                                cache: false,
+							                    dataType: "html",
+							                    type: "GET",
+							                    url: teke.get_site_url()+"ajax/get_project_resources/"+$('#project_id').val(),
+							                    success: function(data) {
+							                        $('#project-resources').html(data);
+											        // Reinitialize tooltips
+											        teke.project_initialize_tooltips();
+											        // Update activity flow
+										           teke.project_update_messages_flow();
+							                    },
+                                                error: function() {
+										            // TODO removeme
+							                        alert("could not bring resources");
+							                    }
+						                    });
+								            current_form.dialog('close');
+								        } else {
+								            for (var key in data.errors) {
+									            $('#'+data.errors[key]).addClass('ui-state-error');
+									        }
+								        }
+								        if (data.messages != "") {
+								            teke.replace_system_messages(data.messages);
+								        }
+							        },
+                                    error: function() {
+							            // TODO removeme
+							            alert("add_resource failed");
+							        }
+						        });
+						        }
 						},
-						"Return": function() {
-						    $(this).dialog('close');
+				        {
+						    text: teke.translate('button_return'),
+						    click:  function() {
+						        $(this).dialog('close');
+						    }
 						}
-					},
+				    ],
 					close: function() {
 					    $(this).dialog("destroy");
 						$(this).remove();
@@ -301,54 +313,60 @@ $(document).ready(function() {
 					height: 'auto',
 					width: 'auto',
 					modal: true,
-					buttons: {
-					    "Search": function() {
-						    var current_form = $(this);
-						    current_form.find('input:text').removeClass('ui-state-error');
-							if (current_form.find('input[name="criteria"]').val() != "") {
-							    $.ajax({
-								    cache: false,
-									dataType: "html",
-									type: "GET",
-									url: teke.get_site_url()+"ajax/search_for_participants/"+$('#project_id').val()+"/"+current_form.find('input[name="criteria"]').val(),
-									success: function(data) {
-									    current_form.find('[name="search_results"]').html(data);
-										current_form.find('.single-participant-result').click(function() {
-											$.ajax({
-                                                cache: false,
-												type: "POST",
-												url: teke.get_site_url()+"actions/add_participant.php",
-												data: { project_id: $('#project_id').val(), user_id: $(this).find('input[name^="single_participant_"]').val() },
-												dataType: "json",
-												success: function(data) {
-												    if (data.state == 0) {
-													    teke.update_project_participants();
-													    current_form.dialog('close');
-													}
-													if (data.messages != "") {
-													    teke.replace_system_messages(data.messages);
+					buttons: [
+					    {
+					        text: teke.translate('button_search'),
+							click: function() {
+						        var current_form = $(this);
+						        current_form.find('input:text').removeClass('ui-state-error');
+							    if (current_form.find('input[name="criteria"]').val() != "") {
+							        $.ajax({
+								        cache: false,
+									    dataType: "html",
+									    type: "GET",
+									    url: teke.get_site_url()+"ajax/search_for_participants/"+$('#project_id').val()+"/"+current_form.find('input[name="criteria"]').val(),
+									    success: function(data) {
+									        current_form.find('[name="search_results"]').html(data);
+										    current_form.find('.single-participant-result').click(function() {
+											    $.ajax({
+                                                    cache: false,
+												    type: "POST",
+												    url: teke.get_site_url()+"actions/add_participant.php",
+												    data: { project_id: $('#project_id').val(), user_id: $(this).find('input[name^="single_participant_"]').val() },
+												    dataType: "json",
+												    success: function(data) {
+												        if (data.state == 0) {
+													        teke.update_project_participants();
+													        current_form.dialog('close');
+													    }
+													    if (data.messages != "") {
+													        teke.replace_system_messages(data.messages);
+												        }
+												    },
+                                                    error: function() {
+												        // TODO removeme
+													    alert('add_participant failed');
 												    }
-												},
-                                                error: function() {
-												    // TODO removeme
-													alert('add_participant failed');
-												}
-											});
-										});
-									},
-                                    error: function() {
-									    // TODO removeme
-										alert("could not bring participants");
-									}
-								});
-							} else {
-							    current_form.find('input[name="criteria"]').addClass('ui-state-error');
-							}
+											    });
+										    });
+									    },
+                                        error: function() {
+									        // TODO removeme
+										    alert("could not bring participants");
+									    }
+								    });
+							    } else {
+							        current_form.find('input[name="criteria"]').addClass('ui-state-error');
+							    }
+						    }
 						},
-						"Return": function() {
-						    $(this).dialog('close');
+				        {
+						    text: teke.translate('button_return'),
+						    click:  function() {
+						        $(this).dialog('close');
+						    }
 						}
-					},
+					],
 					close: function() {
 					    $(this).dialog("destroy");
 						$(this).remove();
