@@ -83,8 +83,11 @@ $(document).ready(function() {
 				success: function(data) {
 				    if (data.state == 0) {
 						$('#project-diary-and-messages-add').children('input[name="body"]').val("");
-						// Update message flow
-						teke.project_update_messages_flow();
+						// Check if there is a reason to update the flow
+						if ($('#project-diary-and-messages-filter > select').val() != 'activities') {
+						    // Update message flow
+						    teke.project_update_messages_flow();
+						}
 					} else {
 					    $(this).prevAll('input[name="body"]').addClass('ui-state-error');
 					}
@@ -162,8 +165,10 @@ $(document).ready(function() {
 							                    url: teke.get_site_url()+"ajax/get_project_tasks/"+$('#project_id').val(),
 							                    success: function(data) {
 							                        $('#project-tasks').html(data);
-											        // Update activity flow
-											        teke.project_update_messages_flow();
+													if ($('#project-diary-and-messages-filter > select').val() != 'messages') {
+											            // Update activity flow
+											            teke.project_update_messages_flow();
+													}
 							                    },
                                                 error: function() {
 										            // TODO removeme
@@ -249,8 +254,10 @@ $(document).ready(function() {
 							                        $('#project-resources').html(data);
 											        // Reinitialize tooltips
 											        teke.project_initialize_tooltips();
-											        // Update activity flow
-										           teke.project_update_messages_flow();
+													if ($('#project-diary-and-messages-filter > select').val() != 'messages') {
+											            // Update activity flow
+										                teke.project_update_messages_flow();
+													}
 							                    },
                                                 error: function() {
 										            // TODO removeme
@@ -337,6 +344,10 @@ $(document).ready(function() {
 												    success: function(data) {
 												        if (data.state == 0) {
 													        teke.update_project_participants();
+															if ($('#project-diary-and-messages-filter > select').val() != 'messages') {
+                                                                // Update activity flow
+										                        teke.project_update_messages_flow();
+															}
 													        current_form.dialog('close');
 													    }
 													    if (data.messages != "") {
