@@ -1,0 +1,6 @@
+<tal:block condition="php:teke.is_admin_logged_in() AND is_array(teke.page) AND sizeof(teke.page) GE 2">
+    <tal:block define="user teke/handler/getuserById" condition="user/getId">
+	    <tal:block metal:use-macro="forms.html/change_role" />
+	</tal:block>
+</tal:block>
+

@@ -16,4 +16,10 @@ class AjaxHandler extends BaseHandler {
     
     public function setNavigation() {
     }
+
+    public function getUserById() {
+        $id = "";
+        if (isset($this->page[1])) $id = $this->page[1];
+        return new User($id);
+    }
 }

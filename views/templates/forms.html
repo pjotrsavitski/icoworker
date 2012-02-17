@@ -63,3 +63,23 @@
 		</fieldset>
 	</div>
 </tal:block>
+
+<tal:block metal:define-macro="change_role" i18n:domain="teke" define="roles teke/getAvailableRoles">
+    <div id="change-role" class="teke-dialog-form" title="Change Role" i18n:attributes="title">
+		<fieldset>
+			<label tal:content="user/getFullname"></label>
+			<label for="criteria" i18n:translate="">Role</label>
+			<select name="role">
+				<tal:block repeat="role roles">
+				    <tal:block condition="php:user.getRole() EQ repeat.role.key">
+				        <option value="" selected="selected" tal:attributes="value repeat/role/key" tal:content="role"></option>
+					</tal:block>
+                    
+					<tal:block condition="not: php:user.getRole() EQ repeat.role.key">
+				        <option value="" tal:attributes="value repeat/role/key" tal:content="role"></option>
+					</tal:block>
+				</tal:block>
+			</select>
+		</fieldset>
+	</div>
+</tal:block>

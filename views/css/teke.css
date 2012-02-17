@@ -299,6 +299,10 @@ div.input-datepicker {
 	float: left;
 }
 
+table#administrate-users .user-role {
+	cursor: pointer;
+}
+
 /* PROJECTS */
 table#all-projects {
 	width: 100%;

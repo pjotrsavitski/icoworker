@@ -40,6 +40,7 @@ teke.project_update_messages_flow = function() {
     });
 };
 
+// Update participants
 teke.update_project_participants = function() {
     $.ajax({
         cache: false,
@@ -124,7 +125,7 @@ $(document).ready(function() {
 	/**
 	 * Add task functionality
 	 *  o Brings in the form
-	 *  o Creates a modal ldialog
+	 *  o Creates a modal dialog
 	 *  o Refreshes tasks on success
 	 *  o Upon completion or close dialog is being destroyed allong with the form
 	 */
@@ -203,7 +204,7 @@ $(document).ready(function() {
     /**
 	 * Add resource functionality
 	 *  o Brings in the form
-	 *  o Creates a moda ldialog
+	 *  o Creates a moda dialog
 	 *  o Refreshes resources on success
 	 *  o Upon completion or close dialog is being destroyed allong with the form
 	 */

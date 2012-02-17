@@ -227,6 +227,16 @@ class TeKe {
         }
         return false;
     }
+
+    public function is_admin_logged_in() {
+        if (!$this->is_logged_in()) {
+            return false;
+        }
+        if ($this->is_admin()) {
+            return true;
+        }
+        return false;
+    }
     
     public function is_admin() {
         return $this->has_access(9);
@@ -263,6 +273,22 @@ class TeKe {
 
     function get_site_url() {
         return WWW_ROOT;
+    }
+
+    function getAvailableRoles() {
+        return array(
+            '1' => _("Guest"),
+            '5' => _("Member"),
+            '9' => _("Admin")
+        );
+    }
+
+    function getRoleNameFromId($role) {
+        $roles = $this->getAvailableRoles();
+        if (array_key_exists($role, $roles)) {
+            return $roles[$role];
+        }
+        return $role;
     }
 
 }
