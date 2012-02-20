@@ -46,11 +46,6 @@
     DEFINE("FACEBOOK_APP_ID", "");
     DEFINE("FACEBOOK_APP_SECRET", "");
     
-    /**********
-    * Youtube *
-    **********/
-    DEFINE("YOUTUBE_DEFAULT_PLAYER", "html5"); //html5 as3
-
     /***************
     * Running mode *
     ****************/

@@ -16,10 +16,6 @@ require_once(dirname(__FILE__)."/lib/user/user.php");
 require_once(dirname(__FILE__)."/lib/project/ProjectManager.php");
 // TODO is image needed
 require_once(dirname(__FILE__)."/lib/image/Image.php");
-// TODO sound is not needed
-require_once(dirname(__FILE__)."/lib/sound/Sound.php");
-// TODO video is not needed
-require_once(dirname(__FILE__)."/lib/video/YoutubeVideo.php");
 require_once(dirname(__FILE__)."/lib/handler/handler.php");
 require_once(dirname(__FILE__)."/lib/firephp/FirePHP.class.php");
 
