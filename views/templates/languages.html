@@ -1,0 +1,10 @@
+<tal:block metal:define-macro="language_selection" i18n:domain="teke">
+    <div id="language-selection" class="" tal:define="languages php:teke.getAvailableLanguages(); current_language teke/get_language" tal:attributes="class class | string:language-selection">
+		<tal:block repeat="language languages">
+		    <a href="#" class="" title="" tal:attributes="title language; class php:(repeat.language.key EQ current_language) ? 'language-selected' : 'language-not-selected'">
+		        <img src="" alt="flag" tal:attributes="src string:${WWW_ROOT}views/graphics/flag_${repeat/language/key}.png" />
+				<input type="hidden" name="language_selection_language" value="" tal:attributes="value repeat/language/key" />
+		    </a>
+		</tal:block>
+    </div>
+</tal:block>

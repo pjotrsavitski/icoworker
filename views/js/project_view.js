@@ -57,6 +57,41 @@ teke.update_project_participants = function() {
     });
 };
 
+// Add new message
+teke.add_new_diary_message = function() {
+    $('#project-diary-and-messages-add').find('input[name="body"]').removeClass('ui-state-error');
+    if ($('#project-diary-and-messages-add').find('input[name="body"]').val() != "") {
+        $.ajax({
+            cache: false,
+            type: "POST",
+            url: teke.get_site_url()+"actions/add_message.php",
+            data: { project_id: $('#project_id').val(), body: $('#project-diary-and-messages-add').find('input[name="body"]').val() },
+            dataType: "json",
+            success: function(data) {
+                if (data.state == 0) {
+                    $('#project-diary-and-messages-add').children('input[name="body"]').val("");
+					// Check if there is a reason to update the flow
+					if ($('#project-diary-and-messages-filter > select').val() != 'activities') {
+				        // Update message flow
+						teke.project_update_messages_flow();
+					}
+				} else {
+					$('#project-diary-and-messages-add').find('input[name="body"]').addClass('ui-state-error');
+				}
+                if (data.messages != "") {
+					teke.replace_system_messages(data.messages);
+				}
+			},
+            error: function() {
+				// TODO removeme
+				alert("add_message failed");
+			}
+		});
+	} else {
+		$('#project-diary-and-messages-add').find('input[name="body"]').addClass('ui-state-error');
+	}
+};
+
 $(document).ready(function() {
 	// Initialize tooltips
 	teke.project_initialize_tooltips();
@@ -64,45 +99,25 @@ $(document).ready(function() {
 	 * Make aside widgets draggable (use <legend> as handle)
 	 */
     $('article.single-project > aside > ul').sortable({ handle: 'legend' });
+
+    /**
+	 * Messages add (enter key pressed)
+	 *  o Adds a message (if not empty)
+	 *  o In case of success (message flow is reloaded); respects filter being chosen
+	 */
+    $('#project-diary-and-messages-add > input[name="body"]').keypress(function(event) {
+	    if ((event.keyCode ? event.keyCode : event.which) == 13) {
+		    teke.add_new_diary_message();
+		}
+	});
 	
 	/**
-	 * Messages add
+	 * Messages add (button clicked)
 	 *  o Adds a message (if not empty)
 	 *  o In case of success (message flow is reloaded); respects filter being chosen
 	 */
 	$('#project-diary-and-messages-add > span.teke-add-button').click(function() {
-
-		$(this).prevAll('input[name="body"]').removeClass('ui-state-error');
-		if ($(this).prevAll('input[name="body"]').val() != "") {
-		    $.ajax({
-                cache: false,
-				type: "POST",
-				url: teke.get_site_url()+"actions/add_message.php",
-				data: { project_id: $('#project_id').val(), body: $(this).prevAll('input[name="body"]').val() },
-				dataType: "json",
-				success: function(data) {
-				    if (data.state == 0) {
-						$('#project-diary-and-messages-add').children('input[name="body"]').val("");
-						// Check if there is a reason to update the flow
-						if ($('#project-diary-and-messages-filter > select').val() != 'activities') {
-						    // Update message flow
-						    teke.project_update_messages_flow();
-						}
-					} else {
-					    $(this).prevAll('input[name="body"]').addClass('ui-state-error');
-					}
-                    if (data.messages != "") {
-					    teke.replace_system_messages(data.messages);
-					}
-				},
-                error: function() {
-				    // TODO removeme
-				    alert("add_message failed");
-				}
-			});
-		} else {
-			$(this).prevAll('input[name="body"]').addClass('ui-state-error');
-		}
+		teke.add_new_diary_message();
 	});
 
 	/**

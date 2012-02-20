@@ -2,10 +2,12 @@
     <div id="top_bar">
 		<div id="top_bar_left">
 			<a href="#" tal:attributes="href teke/get_site_url; title SITE_NAME" i18n:translate="SITE_NAME"></a>
+
 		</div>
         <div id="top_bar_right">
             <tal:block tal:condition="php: is_logged_in">
                 <tal:block condition="is_logged_in">
+		            <tal:block metal:use-macro="languages.html/language_selection" tal:define="class string:topbar-language-selection" />
                     <tal:block tal:condition="teke/is_admin">
                         <a href="" title="Administration" i18n:translate="" i18n:attributes="title" tal:attributes="href string:${WWW_ROOT}administrate/teke">Administration</a>
                     </tal:block>

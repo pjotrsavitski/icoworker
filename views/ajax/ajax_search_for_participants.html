@@ -6,6 +6,7 @@
 			    <tal:block repeat="participant participants">
 				    <div class="single-participant-result">
 						 <img src="" title="" alt="profile_image" tal:attributes="src participant/getImageURL; title participant/getFullname" />
+						 <tal:block content="participant/getFullname" />
 						 <input type="hidden" name="" value="" tal:attributes="value participant/getId; name string:single_participant_${participant/getId}" />
 					</div>
 				</tal:block>

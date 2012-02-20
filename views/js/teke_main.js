@@ -50,8 +50,9 @@ teke.set_language = function(lang) {
 };
 
 teke.initialize_language_selection = function() {
-    $('#language-selection').find('input:radio[name="language"]').click(function() {
-		teke.set_language($(this).val());
+    $('#language-selection').find('a').click(function(event) {
+	    event.preventDefault();
+		teke.set_language($(this).find('input:hidden[name="language_selection_language"]').val());
     });
 };
 

@@ -1,4 +1,4 @@
-<tal:block metal:use-macro="main.html/main" tal:omit-tag="" tal:define="is_logged_in teke/is_logged_in | nothing; base php:is_logged_in?false:true; language teke/get_language" i18n:domain="teke">
+<tal:block metal:use-macro="main.html/main" tal:omit-tag="" tal:define="is_logged_in teke/is_logged_in | nothing; base php:is_logged_in?false:true" i18n:domain="teke">
 
     <tal:block condition="is_logged_in" metal:fill-slot="header">
 	    <script type="text/javascript" src="" tal:attributes="src string:${WWW_ROOT}views/js/projects_index.js"></script>
@@ -21,14 +21,7 @@
 		</div>
 		<div class="clearfloat"></div>
 
-		<div id="language-selection" class="index-language-selection">
-            <input type="radio" name="language" value="et" tal:attributes="checked php:language=='et'?'checked':''" />
-            IN ESTONIAN
-            <input type="radio" name="language" value="ru" tal:attributes="checked php:language=='ru'?'checked':''" />
-			IN RUSSIAN
-            <input type="radio" name="language" value="en" tal:attributes="checked php:language=='en'?'checked':''"/>
-            IN ENGLISH
-		</div>
+		<tal:block metal:use-macro="languages.html/language_selection" tal:define="class string:index-language-selection" />
 
 		<div id="index-facebook-login" tal:condition="not:is_logged_in">
 			<a href="" title="Login with Facebook" tal:attributes="href php:teke.facebook.getLoginUrl(array('scope' => 'email', 'redirect_uri' => teke.get_site_url() . 'actions/login.php'))" i18n:attributes="title">
