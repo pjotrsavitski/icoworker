@@ -45,7 +45,7 @@ class TeKe {
     
     private function setTranslator() {
         $language = DEFAULT_LANGUAGE;
-        if (isset($_SESSION['language']) && in_array($_SESSION['language'], array("et", "ru", "en"))) {
+        if (isset($_SESSION['language']) && in_array($_SESSION['language'], array_keys($this->getAvailableLanguages()))) {
             $language = $_SESSION['language'];
         } else if ($this->is_logged_in()) {
              $language = $this->user->language;
@@ -289,6 +289,22 @@ class TeKe {
             return $roles[$role];
         }
         return $role;
+    }
+
+    function getAvailableLanguages() {
+        return array(
+            'et' => _("Estonian"),
+            'ru' => _("Russian"),
+            'en' => _("English")
+        );
+    }
+
+    function getLanguageNameFromId($lang) {
+        $languages = $this->getAvailableLanguages();
+        if (array_key_exists($lang, $languages)) {
+            return $languages[$lang];
+        }
+        return $lang;
     }
 
 }

@@ -86,16 +86,3 @@ CREATE TABLE IF NOT EXISTS prefix_images (
     locked BOOLEAN DEFAULT FALSE,
     FOREIGN KEY (creator) REFERENCES prefix_users (id) ON DELETE SET NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=UTF8;
-
--- XXX deleteme --
-CREATE TABLE IF NOT EXISTS prefix_sounds (
-    id bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    creator bigint(20) UNSIGNED default NULL,
-    name char(255) DEFAULT "",
-    type char(255) DEFAULT "",
-    size INT DEFAULT 0,
-    location char(255) DEFAULT "",
-    created TIMESTAMP DEFAULT NOW(),
-    locked BOOLEAN DEFAULT FALSE,
-    FOREIGN KEY (creator) REFERENCES prefix_users (id) ON DELETE SET NULL
-) ENGINE=InnoDB DEFAULT CHARSET=UTF8;

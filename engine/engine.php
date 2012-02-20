@@ -79,7 +79,7 @@ if (FACEBOOK) {
     $TeKe->facebook = $facebook;
 }
 
-if (isset($_REQUEST["set_language"]) && isset($_REQUEST["language"]) && in_array($_REQUEST["language"], array("et", "ru", "en"))) {
+if (isset($_REQUEST["set_language"]) && isset($_REQUEST["language"]) && in_array($_REQUEST["language"], array_keys($TeKe->getAvailableLanguages()))) {
     $_SESSION['language'] = $_REQUEST["language"];
     if (isset($_SERVER['REDIRECT_URL'])) {
         header("location:".$_SERVER['REDIRECT_URL']);
