@@ -8,3 +8,11 @@
 		</tal:block>
     </div>
 </tal:block>
+
+<tal:block metal:define-macro="language_select" i18n:domain="teke" define="languages teke/getAvailableLanguages">
+    <select name="" tal:attributes="name select_name | string:language">
+        <tal:block repeat="language languages">
+		    <option value="" selected=""  tal:attributes="value repeat/language/key; selected php:(repeat.language.key EQ value) ? 'selected' : ''" tal:content="language"></option>
+	    </tal:block>
+	</select>
+</tal:block>

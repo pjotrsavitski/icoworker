@@ -10,7 +10,7 @@
 			    <tal:block condition="user_exists">
                     <div tal:content="user/getFullName | nothing"></div>
                     <div tal:content="user/email | nothing"></div>
-                    <div tal:content="user/language | nothing"></div>
+                    <div tal:content="user/getLanguageName | nothing"></div>
 			    </tal:block>
 
 			    <tal:block condition="not:user_exists">

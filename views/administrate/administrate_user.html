@@ -30,7 +30,7 @@
 							<td>
 								<tal:block define="value user/getEmail" metal:use-macro="outputs.html/email" />
 							</td>
-							<td tal:content="user/getLanguage"></td>
+							<td tal:content="user/getLanguageName"></td>
 							<td>
 								<tal:block define="value php:strtotime(user.registered); format string:d.m.y h:i:s" metal:use-macro="outputs.html/date" />
 							</td>

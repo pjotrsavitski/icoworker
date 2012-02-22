@@ -9,29 +9,25 @@
                            email input_values/email | user/email | nothing;
                            language input_values/language | user/language | nothing;">
         
-            <form id="user_settings_form" name="user_settings_form" class="dataform" method="post" action="index.php" tal:attributes="action php:WWW_ROOT . 'actions/user_settings.php'">
+            <form id="user_settings_form" name="user_settings_form" class="dataform" method="post" action="index.php" tal:attributes="action php:WWW_ROOT . 'actions/update_user_settings.php'">
                 <div class="row">
-                    <label>First name</label>
+                    <label i18n:translate="">First name</label>
                     <input type="text" name="first_name" value="" tal:attributes="value first_name"/>
                 </div>
                 <div class="row">
-                    <label>Last name</label>
+                    <label i18n:translate="">Last name</label>
                     <input type="text" name="last_name" value="" tal:attributes="value last_name" />
                 </div>
                 <div class="row">
-                    <label>Email</label>
+                    <label i18n:translate="">Email</label>
                     <input type="text" name="email" value="" tal:attributes="value email" />
                 </div>
                 <div class="row">
-                    <label>Language</label>
-                    <select name="language">
-                        <option value="et" tal:attributes="selected php: language == 'et' ? 'selected' : '' ">Eesti</option>
-                        <option value="en" tal:attributes="selected php: language == 'en' ? 'selected' : '' ">English</option>
-                        <option value="ru" tal:attributes="selected php: language == 'ru' ? 'selected' : '' ">По-русски</option>
-                    </select>
+                    <label i18n:translate="">Language</label>
+					<tal:block metal:use-macro="languages.html/language_select" tal:define="value language" />
                 </div>
                 <br />
-                <input type="submit" value="Save" />
+                <input type="submit" value="Save" i18n:attributes="value" />
                 <input type="hidden" name="id" value="" tal:attributes="value user/id | NULL" />
                
             </form>

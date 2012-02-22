@@ -102,6 +102,11 @@ class User {
         function getLanguage() {
             return $this->language;
         }
+
+        function getLanguageName() {
+            global $TeKe;
+            return $TeKe->getLanguageNameFromId($this->language);
+        }
         
         // TODO possibly not needed
         function hasAnyRole($required) {
@@ -215,6 +220,7 @@ class User {
         }
         
         function check_email_exists($email) {
+            $email = mysql_real_escape_string($email);
             $res = query("SELECT count(email) FROM " . DB_PREFIX . "users WHERE email='{$email}'");
             $check = mysql_fetch_row($res);
             return $check[0];
@@ -256,6 +262,10 @@ class User {
         }
         
         public function update_settings($user, $first_name, $last_name, $email, $language) {
+            $first_name = mysql_real_escape_string($first_name);
+            $last_name = mysql_real_escape_string($last_name);
+            $email = mysql_real_escape_string($email);
+            $language = mysql_real_escape_string($language);
             $q = "UPDATE " . DB_PREFIX . "users SET first_name='{$first_name}', last_name='{$last_name}', email='{$email}', language='{$language}' WHERE id = '{$user->id}'";
             return query($q);
         }
