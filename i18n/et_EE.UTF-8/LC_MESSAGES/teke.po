@@ -8,34 +8,80 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Early\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-12-15 16:12+0200\n"
+"POT-Creation-Date: 2012-02-22 16:13+0200\n"
 "PO-Revision-Date: 2011-02-25 14:45+0200\n"
 "Last-Translator: Meelis Mets <meelis.mets@tlu.ee>\n"
 "Language-Team: Estonian <et@li.org>\n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: \n"
 
-#: ../views/examinees/examinees_generate.html:31
-msgid "... or create a new one"
-msgstr "... või loo uus"
+# , php-format
+#: ../engine/lib/project/Activity.php:76
+msgid "%1$s joined the project."
+msgstr ""
 
-#: ../engine/lib/handler/handler_administrate.php:15
+# , php-format
+#: ../engine/lib/project/Activity.php:84
+msgid "%2$s added resource %1$s"
+msgstr ""
+
+# , php-format
+#: ../engine/lib/project/Activity.php:80
+msgid "%2$s added task %1$s"
+msgstr ""
+
+# , php-format
+#: ../actions/add_participant.php:35
+msgid "%s added to participants."
+msgstr ""
+
+#: ../views/js/teke_config.php:12
+msgid "Add"
+msgstr ""
+
+#: ../views/templates/forms.html:2
+msgid "Add New Project"
+msgstr ""
+
+#: ../views/templates/forms.html:57
+msgid "Add Participant"
+msgstr ""
+
+#: ../views/pages/index.html:40
+msgid "Add new Project"
+msgstr ""
+
+#: ../views/templates/forms.html:38
+msgid "Add new Resource"
+msgstr ""
+
+#: ../views/templates/forms.html:27
+msgid "Add new Task"
+msgstr ""
+
+#: ../engine/teke.php:282
+msgid "Admin"
+msgstr ""
+
+#: ../engine/lib/handler/handler_administrate.php:17
 msgid "Administrate TeKe"
 msgstr "TeKe Administreerimine"
 
-#: ../engine/lib/handler/handler_administrate.php:16
+#: ../engine/lib/handler/handler_administrate.php:18
 msgid "Administrate users"
 msgstr "Kasutajate administreerimine"
 
-#: ../engine/teke.php:72
+#: ../engine/teke.php:69
 msgid "Administration"
 msgstr "Administreerimine"
 
-#: ../actions/facebook_connect.php:26 ../actions/generate_examinees.php:17
-#: ../actions/login.php:26 ../actions/password_reset.php:18
-#: ../actions/register.php:24 ../actions/user_password_change.php:12
+#: ../actions/add_participant.php:27
+msgid "Already is a participant."
+msgstr ""
+
+#: ../actions/update_user_settings.php:41
 msgid "At least one of the parameters is empty."
 msgstr "Vähemalt üks nõutavatest väljadest on täitmata."
 
@@ -43,98 +89,105 @@ msgstr "Vähemalt üks nõutavatest väljadest on täitmata."
 msgid "Back"
 msgstr "Tagasi"
 
-#: ../views/pages/password_reset.html:30 ../views/user/user_password.html:33
+#: ../actions/change_role.php:21
+msgid "Can not change own role."
+msgstr ""
+
+#: ../views/js/teke_config.php:13
 msgid "Change"
 msgstr "Muuda"
 
-#: ../engine/lib/handler/handler_user.php:19
-msgid "Change password"
-msgstr "Parooli muutmine"
+#: ../views/templates/forms.html:68
+#, fuzzy
+msgid "Change Role"
+msgstr "Muuda"
 
-#: ../views/pages/password_reset.html:22
-msgid "Change your password"
-msgstr "Muuda oma parool"
-
-#: ../views/examinees/examinees_generate.html:26
-msgid "Choose group"
-msgstr "Vali grupp"
-
-#: ../views/templates/system_messages.html:5
+#: ../engine/lib/ajax/AJAXResponse.php:49
 msgid "Close"
 msgstr "Sulge"
 
-#: ../actions/login.php:23
-msgid "Could not log in."
-msgstr "Sisselogimine nurjus."
+#: ../views/pages/index.html:21
+msgid "Collaborate"
+msgstr ""
 
-#: ../actions/password_reset.php:15
-msgid "Could not verify that this user requested a password reset."
-msgstr "Ei ole tõestust, et see kasutaja soovis oma parooli lähtestada."
+#: ../views/templates/forms.html:16
+msgid "Create new Document"
+msgstr ""
 
-#: ../actions/user_password_change.php:15
-msgid "Current password was incorrect."
-msgstr "Käesolev salasõna ei ole õige."
+#: ../engine/lib/project/Resource.php:86
+msgid "Default Document"
+msgstr ""
 
-#: ../views/examinees/examinees_view.html:37
-msgid "Delete"
-msgstr "Kustuta"
+#: ../views/project/project_view.html:67
+msgid "Diary and Messages"
+msgstr ""
 
-#: ../views/js/teke_translator.php:21
-msgid "Deleting! Are you sure?"
-msgstr "Oled kindel, et soovid kustutada?"
+#: ../views/templates/forms.html:20
+msgid "Document URL"
+msgstr ""
 
-#: ../engine/lib/handler/handler_group.php:17
-msgid "Edit"
-msgstr "Toimeta"
+#: ../views/templates/forms.html:18
+msgid "Document title"
+msgstr ""
 
-#: ../engine/lib/handler/handler_user.php:18
+#: ../engine/lib/handler/handler_user.php:20
 msgid "Edit settings"
 msgstr "Toimeta sätteid"
 
-#: ../views/pages/register.html:33
+#: ../views/administrate/administrate_user.html:18
+#: ../views/user/user_settings.html:22
 msgid "Email"
 msgstr "E-post"
 
-#: ../actions/register.php:33 ../actions/user_settings.php:23
+#: ../actions/update_user_settings.php:44
 msgid "Email is not valid."
 msgstr "E-post on vigane."
 
-#: ../actions/password_reset.php:28 ../actions/user_password_change.php:24
-#: ../actions/user_settings.php:32
+#: ../views/pages/index.html:60
+msgid "End date"
+msgstr ""
+
+#: ../engine/teke.php:298
+msgid "English"
+msgstr ""
+
+#: ../views/pages/index.html:15
+msgid "Enter your Goals"
+msgstr ""
+
+#: ../actions/update_user_settings.php:53
 msgid "Error occured."
 msgstr "Tekkis viga."
 
-#: ../views/templates/top_bar.html:13
-msgid "Examinee ID:"
-msgstr "Testitava ID:"
+#: ../engine/teke.php:296
+msgid "Estonian"
+msgstr ""
 
-#: ../engine/teke.php:69
-msgid "Examinees"
-msgstr "Testitavad"
+#: ../actions/login.php:31
+#, fuzzy
+msgid "Facebook login failed."
+msgstr "Ümberpaigutamine nurjus"
 
-#: ../actions/generate_examinees.php:38
-msgid "Failed."
-msgstr "Nurjus."
+#: ../actions/login.php:28
+msgid "Facebook profile could not be loaded."
+msgstr ""
 
-#: ../views/pages/register.html:25
-msgid "First Name"
+#: ../views/user/user_settings.html:14
+#, fuzzy
+msgid "First name"
 msgstr "Eesnimi"
 
-#: ../views/pages/password_recovery.html:7
-msgid "Forgot your password?"
-msgstr "Unustasid oma parooli?"
+#: ../views/administrate/administrate_user.html:17
+msgid "Fullname"
+msgstr ""
 
-#: ../engine/lib/handler/handler_examinees.php:16
-msgid "Generate"
-msgstr "Genereeri"
+#: ../views/templates/forms.html:6
+msgid "Goal"
+msgstr ""
 
-#: ../views/examinees/examinees_generate.html:13
-msgid "Generate examinees"
-msgstr "Genereeri testitavad"
-
-#: ../views/js/teke_translator.php:28
-msgid "Good"
-msgstr "Hea"
+#: ../engine/teke.php:280
+msgid "Guest"
+msgstr ""
 
 msgid ""
 "Hi %s,\n"
@@ -173,212 +226,412 @@ msgstr ""
 "--\n"
 "Palun ära vasta sellele kirjale."
 
-#: ../actions/password_recovery.php:11
-msgid "Insert your username or email address."
-msgstr "Sisesta oma kasutajanimi või e-posti aadress."
-
 #: ../engine/lib/image/Image.php:153
 msgid "Invalid image. Type: "
 msgstr "Vigane pilt. Failitüüp: "
 
-#: ../engine/lib/sound/Sound.php:99
-msgid "Invalid sound. Type: "
-msgstr "Vigane heli. Failitüüp: "
+#: ../views/administrate/administrate_user.html:19
+#: ../views/user/user_settings.html:26
+msgid "Language"
+msgstr ""
 
-#: ../views/pages/register.html:29
-msgid "Last Name"
+#: ../views/administrate/administrate_user.html:21
+#, fuzzy
+msgid "Last login"
+msgstr "Sisene"
+
+#: ../views/user/user_settings.html:18
+#, fuzzy
+msgid "Last name"
 msgstr "Perekonnanimi"
 
-#: ../views/templates/top_bar.html:16
+#: ../views/templates/top_bar.html:17
 msgid "Log out"
 msgstr "Välju"
 
-#: ../views/pages/index.html:29 ../views/pages/login.html:20
-msgid "Login"
-msgstr "Sisene"
+#: ../actions/login.php:25
+#, fuzzy
+msgid "Login failed."
+msgstr "Registreerimine nurjus"
 
-#: ../actions/password_recovery.php:19
-msgid "Mail sent."
-msgstr "Saadeti e-post."
+#: ../views/pages/index.html:29
+msgid "Login with Facebook"
+msgstr ""
 
-#: ../views/pages/password_reset.html:25
-msgid "New Password"
-msgstr "Uus parool"
+#: ../engine/teke.php:281
+msgid "Member"
+msgstr ""
 
-#: ../views/pages/password_reset.html:27
-msgid "New Password Confirm"
-msgstr "Uue parooli kordus"
+#: ../views/pages/index.html:64
+msgid "Members"
+msgstr ""
 
-#: ../views/js/teke_translator.php:23
-msgid "No"
-msgstr "Ei"
+#: ../actions/add_message.php:37
+msgid "Message could not be added."
+msgstr ""
 
-#: ../actions/logout.php:13
+#: ../actions/add_message.php:33
+msgid "New message added."
+msgstr ""
+
+#: ../actions/create_project.php:31
+#, fuzzy
+msgid "New project could not be created."
+msgstr "Kopeerimisel tekkis viga: mõnda kopeeritavat objekti ei saanud luua."
+
+#: ../actions/create_project.php:28
+msgid "New project created."
+msgstr ""
+
+#: ../actions/add_resource.php:39
+msgid "New resource added."
+msgstr ""
+
+#: ../actions/add_resource.php:43
+msgid "New resource could not be added."
+msgstr ""
+
+#: ../actions/add_task.php:33
+msgid "New task added."
+msgstr ""
+
+#: ../actions/add_task.php:37
+msgid "New task could not be added."
+msgstr ""
+
+#: ../actions/logout.php:15
 msgid "No authenticated user found."
 msgstr "Autoriseeritud kasutajat ei leitud."
 
-#: ../views/examinees/examinees_view.html:28 ../views/pages/index.html:24
-#: ../views/pages/login.html:14
-msgid "Password"
-msgstr "Parool"
+#: ../actions/add_message.php:12 ../actions/add_participant.php:12
+#: ../actions/add_resource.php:12 ../actions/add_task.php:12
+msgid "No project or insufficient privileges."
+msgstr ""
 
-#: ../views/pages/register.html:45
-msgid "Password Confirm"
-msgstr "Parooli kordus"
+#: ../views/project/project_view.html:97
+msgid "No rights to see the project."
+msgstr ""
 
-#: ../engine/lib/user/user.php:405
+#: ../views/project/project_view.html:101
+msgid "No such project."
+msgstr ""
+
+#: ../actions/change_role.php:28
+msgid "No such role."
+msgstr ""
+
+#: ../actions/add_participant.php:20 ../actions/change_role.php:14
+#: ../actions/update_user_settings.php:34
+msgid "No such user."
+msgstr ""
+
+#: ../actions/update_user_settings.php:57
+msgid "Not allowed to change settings for that user."
+msgstr ""
+
+#: ../views/ajax/ajax_search_for_participants.html:16
+msgid "Nothing found"
+msgstr ""
+
+#: ../actions/add_participant.php:38
+msgid "Participant could not be added."
+msgstr ""
+
+#: ../views/project/project_view.html:39
+msgid "Participants"
+msgstr ""
+
+#: ../engine/lib/user/user.php:309
 msgid "Password reset"
 msgstr "Parooli lähtestamine"
 
-#: ../actions/password_reset.php:21 ../actions/register.php:39
-#: ../actions/user_password_change.php:18
-msgid "Passwords did not match."
-msgstr "Salasõnad ei kattu."
+#: ../views/pages/index.html:18
+msgid "Plan your Work"
+msgstr ""
 
-#: ../actions/generate_examinees.php:26
-msgid "Please insert group name."
-msgstr "Palun sisesta grupi nimi"
+#: ../engine/lib/project/Resource.php:89
+msgid "Presentation"
+msgstr ""
 
-#: ../views/examinees/examinees_generate.html:21
-msgid "Range end"
-msgstr "Vahemiku lõpp"
-
-#: ../views/examinees/examinees_generate.html:17
-msgid "Range start"
-msgstr "Vahemiku algus"
-
-#: ../actions/generate_examinees.php:20
-msgid "Range start cannot be bigger than range end."
-msgstr "Vahemiku algus ei saa olla suurem kui vahemiku lõpp"
-
-#: ../views/pages/register.html:49
-msgid "Register"
+#: ../views/administrate/administrate_user.html:20
+#, fuzzy
+msgid "Registered"
 msgstr "Registreeru"
-
-#: ../actions/register.php:48
-msgid "Registration failed."
-msgstr "Registreerimine nurjus"
 
 msgid "Remove"
 msgstr "Eemalda"
 
-#: ../views/pages/password_reset.html:36
-msgid "Request a new one."
-msgstr "Küsi uus."
+#: ../views/templates/forms.html:46
+msgid "Resource Type"
+msgstr ""
 
-#: ../views/examinees/examinees_view.html:16
+#: ../views/templates/forms.html:44
+msgid "Resource URL"
+msgstr ""
+
+#: ../views/templates/forms.html:42
+msgid "Resource description"
+msgstr ""
+
+#: ../views/templates/forms.html:40
+msgid "Resource title"
+msgstr ""
+
+#: ../views/project/project_view.html:54
+msgid "Resources"
+msgstr ""
+
+#: ../views/js/teke_config.php:15
+msgid "Return"
+msgstr ""
+
+#: ../views/administrate/administrate_user.html:22
+#: ../views/templates/forms.html:71
+msgid "Role"
+msgstr ""
+
+#: ../actions/change_role.php:35
+msgid "Role changed."
+msgstr ""
+
+#: ../actions/change_role.php:38
+msgid "Role could not be changed."
+msgstr ""
+
+#: ../engine/teke.php:297
+msgid "Russian"
+msgstr ""
+
+#: ../views/user/user_settings.html:30
+msgid "Save"
+msgstr ""
+
+#: ../views/js/teke_config.php:14
 msgid "Search"
 msgstr "Otsi"
 
-#: ../views/pages/password_recovery.html:14
-msgid "Send"
-msgstr "Saada"
+#: ../views/templates/forms.html:59
+msgid "Search Criteria"
+msgstr ""
 
-#: ../actions/password_recovery.php:21
-msgid "Sending mail failed."
-msgstr "E-posti saatmine nurjus."
-
-#: ../actions/user_settings.php:30
+#: ../actions/update_user_settings.php:51
 msgid "Settings saved."
 msgstr "Sätted salvestati."
 
-#: ../views/js/teke_translator.php:29
-msgid "Strong"
-msgstr "Tugev"
+#: ../views/project/project_view.html:80
+msgid "Show:"
+msgstr ""
 
-#: ../actions/register.php:46
-msgid "Success"
-msgstr "Edu"
+#: ../views/pages/page_not_found.html:3
+msgid "Sorry, page not found"
+msgstr ""
 
-#: ../actions/generate_examinees.php:36
-msgid "Success."
-msgstr "Edu."
+#: ../engine/lib/project/Resource.php:88
+msgid "Spreadsheet"
+msgstr ""
 
-#: ../actions/facebook_connect.php:18
-msgid "This account is already connected with different facebook account."
-msgstr "Sellel kontol on juba ühendus teise facebooki kontoga"
+#: ../views/pages/index.html:56
+#, fuzzy
+msgid "Start date"
+msgstr "Start nurjus"
 
-#: ../views/js/teke_translator.php:26
-msgid "Too short"
-msgstr "Liiga lühike"
+#: ../views/templates/forms.html:8
+msgid "Start/end dates"
+msgstr ""
 
-#: ../actions/register.php:36 ../actions/user_settings.php:26
+#: ../views/templates/forms.html:31
+msgid "Task description"
+msgstr ""
+
+#: ../views/templates/forms.html:29
+msgid "Task title"
+msgstr ""
+
+#: ../views/project/project_view.html:25
+msgid "Tasks"
+msgstr ""
+
+#: ../engine/lib/project/Resource.php:87
+msgid "Text"
+msgstr ""
+
+#: ../views/templates/forms.html:4
+msgid "Title"
+msgstr ""
+
+#: ../actions/update_user_settings.php:47
 msgid "User with that email already exists."
 msgstr "Sellise e-posti aadressiga kasutaja on juba olemas."
 
-#: ../actions/register.php:30
-msgid "User with that username already exists."
-msgstr "Sellise kasutajanimega kasutaja on juba olemas."
-
-#: ../actions/password_recovery.php:14
-msgid "User with that username or email address does not exists."
-msgstr "Sellise kasutajanime või e-posti aadressiga kasutajat ei ole olemas."
-
-#: ../views/examinees/examinees_view.html:27 ../views/pages/index.html:20
-#: ../views/pages/login.html:10
+#: ../views/administrate/administrate_user.html:16
 msgid "Username"
 msgstr "Kasutajanimi"
 
-#: ../views/js/teke_translator.php:30
-msgid "Username and password are identical"
-msgstr "Kasutajanimi ja parool on samad"
-
-#: ../actions/register.php:27
-msgid "Username cannot contain special symbols."
-msgstr "Kasutajanimes ei saa kasutada erisümboleid."
-
-#: ../engine/lib/handler/handler_examinees.php:15
-#: ../engine/lib/handler/handler_group.php:16
-#: ../engine/lib/handler/handler_user.php:16
+#: ../engine/lib/handler/handler_project.php:18
+#: ../engine/lib/handler/handler_user.php:18
 msgid "View"
 msgstr "Vaade"
-
-#: ../views/js/teke_translator.php:27
-msgid "Weak"
-msgstr "Nõrk"
-
-#: ../actions/facebook_connect.php:22
-msgid "Wrong username or password"
-msgstr "Vale kasutajanimi või parool"
-
-#: ../views/js/teke_translator.php:22
-msgid "Yes"
-msgstr "Jah"
-
-#: ../actions/password_reset.php:26 ../actions/user_password_change.php:22
-msgid "Your password was changed."
-msgstr "Sinu parool on muudetud."
-
-#: ../views/examinees/examinees_view.html:11
-msgid "select group"
-msgstr "Vali grupp"
 
 #: ../engine/lib/phptal/PHPTAL/GetTextTranslator.php:148
 msgid "string:"
 msgstr ""
 
-#. Default: "To reset your password, enter either your username or email address. We will send you an email to enable you to reset your password."
-#: ../views/pages/password_recovery.html:8
-msgid "string:_password_recovery_helptext"
-msgstr ""
-"Et oma parooli lähtestada, sisesta oma kasutajanimi või e-posti aadress. "
-"Saadame sulle e-posti aadressile kirja võimaldamaks sul sättida omale uus "
-"parool."
+#~ msgid "... or create a new one"
+#~ msgstr "... või loo uus"
 
-#. Default: "This password reset link is no longer valid."
-#: ../views/pages/password_reset.html:35
-msgid "string:_password_reset_link_not_valid"
-msgstr "See paroolilähtestamise link ei ole enam kehtiv."
+#~ msgid "Change password"
+#~ msgstr "Parooli muutmine"
+
+#~ msgid "Change your password"
+#~ msgstr "Muuda oma parool"
+
+#~ msgid "Choose group"
+#~ msgstr "Vali grupp"
+
+#~ msgid "Could not log in."
+#~ msgstr "Sisselogimine nurjus."
+
+#~ msgid "Could not verify that this user requested a password reset."
+#~ msgstr "Ei ole tõestust, et see kasutaja soovis oma parooli lähtestada."
+
+#~ msgid "Current password was incorrect."
+#~ msgstr "Käesolev salasõna ei ole õige."
+
+#~ msgid "Delete"
+#~ msgstr "Kustuta"
+
+#~ msgid "Deleting! Are you sure?"
+#~ msgstr "Oled kindel, et soovid kustutada?"
+
+#~ msgid "Edit"
+#~ msgstr "Toimeta"
+
+#~ msgid "Examinee ID:"
+#~ msgstr "Testitava ID:"
+
+#~ msgid "Examinees"
+#~ msgstr "Testitavad"
+
+#~ msgid "Failed."
+#~ msgstr "Nurjus."
+
+#~ msgid "Forgot your password?"
+#~ msgstr "Unustasid oma parooli?"
+
+#~ msgid "Generate"
+#~ msgstr "Genereeri"
+
+#~ msgid "Generate examinees"
+#~ msgstr "Genereeri testitavad"
+
+#~ msgid "Good"
+#~ msgstr "Hea"
+
+#~ msgid "Insert your username or email address."
+#~ msgstr "Sisesta oma kasutajanimi või e-posti aadress."
+
+#~ msgid "Invalid sound. Type: "
+#~ msgstr "Vigane heli. Failitüüp: "
+
+#~ msgid "Mail sent."
+#~ msgstr "Saadeti e-post."
+
+#~ msgid "New Password"
+#~ msgstr "Uus parool"
+
+#~ msgid "New Password Confirm"
+#~ msgstr "Uue parooli kordus"
+
+#~ msgid "No"
+#~ msgstr "Ei"
+
+#~ msgid "Password"
+#~ msgstr "Parool"
+
+#~ msgid "Password Confirm"
+#~ msgstr "Parooli kordus"
+
+#~ msgid "Passwords did not match."
+#~ msgstr "Salasõnad ei kattu."
+
+#~ msgid "Please insert group name."
+#~ msgstr "Palun sisesta grupi nimi"
+
+#~ msgid "Range end"
+#~ msgstr "Vahemiku lõpp"
+
+#~ msgid "Range start"
+#~ msgstr "Vahemiku algus"
+
+#~ msgid "Range start cannot be bigger than range end."
+#~ msgstr "Vahemiku algus ei saa olla suurem kui vahemiku lõpp"
+
+#~ msgid "Request a new one."
+#~ msgstr "Küsi uus."
+
+#~ msgid "Send"
+#~ msgstr "Saada"
+
+#~ msgid "Sending mail failed."
+#~ msgstr "E-posti saatmine nurjus."
+
+#~ msgid "Strong"
+#~ msgstr "Tugev"
+
+#~ msgid "Success"
+#~ msgstr "Edu"
+
+#~ msgid "Success."
+#~ msgstr "Edu."
+
+#~ msgid "This account is already connected with different facebook account."
+#~ msgstr "Sellel kontol on juba ühendus teise facebooki kontoga"
+
+#~ msgid "Too short"
+#~ msgstr "Liiga lühike"
+
+#~ msgid "User with that username already exists."
+#~ msgstr "Sellise kasutajanimega kasutaja on juba olemas."
+
+#~ msgid "User with that username or email address does not exists."
+#~ msgstr ""
+#~ "Sellise kasutajanime või e-posti aadressiga kasutajat ei ole olemas."
+
+#~ msgid "Username and password are identical"
+#~ msgstr "Kasutajanimi ja parool on samad"
+
+#~ msgid "Username cannot contain special symbols."
+#~ msgstr "Kasutajanimes ei saa kasutada erisümboleid."
+
+#~ msgid "Weak"
+#~ msgstr "Nõrk"
+
+#~ msgid "Wrong username or password"
+#~ msgstr "Vale kasutajanimi või parool"
+
+#~ msgid "Yes"
+#~ msgstr "Jah"
+
+#~ msgid "Your password was changed."
+#~ msgstr "Sinu parool on muudetud."
+
+#~ msgid "select group"
+#~ msgstr "Vali grupp"
+
+#~ msgid "string:_password_recovery_helptext"
+#~ msgstr ""
+#~ "Et oma parooli lähtestada, sisesta oma kasutajanimi või e-posti aadress. "
+#~ "Saadame sulle e-posti aadressile kirja võimaldamaks sul sättida omale uus "
+#~ "parool."
+
+#~ msgid "string:_password_reset_link_not_valid"
+#~ msgstr "See paroolilähtestamise link ei ole enam kehtiv."
 
 #~ msgid "Edit profile"
 #~ msgstr "Toimeta profiili"
 
 #~ msgid "Assigning test failed!"
 #~ msgstr "Testi andmine nurjus"
-
-#~ msgid "At least one of the copied items could not be created."
-#~ msgstr ""
-#~ "Kopeerimisel tekkis viga: mõnda kopeeritavat objekti ei saanud luua."
 
 #~ msgid "At least one of the deletions failed."
 #~ msgstr "Vähemalt ühe objekti kustutamine nurjus"
@@ -434,12 +687,6 @@ msgstr "See paroolilähtestamise link ei ole enam kehtiv."
 
 #~ msgid "Paste failed"
 #~ msgstr "Kleepimine nurjus"
-
-#~ msgid "Repositioning failed."
-#~ msgstr "Ümberpaigutamine nurjus"
-
-#~ msgid "Start failed"
-#~ msgstr "Start nurjus"
 
 #~ msgid "Test assigned"
 #~ msgstr "Test lisatud"

@@ -8,34 +8,80 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Early\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-12-15 16:12+0200\n"
+"POT-Creation-Date: 2012-02-22 16:13+0200\n"
 "PO-Revision-Date: 2011-02-25 14:45+0200\n"
 "Last-Translator: Meelis Mets <meelis.mets@tlu.ee>\n"
 "Language-Team: Russian <ru@li.org>\n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: \n"
 
-#: ../views/examinees/examinees_generate.html:31
-msgid "... or create a new one"
+# , php-format
+#: ../engine/lib/project/Activity.php:76
+msgid "%1$s joined the project."
 msgstr ""
 
-#: ../engine/lib/handler/handler_administrate.php:15
+# , php-format
+#: ../engine/lib/project/Activity.php:84
+msgid "%2$s added resource %1$s"
+msgstr ""
+
+# , php-format
+#: ../engine/lib/project/Activity.php:80
+msgid "%2$s added task %1$s"
+msgstr ""
+
+# , php-format
+#: ../actions/add_participant.php:35
+msgid "%s added to participants."
+msgstr ""
+
+#: ../views/js/teke_config.php:12
+msgid "Add"
+msgstr ""
+
+#: ../views/templates/forms.html:2
+msgid "Add New Project"
+msgstr ""
+
+#: ../views/templates/forms.html:57
+msgid "Add Participant"
+msgstr ""
+
+#: ../views/pages/index.html:40
+msgid "Add new Project"
+msgstr ""
+
+#: ../views/templates/forms.html:38
+msgid "Add new Resource"
+msgstr ""
+
+#: ../views/templates/forms.html:27
+msgid "Add new Task"
+msgstr ""
+
+#: ../engine/teke.php:282
+msgid "Admin"
+msgstr ""
+
+#: ../engine/lib/handler/handler_administrate.php:17
 msgid "Administrate TeKe"
 msgstr ""
 
-#: ../engine/lib/handler/handler_administrate.php:16
+#: ../engine/lib/handler/handler_administrate.php:18
 msgid "Administrate users"
 msgstr ""
 
-#: ../engine/teke.php:72
+#: ../engine/teke.php:69
 msgid "Administration"
 msgstr ""
 
-#: ../actions/facebook_connect.php:26 ../actions/generate_examinees.php:17
-#: ../actions/login.php:26 ../actions/password_reset.php:18
-#: ../actions/register.php:24 ../actions/user_password_change.php:12
+#: ../actions/add_participant.php:27
+msgid "Already is a participant."
+msgstr ""
+
+#: ../actions/update_user_settings.php:41
 msgid "At least one of the parameters is empty."
 msgstr ""
 
@@ -43,97 +89,101 @@ msgstr ""
 msgid "Back"
 msgstr ""
 
-#: ../views/pages/password_reset.html:30 ../views/user/user_password.html:33
+#: ../actions/change_role.php:21
+msgid "Can not change own role."
+msgstr ""
+
+#: ../views/js/teke_config.php:13
 msgid "Change"
 msgstr ""
 
-#: ../engine/lib/handler/handler_user.php:19
-msgid "Change password"
+#: ../views/templates/forms.html:68
+msgid "Change Role"
 msgstr ""
 
-#: ../views/pages/password_reset.html:22
-msgid "Change your password"
-msgstr ""
-
-#: ../views/examinees/examinees_generate.html:26
-msgid "Choose group"
-msgstr ""
-
-#: ../views/templates/system_messages.html:5
+#: ../engine/lib/ajax/AJAXResponse.php:49
 msgid "Close"
 msgstr ""
 
-#: ../actions/login.php:23
-msgid "Could not log in."
+#: ../views/pages/index.html:21
+msgid "Collaborate"
 msgstr ""
 
-#: ../actions/password_reset.php:15
-msgid "Could not verify that this user requested a password reset."
+#: ../views/templates/forms.html:16
+msgid "Create new Document"
 msgstr ""
 
-#: ../actions/user_password_change.php:15
-msgid "Current password was incorrect."
+#: ../engine/lib/project/Resource.php:86
+msgid "Default Document"
 msgstr ""
 
-#: ../views/examinees/examinees_view.html:37
-msgid "Delete"
+#: ../views/project/project_view.html:67
+msgid "Diary and Messages"
 msgstr ""
 
-#: ../views/js/teke_translator.php:21
-msgid "Deleting! Are you sure?"
+#: ../views/templates/forms.html:20
+msgid "Document URL"
 msgstr ""
 
-#: ../engine/lib/handler/handler_group.php:17
-msgid "Edit"
+#: ../views/templates/forms.html:18
+msgid "Document title"
 msgstr ""
 
-#: ../engine/lib/handler/handler_user.php:18
+#: ../engine/lib/handler/handler_user.php:20
 msgid "Edit settings"
 msgstr ""
 
-#: ../views/pages/register.html:33
+#: ../views/administrate/administrate_user.html:18
+#: ../views/user/user_settings.html:22
 msgid "Email"
 msgstr ""
 
-#: ../actions/register.php:33 ../actions/user_settings.php:23
+#: ../actions/update_user_settings.php:44
 msgid "Email is not valid."
 msgstr ""
 
-#: ../actions/password_reset.php:28 ../actions/user_password_change.php:24
-#: ../actions/user_settings.php:32
+#: ../views/pages/index.html:60
+msgid "End date"
+msgstr ""
+
+#: ../engine/teke.php:298
+msgid "English"
+msgstr ""
+
+#: ../views/pages/index.html:15
+msgid "Enter your Goals"
+msgstr ""
+
+#: ../actions/update_user_settings.php:53
 msgid "Error occured."
 msgstr ""
 
-#: ../views/templates/top_bar.html:13
-msgid "Examinee ID:"
+#: ../engine/teke.php:296
+msgid "Estonian"
 msgstr ""
 
-#: ../engine/teke.php:69
-msgid "Examinees"
+#: ../actions/login.php:31
+msgid "Facebook login failed."
 msgstr ""
 
-#: ../actions/generate_examinees.php:38
-msgid "Failed."
+#: ../actions/login.php:28
+msgid "Facebook profile could not be loaded."
 msgstr ""
 
-#: ../views/pages/register.html:25
-msgid "First Name"
+#: ../views/user/user_settings.html:14
+msgid "First name"
 msgstr ""
 
-#: ../views/pages/password_recovery.html:7
-msgid "Forgot your password?"
+#: ../views/administrate/administrate_user.html:17
+msgid "Fullname"
 msgstr ""
 
-#: ../engine/lib/handler/handler_examinees.php:16
-msgid "Generate"
+#: ../views/templates/forms.html:6
+msgid "Goal"
 msgstr ""
 
-#: ../views/examinees/examinees_generate.html:13
-msgid "Generate examinees"
-msgstr ""
-
-#: ../views/js/teke_translator.php:28
-msgid "Good"
+#: ../engine/teke.php:280
+msgid "Guest"
 msgstr ""
 
 msgid ""
@@ -156,196 +206,246 @@ msgid ""
 "Please do not reply to this message."
 msgstr ""
 
-#: ../actions/password_recovery.php:11
-msgid "Insert your username or email address."
-msgstr ""
-
 #: ../engine/lib/image/Image.php:153
 msgid "Invalid image. Type: "
 msgstr ""
 
-#: ../engine/lib/sound/Sound.php:99
-msgid "Invalid sound. Type: "
+#: ../views/administrate/administrate_user.html:19
+#: ../views/user/user_settings.html:26
+msgid "Language"
 msgstr ""
 
-#: ../views/pages/register.html:29
-msgid "Last Name"
+#: ../views/administrate/administrate_user.html:21
+msgid "Last login"
 msgstr ""
 
-#: ../views/templates/top_bar.html:16
+#: ../views/user/user_settings.html:18
+msgid "Last name"
+msgstr ""
+
+#: ../views/templates/top_bar.html:17
 msgid "Log out"
 msgstr ""
 
-#: ../views/pages/index.html:29 ../views/pages/login.html:20
-msgid "Login"
+#: ../actions/login.php:25
+msgid "Login failed."
 msgstr ""
 
-#: ../actions/password_recovery.php:19
-msgid "Mail sent."
+#: ../views/pages/index.html:29
+msgid "Login with Facebook"
 msgstr ""
 
-#: ../views/pages/password_reset.html:25
-msgid "New Password"
+#: ../engine/teke.php:281
+msgid "Member"
 msgstr ""
 
-#: ../views/pages/password_reset.html:27
-msgid "New Password Confirm"
+#: ../views/pages/index.html:64
+msgid "Members"
 msgstr ""
 
-#: ../views/js/teke_translator.php:23
-msgid "No"
+#: ../actions/add_message.php:37
+msgid "Message could not be added."
 msgstr ""
 
-#: ../actions/logout.php:13
+#: ../actions/add_message.php:33
+msgid "New message added."
+msgstr ""
+
+#: ../actions/create_project.php:31
+msgid "New project could not be created."
+msgstr ""
+
+#: ../actions/create_project.php:28
+msgid "New project created."
+msgstr ""
+
+#: ../actions/add_resource.php:39
+msgid "New resource added."
+msgstr ""
+
+#: ../actions/add_resource.php:43
+msgid "New resource could not be added."
+msgstr ""
+
+#: ../actions/add_task.php:33
+msgid "New task added."
+msgstr ""
+
+#: ../actions/add_task.php:37
+msgid "New task could not be added."
+msgstr ""
+
+#: ../actions/logout.php:15
 msgid "No authenticated user found."
 msgstr ""
 
-#: ../views/examinees/examinees_view.html:28 ../views/pages/index.html:24
-#: ../views/pages/login.html:14
-msgid "Password"
+#: ../actions/add_message.php:12 ../actions/add_participant.php:12
+#: ../actions/add_resource.php:12 ../actions/add_task.php:12
+msgid "No project or insufficient privileges."
 msgstr ""
 
-#: ../views/pages/register.html:45
-msgid "Password Confirm"
+#: ../views/project/project_view.html:97
+msgid "No rights to see the project."
 msgstr ""
 
-#: ../engine/lib/user/user.php:405
+#: ../views/project/project_view.html:101
+msgid "No such project."
+msgstr ""
+
+#: ../actions/change_role.php:28
+msgid "No such role."
+msgstr ""
+
+#: ../actions/add_participant.php:20 ../actions/change_role.php:14
+#: ../actions/update_user_settings.php:34
+msgid "No such user."
+msgstr ""
+
+#: ../actions/update_user_settings.php:57
+msgid "Not allowed to change settings for that user."
+msgstr ""
+
+#: ../views/ajax/ajax_search_for_participants.html:16
+msgid "Nothing found"
+msgstr ""
+
+#: ../actions/add_participant.php:38
+msgid "Participant could not be added."
+msgstr ""
+
+#: ../views/project/project_view.html:39
+msgid "Participants"
+msgstr ""
+
+#: ../engine/lib/user/user.php:309
 msgid "Password reset"
 msgstr ""
 
-#: ../actions/password_reset.php:21 ../actions/register.php:39
-#: ../actions/user_password_change.php:18
-msgid "Passwords did not match."
+#: ../views/pages/index.html:18
+msgid "Plan your Work"
 msgstr ""
 
-#: ../actions/generate_examinees.php:26
-msgid "Please insert group name."
+#: ../engine/lib/project/Resource.php:89
+msgid "Presentation"
 msgstr ""
 
-#: ../views/examinees/examinees_generate.html:21
-msgid "Range end"
-msgstr ""
-
-#: ../views/examinees/examinees_generate.html:17
-msgid "Range start"
-msgstr ""
-
-#: ../actions/generate_examinees.php:20
-msgid "Range start cannot be bigger than range end."
-msgstr ""
-
-#: ../views/pages/register.html:49
-msgid "Register"
-msgstr ""
-
-#: ../actions/register.php:48
-msgid "Registration failed."
+#: ../views/administrate/administrate_user.html:20
+msgid "Registered"
 msgstr ""
 
 msgid "Remove"
 msgstr ""
 
-#: ../views/pages/password_reset.html:36
-msgid "Request a new one."
+#: ../views/templates/forms.html:46
+msgid "Resource Type"
 msgstr ""
 
-#: ../views/examinees/examinees_view.html:16
+#: ../views/templates/forms.html:44
+msgid "Resource URL"
+msgstr ""
+
+#: ../views/templates/forms.html:42
+msgid "Resource description"
+msgstr ""
+
+#: ../views/templates/forms.html:40
+msgid "Resource title"
+msgstr ""
+
+#: ../views/project/project_view.html:54
+msgid "Resources"
+msgstr ""
+
+#: ../views/js/teke_config.php:15
+msgid "Return"
+msgstr ""
+
+#: ../views/administrate/administrate_user.html:22
+#: ../views/templates/forms.html:71
+msgid "Role"
+msgstr ""
+
+#: ../actions/change_role.php:35
+msgid "Role changed."
+msgstr ""
+
+#: ../actions/change_role.php:38
+msgid "Role could not be changed."
+msgstr ""
+
+#: ../engine/teke.php:297
+msgid "Russian"
+msgstr ""
+
+#: ../views/user/user_settings.html:30
+msgid "Save"
+msgstr ""
+
+#: ../views/js/teke_config.php:14
 msgid "Search"
 msgstr ""
 
-#: ../views/pages/password_recovery.html:14
-msgid "Send"
+#: ../views/templates/forms.html:59
+msgid "Search Criteria"
 msgstr ""
 
-#: ../actions/password_recovery.php:21
-msgid "Sending mail failed."
-msgstr ""
-
-#: ../actions/user_settings.php:30
+#: ../actions/update_user_settings.php:51
 msgid "Settings saved."
 msgstr ""
 
-#: ../views/js/teke_translator.php:29
-msgid "Strong"
+#: ../views/project/project_view.html:80
+msgid "Show:"
 msgstr ""
 
-#: ../actions/register.php:46
-msgid "Success"
+#: ../views/pages/page_not_found.html:3
+msgid "Sorry, page not found"
 msgstr ""
 
-#: ../actions/generate_examinees.php:36
-msgid "Success."
+#: ../engine/lib/project/Resource.php:88
+msgid "Spreadsheet"
 msgstr ""
 
-#: ../actions/facebook_connect.php:18
-msgid "This account is already connected with different facebook account."
+#: ../views/pages/index.html:56
+msgid "Start date"
 msgstr ""
 
-#: ../views/js/teke_translator.php:26
-msgid "Too short"
+#: ../views/templates/forms.html:8
+msgid "Start/end dates"
 msgstr ""
 
-#: ../actions/register.php:36 ../actions/user_settings.php:26
+#: ../views/templates/forms.html:31
+msgid "Task description"
+msgstr ""
+
+#: ../views/templates/forms.html:29
+msgid "Task title"
+msgstr ""
+
+#: ../views/project/project_view.html:25
+msgid "Tasks"
+msgstr ""
+
+#: ../engine/lib/project/Resource.php:87
+msgid "Text"
+msgstr ""
+
+#: ../views/templates/forms.html:4
+msgid "Title"
+msgstr ""
+
+#: ../actions/update_user_settings.php:47
 msgid "User with that email already exists."
 msgstr ""
 
-#: ../actions/register.php:30
-msgid "User with that username already exists."
-msgstr ""
-
-#: ../actions/password_recovery.php:14
-msgid "User with that username or email address does not exists."
-msgstr ""
-
-#: ../views/examinees/examinees_view.html:27 ../views/pages/index.html:20
-#: ../views/pages/login.html:10
+#: ../views/administrate/administrate_user.html:16
 msgid "Username"
 msgstr ""
 
-#: ../views/js/teke_translator.php:30
-msgid "Username and password are identical"
-msgstr ""
-
-#: ../actions/register.php:27
-msgid "Username cannot contain special symbols."
-msgstr ""
-
-#: ../engine/lib/handler/handler_examinees.php:15
-#: ../engine/lib/handler/handler_group.php:16
-#: ../engine/lib/handler/handler_user.php:16
+#: ../engine/lib/handler/handler_project.php:18
+#: ../engine/lib/handler/handler_user.php:18
 msgid "View"
-msgstr ""
-
-#: ../views/js/teke_translator.php:27
-msgid "Weak"
-msgstr ""
-
-#: ../actions/facebook_connect.php:22
-msgid "Wrong username or password"
-msgstr ""
-
-#: ../views/js/teke_translator.php:22
-msgid "Yes"
-msgstr ""
-
-#: ../actions/password_reset.php:26 ../actions/user_password_change.php:22
-msgid "Your password was changed."
-msgstr ""
-
-#: ../views/examinees/examinees_view.html:11
-msgid "select group"
 msgstr ""
 
 #: ../engine/lib/phptal/PHPTAL/GetTextTranslator.php:148
 msgid "string:"
-msgstr ""
-
-#. Default: "To reset your password, enter either your username or email address. We will send you an email to enable you to reset your password."
-#: ../views/pages/password_recovery.html:8
-msgid "string:_password_recovery_helptext"
-msgstr ""
-
-#. Default: "This password reset link is no longer valid."
-#: ../views/pages/password_reset.html:35
-msgid "string:_password_reset_link_not_valid"
 msgstr ""

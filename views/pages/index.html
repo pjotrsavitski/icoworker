@@ -4,71 +4,77 @@
 	    <script type="text/javascript" src="" tal:attributes="src string:${WWW_ROOT}views/js/projects_index.js"></script>
     </tal:block>
 
-    <tal:block tal:condition="not:is_logged_in" metal:fill-slot="content_body">
+    <tal:block metal:fill-slot="content_body">
 
-	    <h1 id="index-heading" i18n:translate="SITE_NAME"></h1>
+	    <tal:block condition="not:is_logged_in">
 
-		<div id="index-hints">
-			<div class="hint">
-				<div class="hint-text" i18n:translate="">Enter your Goals</div>
-			</div>
-			<div class="hint">
-				<div class="hint-text" i18n:translate="">Plan your Work</div>
-			</div>
-			<div class="hint">
-				<div class="hint-text" i18n:translate="">Collaborate</div>
-			</div>
-		</div>
-		<div class="clearfloat"></div>
+	        <h1 id="index-heading" i18n:translate="SITE_NAME"></h1>
 
-		<tal:block metal:use-macro="languages.html/language_selection" tal:define="class string:index-language-selection" />
+		    <div id="index-hints">
+			    <div class="hint">
+				    <div class="hint-text" i18n:translate="">Enter your Goals</div>
+			    </div>
+			    <div class="hint">
+				    <div class="hint-text" i18n:translate="">Plan your Work</div>
+			    </div>
+			    <div class="hint">
+				    <div class="hint-text" i18n:translate="">Collaborate</div>
+			    </div>
+		    </div>
+		    <div class="clearfloat"></div>
 
-		<div id="index-facebook-login" tal:condition="not:is_logged_in">
-			<a href="" title="Login with Facebook" tal:attributes="href php:teke.facebook.getLoginUrl(array('scope' => 'email', 'redirect_uri' => teke.get_site_url() . 'actions/login.php'))" i18n:attributes="title">
-				<img src="" alt="facebook logo" tal:attributes="src string:${WWW_ROOT}views/graphics/f_logo.png" />
-			</a>
-		</div>
+		    <tal:block metal:use-macro="languages.html/language_selection" tal:define="class string:index-language-selection" />
 
-    </tal:block>
-
-	<tal:block tal:condition="is_logged_in" metal:fill-slot="content_body">
-
-	    <tal:block condition="php:teke.has_access(ACCESS_CAN_EDIT)">
-		    <div id="projects-index-actions">
-		        <a href="" id="add-new-project" title="Add new Project" i18n:attributes="title">
-		            <span class="teke-add-button"></span>
-				    <tal:block i18n:translate="">Add new Project</tal:block>
+		    <div id="index-facebook-login" tal:condition="not:is_logged_in">
+			    <a href="" title="Login with Facebook" tal:attributes="href php:teke.facebook.getLoginUrl(array('scope' => 'email', 'redirect_uri' => teke.get_site_url() . 'actions/login.php'))" i18n:attributes="title">
+				    <img src="" alt="facebook logo" tal:attributes="src string:${WWW_ROOT}views/graphics/f_logo.png" />
 			    </a>
 		    </div>
+
 		</tal:block>
-		<table id="all-projects" tal:define="projects php: ProjectManager::getProjects()">
-			<tbody>
-				<tr tal:repeat="project projects">
-					<td class="project-info">
-						<a href="#" tal:attributes="href project/getURL" tal:content="project/getTitle"></a>
-						<span class="teke-toggler"></span>
-						<div class="teke-togglable project-info-extended">
-							<tal:block metal:use-macro="outputs.html/plaintext" define="value project/getGoal" />
-							<div>
-								<label i18n:translate="">Start date</label>
-								<tal:block metal:use-macro="outputs.html/date" define="value php:strtotime(project.getStartDate())" />
-							</div>
-							<div>
-								<label i18n:translate="">End date</label>
-								<tal:block metal:use-macro="outputs.html/date" define="value php: strtotime(project.getEndDate())" />
-							</div>
-							<div>
-								<label i18n:translate="">Members</label>
-								<tal:block content="project/getmembersCount" />
-							</div>
-						</div>
-					</td>
-					<td class="project-timeline">
-						I AM A TIMELINE, I AM NOT DONE YET
-					</td>
-				</tr>
-			</tbody>
-		</table>
+
+	    <tal:block tal:condition="is_logged_in">
+
+	        <tal:block condition="php:teke.has_access(ACCESS_CAN_EDIT)">
+		        <div id="projects-index-actions">
+		            <a href="" id="add-new-project" title="Add new Project" i18n:attributes="title">
+		                <span class="teke-add-button"></span>
+				        <tal:block i18n:translate="">Add new Project</tal:block>
+			        </a>
+		        </div>
+		    </tal:block>
+			
+			<table id="all-projects" tal:define="projects php: ProjectManager::getProjects()">
+			    <tbody>
+				    <tr tal:repeat="project projects">
+					    <td class="project-info">
+						    <a href="#" tal:attributes="href project/getURL" tal:content="project/getTitle"></a>
+						    <span class="teke-toggler"></span>
+						    <div class="teke-togglable project-info-extended">
+							    <tal:block metal:use-macro="outputs.html/plaintext" define="value project/getGoal" />
+							    <div>
+								    <label i18n:translate="">Start date</label>
+								    <tal:block metal:use-macro="outputs.html/date" define="value php:strtotime(project.getStartDate())" />
+							    </div>
+							    <div>
+								    <label i18n:translate="">End date</label>
+								    <tal:block metal:use-macro="outputs.html/date" define="value php: strtotime(project.getEndDate())" />
+							    </div>
+							    <div>
+								    <label i18n:translate="">Members</label>
+								    <tal:block content="project/getmembersCount" />
+							    </div>
+						    </div>
+					    </td>
+					    <td class="project-timeline">
+						    I AM A TIMELINE, I AM NOT DONE YET
+					    </td>
+				    </tr>
+			    </tbody>
+		    </table>
+	    
+		</tal:block>
+
 	</tal:block>
     
 </tal:block>
