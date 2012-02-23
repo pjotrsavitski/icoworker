@@ -360,16 +360,16 @@ div#projects-index-actions * {
 }
 
 /* PROJECT */
-article.single-project aside {
+div#single-project-content div#aside {
 	width: 200px;
 	float: right;
 }
 
-article.single-project aside ul {
+div#single-project-content div#aside ul {
 	list-style: none;
 }
 
-article.single-project aside li fieldset {
+div#single-project-content div#aside li fieldset {
 	padding: 5px;
 	background-color: white;
 }

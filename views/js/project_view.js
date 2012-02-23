@@ -98,7 +98,7 @@ $(document).ready(function() {
 	/**
 	 * Make aside widgets draggable (use <legend> as handle)
 	 */
-    $('article.single-project > aside > ul').sortable({ handle: 'legend' });
+    $('div#single-project-content > div#aside > ul').sortable({ handle: 'legend' });
 
     /**
 	 * Messages add (enter key pressed)

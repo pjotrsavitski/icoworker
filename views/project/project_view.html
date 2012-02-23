@@ -15,10 +15,10 @@
 			<input type="hidden" id="project_id" value="" tal:attributes="value project/getId" />
 
                 <tal:block condition="php:project_exists AND is_member">
-				    <article class="single-project">
+				    <div id="single-project-content" class="single-project">
                         <h1 tal:content="project/title"></h1>
 
-						<aside>
+						<div id="aside">
 						    <ul>
 								<li tal:define="tasks php:ProjectManager::getProjectTasks(project.getId())">
 								    <fieldset>
@@ -88,9 +88,9 @@
 									</fieldset>
 								</li>
 						    </ul>
-						</aside>
+						</div>
 
-					</article>
+					</div>
                 </tal:block>
 
                 <tal:block condition="php:project_exists AND NOT is_member">
