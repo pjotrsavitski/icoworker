@@ -38,6 +38,8 @@ Timeline.prototype.getPixelValue = function() {
 };
 
 $(document).ready(function() {
+	// TODO Possibly dates should be transcribed into milliseconds (or genearte those from full dates)
+	// Create timeline
 	var timeline = new Timeline();
 	timeline.setStart(parseInt($('#project_start').val()));
 	timeline.setEnd(parseInt($('#project_end').val()));
@@ -58,4 +60,10 @@ $(document).ready(function() {
 			event.stopPropagation();
         });
 	});
+	// Add now line to the project if applicable
+	now_time = new Date().getTime();
+	if ( (now_time > timeline.getStart() * 1000) && (now_time < timeline.getEnd() * 1000)) {
+		now_offset = (now_time - (timeline.getStart() * 1000)) / (timeline.getPixelValue() * 1000);
+	    $('<div class="now" style="left: '+now_offset+'px"></div>').appendTo($('#project-timeline'));
+	}
 });
