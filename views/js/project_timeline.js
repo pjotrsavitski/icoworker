@@ -43,7 +43,7 @@ $(document).ready(function() {
 	timeline.setEnd(parseInt($('#project_end').val()));
 	timeline.setWidth(600);
 	timeline.calculatePixesValue();
-	console.log(timeline.getPixelValue());
+	// XXX Width should not be hard coded
 	$('#project-timeline-project').width(600);
 	$('#project-timeline-project').on('click', function(event) {
 		// TODO see position() method
