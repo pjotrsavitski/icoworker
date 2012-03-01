@@ -342,6 +342,14 @@ table#all-projects td.project-timeline {
 	width: 75%;
 }
 
+table#all-projects td.project-timeline .timeline {
+	height: 10px;
+	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+	border-radius: 10px;
+	background-color: #A4A4A4;
+}
+
 div.project-info-extended {
 	padding-left: 5px;
 }
@@ -440,6 +448,24 @@ div.single-participant-result img {
 	width: 25px;
 	height: 25px;
 	vertical-align: middle;
+	cursor: pointer;
+}
+
+div#project-timeline {
+	border: 1px solid black;
+	width: 604px;
+	height: 500px;
+}
+
+div#project-timeline-project {
+	width: 600px;
+	border: 1px solid black;
+	height: 10px;
+	margin-left: 1px;
+	margin-top: 50px;
+	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+	border-radius: 10px;
 }
 
 /* TOOLTIPS */

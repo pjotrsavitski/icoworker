@@ -13,6 +13,8 @@
 
             <tal:block define="project_exists project/id | false; is_member php:project_exists AND project.isMember(get_logged_in_user_id()) | false">
 			<input type="hidden" id="project_id" value="" tal:attributes="value project/getId" />
+			<input type="hidden" id="project_start" value="" tal:attributes="value php:strtotime(project.getStartDate())" />
+			<input type="hidden" id="project_end" value="" tal:attributes="value php:strtotime(project.getEndDate())" />
 
                 <tal:block condition="php:project_exists AND is_member">
 				    <div id="single-project-content" class="single-project">
@@ -88,6 +90,11 @@
 									</fieldset>
 								</li>
 						    </ul>
+						</div>
+
+                        <div id="project-timeline">
+							<div id="project-timeline-project">
+							</div>
 						</div>
 
 					</div>

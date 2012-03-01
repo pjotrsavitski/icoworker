@@ -67,7 +67,8 @@
 						    </div>
 					    </td>
 					    <td class="project-timeline">
-						    I AM A TIMELINE, I AM NOT DONE YET
+							<input id="" value="" type="hidden" tal:attributes="id string:project-beginning-${project/getId}; value php:strtotime(project.getStartDate())" />
+							<input id="" value="" type="hidden" tal:attributes="id string:project-end-${project/getId}; value php:strtotime(project.getEndDate())" />
 					    </td>
 				    </tr>
 			    </tbody>

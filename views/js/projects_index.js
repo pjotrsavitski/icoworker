@@ -1,4 +1,77 @@
+teke.place_timelines = function() {
+	if ($('#all-projects .project-timeline').length > 0) {
+	    var places_timelines = {
+            beginning: 0,
+		    end: 0,
+			width: 0,
+			pixel_value: 0,
+			projects: {},
+			setBeginning: function(value) {
+				this.beginning = value;
+			},
+            getBeginning: function() {
+			    return this.beginning;
+			},
+			setEnd: function(value) {
+			    this.end = value;
+			},
+			getEnd: function() {
+			    return this.end;
+			},
+			setWith: function(value) {
+			    this.width = value;
+			},
+            getWidth: function() {
+				return this.width;
+			},
+            calculatePixelValue: function() {
+			    this.pixel_value = (this.getEnd() - this.getBeginning()) / this.getWidth();
+			},
+		    getPixelValue: function() {
+				return this.pixel_value;
+			},
+			addProject: function(index, beginning, end) {
+			    this.projects[index] = { beginning: beginning, end: end, duration: (end - beginning) };
+			},
+			getProject: function(index) {
+			    if (index in this.projects) {
+					return this.projects[index];
+				}
+				return false;
+			}
+		};
+
+        $('#all-projects .project-timeline').each(function(index) {
+	        if ($(this).find('[id^="project-beginning-"]').val() < places_timelines.getBeginning()) {
+		        places_timelines.setBeginning($(this).find('[id^="project-beginning-"]').val());
+		    } else if (places_timelines.getBeginning() == 0) {
+			    places_timelines.setBeginning($(this).find('[id^="project-beginning-"]').val());
+		    }
+		    if ($(this).find('[id^="project-end-"]').val() > places_timelines.getEnd()) {
+		        places_timelines.setEnd($(this).find('[id^="project-end-"]').val());
+		    }
+			places_timelines.addProject(index, $(this).find('[id^="project-beginning-"]').val(), $(this).find('[id^="project-end-"]').val());
+	    });
+
+		if (places_timelines.getBeginning() > 0 && places_timelines.getEnd() > 0) {
+			places_timelines.setWith($('.project-timeline').width());
+			places_timelines.calculatePixelValue();
+
+		$('#all-projects .project-timeline').each(function(index) {
+			project = places_timelines.getProject(index);
+			if (project) {
+			    $('<div class="timeline" style="position:relative; left: '+( (project.beginning - places_timelines.getBeginning()) / places_timelines.getPixelValue() )+'px; width: '+( project.duration / places_timelines.getPixelValue() )+'px"></div>').appendTo($(this));
+			}
+		});
+
+		}
+
+	}
+};
+
 $(document).ready(function () {
+    teke.place_timelines();
+
     $('#add-new-project').click(function(e) {
 		e.preventDefault();
 		$.ajax({
