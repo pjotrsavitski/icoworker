@@ -453,15 +453,15 @@ div.single-participant-result img {
 
 div#project-timeline {
 	border: 1px solid black;
-	width: 604px;
+	width: 600px;
 	height: 500px;
+	overflow: auto;
 }
 
 div#project-timeline-project {
 	width: 600px;
-	border: 1px solid black;
 	height: 10px;
-	margin-left: 1px;
+	background-color: #A4A4A4;
 	margin-top: 50px;
 	-webkit-border-radius: 10px;
 	-moz-border-radius: 10px;
