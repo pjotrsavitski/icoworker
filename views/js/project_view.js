@@ -92,6 +92,7 @@ teke.add_new_diary_message = function() {
 	}
 };
 
+// TODO Remove unneeded
 teke.initialize_project_timeline = function() {
 	$('#project-timeline-project').click(function(event) {
 	    // Some of those values should be globally initialized
@@ -108,8 +109,6 @@ teke.initialize_project_timeline = function() {
 $(document).ready(function() {
 	// Initialize tooltips
 	teke.project_initialize_tooltips();
-	// Initialize timeline
-	teke.initialize_project_timeline();
 	/**
 	 * Make aside widgets draggable (use <legend> as handle)
 	 */

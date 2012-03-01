@@ -460,12 +460,21 @@ div#project-timeline {
 
 div#project-timeline-project {
 	width: 600px;
-	height: 10px;
+	height: 5px;
 	background-color: #A4A4A4;
 	margin-top: 50px;
-	-webkit-border-radius: 10px;
-	-moz-border-radius: 10px;
-	border-radius: 10px;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+	position: relative;
+}
+
+div#project-timeline-project .event {
+	width: 16px;
+	height: 16px;
+	background: transparent;
+	display: inline;
+	position: absolute;
 }
 
 /* TOOLTIPS */
