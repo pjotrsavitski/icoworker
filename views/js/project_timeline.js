@@ -3,6 +3,7 @@ function Timeline() {
 	this.end = 0;
 	this.pixel_value = 0;
 	this.width = 0;
+	this.timeline_data = {};
 }
 
 Timeline.prototype.setStart = function(value) {
@@ -37,6 +38,14 @@ Timeline.prototype.getPixelValue = function() {
 	return this.pixel_value;
 };
 
+Timeline.prototype.setTimelineData = function(value) {
+	this.timeline_data = value;
+};
+
+Timeline.prototype.getTimelineData = function() {
+	return this.timeline_data;
+};
+
 // Create global timeline object
 var timeline = new Timeline();
 
@@ -50,17 +59,24 @@ teke.reinitialize_milestone_click = function() {
     });
 };
 
-teke.add_milestone_to_timeline = function(offset) {
-	$('<div class="milestone" style="left: '+offset+'px;"><img src="'+teke.get_site_url()+'views/graphics/timeline_milestone.png" alt="flag" /></div>'). appendTo($('#project-timeline-project'));
+teke.format_date = function(value, format) {	
+	if (format === undefined) {
+	    format = "dd.mm.y";
+	}
+	return $.datepicker.formatDate(format, value);
+};
+
+teke.add_milestone_to_timeline = function(offset, milestone_date) {
+	$('<div class="milestone" style="left: '+offset+'px;"><img src="'+teke.get_site_url()+'views/graphics/timeline_milestone.png" alt="flag" /><div class="timeline-above-date">'+teke.format_date(new Date(milestone_date), "dd.mm")+'</div></div>'). appendTo($('#project-timeline-project'));
 }
 
 teke.add_beginning_end_to_timeline = function() {
-    $('<div class="beginning" style="left:-1px;"><img src="'+teke.get_site_url()+'views/graphics/black_circle.png" alt="circle" /></div>').appendTo($('#project-timeline-project'));
+    $('<div class="beginning" style="left:0px;"><img src="'+teke.get_site_url()+'views/graphics/black_circle.png" alt="circle" /><div class="timeline-above-date">'+teke.format_date(new Date(timeline.getTimelineData().beginning))+'</div></div>').appendTo($('#project-timeline-project'));
     $('#project-timeline-project .beginning').on('click', function(event) {
 	    event.stopPropagation();
 	});
 
-    $('<div class="end" style="right:-1px;"><img src="'+teke.get_site_url()+'views/graphics/black_circle.png" alt="circle" /></div>').appendTo($('#project-timeline-project'));
+    $('<div class="end" style="right:0px;"><img src="'+teke.get_site_url()+'views/graphics/black_circle.png" alt="circle" /><div class="timeline-above-date">'+teke.format_date(new Date(timeline.getTimelineData().end))+'</div></div>').appendTo($('#project-timeline-project'));
 	$('#project-timeline-project .end').on('click', function(event) {
 	    event.stopPropagation();
 	});
@@ -89,12 +105,14 @@ $(document).ready(function() {
 		data: { project_id : $('#project_id').val() },
 		dataType: "json",
 		success: function(data) {
+		    // Add dat to timeline object
+		    timeline.setTimelineData(data);
 		    // Add beginning and end
 			teke.add_beginning_end_to_timeline();
 
 		    // Add milestones
 		    for (var key in data.milestones) {
-				teke.add_milestone_to_timeline((new Date(data.milestones[key].milestone_date) - timeline.getStart()) / timeline.getPixelValue());
+				teke.add_milestone_to_timeline((new Date(data.milestones[key].milestone_date) - timeline.getStart()) / timeline.getPixelValue(), data.milestones[key].milestone_date);
 			}
 			teke.reinitialize_milestone_click();
 		},
@@ -142,7 +160,7 @@ $(document).ready(function() {
 										    // Add milestone to timeline
 											// Recalculate offset, it might have been changed
 											offset = (_this.find('div[name="milestone_date"]').datepicker("getDate").getTime() - timeline.getStart()) / timeline.getPixelValue();
-											teke.add_milestone_to_timeline(offset);
+											teke.add_milestone_to_timeline(offset, _this.find('div[name="milestone_date"]').datepicker("getDate"));
 		                                    teke.reinitialize_milestone_click();
 											// Update activity flow if needed
 											if ($('#project-diary-and-messages-filter > select').val() != 'messages') {

@@ -454,6 +454,8 @@ div.single-participant-result img {
 /* Main timeline holder */
 div#project-timeline {
 	width: 600px;
+	padding-left: 30px;
+	padding-right: 30px;
 	height: 500px;
 	overflow: auto;
 	position: relative;
@@ -483,6 +485,7 @@ div#project-timeline-project .milestone {
 	top: -11px;
 }
 
+/* Project beginning and date on timeline */
 div#project-timeline-project .beginning, div#project-timeline-project .end {
 	width: 16px;
 	height: 15px;
@@ -490,6 +493,20 @@ div#project-timeline-project .beginning, div#project-timeline-project .end {
 	display: inline;
 	position: absolute;
 	top: -6px;
+}
+
+/* Date positioning above elements on timeline */
+div#project-timeline-project .timeline-above-date {
+	position: absolute;
+	display: inline;
+	top: -20px;
+	left: -16px;
+}
+
+/* Change placement for milestone objects */
+div#project-timeline-project .milestone .timeline-above-date {
+	left: -10px;
+	top: -15px;
 }
 
 /* A line that will mark NOW point */
