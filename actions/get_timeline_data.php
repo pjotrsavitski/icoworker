@@ -13,7 +13,7 @@
         }
 
         // TODO Probably some general class could be needed for that
-        $data = array('milestones' => array());
+        $data = array('beginning' => $project->getStartDate(), 'end' => $project->getEndDate(), 'milestones' => array());
 
         $milestones = ProjectManager::getProjectMilestones($project->getId());
         if ($milestones && is_array($milestones) && sizeof($milestones) > 0) {

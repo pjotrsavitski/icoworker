@@ -483,6 +483,16 @@ div#project-timeline-project .milestone {
 	top: -11px;
 }
 
+div#project-timeline-project .beginning, div#project-timeline-project .end {
+	width: 16px;
+	height: 15px;
+	background: transparent;
+	display: inline;
+	position: absolute;
+	top: -6px;
+}
+
+/* A line that will mark NOW point */
 div#project-timeline .now {
 	width: 1px;
 	height: 100%;

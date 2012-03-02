@@ -54,6 +54,18 @@ teke.add_milestone_to_timeline = function(offset) {
 	$('<div class="milestone" style="left: '+offset+'px;"><img src="'+teke.get_site_url()+'views/graphics/timeline_milestone.png" alt="flag" /></div>'). appendTo($('#project-timeline-project'));
 }
 
+teke.add_beginning_end_to_timeline = function() {
+    $('<div class="beginning" style="left:-1px;"><img src="'+teke.get_site_url()+'views/graphics/black_circle.png" alt="circle" /></div>').appendTo($('#project-timeline-project'));
+    $('#project-timeline-project .beginning').on('click', function(event) {
+	    event.stopPropagation();
+	});
+
+    $('<div class="end" style="right:-1px;"><img src="'+teke.get_site_url()+'views/graphics/black_circle.png" alt="circle" /></div>').appendTo($('#project-timeline-project'));
+	$('#project-timeline-project .end').on('click', function(event) {
+	    event.stopPropagation();
+	});
+};
+
 $(document).ready(function() {
 	// Add information to timeline
 	// Seconds are transformed into milliseconds as JS Date uses those
@@ -77,6 +89,10 @@ $(document).ready(function() {
 		data: { project_id : $('#project_id').val() },
 		dataType: "json",
 		success: function(data) {
+		    // Add beginning and end
+			teke.add_beginning_end_to_timeline();
+
+		    // Add milestones
 		    for (var key in data.milestones) {
 				teke.add_milestone_to_timeline((new Date(data.milestones[key].milestone_date) - timeline.getStart()) / timeline.getPixelValue());
 			}
