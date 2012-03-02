@@ -83,9 +83,15 @@ class Activity {
                     $data[] = $this->getCreatorObject()->getFullname();
                     $body = vsprintf(_('%2$s added resource %1$s'), $data);
                     break;
+                case "add_milestone":
+                    $data[] = $this->getCreatorObject()->getFullname();
+                    // XXX Possibly just saving date is fine
+                    $data[1] = date('d.m.Y', $data[1]);
+                    $body = vsprintf(_('%3$s added milestone %1$s at %2$s'), $data);
+                    break; 
                 default:
                     // TODO Check if this stays that way
-                    $data = "NOT IMPLEMENTED";
+                    $body = "NOT IMPLEMENTED";
                     break;
             }
             return $body;

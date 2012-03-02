@@ -91,7 +91,7 @@ $(document).ready(function () {
 							click: function() {
                                 $(this).find('input:text').removeClass('ui-state-error');
                                 $(this).find('textarea').removeClass('ui-state-error');
-						        $(this).find('.input_datepicker').removeClass('ui-state-error');
+						        $(this).find('.input-datepicker').removeClass('ui-state-error');
 						        var current_form = $(this);
 						        $.ajax({
                                     cache: false,

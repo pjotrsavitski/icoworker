@@ -452,7 +452,7 @@ div.single-participant-result img {
 }
 
 div#project-timeline {
-	border: 1px solid black;
+	/*border: 1px solid black;*/
 	width: 600px;
 	height: 500px;
 	overflow: auto;
@@ -471,7 +471,7 @@ div#project-timeline-project {
 	z-index: 2;
 }
 
-div#project-timeline-project .event {
+div#project-timeline-project .milestone {
 	width: 16px;
 	height: 16px;
 	background: transparent;

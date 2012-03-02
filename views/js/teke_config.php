@@ -10,6 +10,7 @@ jQuery(document).ready(function() {
 
     /* FORMS */
     teke.add_translation('button_add', '<?php echo _('Add'); ?>');
+    teke.add_translation('button_create', '<?php echo _('Create'); ?>');
     teke.add_translation('button_change', '<?php echo _('Change'); ?>');
     teke.add_translation('button_search', '<?php echo _('Search'); ?>');
     teke.add_translation('button_return', '<?php echo _('Return'); ?>');
