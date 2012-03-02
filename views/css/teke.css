@@ -451,14 +451,15 @@ div.single-participant-result img {
 	cursor: pointer;
 }
 
+/* Main timeline holder */
 div#project-timeline {
-	/*border: 1px solid black;*/
 	width: 600px;
 	height: 500px;
 	overflow: auto;
 	position: relative;
 }
 
+/* Project timeline representation */
 div#project-timeline-project {
 	width: 600px;
 	height: 5px;
@@ -469,14 +470,17 @@ div#project-timeline-project {
 	border-radius: 5px;
 	position: relative;
 	z-index: 2;
+	cursor: pointer;
 }
 
+/* Milestone flag on project timeline */
 div#project-timeline-project .milestone {
 	width: 16px;
 	height: 16px;
 	background: transparent;
 	display: inline;
 	position: absolute;
+	top: -11px;
 }
 
 div#project-timeline .now {

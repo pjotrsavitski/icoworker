@@ -51,7 +51,7 @@ teke.reinitialize_milestone_click = function() {
 };
 
 teke.add_milestone_to_timeline = function(offset) {
-	$('<div class="milestone" style="left: '+offset+'px;top:-11px;"><img src="'+teke.get_site_url()+'views/graphics/timeline_milestone.png" alt="flag" /></div>'). appendTo($('#project-timeline-project'));
+	$('<div class="milestone" style="left: '+offset+'px;"><img src="'+teke.get_site_url()+'views/graphics/timeline_milestone.png" alt="flag" /></div>'). appendTo($('#project-timeline-project'));
 }
 
 $(document).ready(function() {
