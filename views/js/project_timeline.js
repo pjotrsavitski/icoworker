@@ -47,6 +47,11 @@ Timeline.prototype.getTimelineData = function() {
 	return this.timeline_data;
 };
 
+Timeline.prototype.initializeTimeline = function() {
+	// TODO Consider creating the whole timeline block on JS side
+	$('<div id="project-timeline-project"></div>').appendTo($('#project-timeline'));
+};
+
 // Create global timeline object
 var timeline = new Timeline();
 
@@ -97,6 +102,7 @@ $(document).ready(function() {
 	timeline.setEnd(parseInt($('#project_end').val()) * 1000);
 	timeline.setWidth(600);
 	timeline.calculatePixesValue();
+	timeline.initializeTimeline();
 	// XXX Width should not be hard coded
 	$('#project-timeline-project').width(600);
     // Add now line to the project if applicable
