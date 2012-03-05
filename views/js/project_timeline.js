@@ -56,6 +56,7 @@ Timeline.prototype.initializeTimeline = function() {
 var timeline = new Timeline();
 
 /* Initialize or reinitialize milestone click event */
+// XXX This might not be needed if everything is initializes by the milestone add method
 teke.reinitialize_milestone_click = function() {
     $('#project-timeline-project .milestone').each(function() {
 		$(this).off('click');
@@ -77,6 +78,7 @@ teke.format_date = function(value, format) {
 /* Add milestone to timeline */
 teke.add_milestone_to_timeline = function(offset, id, milestone_date, title) {
 	$('<div id="project-timeline-milestone-'+id+'" class="milestone" title="'+title+'" style="left: '+offset+'px;"><img src="'+teke.get_site_url()+'views/graphics/timeline_milestone.png" alt="flag" /><div class="timeline-above-date">'+teke.format_date(new Date(milestone_date), "dd.mm")+'</div></div>'). appendTo($('#project-timeline-project'));
+	// XXX Need to initialize click event here
 }
 
 /* Add beginning and end pointo to timeline */
