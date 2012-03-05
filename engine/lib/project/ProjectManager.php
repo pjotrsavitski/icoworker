@@ -5,6 +5,7 @@ require_once(dirname(__FILE__).'/Task.php');
 require_once(dirname(__FILE__).'/Resource.php');
 require_once(dirname(__FILE__).'/Activity.php');
 require_once(dirname(__FILE__).'/Milestone.php');
+require_once(dirname(__FILE__).'/Document.php');
 
 class ProjectManager {
 
@@ -63,6 +64,12 @@ class ProjectManager {
         $id = (int)$id;
         $q = "SELECT * FROM " . DB_PREFIX . "milestones WHERE project_id = $id";
         return query_rows($q, 'Milestone');
+    }
+
+    public function getProjectDocuments($id) {
+        $id = (int)$id;
+        $q = "SELECT * FROM " . DB_PREFIX . "documents WHERE project_id = $id";
+        return query_rows($q, 'Document');
     }
 
     public function getProjectMessages($id) {

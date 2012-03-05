@@ -49,7 +49,8 @@ Timeline.prototype.getTimelineData = function() {
 
 Timeline.prototype.initializeTimeline = function() {
 	// TODO Consider creating the whole timeline block on JS side
-	$('<div id="project-timeline-project"></div>').appendTo($('#project-timeline'));
+    $('<div id="project-timeline-documents"></div>').width(this.getWidth()).appendTo($('#project-timeline'));
+	$('<div id="project-timeline-project"></div>').width(this.getWidth()).appendTo($('#project-timeline'));
 };
 
 // Create global timeline object
@@ -79,7 +80,20 @@ teke.format_date = function(value, format) {
 teke.add_milestone_to_timeline = function(offset, id, milestone_date, title) {
 	$('<div id="project-timeline-milestone-'+id+'" class="milestone" title="'+title+'" style="left: '+offset+'px;"><img src="'+teke.get_site_url()+'views/graphics/timeline_milestone.png" alt="flag" /><div class="timeline-above-date">'+teke.format_date(new Date(milestone_date), "dd.mm")+'</div></div>'). appendTo($('#project-timeline-project'));
 	// XXX Need to initialize click event here
-}
+};
+
+/* Add document to timeline */
+teke.add_document_to_timeline = function(id, created, title, url) {
+    offset = (created.getTime() - timeline.getStart()) / timeline.getPixelValue();
+    now_time = new Date().getTime();
+    if ( (now_time > timeline.getStart()) && (now_time < timeline.getEnd())) {
+        width = (now_time - created.getTime()) / timeline.getPixelValue();
+    } else {
+        width = (timeline.getEnd() - created.getTime()) / timeline.getPixelValue();
+    }
+    $('<div id="project-timeline-document-'+id+'" class="timeline-document" title="'+title+'" style="left:'+offset+'px;"><img src="'+teke.get_site_url()+'views/graphics/timeline_document.png" alt="document" /></div>').width(width).appendTo('#project-timeline-documents');
+    // XXX Need to initialize tooltip here
+};
 
 /* Add beginning and end pointo to timeline */
 teke.add_beginning_end_to_timeline = function() {
@@ -105,12 +119,12 @@ $(document).ready(function() {
 	timeline.setWidth(600);
 	timeline.calculatePixesValue();
 	timeline.initializeTimeline();
-	// XXX Width should not be hard coded
-	$('#project-timeline-project').width(600);
     // Add now line to the project if applicable
 	now_time = new Date().getTime();
 	if ( (now_time > timeline.getStart()) && (now_time < timeline.getEnd())) {
 		now_offset = (now_time - timeline.getStart()) / timeline.getPixelValue();
+        // XXX Compensate for padding, a better solution is needed
+        now_offset = now_offset + parseInt($('#project-timeline').css('padding-left'), 10);
 	    $('<div class="now" style="left: '+now_offset+'px"></div>').appendTo($('#project-timeline'));
 	}
 	// Fill timeline with data (XXX THIS SHOULD USE A STANDALONE METHOD)
@@ -131,6 +145,10 @@ $(document).ready(function() {
 				teke.add_milestone_to_timeline((new Date(data.milestones[key].milestone_date) - timeline.getStart()) / timeline.getPixelValue(), data.milestones[key].id, data.milestones[key].milestone_date, data.milestones[key].title);
 			}
 			teke.reinitialize_milestone_click();
+            // Add documents
+            for (var key in data.documents) {
+                teke.add_document_to_timeline(data.documents[key].id, new Date(data.documents[key].created), data.documents[key].title, data.documents[key].url);
+            }
 		},
         error: function() {
 		    // TODO removeme
@@ -223,4 +241,79 @@ $(document).ready(function() {
 			}
 		});
 	});
+
+	// Add document
+	$('#add-document-button').on('click', function(event) {
+        $.ajax({
+            cache: false,
+            dataType: "html",
+            type: "GET",
+            url: teke.get_site_url()+"ajax/add_document_form",
+            success: function(data) {
+                $(data).dialog({
+                    autoOpen: true,
+                    height: 'auto',
+                    width: 'auto',
+                    modal: true,
+                    buttons: [
+                        {
+                            text: teke.translate('button_create'),
+                            click: function() {
+                                var _this = $(this);
+                                _this.find('input:text').removeClass('ui-state-error');
+                                $.ajax({
+                                    cache: false,
+                                    type: "POST",
+                                    url: teke.get_site_url()+"actions/add_document.php",
+                                    data: { project_id: $('#project_id').val(), title: _this.find('input[name="title"]').val(), url: _this.find('input[name="url"]').val() },
+                                    dataType: "json",
+                                    success: function(data) {
+                                        if (data.state == 0) {
+                                            // Add document to timeline
+                                            teke.add_document_to_timeline(data.data.id, new Date(data.data.created), data.data.title, data.data.url);
+                                            // Update activity flow if needed
+                                             if ($('#project-diary-and-messages-filter > select').val() != 'messages') {
+                                                 teke.project_update_messages_flow();
+                                                 // Close the dialog
+                                                 _this.dialog('close');
+                                             }
+                                        } else {
+                                            for (var key in data.errors) {
+                                                _this.find('[name="'+data.errors[key]+'"]').addClass('ui-state-error');
+                                            }
+                                        }
+                                        // Add messages if any provided
+                                        if (data.messages != "") {
+                                            teke.replace_system_messages(data.messages);
+                                        }
+                                    },
+                                    error: function() {
+                                        // TODO removeme
+                                        alert('error occured');
+                                    }
+                                });
+                            }
+                        },
+                        {
+                            text: teke.translate('button_return'),
+                            click: function() {
+                                $(this).dialog('close');
+                            }
+                        }
+                    ],
+                    open: function() {
+                        // TODO Remove me if I am not needed
+                    },
+                    close: function() {
+                        $(this).dialog("destroy");
+                        $(this).remove();
+                    }
+                });
+            },
+            error: function() {
+                // TODO removeme
+                alert('error occured');
+            }
+        });
+    });
 });

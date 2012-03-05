@@ -77,6 +77,14 @@ class Project {
         return $this->updated;
     }
 
+    public function isActiveProject() {
+        $now = time();
+        if ( (strtotime($this->getStartDate()) < $now) && (strtotime($this->getEndDate()) > $now) ) {
+            return true;
+        }
+        return false;
+    }
+
     public function getURL() {
         return WWW_ROOT . "project/view/{$this->id}";
     }
