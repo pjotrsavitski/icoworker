@@ -36,6 +36,9 @@
         if (sizeof($response->getErrors()) == 0) {
             $creator = $TeKe->user->getId();
             if ($created_id = Milestone::create($creator, $project->getId(), $inputs['title'], $inputs['milestone_date'])) {
+                $milestone = new Milestone($created_id);
+                $response->addData('id', $milestone->getId());
+                $response->addData('title', $milestone->getTitle());
                 $response->setStateSuccess();
                 $TeKe->add_system_message(_("New milestone added."));
                 $response->setMessages();

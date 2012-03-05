@@ -1,3 +1,4 @@
+/* Project timeline class */
 function Timeline() {
 	this.start = 0;
 	this.end = 0;
@@ -49,16 +50,18 @@ Timeline.prototype.getTimelineData = function() {
 // Create global timeline object
 var timeline = new Timeline();
 
-// Event click initialization
+/* Initialize or reinitialize milestone click event */
 teke.reinitialize_milestone_click = function() {
     $('#project-timeline-project .milestone').each(function() {
 		$(this).off('click');
 		$(this).on('click', function(event) {
+			// Prevent parent click from happening
 		    event.stopPropagation();
 		});
     });
 };
 
+/* Format date (XXX Probably need to get that working without a datepicker; Move to main file in that case) */
 teke.format_date = function(value, format) {	
 	if (format === undefined) {
 	    format = "dd.mm.y";
@@ -66,22 +69,27 @@ teke.format_date = function(value, format) {
 	return $.datepicker.formatDate(format, value);
 };
 
-teke.add_milestone_to_timeline = function(offset, milestone_date) {
-	$('<div class="milestone" style="left: '+offset+'px;"><img src="'+teke.get_site_url()+'views/graphics/timeline_milestone.png" alt="flag" /><div class="timeline-above-date">'+teke.format_date(new Date(milestone_date), "dd.mm")+'</div></div>'). appendTo($('#project-timeline-project'));
+/* Add milestone to timeline */
+teke.add_milestone_to_timeline = function(offset, id, milestone_date, title) {
+	$('<div id="project-timeline-milestone-'+id+'" class="milestone" title="'+title+'" style="left: '+offset+'px;"><img src="'+teke.get_site_url()+'views/graphics/timeline_milestone.png" alt="flag" /><div class="timeline-above-date">'+teke.format_date(new Date(milestone_date), "dd.mm")+'</div></div>'). appendTo($('#project-timeline-project'));
 }
 
+/* Add beginning and end pointo to timeline */
 teke.add_beginning_end_to_timeline = function() {
     $('<div class="beginning" style="left:0px;"><img src="'+teke.get_site_url()+'views/graphics/black_circle.png" alt="circle" /><div class="timeline-above-date">'+teke.format_date(new Date(timeline.getTimelineData().beginning))+'</div></div>').appendTo($('#project-timeline-project'));
     $('#project-timeline-project .beginning').on('click', function(event) {
+		// Prevent parent click from happening
 	    event.stopPropagation();
 	});
 
     $('<div class="end" style="right:0px;"><img src="'+teke.get_site_url()+'views/graphics/black_circle.png" alt="circle" /><div class="timeline-above-date">'+teke.format_date(new Date(timeline.getTimelineData().end))+'</div></div>').appendTo($('#project-timeline-project'));
 	$('#project-timeline-project .end').on('click', function(event) {
+		// Prevent parent click from happening
 	    event.stopPropagation();
 	});
 };
 
+/* Initialize timeline related stuff (XXX Some portion should probably be moved to standalone methods onto Timeline class) */
 $(document).ready(function() {
 	// Add information to timeline
 	// Seconds are transformed into milliseconds as JS Date uses those
@@ -112,7 +120,7 @@ $(document).ready(function() {
 
 		    // Add milestones
 		    for (var key in data.milestones) {
-				teke.add_milestone_to_timeline((new Date(data.milestones[key].milestone_date) - timeline.getStart()) / timeline.getPixelValue(), data.milestones[key].milestone_date);
+				teke.add_milestone_to_timeline((new Date(data.milestones[key].milestone_date) - timeline.getStart()) / timeline.getPixelValue(), data.milestones[key].id, data.milestones[key].milestone_date, data.milestones[key].title);
 			}
 			teke.reinitialize_milestone_click();
 		},
@@ -160,7 +168,7 @@ $(document).ready(function() {
 										    // Add milestone to timeline
 											// Recalculate offset, it might have been changed
 											offset = (_this.find('div[name="milestone_date"]').datepicker("getDate").getTime() - timeline.getStart()) / timeline.getPixelValue();
-											teke.add_milestone_to_timeline(offset, _this.find('div[name="milestone_date"]').datepicker("getDate"));
+											teke.add_milestone_to_timeline(offset, data.data.id, _this.find('div[name="milestone_date"]').datepicker("getDate"), data.data.title);
 		                                    teke.reinitialize_milestone_click();
 											// Update activity flow if needed
 											if ($('#project-diary-and-messages-filter > select').val() != 'messages') {

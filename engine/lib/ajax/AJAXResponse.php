@@ -5,6 +5,7 @@ class AJAXResponse {
     public $errors = array();
     public $messages = "";
     public $forward = "";
+    public $data = array();
 
     public function getState() {
         return $this->state;
@@ -58,6 +59,10 @@ class AJAXResponse {
 
     public function setForward($forward) {
         $this->forward = $forward;
+    }
+
+    public function addData($key, $value) {
+        $this->data[$key] = $value;
     }
 
     public function getJSON() {

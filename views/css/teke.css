@@ -422,6 +422,10 @@ div.single-message .single-message-content, div.single-activity .single-activity
 	width: 138px;
 }
 
+#project-diary-and-messages-flow .activity-item-title {
+	font-weight: bold;
+}
+
 .project-side-widget-control {
 	float: right;
 }

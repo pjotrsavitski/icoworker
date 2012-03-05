@@ -22,7 +22,7 @@
 			</div>
 			<div class="single-activity-content">
                 <tal:block metal:use-macro="outputs.html/date" tal:define="value php:strtotime(activity.getCreated())" />
-				<tal:block content="activity/getBody" />
+				<tal:block content="structure activity/getBody" />
 			</div>
 		</div>
 	</tal:block>

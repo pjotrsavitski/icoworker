@@ -77,17 +77,17 @@ class Activity {
                     break;
                 case "add_task":
                     $data[] = $this->getCreatorObject()->getFullname();
-                    $body = vsprintf(_('%2$s added task %1$s'), $data);
+                    $body = vsprintf(_('%2$s added task <span class="activity-item-title">%1$s</span>'), $data);
                     break;
                 case "add_resource":
                     $data[] = $this->getCreatorObject()->getFullname();
-                    $body = vsprintf(_('%2$s added resource %1$s'), $data);
+                    $body = vsprintf(_('%2$s added resource <span class="activity-item-title">%1$s</span>'), $data);
                     break;
                 case "add_milestone":
                     $data[] = $this->getCreatorObject()->getFullname();
                     // XXX Possibly just saving date is fine
                     $data[1] = date('d.m.Y', $data[1]);
-                    $body = vsprintf(_('%3$s added milestone %1$s at %2$s'), $data);
+                    $body = vsprintf(_('%3$s added milestone <span class="activity-item-title">%1$s</span> at %2$s'), $data);
                     break; 
                 default:
                     // TODO Check if this stays that way
