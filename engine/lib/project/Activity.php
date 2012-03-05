@@ -89,6 +89,10 @@ class Activity {
                     $data[1] = date('d.m.Y', $data[1]);
                     $body = vsprintf(_('%3$s added milestone <span class="activity-item-title">%1$s</span> at %2$s'), $data);
                     break; 
+                case "add_document":
+                    $data[] = $this->getCreatorObject()->getFullname();
+                    $body = vsprintf(_('%2$s added document <span class="activity-item-title">%1$s</span>'), $data);
+                    break;
                 default:
                     // TODO Check if this stays that way
                     $body = "NOT IMPLEMENTED";
