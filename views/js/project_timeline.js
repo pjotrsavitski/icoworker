@@ -91,8 +91,30 @@ teke.add_document_to_timeline = function(id, created, title, url) {
     } else {
         width = (timeline.getEnd() - created.getTime()) / timeline.getPixelValue();
     }
-    $('<div id="project-timeline-document-'+id+'" class="timeline-document" title="'+title+'" style="left:'+offset+'px;"><img src="'+teke.get_site_url()+'views/graphics/timeline_document.png" alt="document" /></div>').width(width).appendTo('#project-timeline-documents');
-    // XXX Need to initialize tooltip here
+    $('<div id="project-timeline-document-'+id+'" class="timeline-document" style="left:'+offset+'px;"><img src="'+teke.get_site_url()+'views/graphics/timeline_document.png" alt="document" /><div class="teke-tooltip-content"><label>'+( (url == '') ? title : '<a href="'+url+'" target="_blank">'+title+'</a>' )+'</label><br />'+teke.format_date(created)+'</div></div>').width(width).appendTo('#project-timeline-documents');
+    // Initialize the tooltip
+    // TODO Some general approach is needed (create a standalone method for that)
+    $('#project-timeline-document-'+id+' img').qtip({
+        content: {
+            text: function(api) {
+                return $(this).parent().find('.teke-tooltip-content').html();
+            }
+        },
+        position: {
+            my: "bottom center",
+            at: "top center"
+        },
+        show: {
+            event: 'mouseenter'
+        },
+        hide: {
+            delay: 500,
+            fixed: true
+        },
+        style: {
+            classes: 'ui-tooltip-light ui-tooltip-shadow ui-tooltip-rounded'
+        }
+    });
 };
 
 /* Add beginning and end pointo to timeline */
