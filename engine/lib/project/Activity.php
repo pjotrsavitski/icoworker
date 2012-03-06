@@ -93,6 +93,10 @@ class Activity {
                     $data[] = $this->getCreatorObject()->getFullname();
                     $body = vsprintf(_('%2$s added document <span class="activity-item-title">%1$s</span>'), $data);
                     break;
+                case "add_document_version":
+                    $data[] = $this->getCreatorObject()->getFullname();
+                    $body = vsprintf(_('%2$s added document version  <span class="activity-item-title">%1$s</span>'), $data);
+                    break;
                 default:
                     // TODO Check if this stays that way
                     $body = "NOT IMPLEMENTED";
