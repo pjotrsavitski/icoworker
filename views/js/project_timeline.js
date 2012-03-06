@@ -96,18 +96,14 @@ teke.add_milestone_to_timeline = function(offset, id, milestone_date, title) {
     });
 };
 
-/* Add document to timeline */
-teke.add_document_to_timeline = function(id, created, title, url) {
-    offset = (created.getTime() - timeline.getStart()) / timeline.getPixelValue();
-    now_time = new Date().getTime();
-    if ( (now_time > timeline.getStart()) && (now_time < timeline.getEnd())) {
-        width = (now_time - created.getTime()) / timeline.getPixelValue();
-    } else {
-        width = (timeline.getEnd() - created.getTime()) / timeline.getPixelValue();
-    }
-    $('<div id="project-timeline-document-'+id+'" class="timeline-document" style="left:'+offset+'px;"><img src="'+teke.get_site_url()+'views/graphics/timeline_document.png" alt="document" /><div class="teke-tooltip-content"><label>'+( (url == '') ? title : '<a href="'+url+'" target="_blank">'+title+'</a>' )+'</label><br />'+teke.format_date(created)+'</div></div>').width(width).appendTo('#project-timeline-documents');
+teke.remove_document_versions = function(id) {
+    $('#project-timeline-document-'+id).find('[id^="project-timeline-document-version-"]').remove();
+};
+
+teke.add_document_version_to_document = function(document_id, document_created, version) {
+    $('<div id="project-timeline-document-version-'+version.id+'" class="timeline-document-version" style="left:'+( ( (new Date(version.created).getTime() - document_created.getTime()) / timeline.getPixelValue() - 2 ) )+'px;"><img src="'+teke.get_site_url()+'views/graphics/timeline_document.png" alt="document" /><div class="teke-tooltip-content"><label>'+( (version.url == '') ? version.title : '<a href="'+version.url+'" target="_blank">'+version.title+'</a>' )+'</label><br />'+teke.format_date(new Date(version.created))+'</div></div>').appendTo('#project-timeline-document-'+document_id);
     // Add tooltip
-    $('#project-timeline-document-'+id+' img').qtip({
+    $('#project-timeline-document-version-'+version.id+' img').qtip({
         content: {
             text: function(api) {
                 return $(this).parent().find('.teke-tooltip-content').html();
@@ -128,6 +124,27 @@ teke.add_document_to_timeline = function(id, created, title, url) {
             classes: 'ui-tooltip-light ui-tooltip-shadow ui-tooltip-rounded'
         }
     });
+
+};
+
+/* Add document to timeline */
+teke.add_document_to_timeline = function(id, created, title, url, versions) {
+    offset = (created.getTime() - timeline.getStart()) / timeline.getPixelValue();
+    now_time = new Date().getTime();
+    if ( (now_time > timeline.getStart()) && (now_time < timeline.getEnd())) {
+        width = (now_time - created.getTime()) / timeline.getPixelValue();
+    } else {
+        width = (timeline.getEnd() - created.getTime()) / timeline.getPixelValue();
+    }
+    $('<div id="project-timeline-document-'+id+'" class="timeline-document" style="left:'+offset+'px;"></div>').width(width).appendTo('#project-timeline-documents');
+    // Add click event
+    $('#project-timeline-document-'+id).on('click', function() {
+        teke.add_new_document_version(id);
+    });
+    // Add versions
+    for (var key in versions) {
+        teke.add_document_version_to_document(id, created, versions[key]);
+    }
 };
 
 /* Add beginning and end pointo to timeline */
@@ -143,6 +160,81 @@ teke.add_beginning_end_to_timeline = function() {
 		// Prevent parent click from happening
 	    event.stopPropagation();
 	});
+};
+
+teke.add_new_document_version = function(id) {
+    $.ajax({
+        cache: false,
+        dataType: "html",
+        type: "GET",
+        url: teke.get_site_url()+"ajax/add_document_version_form",
+        success: function(data) {
+            $(data).dialog({
+                autoOpen: true,
+                height: 'auto',
+                width: 'auto',
+                modal: true,
+                buttons: [
+                    {
+                        text: teke.translate('button_create'),
+                        click: function() {
+                            var _this = $(this);
+                            _this.find('input:text').removeClass('ui-state-error');
+                            $.ajax({
+                                cache: false,
+                                type: "POST",
+                                url: teke.get_site_url()+"actions/add_document_version.php",
+                                data: { project_id: $('#project_id').val(), document_id: id, title: _this.find('input[name="title"]').val(), url: _this.find('input[name="url"]').val() },
+                                dataType: "json",
+                                success: function(data) {
+                                    if (data.state == 0) {
+                                        // Add versions
+                                        teke.remove_document_versions(data.data.id);
+                                        for (var key in data.data.versions) {
+                                            teke.add_document_version_to_document(data.data.id, new Date(data.data.created), data.data.versions[key]);
+                                        }
+
+                                        // Update activity flow if needed
+                                        if ($('#project-diary-and-messages-filter > select').val() != 'messages') {
+                                            teke.project_update_messages_flow();
+                                        }
+                                        // Close the dialog
+                                        _this.dialog('close');
+                                    } else {
+                                        for (var key in data.errors) {
+                                             _this.find('[name="'+data.errors[key]+'"]').addClass('ui-state-error');
+                                        }
+                                    }
+                                    // Add messages if any provided
+                                    if (data.messages != "") {
+                                        teke.replace_system_messages(data.messages);
+                                    }
+                                },
+                                error: function() {
+                                    // TODO removeme
+                                    alert('error occured');
+                                }
+                            });
+                        }
+                    },
+                    {
+                        text: teke.translate('button_return'),
+                        click: function() {
+                            $(this).dialog('close');
+                        }
+                    }
+                ],
+                close: function() {
+                    $(this).dialog("destroy");
+                    $(this).remove();
+                }
+            });
+        },
+        error: function() {
+            // TODO removeme
+            alert('error occured');
+        }
+    });
 };
 
 /* Initialize timeline related stuff (XXX Some portion should probably be moved to standalone methods onto Timeline class) */
@@ -181,7 +273,7 @@ $(document).ready(function() {
 			}
             // Add documents
             for (var key in data.documents) {
-                teke.add_document_to_timeline(data.documents[key].id, new Date(data.documents[key].created), data.documents[key].title, data.documents[key].url);
+                teke.add_document_to_timeline(data.documents[key].id, new Date(data.documents[key].created), data.documents[key].title, data.documents[key].url, data.documents[key].versions);
             }
 		},
         error: function() {
@@ -303,13 +395,13 @@ $(document).ready(function() {
                                     success: function(data) {
                                         if (data.state == 0) {
                                             // Add document to timeline
-                                            teke.add_document_to_timeline(data.data.id, new Date(data.data.created), data.data.title, data.data.url);
+                                            teke.add_document_to_timeline(data.data.id, new Date(data.data.created), data.data.title, data.data.url, data.data.versions);
                                             // Update activity flow if needed
-                                             if ($('#project-diary-and-messages-filter > select').val() != 'messages') {
-                                                 teke.project_update_messages_flow();
-                                                 // Close the dialog
-                                                 _this.dialog('close');
-                                             }
+                                            if ($('#project-diary-and-messages-filter > select').val() != 'messages') {
+                                                teke.project_update_messages_flow();
+                                            }
+                                            // Close the dialog
+                                            _this.dialog('close');
                                         } else {
                                             for (var key in data.errors) {
                                                 _this.find('[name="'+data.errors[key]+'"]').addClass('ui-state-error');

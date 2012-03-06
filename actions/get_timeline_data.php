@@ -25,7 +25,7 @@
         $documents = ProjectManager::getProjectDocuments($project->getId());
         if ($documents && is_array($documents) && sizeof($documents) > 0) {
             foreach($documents as $document) {
-                $data['documents'][] = array('id' => $document->getId(), 'title' => $document->getTitle(), 'url' => $document->getUrl(), 'created' => $document->getCreated());
+                $data['documents'][] = array('id' => $document->getId(), 'title' => $document->getTitle(), 'url' => $document->getUrl(), 'created' => $document->getCreated(), 'versions' => $document->getVersions());
             }
         }
 

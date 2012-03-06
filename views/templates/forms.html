@@ -23,6 +23,17 @@
 	</div>
 </tal:block>
 
+<tal:block metal:define-macro="add_document_version" i18n:domain="teke">
+    <div id="add-document" class="teke-dialog-form" title="Add new Document Version" i18n:attributes="title">
+		<fieldset>
+			<label for="title" i18n:translate="">Document title</label>
+			<input type="text" name="title" class="text ui-widget-content ui-corner-all" />
+			<label for="url" i18n:translate="">Document URL</label>
+			<input type="text" name="url" class="text ui-widget-content ui-corner-all" />
+		</fieldset>
+	</div>
+</tal:block>
+
 <tal:block metal:define-macro="add_task" i18n:domain="teke">
     <div id="add-task" class="teke-dialog-form" title="Add new Task" i18n:attributes="title">
 		<fieldset>

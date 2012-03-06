@@ -485,10 +485,13 @@ div#project-timeline-documents .timeline-document {
 	z-index: 2;
 }
 
-div#project-timeline-documents .timeline-document img {
-	position: relative;
+div#project-timeline-documents .timeline-document .timeline-document-version {
+	width: 16px;
+	height: 16px;
+	background: transparent;
+	display: inline;
+	position: absolute;
 	top: -5px;
-	left: -1px;
 }
 
 /* Project timeline representation */
@@ -577,10 +580,18 @@ div#project-timeline .now {
 	display: none;
 	clear: both;
 }
-/* ADD AND REMOVE */
+/* ADD, EDIT, REMOVE */
 .teke-add-button {
 	display: inline-block;
 	background: transparent url(../graphics/add.png);
+	width: 16px;
+	height: 16px;
+	cursor: pointer;
+}
+
+.teke-edit-button {
+	display: inline-block;
+	background: transparent url(../graphics/edit.png);
 	width: 16px;
 	height: 16px;
 	cursor: pointer;

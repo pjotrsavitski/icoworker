@@ -46,7 +46,7 @@ class Document {
         return $this->url;
     }
 
-    public function getCrator() {
+    public function getCreator() {
         return $this->creator;
     }
 
@@ -72,6 +72,18 @@ class Document {
         return $this->updated;
     }
 
+    // Adding version is handled internally
+    private function addVersion($creator, $document_id, $title, $url) {
+        $q = "INSERT INTO " . DB_PREFIX . "document_versions (creator, document_id, title, url, created) VALUES ($creator, $document_id, '$title', '$url', NOW())";
+        $uid = query_insert($q);
+        return $uid;
+    }
+
+    public function getVersions() {
+        $q = "SELECT * FROM " . DB_PREFIX . "document_versions WHERE document_id = {$this->id} ORDER BY created ASC";
+        return query_rows($q);
+    }
+
     public function create($creator, $project_id, $title, $url) {
         $creator = (int)$creator;
         $project_id = (int)$project_id;
@@ -82,6 +94,8 @@ class Document {
         if ($uid) {
             // Add to activity stream
             Activity::create($creator, $project_id, 'activity', 'add_document', '', array($title));
+            // Add version
+            Document::addVersion($creator, $uid, $title, $url);
             return $uid;
         }
         return false;
@@ -91,8 +105,15 @@ class Document {
         $title = mysql_real_escape_string($title);
         $url = mysql_real_escape_string($url);
         $q = "UPDATE " . DB_PREFIX . "documents SET title='$title', url='$url' WHERE id = {$document->id}";
-        // TODO Activity stream missing
-        return query_update($q);
+        $updated = query_update($q);
+        if ($updated) {
+            // Add to activity stream
+            Activity::create($document->getCreator(), $document->getProjectId(), 'activity', 'add_document_version', '', array($title));
+            // Add version
+            Document::addVersion($document->getCreator(), $document->id, $title, $url);
+            return $updated;
+        }
+        return false;
     }
 
     public function delete() {

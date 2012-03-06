@@ -48,6 +48,12 @@ class ProjectManager {
         return self::getActivityById($id);
     }
 
+    public function getDocumentById($id) {
+        $id = (int)$id;
+        $q = "SELECT * FROM " . DB_PREFIX . "documents WHERE id = $id";
+        return query_row($q, 'Document');
+    }
+
     public function getProjectTasks($id) {
         $id = (int)$id;
         $q = "SELECT * FROM " . DB_PREFIX . "tasks WHERE project_id = $id";

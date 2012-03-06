@@ -5,7 +5,17 @@
 
     if ($TeKe->is_logged_in() && $TeKe->has_access(ACCESS_CAN_EDIT)) {
         $response = new AJAXResponse();
-        $project = ProjectManager::getProjectById(get_input('project_id'));
+
+        $document = ProjectManager::getDocumentById(get_input('document_id'));
+
+        if (!($document instanceof Document)) {
+            $TeKe->add_system_message(_("Document not found."), 'error');
+            $response->setMessages();
+            echo $response->getJSON();
+            exit;
+        }
+
+        $project = ProjectManager::getProjectById($document->getProjectId());
 
         // TODO Possibly admin should be allowed to see stuff
         if (!(($project instanceof Project) && ($project->isMember(get_logged_in_user_id())))) {
@@ -36,8 +46,7 @@
 
         if (sizeof($response->getErrors()) == 0) {
             $creator = $TeKe->user->getId();
-            if ($created_id = Document::create($creator, $project->getId(), $inputs['title'], $inputs['url'])) {
-                $document = new Document($created_id);
+            if (Document::update($document, $inputs['title'], $inputs['url'])) {
                 $versions = array();
                 $response->addData('id', $document->getId());
                 $response->addData('title', $document->getTitle());
@@ -45,11 +54,11 @@
                 $response->addData('created', $document->getCreated());
                 $response->addData('versions', $document->getVersions());
                 $response->setStateSuccess();
-                $TeKe->add_system_message(_("New document added."));
+                $TeKe->add_system_message(_("New document version added."));
                 $response->setMessages();
             }
         } else {
-            $TeKe->add_system_message(_("New document could not be added."), 'error');
+            $TeKe->add_system_message(_("New document version could not be added."), 'error');
             $response->setMessages();
         }
 

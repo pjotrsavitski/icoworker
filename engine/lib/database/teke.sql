@@ -83,6 +83,17 @@ CREATE TABLE IF NOT EXISTS prefix_documents (
 	FOREIGN KEY (project_id) REFERENCES prefix_projects (id) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=UTF8;
 
+CREATE TABLE IF NOT EXISTS prefix_document_versions (
+	id bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+	creator bigint(20) UNSIGNED NOT NULL,
+	document_id bigint(20) UNSIGNED NOT NULL,
+	title varchar(255) NOT NULL,
+	url varchar(255) DEFAULT '',
+	created DATETIME NOT NULL DEFAULT '0000-00-00 00:00:00',
+	FOREIGN KEY (creator) REFERENCES prefix_users (id) ON DELETE CASCADE,
+	FOREIGN KEY (document_id) REFERENCES prefix_documents (id) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=UTF8;
+
 CREATE TABLE IF NOT EXISTS prefix_activity (
 	id bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
 	creator bigint(20) UNSIGNED NOT NULL,
