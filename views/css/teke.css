@@ -469,6 +469,7 @@ div#project-timeline {
 div#project-timeline-documents {
 	width: 600px;
 	min-height: 50px;
+	z-index: 2;
 }
 
 div#project-timeline-documents .timeline-document {
@@ -481,6 +482,7 @@ div#project-timeline-documents .timeline-document {
     -webkit-border-radius: 5px;
 	-moz-border-radius: 5px;
 	border-radius: 5px;
+	z-index: 2;
 }
 
 div#project-timeline-documents .timeline-document img {
