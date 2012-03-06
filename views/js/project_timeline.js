@@ -56,18 +56,6 @@ Timeline.prototype.initializeTimeline = function() {
 // Create global timeline object
 var timeline = new Timeline();
 
-/* Initialize or reinitialize milestone click event */
-// XXX This might not be needed if everything is initializes by the milestone add method
-teke.reinitialize_milestone_click = function() {
-    $('#project-timeline-project .milestone').each(function() {
-		$(this).off('click');
-		$(this).on('click', function(event) {
-			// Prevent parent click from happening
-		    event.stopPropagation();
-		});
-    });
-};
-
 /* Format date (XXX Probably need to get that working without a datepicker; Move to main file in that case) */
 teke.format_date = function(value, format) {	
 	if (format === undefined) {
@@ -78,8 +66,34 @@ teke.format_date = function(value, format) {
 
 /* Add milestone to timeline */
 teke.add_milestone_to_timeline = function(offset, id, milestone_date, title) {
-	$('<div id="project-timeline-milestone-'+id+'" class="milestone" title="'+title+'" style="left: '+offset+'px;"><img src="'+teke.get_site_url()+'views/graphics/timeline_milestone.png" alt="flag" /><div class="timeline-above-date">'+teke.format_date(new Date(milestone_date), "dd.mm")+'</div></div>'). appendTo($('#project-timeline-project'));
-	// XXX Need to initialize click event here
+	$('<div id="project-timeline-milestone-'+id+'" class="milestone" style="left: '+offset+'px;"><img src="'+teke.get_site_url()+'views/graphics/timeline_milestone.png" alt="flag" /><div class="timeline-above-date">'+teke.format_date(milestone_date, "dd.mm")+'</div><div class="teke-tooltip-content"><label>'+title+'</label><br />'+teke.format_date(milestone_date)+'</div></div>'). appendTo($('#project-timeline-project'));
+    // Bind click
+    $('#project-timeline-milestone-'+id).on('click', function(event) {
+        // Prevent parent click from happening
+        event.stopPropagation();
+    });
+    // Add tooltip
+    $('#project-timeline-milestone-'+id+' img').qtip({
+        content: {
+            text: function(api) {
+                return $(this).parent().find('.teke-tooltip-content').html();
+            }
+        },
+        position: {
+            my: "bottom center",
+            at: "top center"
+        },
+        show: {
+            event: 'mouseenter'
+        },
+        hide: {
+            delay: 500,
+            fixed: true
+        },
+        style: {
+            classes: 'ui-tooltip-light ui-tooltip-shadow ui-tooltip-rounded'
+        }
+    });
 };
 
 /* Add document to timeline */
@@ -92,8 +106,7 @@ teke.add_document_to_timeline = function(id, created, title, url) {
         width = (timeline.getEnd() - created.getTime()) / timeline.getPixelValue();
     }
     $('<div id="project-timeline-document-'+id+'" class="timeline-document" style="left:'+offset+'px;"><img src="'+teke.get_site_url()+'views/graphics/timeline_document.png" alt="document" /><div class="teke-tooltip-content"><label>'+( (url == '') ? title : '<a href="'+url+'" target="_blank">'+title+'</a>' )+'</label><br />'+teke.format_date(created)+'</div></div>').width(width).appendTo('#project-timeline-documents');
-    // Initialize the tooltip
-    // TODO Some general approach is needed (create a standalone method for that)
+    // Add tooltip
     $('#project-timeline-document-'+id+' img').qtip({
         content: {
             text: function(api) {
@@ -119,13 +132,13 @@ teke.add_document_to_timeline = function(id, created, title, url) {
 
 /* Add beginning and end pointo to timeline */
 teke.add_beginning_end_to_timeline = function() {
-    $('<div class="beginning" style="left:0px;"><img src="'+teke.get_site_url()+'views/graphics/black_circle.png" alt="circle" /><div class="timeline-above-date">'+teke.format_date(new Date(timeline.getTimelineData().beginning))+'</div></div>').appendTo($('#project-timeline-project'));
+    $('<div class="beginning" style="left:0px;"><img src="'+teke.get_site_url()+'views/graphics/grey_circle.png" alt="circle" /><div class="timeline-above-date">'+teke.format_date(new Date(timeline.getTimelineData().beginning))+'</div></div>').appendTo($('#project-timeline-project'));
     $('#project-timeline-project .beginning').on('click', function(event) {
 		// Prevent parent click from happening
 	    event.stopPropagation();
 	});
 
-    $('<div class="end" style="right:0px;"><img src="'+teke.get_site_url()+'views/graphics/black_circle.png" alt="circle" /><div class="timeline-above-date">'+teke.format_date(new Date(timeline.getTimelineData().end))+'</div></div>').appendTo($('#project-timeline-project'));
+    $('<div class="end" style="right:0px;"><img src="'+teke.get_site_url()+'views/graphics/grey_circle.png" alt="circle" /><div class="timeline-above-date">'+teke.format_date(new Date(timeline.getTimelineData().end))+'</div></div>').appendTo($('#project-timeline-project'));
 	$('#project-timeline-project .end').on('click', function(event) {
 		// Prevent parent click from happening
 	    event.stopPropagation();
@@ -164,9 +177,8 @@ $(document).ready(function() {
 
 		    // Add milestones
 		    for (var key in data.milestones) {
-				teke.add_milestone_to_timeline((new Date(data.milestones[key].milestone_date) - timeline.getStart()) / timeline.getPixelValue(), data.milestones[key].id, data.milestones[key].milestone_date, data.milestones[key].title);
+				teke.add_milestone_to_timeline((new Date(data.milestones[key].milestone_date) - timeline.getStart()) / timeline.getPixelValue(), data.milestones[key].id, new Date(data.milestones[key].milestone_date), data.milestones[key].title);
 			}
-			teke.reinitialize_milestone_click();
             // Add documents
             for (var key in data.documents) {
                 teke.add_document_to_timeline(data.documents[key].id, new Date(data.documents[key].created), data.documents[key].title, data.documents[key].url);
@@ -217,7 +229,6 @@ $(document).ready(function() {
 											// Recalculate offset, it might have been changed
 											offset = (_this.find('div[name="milestone_date"]').datepicker("getDate").getTime() - timeline.getStart()) / timeline.getPixelValue();
 											teke.add_milestone_to_timeline(offset, data.data.id, _this.find('div[name="milestone_date"]').datepicker("getDate"), data.data.title);
-		                                    teke.reinitialize_milestone_click();
 											// Update activity flow if needed
 											if ($('#project-diary-and-messages-filter > select').val() != 'messages') {
 											    teke.project_update_messages_flow();
