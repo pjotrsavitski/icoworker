@@ -81,7 +81,14 @@ class Document {
 
     public function getVersions() {
         $q = "SELECT * FROM " . DB_PREFIX . "document_versions WHERE document_id = {$this->id} ORDER BY created ASC";
-        return query_rows($q);
+        $versions = query_rows($q);
+        if ($versions && is_array($versions) && sizeof($versions) > 0) {
+            foreach ($versions as $key => $version) {
+                $version->created = format_date_for_js($version->created);
+                $versions[$key] = $version;
+            }
+        }
+        return $versions;
     }
 
     public function create($creator, $project_id, $title, $url) {

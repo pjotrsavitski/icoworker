@@ -244,4 +244,8 @@ function console_log($message, $title=false) {
     $TeKe->firephp->log($message, $title);
 }
 
+function format_date_for_js($date_string) {
+    return date('r', strtotime($date_string));
+}
+
 ?>
