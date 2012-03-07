@@ -51,7 +51,7 @@
                 $response->addData('id', $document->getId());
                 $response->addData('title', $document->getTitle());
                 $response->addData('url', $document->getUrl());
-                $response->addData('created', $document->getCreated());
+                $response->addData('created', format_date_for_js($document->getCreated()));
                 $response->addData('versions', $document->getVersions());
                 $response->setStateSuccess();
                 $TeKe->add_system_message(_("New document version added."));
