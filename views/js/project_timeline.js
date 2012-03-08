@@ -56,13 +56,7 @@ Timeline.prototype.initializeTimeline = function() {
 // Create global timeline object
 var timeline = new Timeline();
 
-/* Format date (XXX Probably need to get that working without a datepicker; Move to main file in that case) */
-teke.format_date = function(value, format) {	
-	if (format === undefined) {
-	    format = "dd.mm.y";
-	}
-	return $.datepicker.formatDate(format, value);
-};
+/* Extend teke with additional methods */
 
 /* Add milestone to timeline */
 teke.add_milestone_to_timeline = function(offset, id, milestone_date, title) {
@@ -96,12 +90,14 @@ teke.add_milestone_to_timeline = function(offset, id, milestone_date, title) {
     });
 };
 
+/* Remove all versions of a specific document from timeline */
 teke.remove_document_versions = function(id) {
     $('#project-timeline-document-'+id).find('[id^="project-timeline-document-version-"]').remove();
 };
 
+/* Add a version to a document on timeline */
 teke.add_document_version_to_document = function(document_id, document_created, version) {
-    $('<div id="project-timeline-document-version-'+version.id+'" class="timeline-document-version" style="left:'+( ( (new Date(version.created).getTime() - document_created.getTime()) / timeline.getPixelValue() - 2 ) )+'px;"><img src="'+teke.get_site_url()+'views/graphics/timeline_document.png" alt="document" /><div class="teke-tooltip-content"><label>'+( (version.url == '') ? version.title : '<a href="'+version.url+'" target="_blank">'+version.title+'</a>' )+'</label><br />'+teke.format_date(new Date(version.created))+'</div></div>').appendTo('#project-timeline-document-'+document_id);
+    $('<div id="project-timeline-document-version-'+version.id+'" class="timeline-document-version" style="left:'+( ( (new Date(version.created).getTime() - document_created.getTime()) / timeline.getPixelValue() ) - 2 )+'px;"><img src="'+teke.get_site_url()+'views/graphics/timeline_document.png" alt="document" /><div class="teke-tooltip-content"><label>'+( (version.url == '') ? version.title : '<a href="'+version.url+'" target="_blank">'+version.title+'</a>' )+'</label><br />'+teke.format_date(new Date(version.created))+'</div></div>').appendTo('#project-timeline-document-'+document_id);
     // Add tooltip
     $('#project-timeline-document-version-'+version.id+' img').qtip({
         content: {
@@ -162,6 +158,10 @@ teke.add_beginning_end_to_timeline = function() {
 	});
 };
 
+/*
+ * Add new versin to a document, update document on timeline
+ * @param int id Document identifier
+ */
 teke.add_new_document_version = function(id) {
     $.ajax({
         cache: false,
@@ -282,7 +282,7 @@ $(document).ready(function() {
 		}
 	});
 
-	// Add milestone
+	// Add milestone when projct timeline is clicked
 	$('#project-timeline-project').on('click', function(event) {
 		// TODO see position() method
 		offset = parseInt(event.pageX) - parseInt($(this).offset().left);
@@ -367,7 +367,7 @@ $(document).ready(function() {
 		});
 	});
 
-	// Add document
+	// Add document when add button is clicked
 	$('#add-document-button').on('click', function(event) {
         $.ajax({
             cache: false,

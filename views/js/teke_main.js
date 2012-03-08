@@ -68,6 +68,22 @@ teke.initialize_togglers = function() {
 	});
 };
 
+/*
+ * Format date to a spacific string format (used jQueryUI.datepicker fotmatDate method)
+ * @param value Can be either Date object, string representation or integer (milliseconds)
+ * @param format Format of returned date string; optional "dd.mm.y" will be used as a default
+ * @return string
+ */
+teke.format_date = function(value, format) {
+    if (!(value instanceof Date)) {
+        value = new Date(value);
+    }
+    if (format === undefined) {
+        format = "dd.mm.y";
+    }
+    return $.datepicker.formatDate(format, value);
+};
+
 $(document).ready(function() {
 	teke.animate_system_messages();
 

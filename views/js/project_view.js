@@ -92,20 +92,7 @@ teke.add_new_diary_message = function() {
 	}
 };
 
-// TODO Remove unneeded
-teke.initialize_project_timeline = function() {
-	$('#project-timeline-project').click(function(event) {
-	    // Some of those values should be globally initialized
-	    var pt_offset = $(this).parent().offset();
-		var pt_cx_offset = parseInt(event.pageX) - parseInt(pt_offset.left);
-		// The width should come from some place else
-		var pt_pixel_value = (parseInt($('#project_end').val()) - parseInt($('#project_start').val()))/600;
-		var pt_click_time = parseInt($('#project_start').val()) + parseInt((pt_cx_offset * pt_pixel_value));
-		var pt_click_date = new Date(pt_click_time * 1000);
-		alert(pt_click_date);
-	});
-};
-
+// Hook things up when DOM is ready
 $(document).ready(function() {
 	// Initialize tooltips
 	teke.project_initialize_tooltips();
@@ -419,6 +406,5 @@ $(document).ready(function() {
 			}
 		});
 	});
-
 
 });
