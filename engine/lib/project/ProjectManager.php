@@ -6,6 +6,7 @@ require_once(dirname(__FILE__).'/Resource.php');
 require_once(dirname(__FILE__).'/Activity.php');
 require_once(dirname(__FILE__).'/Milestone.php');
 require_once(dirname(__FILE__).'/Document.php');
+require_once(dirname(__FILE__).'/Comment.php');
 
 class ProjectManager {
 
@@ -54,6 +55,12 @@ class ProjectManager {
         return query_row($q, 'Document');
     }
 
+    public function getCommentById($id) {
+        $id = (int)$id;
+        $q = "SELECT * FROM " . DB_PREFIX . "project_comments WHERE id = $id";
+        return query_row($q, 'Comment');
+    }
+
     public function getProjectTasks($id) {
         $id = (int)$id;
         $q = "SELECT * FROM " . DB_PREFIX . "tasks WHERE project_id = $id";
@@ -77,6 +84,13 @@ class ProjectManager {
         $q = "SELECT * FROM " . DB_PREFIX . "documents WHERE project_id = $id";
         return query_rows($q, 'Document');
     }
+    
+    public function getProjectComments($id) {
+        $id = (int)$id;
+        $q = "SELECT * FROM " . DB_PREFIX . "project_comments WHERE project_id = $id";
+        return query_rows($q, 'Comment');
+    }
+
 
     public function getProjectMessages($id) {
         $id = (int)$id;

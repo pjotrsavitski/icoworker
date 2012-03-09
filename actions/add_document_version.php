@@ -34,7 +34,7 @@
         }
 
         // Define fields array
-        $fields = array('title' => true, 'url' => false);
+        $fields = array('title' => true, 'url' => false, 'notes' => false);
         $inputs = array();
 
         foreach ($fields as $key => $requirement) {
@@ -42,15 +42,19 @@
             if ($requirement && !$inputs[$key]) {
                 $response->addError($key);
             }
+            if (in_array($key, array('notes'))) {
+                $inputs[$key] = force_plaintext($inputs[$key]);
+            }
         }
 
         if (sizeof($response->getErrors()) == 0) {
             $creator = $TeKe->user->getId();
-            if (Document::update($document, $inputs['title'], $inputs['url'])) {
+            if (Document::update($document, $inputs['title'], $inputs['url'], $inputs['notes'])) {
                 $versions = array();
                 $response->addData('id', $document->getId());
                 $response->addData('title', $document->getTitle());
                 $response->addData('url', $document->getUrl());
+                $response->addData('notes', $document->getNotes());
                 $response->addData('created', format_date_for_js($document->getCreated()));
                 $response->addData('versions', $document->getVersions());
                 $response->setStateSuccess();

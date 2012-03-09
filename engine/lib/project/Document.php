@@ -6,6 +6,7 @@ class Document {
     public $project_id = NULL;
     public $title = "";
     public $url = "";
+    public $notes = "";
     public $created = "";
     public $updated = "";
     
@@ -29,6 +30,7 @@ class Document {
             $this->project_id = $ret->project_id;
             $this->title = $ret->title;
             $this->url = $ret->url;
+            $this->notes = $ret->notes;
             $this->created = $ret->created;
             $this->updated = $ret->updated;
         }
@@ -44,6 +46,10 @@ class Document {
 
     public function getUrl() {
         return $this->url;
+    }
+
+    public function getNotes() {
+        return $this->notes;
     }
 
     public function getCreator() {
@@ -73,8 +79,8 @@ class Document {
     }
 
     // Adding version is handled internally
-    private function addVersion($creator, $document_id, $title, $url) {
-        $q = "INSERT INTO " . DB_PREFIX . "document_versions (creator, document_id, title, url, created) VALUES ($creator, $document_id, '$title', '$url', NOW())";
+    private function addVersion($creator, $document_id, $title, $url, $notes) {
+        $q = "INSERT INTO " . DB_PREFIX . "document_versions (creator, document_id, title, url, notes, created) VALUES ($creator, $document_id, '$title', '$url', '$notes', NOW())";
         $uid = query_insert($q);
         return $uid;
     }
@@ -91,33 +97,35 @@ class Document {
         return $versions;
     }
 
-    public function create($creator, $project_id, $title, $url) {
+    public function create($creator, $project_id, $title, $url, $notes) {
         $creator = (int)$creator;
         $project_id = (int)$project_id;
         $title = mysql_real_escape_string($title);
         $url = mysql_real_escape_string($url);
-        $q = "INSERT INTO " . DB_PREFIX . "documents (creator, project_id, title, url, created, updated) VALUES ($creator, $project_id, '$title', '$url', NOW(), NOW())";
+        $notes = mysql_real_escape_string($notes);
+        $q = "INSERT INTO " . DB_PREFIX . "documents (creator, project_id, title, url, notes, created, updated) VALUES ($creator, $project_id, '$title', '$url', '$notes', NOW(), NOW())";
         $uid = query_insert($q);
         if ($uid) {
             // Add to activity stream
             Activity::create($creator, $project_id, 'activity', 'add_document', '', array($title));
             // Add version
-            Document::addVersion($creator, $uid, $title, $url);
+            Document::addVersion($creator, $uid, $title, $url, $notes);
             return $uid;
         }
         return false;
     }
 
-    public function update($document, $title, $url) {
+    public function update($document, $title, $url, $notes) {
         $title = mysql_real_escape_string($title);
         $url = mysql_real_escape_string($url);
-        $q = "UPDATE " . DB_PREFIX . "documents SET title='$title', url='$url' WHERE id = {$document->id}";
+        $notes = mysql_real_escape_string($notes);
+        $q = "UPDATE " . DB_PREFIX . "documents SET title='$title', url='$url', notes='$notes' WHERE id = {$document->id}";
         $updated = query_update($q);
         if ($updated) {
             // Add to activity stream
             Activity::create($document->getCreator(), $document->getProjectId(), 'activity', 'add_document_version', '', array($title));
             // Add version
-            Document::addVersion($document->getCreator(), $document->id, $title, $url);
+            Document::addVersion($document->getCreator(), $document->id, $title, $url, $notes);
             return $updated;
         }
         return false;

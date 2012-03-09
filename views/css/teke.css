@@ -617,3 +617,6 @@ div.teke-dialog-form fieldset {
 div.teke-dialog-form input[type=text] {
 	width: 98%;
 }
+div.teke-dialog-form textarea {
+	width: 98%;
+}

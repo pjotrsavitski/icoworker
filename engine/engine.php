@@ -248,4 +248,9 @@ function format_date_for_js($date_string) {
     return date('r', strtotime($date_string));
 }
 
+function force_plaintext($string) {
+    // TODO Check if htmlentities need to be used
+    return strip_tags($string);
+}
+
 ?>
