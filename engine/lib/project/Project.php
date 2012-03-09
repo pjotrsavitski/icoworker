@@ -45,7 +45,7 @@ class Project {
         return $this->title;
     }
 
-    public function getCrator() {
+    public function getCreator() {
         return $this->creator;
     }
 

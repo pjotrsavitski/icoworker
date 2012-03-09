@@ -41,7 +41,7 @@ class Activity {
         return $this->id;
     }
 
-    public function getCrator() {
+    public function getCreator() {
         return $this->creator;
     }
 
