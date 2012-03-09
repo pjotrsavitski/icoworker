@@ -51,6 +51,7 @@ Timeline.prototype.initializeTimeline = function() {
 	// TODO Consider creating the whole timeline block on JS side
     $('<div id="project-timeline-documents"></div>').width(this.getWidth()).appendTo($('#project-timeline'));
 	$('<div id="project-timeline-project"></div>').width(this.getWidth()).appendTo($('#project-timeline'));
+    $('<div id="project-timeline-project-comments" title="'+teke.translate('text_click_to_add_comment')+'"></div>').width(this.getWidth()).appendTo($('#project-timeline'));
 };
 
 // Create global timeline object
@@ -90,6 +91,38 @@ teke.add_milestone_to_timeline = function(offset, id, milestone_date, title) {
     });
 };
 
+/* Add comment to timeline */
+teke.add_comment_to_timeline = function(offset, id, comment_date, content) {
+	$('<div id="project-timeline-comment-'+id+'" class="project-comment" style="left: '+offset+'px;"><img src="'+teke.get_site_url()+'views/graphics/timeline_comment.png" alt="comment" /><div class="teke-tooltip-content"><label>'+content+'</label><br />'+teke.format_date(comment_date)+'</div></div>'). appendTo($('#project-timeline-project-comments'));
+    // Bind click
+    $('#project-timeline-comment-'+id).on('click', function(event) {
+        // Prevent parent click from happening
+        event.stopPropagation();
+    });
+    // Add tooltip
+    $('#project-timeline-comment-'+id+' img').qtip({
+        content: {
+            text: function(api) {
+                return $(this).parent().find('.teke-tooltip-content').html();
+            }
+        },
+        position: {
+            my: "bottom center",
+            at: "top center"
+        },
+        show: {
+            event: 'mouseenter'
+        },
+        hide: {
+            delay: 500,
+            fixed: true
+        },
+        style: {
+            classes: 'ui-tooltip-light ui-tooltip-shadow ui-tooltip-rounded'
+        }
+    });
+};
+
 /* Remove all versions of a specific document from timeline */
 teke.remove_document_versions = function(id) {
     $('#project-timeline-document-'+id).find('[id^="project-timeline-document-version-"]').remove();
@@ -97,7 +130,7 @@ teke.remove_document_versions = function(id) {
 
 /* Add a version to a document on timeline */
 teke.add_document_version_to_document = function(document_id, document_created, version) {
-    $('<div id="project-timeline-document-version-'+version.id+'" class="timeline-document-version" style="left:'+( ( (new Date(version.created).getTime() - document_created.getTime()) / timeline.getPixelValue() ) - 2 )+'px;"><img src="'+teke.get_site_url()+'views/graphics/timeline_document.png" alt="document" /><div class="teke-tooltip-content"><label>'+( (version.url == '') ? version.title : '<a href="'+version.url+'" target="_blank">'+version.title+'</a>' )+'</label><br />'+teke.format_date(new Date(version.created))+'<div>'+version.notes+'</div></div></div>').appendTo('#project-timeline-document-'+document_id);
+    $('<div id="project-timeline-document-version-'+version.id+'" class="timeline-document-version" style="left:'+( ( (new Date(version.created).getTime() - document_created.getTime()) / timeline.getPixelValue() ) - 2 )+'px;"><img src="'+teke.get_site_url()+'views/graphics/timeline_document.png" alt="document" /><div class="teke-tooltip-content"><label>'+( (version.url == '') ? version.title : '<a href="'+version.url+'" target="_blank">'+version.title+'</a>' )+'</label><br />'+teke.format_date(new Date(version.created))+'<div class="document-version-note">'+version.notes+'</div></div></div>').appendTo('#project-timeline-document-'+document_id);
     // Add tooltip
     $('#project-timeline-document-version-'+version.id+' img').qtip({
         content: {
@@ -278,11 +311,17 @@ $(document).ready(function() {
 
 		    // Add milestones
 		    for (var key in data.milestones) {
+                // XXX Possibly .getTime() needs to be used
 				teke.add_milestone_to_timeline((new Date(data.milestones[key].milestone_date) - timeline.getStart()) / timeline.getPixelValue(), data.milestones[key].id, new Date(data.milestones[key].milestone_date), data.milestones[key].title);
 			}
             // Add documents
             for (var key in data.documents) {
                 teke.add_document_to_timeline(data.documents[key].id, new Date(data.documents[key].created), data.documents[key].title, data.documents[key].url, data.documents[key].notes, data.documents[key].versions);
+            }
+            // Add comments
+            for (var key in data.comments) {
+                // XXX Possibly .getTime() needs to be used
+                teke.add_comment_to_timeline((new Date(data.comments[key].comment_date) - timeline.getStart()) / timeline.getPixelValue(), data.comments[key].id, new Date(data.comments[key].comment_date), data.comments[key].content);
             }
 		},
         error: function() {
@@ -375,6 +414,91 @@ $(document).ready(function() {
 			}
 		});
 	});
+
+    // Add comment when project-comments timeline is clicked
+	$('#project-timeline-project-comments').on('click', function(event) {
+		// TODO see position() method
+		offset = parseInt(event.pageX) - parseInt($(this).offset().left);
+		// XXX One day seems to be lot from the end
+		time = timeline.getStart() + (offset * timeline.getPixelValue());
+		time_date = new Date(time);
+
+		// Show the form
+		$.ajax({
+            cache: false,
+			dataType: "html",
+			type: "GET",
+			url: teke.get_site_url()+"ajax/add_project_comment_form",
+			success: function(data) {
+			    $(data).dialog({
+                    autoOpen: true,
+					height: 'auto',
+					width: 'auto',
+					modal: true,
+					buttons: [
+					    {
+						    text: teke.translate('button_create'),
+							click: function() {
+							    var _this = $(this);
+								_this.find('.ui-state-error').removeClass('ui-state-error');
+								$.ajax({
+                                    cache: false,
+									type: "POST",
+									url: teke.get_site_url()+"actions/add_project_comment.php",
+									data: { project_id : $('#project_id').val(), content: _this.find('textarea[name="content"]').val(), comment_date: _this.find('div[name="comment_date"]').datepicker("getDate").toUTCString() },
+									dataType: "json",
+									success: function(data) {
+									    if (data.state == 0) {
+										    // Add project comment to timeline
+											// Recalculate offset, it might have been changed
+											offset = (_this.find('div[name="comment_date"]').datepicker("getDate").getTime() - timeline.getStart()) / timeline.getPixelValue();
+											teke.add_comment_to_timeline(offset, data.data.id, _this.find('div[name="comment_date"]').datepicker("getDate"), data.data.content);
+											// Update activity flow if needed
+											if ($('#project-diary-and-messages-filter > select').val() != 'messages') {
+											    teke.project_update_messages_flow();
+											}
+											// Close the dialog
+											_this.dialog('close');
+									    } else {
+									        for (var key in data.errors) {
+										        _this.find('[name="'+data.errors[key]+'"]').addClass('ui-state-error');
+										    }
+									    }
+										// Add messages if any provided
+                                        if (data.messages != "") {
+										    teke.replace_system_messages(data.messages);
+										}
+									},
+                                    error: function() {
+									    // TODO removeme
+										alert("error occured");
+									}
+								});
+							}
+						},
+						{
+						    text: teke.translate('button_return'),
+							click: function() {
+							    $(this).dialog('close');
+							}
+						}
+					],
+					open: function() {
+						$(this).find('div[name="comment_date"]').datepicker({ minDate: new Date(timeline.getStart()), maxDate: new Date(timeline.getEnd()) }).datepicker('setDate', time_date);
+					},
+					close: function() {
+					    $(this).dialog("destroy");
+						$(this).remove();
+					}
+				});
+			},
+            error: function() {
+			    // TODO removeme
+			    alert('error occured');
+			}
+		});
+	});
+
 
 	// Add document when add button is clicked
 	$('#add-document-button').on('click', function(event) {

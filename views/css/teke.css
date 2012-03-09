@@ -494,6 +494,33 @@ div#project-timeline-documents .timeline-document .timeline-document-version {
 	top: -5px;
 }
 
+.document-version-note {
+	background-color: yellow;
+}
+
+/* Project timeline comments */
+div#project-timeline-project-comments {
+	position: relative;
+	height: 10px;
+	cursor: pointer;
+	margin-top: 10px;
+    -webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+	z-index: 2;
+}
+
+/* Milestone flag on project timeline */
+div#project-timeline-project-comments .project-comment {
+	width: 16px;
+	height: 16px;
+	background: transparent;
+	display: inline;
+	position: absolute;
+	top: -4px;
+}
+
+
 /* Project timeline representation */
 div#project-timeline-project {
 	width: 600px;

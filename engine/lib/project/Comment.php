@@ -39,7 +39,7 @@ class Comment {
     }
 
     public function getContent() {
-        return $this->content;
+        return nl2br($this->content);
     }
 
     public function getCreator() {

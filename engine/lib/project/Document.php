@@ -49,7 +49,7 @@ class Document {
     }
 
     public function getNotes() {
-        return $this->notes;
+        return nl2br($this->notes);
     }
 
     public function getCreator() {
@@ -91,6 +91,7 @@ class Document {
         if ($versions && is_array($versions) && sizeof($versions) > 0) {
             foreach ($versions as $key => $version) {
                 $version->created = format_date_for_js($version->created);
+                $version->notes = nl2br($version->notes);
                 $versions[$key] = $version;
             }
         }

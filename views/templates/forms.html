@@ -108,3 +108,13 @@
 		</fieldset>
 	</div>
 </tal:block>
+
+<tal:block metal:define-macro="add_project_comment" i18n:domain="teke">
+    <div id="add-project-comment" class="teke-dialog-form" title="Add new Comment" i18n:attributes="title">
+		<fieldset>
+			<label for="content" i18n:translate="">Comment</label>
+			<textarea name="content" class="text ui-widget-content ui-corner-all"></textarea>
+			<div name="comment_date" class="input-datepicker"></div>
+		</fieldset>
+	</div>
+</tal:block>

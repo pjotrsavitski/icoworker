@@ -29,6 +29,13 @@
             }
         }
 
+        $comments = ProjectManager::getProjectComments($project->getId());
+        if ($comments && is_array($comments) && sizeof($comments) > 0) {
+            foreach($comments as $comment) {
+                $data['comments'][] = array('id' => $comment->getId(), 'content' => $comment->getContent(), 'comment_date' => format_date_for_js($comment->getCommentDate()));
+            }
+        }
+
         echo json_encode($data);
         exit;
     }
