@@ -81,7 +81,7 @@ class Comment {
         $uid = query_insert($q);
         if ($uid) {
             // Add to activity stream
-            Activity::create($creator, $project_id, 'activity', 'add_coment', '', array($comment_date));
+            Activity::create($creator, $project_id, 'activity', 'add_comment', '', array($comment_date));
             return $uid;
         }
         return false;

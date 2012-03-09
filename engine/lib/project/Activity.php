@@ -85,7 +85,6 @@ class Activity {
                     break;
                 case "add_milestone":
                     $data[] = $this->getCreatorObject()->getFullname();
-                    // XXX Possibly just saving date is fine
                     $data[1] = date('d.m.Y', $data[1]);
                     $body = vsprintf(_('%3$s added milestone <span class="activity-item-title">%1$s</span> at %2$s'), $data);
                     break; 
@@ -96,6 +95,11 @@ class Activity {
                 case "add_document_version":
                     $data[] = $this->getCreatorObject()->getFullname();
                     $body = vsprintf(_('%2$s added document version  <span class="activity-item-title">%1$s</span>'), $data);
+                    break;
+                case "add_comment":
+                    $data[] = $this->getCreatorObject()->getFullname();
+                    $data[0] = date('d.m.Y', $data[0]);
+                    $body = vsprintf(_('%2$s added comment at %1$s'), $data);
                     break;
                 default:
                     // TODO Check if this stays that way
