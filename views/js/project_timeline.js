@@ -244,6 +244,15 @@ $(document).ready(function() {
 	timeline.setStart(parseInt($('#project_start').val()) * 1000);
 	timeline.setEnd(parseInt($('#project_end').val()) * 1000);
 	timeline.setWidth(600);
+    // XXX CHNAGEME START
+    tcase = 'farthest';
+    if (tcase == 'closest') {
+        timeline.setWidth(parseInt((timeline.getEnd() - timeline.getStart()) / (86400000)) * 50);
+        //timeline.setWidth( parseInt((timeline.getEnd() - timeline.getStart()) / (3600 * 1000)) );
+    } else {
+        timeline.setWidth(600);
+    }
+    // XXX CHANGEME END
 	timeline.calculatePixesValue();
 	timeline.initializeTimeline();
     // Add now line to the project if applicable
