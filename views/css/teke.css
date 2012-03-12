@@ -494,7 +494,7 @@ div#project-timeline-documents .timeline-document .timeline-document-version {
 	top: -5px;
 }
 
-.document-version-note {
+.document-version-note, .milestone-notes {
 	background-color: yellow;
 }
 
@@ -565,7 +565,7 @@ div#project-timeline-project .timeline-above-date {
 
 /* Change placement for milestone objects */
 div#project-timeline-project .milestone .timeline-above-date {
-	left: -10px;
+	left: -13px;
 	top: -15px;
 }
 

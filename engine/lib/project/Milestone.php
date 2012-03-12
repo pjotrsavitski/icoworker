@@ -6,6 +6,8 @@ class Milestone {
     public $project_id = NULL;
     public $title = "";
     public $milestone_date = "";
+    public $flag_color = "1";
+    public $notes = "";
     public $created = "";
     public $updated = "";
     
@@ -29,6 +31,8 @@ class Milestone {
             $this->project_id = $ret->project_id;
             $this->title = $ret->title;
             $this->milestone_date = $ret->milestone_date;
+            $this->flag_color = $ret->flag_color;
+            $this->notes = $ret->notes;
             $this->created = $ret->created;
             $this->updated = $ret->updated;
         }
@@ -62,6 +66,24 @@ class Milestone {
         return $this->milestone_date;
     }
 
+    public function getFlagColor() {
+        return $this->flag_color;
+    }
+
+    public function getFlagColorURL() {
+        $color = $this->getFlagColor();
+        // Using non-translatable variant so that URL would be correct
+        $colors = $this->getAvailableColors(false);
+        if (!array_key_exists($color, $colors)) {
+            $color = '1';
+        }
+        return WWW_ROOT . "views/graphics/flag_" . strtolower($colors[$color]) . ".png";
+    }
+
+    public function getNotes() {
+        return nl2br($this->notes);
+    }
+
     public function getCreated() {
         // TODO possibly formatting is needed
         return $this->created;
@@ -72,12 +94,14 @@ class Milestone {
         return $this->updated;
     }
 
-    public function create($creator, $project_id, $title, $milestone_date) {
+    public function create($creator, $project_id, $title, $milestone_date, $flag_color, $notes) {
         $creator = (int)$creator;
         $project_id = (int)$project_id;
         $title = mysql_real_escape_string($title);
         $milestone_date = (int) $milestone_date;
-        $q = "INSERT INTO " . DB_PREFIX . "milestones (creator, project_id, title, milestone_date, created, updated) VALUES ($creator, $project_id, '$title', FROM_UNIXTIME('$milestone_date'), NOW(), NOW())";
+        $flag_color = (int) $flag_color;
+        $notes = mysql_real_escape_string($notes);
+        $q = "INSERT INTO " . DB_PREFIX . "milestones (creator, project_id, title, milestone_date, flag_color, notes, created, updated) VALUES ($creator, $project_id, '$title', FROM_UNIXTIME('$milestone_date'), $flag_color, '$notes', NOW(), NOW())";
         $uid = query_insert($q);
         if ($uid) {
             // Add to activity stream
@@ -87,10 +111,12 @@ class Milestone {
         return false;
     }
 
-    public function update($milestone, $title, $milestone_date) {
+    public function update($milestone, $title, $milestone_date, $flag_color, $notes) {
         $title = mysql_real_escape_string($title);
         $milestone_date = (int) $milestone_date;
-        $q = "UPDATE " . DB_PREFIX . "milestones SET title='$title', milestone_date=FROM_UNIXTIME('$milestone_date') WHERE id = {$milestone->id}";
+        $flag_color = (int) $flag_color;
+        $notes = mysql_real_escape_string($notes);
+        $q = "UPDATE " . DB_PREFIX . "milestones SET title='$title', milestone_date=FROM_UNIXTIME('$milestone_date'), flag_color=$flag_color, notes='$notes' WHERE id = {$milestone->id}";
         // TODO Activity stream missing
         return query_update($q);
     }
@@ -100,5 +126,16 @@ class Milestone {
         // XXX This needs to be protected
         $q = "DELETE FROM " . DB_PREFIX . "milestones WHERE id = {$this->id}";
         return query_delete($q);
+    }
+
+    public function getAvailableColors($translated = true) {
+        return array(
+            '1' => $translated ? _('Red') : 'Red',
+            '2' => $translated ? _('Violet') : 'Violet',
+            '3' => $translated ? _('Green') : 'Green',
+            '4' => $translated ? _('Blue') : 'Blue',
+            '5' => $translated ? _('Orange'): 'Orange',
+            '6' => $translated ? _('Black') : 'Black'
+        );
     }
 }

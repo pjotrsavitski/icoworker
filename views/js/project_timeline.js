@@ -60,8 +60,8 @@ var timeline = new Timeline();
 /* Extend teke with additional methods */
 
 /* Add milestone to timeline */
-teke.add_milestone_to_timeline = function(offset, id, milestone_date, title) {
-	$('<div id="project-timeline-milestone-'+id+'" class="milestone" style="left: '+offset+'px;"><img src="'+teke.get_site_url()+'views/graphics/timeline_milestone.png" alt="flag" /><div class="timeline-above-date">'+teke.format_date(milestone_date, "dd.mm")+'</div><div class="teke-tooltip-content"><label>'+title+'</label><br />'+teke.format_date(milestone_date)+'</div></div>'). appendTo($('#project-timeline-project'));
+teke.add_milestone_to_timeline = function(offset, id, milestone_date, title, flag_url, notes) {
+	$('<div id="project-timeline-milestone-'+id+'" class="milestone" style="left: '+offset+'px;"><img src="'+flag_url+'" alt="flag" /><div class="timeline-above-date">'+teke.format_date(milestone_date, "dd.mm")+'</div><div class="teke-tooltip-content"><label>'+title+'</label><br />'+teke.format_date(milestone_date)+'<div class="milestone-notes">'+notes+'</div></div></div>'). appendTo($('#project-timeline-project'));
     // Bind click
     $('#project-timeline-milestone-'+id).on('click', function(event) {
         // Prevent parent click from happening
@@ -312,7 +312,7 @@ $(document).ready(function() {
 		    // Add milestones
 		    for (var key in data.milestones) {
                 // XXX Possibly .getTime() needs to be used
-				teke.add_milestone_to_timeline((new Date(data.milestones[key].milestone_date) - timeline.getStart()) / timeline.getPixelValue(), data.milestones[key].id, new Date(data.milestones[key].milestone_date), data.milestones[key].title);
+				teke.add_milestone_to_timeline((new Date(data.milestones[key].milestone_date) - timeline.getStart()) / timeline.getPixelValue(), data.milestones[key].id, new Date(data.milestones[key].milestone_date), data.milestones[key].title, data.milestones[key].flag_url, data.milestones[key].notes);
 			}
             // Add documents
             for (var key in data.documents) {
@@ -355,20 +355,19 @@ $(document).ready(function() {
 						    text: teke.translate('button_create'),
 							click: function() {
 							    var _this = $(this);
-								_this.find('input:text').removeClass('ui-state-error');
-								_this.find('.input-datepicker').removeClass('ui-state-error');
+                                _this.find('.ui-state-error').removeClass('ui-state-error');
 								$.ajax({
                                     cache: false,
 									type: "POST",
 									url: teke.get_site_url()+"actions/add_milestone.php",
-									data: { project_id : $('#project_id').val(), title: _this.find('input[name="title"]').val(), url: _this.find('input[name="url"]').val(), milestone_date: _this.find('div[name="milestone_date"]').datepicker("getDate").toUTCString() },
+									data: { project_id : $('#project_id').val(), title: _this.find('input[name="title"]').val(), url: _this.find('input[name="url"]').val(), milestone_date: _this.find('div[name="milestone_date"]').datepicker("getDate").toUTCString(), flag_color: _this.find('select[name="flag_color"]').val(), notes: _this.find('textarea[name="notes"]').val() },
 									dataType: "json",
 									success: function(data) {
 									    if (data.state == 0) {
 										    // Add milestone to timeline
 											// Recalculate offset, it might have been changed
 											offset = (_this.find('div[name="milestone_date"]').datepicker("getDate").getTime() - timeline.getStart()) / timeline.getPixelValue();
-											teke.add_milestone_to_timeline(offset, data.data.id, _this.find('div[name="milestone_date"]').datepicker("getDate"), data.data.title);
+											teke.add_milestone_to_timeline(offset, data.data.id, _this.find('div[name="milestone_date"]').datepicker("getDate"), data.data.title, data.data.flag_url, data.data.notes);
 											// Update activity flow if needed
 											if ($('#project-diary-and-messages-filter > select').val() != 'messages') {
 											    teke.project_update_messages_flow();

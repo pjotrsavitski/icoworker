@@ -99,12 +99,21 @@
 	</div>
 </tal:block>
 
-<tal:block metal:define-macro="add_milestone" i18n:domain="teke">
+<tal:block metal:define-macro="add_milestone" i18n:domain="teke" define="colors php:Milestone::getAvailableColors();">
     <div id="add-milestone" class="teke-dialog-form" title="Add new Milestone" i18n:attributes="title">
 		<fieldset>
 			<label for="title" i18n:translate="">Milestone title</label>
 			<input type="text" name="title" class="text ui-widget-content ui-corner-all" />
 			<div name="milestone_date" class="input-datepicker"></div>
+			<div class="clearfloat"></div>
+			<label for="flag_color" i18n:translate="">Color</label>
+			<select name="flag_color">
+				<tal:block repeat="color colors">
+				    <option value="" tal:attributes="value repeat/color/key" tal:content="color"></option> 
+				</tal:block>
+			</select>
+			<label for="notes" i18n:translate="">Notes (255 characters, plaintext)</label>
+			<textarea name="notes" class="text ui-widget-content ui-corner-all"></textarea>
 		</fieldset>
 	</div>
 </tal:block>
@@ -112,7 +121,7 @@
 <tal:block metal:define-macro="add_project_comment" i18n:domain="teke">
     <div id="add-project-comment" class="teke-dialog-form" title="Add new Comment" i18n:attributes="title">
 		<fieldset>
-			<label for="content" i18n:translate="">Comment</label>
+			<label for="content" i18n:translate="">Comment (255 characters, plaintext)</label>
 			<textarea name="content" class="text ui-widget-content ui-corner-all"></textarea>
 			<div name="comment_date" class="input-datepicker"></div>
 		</fieldset>

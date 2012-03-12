@@ -18,7 +18,7 @@
         $milestones = ProjectManager::getProjectMilestones($project->getId());
         if ($milestones && is_array($milestones) && sizeof($milestones) > 0) {
             foreach ($milestones as $milestone) {
-                $data['milestones'][] = array('id' => $milestone->getId(), 'title' => $milestone->getTitle(), 'milestone_date' => format_date_for_js($milestone->getMilestoneDate()));
+                $data['milestones'][] = array('id' => $milestone->getId(), 'title' => $milestone->getTitle(), 'milestone_date' => format_date_for_js($milestone->getMilestoneDate()), 'flag_url' => $milestone->getFlagColorURL(), 'notes' => $milestone->getNotes());
             }
         }
 

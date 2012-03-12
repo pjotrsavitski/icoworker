@@ -65,6 +65,8 @@ CREATE TABLE IF NOT EXISTS prefix_milestones (
 	project_id bigint(20) UNSIGNED NOT NULL,
 	title varchar(255) NOT NULL,
 	milestone_date DATETIME NOT NULL DEFAULT '0000-00-00 00:00:00',
+	flag_color int(4) DEFAULT 1,
+	notes varchar(255) DEFAULT '',
 	created DATETIME NOT NULL DEFAULT '0000-00-00 00:00:00',
 	updated DATETIME NOT NULL DEFAULT '0000-00-00 00:00:00',
 	FOREIGN KEY (creator) REFERENCES prefix_users (id) ON DELETE CASCADE,

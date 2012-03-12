@@ -16,7 +16,7 @@
         }
 
         // Define fields array
-        $fields = array('title' => true, 'milestone_date' => true);
+        $fields = array('title' => true, 'milestone_date' => true, 'flag_color' => 'true', 'notes' => false);
         $inputs = array();
 
         foreach ($fields as $key => $requirement) {
@@ -31,14 +31,19 @@
                     $response->addError($key);
                 }
             }
+            if (in_array($key, array('notes'))) {
+                $inputs[$key] = force_plaintext($inputs[$key]);
+            }
         }
 
         if (sizeof($response->getErrors()) == 0) {
             $creator = $TeKe->user->getId();
-            if ($created_id = Milestone::create($creator, $project->getId(), $inputs['title'], $inputs['milestone_date'])) {
+            if ($created_id = Milestone::create($creator, $project->getId(), $inputs['title'], $inputs['milestone_date'], $inputs['flag_color'], $inputs['notes'])) {
                 $milestone = new Milestone($created_id);
                 $response->addData('id', $milestone->getId());
                 $response->addData('title', $milestone->getTitle());
+                $response->addData('flag_url', $milestone->getFlagColorURL());
+                $response->addData('notes', $milestone->getNotes());
                 $response->setStateSuccess();
                 $TeKe->add_system_message(_("New milestone added."));
                 $response->setMessages();
