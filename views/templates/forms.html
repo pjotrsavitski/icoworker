@@ -118,6 +118,32 @@
 	</div>
 </tal:block>
 
+<tal:block metal:define-macro="edit_milestone" i18n:domain="teke" define="colors php:Milestone::getAvailableColors();">
+    <div id="edit-milestone" class="teke-dialog-form" title="Edit Milestone" i18n:attributes="title">
+		<fieldset>
+			<input type="hidden" name="id" value="" tal:attributes="value milestone/getId" />
+			<label for="title" i18n:translate="">Milestone title</label>
+			<input type="text" name="title" class="text ui-widget-content ui-corner-all" value="" tal:attributes="value milestone/getTitle"/>
+			<label for="milestone_date" i18n:translate="">Date</label>
+			<input type="text" readonly="readonly" name="milestone_date" value="" tal:attributes="value php:format_date_for_js(milestone.getMilestoneDate())" />
+			<label for="flag_color" i18n:translate="">Color</label>
+			<select name="flag_color">
+				<tal:block repeat="color colors">
+				    <tal:block condition="php:milestone.getFlagColor() EQ repeat.color.key">
+					    <option value="" selected="selected" tal:attributes="value repeat/color/key" tal:content="color"></option>
+					</tal:block>
+
+					<tal:block condition="not: php:milestone.getFlagColor() EQ repeat.color.key">
+					    <option value="" tal:attributes="value repeat/color/key" tal:content="color"></option>
+					</tal:block>
+				</tal:block>
+			</select>
+			<label for="notes" i18n:translate="">Notes (255 characters, plaintext)</label>
+			<textarea name="notes" class="text ui-widget-content ui-corner-all" tal:content="milestone/notes"></textarea>
+		</fieldset>
+	</div>
+</tal:block>
+
 <tal:block metal:define-macro="add_project_comment" i18n:domain="teke">
     <div id="add-project-comment" class="teke-dialog-form" title="Add new Comment" i18n:attributes="title">
 		<fieldset>

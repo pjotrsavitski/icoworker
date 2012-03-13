@@ -61,6 +61,12 @@ class ProjectManager {
         return query_row($q, 'Comment');
     }
 
+    public function getMilestoneById($id) {
+        $id = (int)$id;
+        $q = "SELECT * FROM " . DB_PREFIX . "milestones WHERE id = $id";
+        return query_row($q, 'Milestone');
+    }
+
     public function getProjectTasks($id) {
         $id = (int)$id;
         $q = "SELECT * FROM " . DB_PREFIX . "tasks WHERE project_id = $id";

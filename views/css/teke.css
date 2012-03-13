@@ -309,6 +309,11 @@ div#add-new-project-form label {
 	display: block;
 }
 
+/* jQuery UI datepciker font-size override */
+.ui-datepicker {
+	font-size: 10px !important;
+}
+
 .input-datepicker {
 	font-size: 10px;
 }

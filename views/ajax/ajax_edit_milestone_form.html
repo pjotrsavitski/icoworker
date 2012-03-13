@@ -1,0 +1,11 @@
+<tal:block condition="php:teke.is_logged_in() AND is_array(teke.page) AND sizeof(teke.page) GT 0" i18n:domain="teke">
+
+    <tal:block define="milestone php:ProjectManager::getMilestoneById(teke.page[1])" condition="milestone">
+	    
+	    <tal:block define="project milestone/getProjectObject" condition="php:project.isMember(get_logged_in_user_id())">
+	        <tal:block metal:use-macro="forms.html/edit_milestone" />
+		</tal:block>
+
+	</tal:block>
+
+</tal:block>

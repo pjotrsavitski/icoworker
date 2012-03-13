@@ -88,6 +88,11 @@ class Activity {
                     $data[1] = date('d.m.Y', $data[1]);
                     $body = vsprintf(_('%3$s added milestone <span class="activity-item-title">%1$s</span> at %2$s'), $data);
                     break; 
+                case "edit_milestone":
+                    $data[] = $this->getCreatorObject()->getFullname();
+                    $data[1] = date('d.m.Y', $data[1]);
+                    $body = vsprintf(_('%3$s updated milestone <span class="activity-item-title">%1$s</span> at %2$s'), $data);
+                    break;
                 case "add_document":
                     $data[] = $this->getCreatorObject()->getFullname();
                     $body = vsprintf(_('%2$s added document <span class="activity-item-title">%1$s</span>'), $data);

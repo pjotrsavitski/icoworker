@@ -117,8 +117,13 @@ class Milestone {
         $flag_color = (int) $flag_color;
         $notes = mysql_real_escape_string($notes);
         $q = "UPDATE " . DB_PREFIX . "milestones SET title='$title', milestone_date=FROM_UNIXTIME('$milestone_date'), flag_color=$flag_color, notes='$notes' WHERE id = {$milestone->id}";
-        // TODO Activity stream missing
-        return query_update($q);
+        $updated = query_update($q);
+        if ($updated) {
+            // Add to activity stream
+            Activity::create(get_logged_in_user_id(), $milestone->getProjectId(), 'activity', 'edit_milestone', '', array($title, $milestone_date));
+            return $updated;
+        }
+        return false;
     }
 
     public function delete() {
