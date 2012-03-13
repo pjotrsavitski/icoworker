@@ -153,3 +153,16 @@
 		</fieldset>
 	</div>
 </tal:block>
+
+<tal:block metal:define-macro="edit_project_comment" i18n:domain="teke">
+    <div id="edit-project-comment" class="teke-dialog-form" title="Edit Comment" i18n:attributes="title">
+		<fieldset>
+			<input type="hidden" name="id" value="" tal:attributes="value comment/getId" />
+			<label for="content" i18n:translate="">Comment (255 characters, plaintext)</label>
+			<textarea name="content" class="text ui-widget-content ui-corner-all" tal:content="comment/content"></textarea>
+            <label for="comment_date" i18n:translate="">Date</label>
+			<input type="text" readonly="readonly" name="comment_date" value="" tal:attributes="value php:format_date_for_js(comment.getCommentDate())" />
+
+		</fieldset>
+	</div>
+</tal:block>

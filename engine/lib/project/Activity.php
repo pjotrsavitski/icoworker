@@ -106,6 +106,11 @@ class Activity {
                     $data[0] = date('d.m.Y', $data[0]);
                     $body = vsprintf(_('%2$s added comment at %1$s'), $data);
                     break;
+                case "edit_comment":
+                    $data[] = $this->getCreatorObject()->getFullname();
+                    $data[0] = date('d.m.Y', $data[0]);
+                    $body = vsprintf(_('%2$s changed comment at %1$s'), $data);
+                    break;
                 default:
                     // TODO Check if this stays that way
                     $body = "NOT IMPLEMENTED";

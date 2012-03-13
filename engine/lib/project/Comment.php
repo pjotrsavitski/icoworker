@@ -91,8 +91,13 @@ class Comment {
         $content = mysql_real_escape_string($content);
         $comment_date = (int) $comment_date;
         $q = "UPDATE " . DB_PREFIX . "project_comments SET content='$content', comment_date=FROM_UNIXTIME('$comment_date') WHERE id = {$comment->id}";
-        // TODO Activity stream missing
-        return query_update($q);
+        $updated = query_update($q);
+        if ($updated) {
+            // Add to activity stream
+            Activity::create(get_logged_in_user_id(), $comment->getProjectId(), 'activity', 'edit_comment', '', array($comment_date));
+            return $updated;
+        }
+        return false;
     }
 
     public function delete() {

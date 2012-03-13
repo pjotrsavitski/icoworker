@@ -180,6 +180,7 @@ teke.add_comment_to_timeline = function(offset, id, comment_date, content) {
     $('#project-timeline-comment-'+id).on('click', function(event) {
         // Prevent parent click from happening
         event.stopPropagation();
+        teke.edit_comment(id);
     });
     // Add tooltip
     $('#project-timeline-comment-'+id+' img').qtip({
@@ -201,6 +202,87 @@ teke.add_comment_to_timeline = function(offset, id, comment_date, content) {
         },
         style: {
             classes: 'ui-tooltip-light ui-tooltip-shadow ui-tooltip-rounded'
+        }
+    });
+};
+
+/* Edit comment */
+teke.edit_comment = function(id) {
+    // Show the form
+    $.ajax({
+        cache: false,
+        dataType: "html",
+        type: "GET",
+        url: teke.get_site_url()+"ajax/edit_project_comment_form/"+id,
+        success: function(data) {
+            $(data).dialog({
+                autoOpen: true,
+                height: 'auto',
+                width: 'auto',
+                modal: true,
+                buttons: [
+                    {
+                        text: teke.translate('button_edit'),
+                        click: function() {
+                            var _this = $(this);
+                            _this.find('.ui-state-error').removeClass('ui-state-error');
+                            $.ajax({
+                                cache: false,
+                                type: "POST",
+                                url: teke.get_site_url()+"actions/edit_project_comment.php",
+                                data: { comment_id: _this.find('input[name="id"]').val(), content: _this.find('textarea[name="content"]').val(), comment_date: _this.find('input[name="comment_date"]').datepicker("getDate").toUTCString() },
+                                dataType: "json",
+                                success: function(data) {
+                                    if (data.state == 0) {
+                                        // Replace comment on timeline
+                                        // Recalculate offset, it might have been changed
+                                        offset = (_this.find('input[name="comment_date"]').datepicker("getDate").getTime() - timeline.getStart()) / timeline.getPixelValue();
+                                        // Remove old comment object
+                                        $('#project-timeline-comment-'+id).remove();
+                                        // Add new one instead
+                                        teke.add_comment_to_timeline(offset, data.data.id, _this.find('input[name="comment_date"]').datepicker("getDate"), data.data.content);
+										// Update activity flow if needed
+                                        if ($('#project-diary-and-messages-filter > select').val() != 'messages') {
+                                            teke.project_update_messages_flow();
+                                        }
+										// Close the dialog
+                                        _this.dialog('close');
+                                    } else {
+                                        for (var key in data.errors) {
+                                            _this.find('[name="'+data.errors[key]+'"]').addClass('ui-state-error');
+                                        }
+                                    }
+                                    // Add messages if any provided
+                                    if (data.messages != "") {
+                                        teke.replace_system_messages(data.messages);
+                                    }
+                                },
+                                error: function() {
+                                    // TODO removeme
+                                    alert("error occured");
+                                }
+                            });
+                        }
+                    },
+                    {
+                        text: teke.translate('button_return'),
+                        click: function() {
+                            $(this).dialog('close');
+                        }
+                    }
+                ],
+                open: function() {
+                    $(this).find('input[name="comment_date"]').datepicker({ minDate: new Date(timeline.getStart()), maxDate: new Date(timeline.getEnd()), dateFormat: 'dd.mm.yy' }).datepicker('setDate', new Date($(this).find('input[name="comment_date"]').val()));
+                },
+                close: function() {
+                    $(this).dialog("destroy");
+                    $(this).remove();
+                }
+            });
+        },
+        error: function() {
+            // TODO removeme
+            alert('error occured');
         }
     });
 };
