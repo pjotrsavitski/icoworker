@@ -52,6 +52,8 @@ Timeline.prototype.initializeTimeline = function() {
     $('<div id="project-timeline-documents"></div>').width(this.getWidth()).appendTo($('#project-timeline'));
 	$('<div id="project-timeline-project"></div>').width(this.getWidth()).appendTo($('#project-timeline'));
     $('<div id="project-timeline-project-comments" title="'+teke.translate('text_click_to_add_comment')+'"></div>').width(this.getWidth()).appendTo($('#project-timeline'));
+    $('<div id="project-timeline-tasks"></div>').width(this.getWidth()).appendTo($('#project-timeline'));
+    $('<div id="project-timeline-resources"></div>').width(this.getWidth()).appendTo($('#project-timeline'));
 };
 
 // Create global timeline object

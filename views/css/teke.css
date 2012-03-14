@@ -589,6 +589,20 @@ div#project-timeline .now {
 	z-index: 1;
 }
 
+/* Project timeline tasks */
+div#project-timeline-tasks {
+	width: 600px;
+	min-height: 100px;
+	z-index: 2;
+}
+
+/* Project timeline resources */
+div#project-timeline-resources {
+	width: 600px;
+	min-height: 25px;
+	z-index: 2;
+}
+
 /* TOOLTIPS */
 
 .teke-tooltip-content {
