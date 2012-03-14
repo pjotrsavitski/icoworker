@@ -344,16 +344,75 @@ teke.add_document_to_timeline = function(id, created, title, url, notes, version
 
 /* Add beginning and end pointo to timeline */
 teke.add_beginning_end_to_timeline = function() {
-    $('<div class="beginning" style="left:0px;"><img src="'+teke.get_site_url()+'views/graphics/grey_circle.png" alt="circle" /><div class="timeline-above-date">'+teke.format_date(new Date(timeline.getTimelineData().beginning))+'</div></div>').appendTo($('#project-timeline-project'));
-    $('#project-timeline-project .beginning').on('click', function(event) {
+    $('<div id="project-timeline-beginning" class="beginning" style="left:0px;"><img src="'+teke.get_site_url()+'views/graphics/grey_circle.png" alt="circle" /><div class="timeline-above-date">'+teke.format_date(new Date(timeline.getTimelineData().beginning))+'</div></div>').appendTo($('#project-timeline-project'));
+    $('#project-timeline-beginning').on('click', function(event) {
 		// Prevent parent click from happening
 	    event.stopPropagation();
+        // Add chnage possibility
+        $('<div id="change-project-beginning" title="'+teke.translate('title_change_project_beginning')+'"><div name="project-beginning-date"></div></div>').dialog({
+            autoOpen: true,
+            height: 'auto',
+            width: 'auto',
+            modal: true,
+            buttons: [
+                {
+                    text: teke.translate('button_change'),
+                    click: function() {
+                        // TODO missing action
+                        return false;
+                    }
+                },
+                {
+                    text: teke.translate('button_return'),
+                    click: function() {
+                        $(this).dialog('close');
+                    }
+                }
+            ],
+            open: function() {
+                $(this).find('div[name="project-beginning-date"]').datepicker({ maxDate: new Date(timeline.getEnd()) }).datepicker('setDate', new Date(timeline.getStart()));
+            },
+            close: function() {
+                $(this).dialog('destroy');
+                $(this).remove();
+            }
+        });
 	});
 
-    $('<div class="end" style="right:0px;"><img src="'+teke.get_site_url()+'views/graphics/grey_circle.png" alt="circle" /><div class="timeline-above-date">'+teke.format_date(new Date(timeline.getTimelineData().end))+'</div></div>').appendTo($('#project-timeline-project'));
-	$('#project-timeline-project .end').on('click', function(event) {
+    $('<div id="project-timeline-end" class="end" style="right:0px;"><img src="'+teke.get_site_url()+'views/graphics/grey_circle.png" alt="circle" /><div class="timeline-above-date">'+teke.format_date(new Date(timeline.getTimelineData().end))+'</div></div>').appendTo($('#project-timeline-project'));
+	$('#project-timeline-end').on('click', function(event) {
 		// Prevent parent click from happening
 	    event.stopPropagation();
+        // Add chnage possibility
+        $('<div id="change-project-end" title="'+teke.translate('title_change_project_end')+'"><div name="project-end-date"></div></div>').dialog({
+            autoOpen: true,
+            height: 'auto',
+            width: 'auto',
+            modal: true,
+            buttons: [
+                {
+                    text: teke.translate('button_change'),
+                    click: function() {
+                        // TODO missing action
+                        return false;
+                    }
+                },
+                {
+                    text: teke.translate('button_return'),
+                    click: function() {
+                        $(this).dialog('close');
+                    }
+                }
+            ],
+            open: function() {
+                $(this).find('div[name="project-end-date"]').datepicker({ minDate: new Date(timeline.getStart()) }).datepicker('setDate', new Date(timeline.getEnd()));
+            },
+            close: function() {
+                $(this).dialog('destroy');
+                $(this).remove();
+            }
+        });
+
 	});
 };
 
