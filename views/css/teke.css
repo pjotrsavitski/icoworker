@@ -393,6 +393,10 @@ div.single-task {
 	margin: 5px 10px 5px 10px;
 }
 
+.project-resource, .project-member {
+	display: inline;
+}
+
 div#project-diary-and-messages-flow {
 	border: 1px solid black;
 	height: 150px;

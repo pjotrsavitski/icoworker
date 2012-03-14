@@ -29,27 +29,31 @@
 </tal:block>
 
 <tal:block metal:define-macro="member">
-    <a href="" class="project-member" title="" tal:attributes="href member/getURL; title member/getFullname">
-		<img src="" alt="profile_image" tal:attributes="src member/getImageURL" />
-	</a>
+    <div id="" class="project-member" tal:attributes="id string:project-member-${member/getId}">
+        <a href="" title="" tal:attributes="href member/getURL; title member/getFullname">
+		    <img src="" alt="profile_image" tal:attributes="src member/getImageURL" />
+	    </a>
+    </div>
 </tal:block>
 
 <tal:block metal:define-macro="task">
-    <div class="single-task ui-corner-all" title="" tal:content="task/getTitle" tal:attributes="title task/getDescription"></div>
+    <div id="" class="single-task ui-corner-all" title="" tal:content="task/getTitle" tal:attributes="title task/getDescription; id string:project-task-${task/getId}"></div>
 </tal:block>
 
 <tal:block metal:define-macro="resource">
-    <img src="" title="" alt="resource" class="project-resource teke-tooltip" tal:attributes="src resource/getResourceTypeURL; title resource/getTitle" />
-	<div class="teke-tooltip-content">
-		<tal:block condition="not:resource/getURL">
-		    <label tal:content="resource/getTitle"></label>
-		</tal:block>
-		<tal:block condition="resource/getURL">
-		    <label>
-		        <a href="" target="_blank" tal:attributes="href resource/getURL" tal:content="resource/getTitle"></a>
-		    </label>
-		</tal:block>
-		<br />
-		<tal:block condition="resource/getDescription" content="resource/getDescription" />
-	</div>
+    <div id="" class="project-resource" tal:attributes="id string:project-resource-${resource/getId}">
+        <img src="" title="" alt="resource" class="teke-tooltip" tal:attributes="src resource/getResourceTypeURL; title resource/getTitle" />
+	    <div class="teke-tooltip-content">
+		    <tal:block condition="not:resource/getURL">
+		        <label tal:content="resource/getTitle"></label>
+		    </tal:block>
+		    <tal:block condition="resource/getURL">
+		        <label>
+		            <a href="" target="_blank" tal:attributes="href resource/getURL" tal:content="resource/getTitle"></a>
+		        </label>
+		    </tal:block>
+		    <br />
+		    <tal:block condition="resource/getDescription" content="resource/getDescription" />
+	    </div>
+    </div>
 </tal:block>
