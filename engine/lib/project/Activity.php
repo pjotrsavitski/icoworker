@@ -70,6 +70,10 @@ class Activity {
             $body = "";
             $data = $this->getActivityDataArray();
             switch ($activity_subtype) {
+                case "edit_project":
+                    $data[] = $this->getCreatorObject()->getFullname();
+                    $body = vsprintf(_('%1$s changed the project.'), $data);
+                    break;
                 case "join_project":
                     $data[] = $this->getCreatorObject()->getFullname();
                     $body = vsprintf(_('%1$s joined the project.'), $data);

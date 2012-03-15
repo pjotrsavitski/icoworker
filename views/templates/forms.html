@@ -3,11 +3,22 @@
 		<fieldset>
 			<label for="title" i18n:translate="">Title</label>
 			<input type="text" name="title" id="title" class="text ui-widget-content ui-corner-all" />
-			<label for="goal" i18n:translate="">Goal</label>
+			<label for="goal" i18n:translate="">Goal (255 characters, plaintext)</label>
 			<textarea rows="3" cols="50" name="goal" id="goal" class="text ui-widget-content ui-corner-all"></textarea>
 			<label for="start_end_date" i18n:translate="">Start/end dates</label>
 			<div id="start_date" class="input-datepicker"></div>
 			<div id="end_date" class="input-datepicker"></div>
+		</fieldset>
+	</div>
+</tal:block>
+
+<tal:block metal:define-macro="edit_project" i18n:domain="teke">
+    <div id="edit-project" class="teke-dialog-form" title="Edit Project" i18n:attributes="title">
+		<fieldset>
+			<label for="title" i18n:translate="">Title</label>
+			<input type="text" name="title" class="text ui-widget-content ui-corner-all" value="" tal:attributes="value project/getTitle" />
+			<label for="goal" i18n:translate="">Goal (255 characters, plaintext)</label>
+			<textarea rows="3" cols="50" name="goal" class="text ui-widget-content ui-corner-all" tal:content="project/goal"></textarea>
 		</fieldset>
 	</div>
 </tal:block>

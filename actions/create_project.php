@@ -14,6 +14,9 @@
             if (in_array($key, array('start_date', 'end_date'))) {
                 $inputs[$key] = strtotime($inputs[$key]);
             }
+            if (in_array($key, array('goal'))) {
+                $inputs[$key] = force_plaintext($inputs[$key]);
+            }
             if ($requirement && !$inputs[$key]) {
                 $response->addError($key);
             }

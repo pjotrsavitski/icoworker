@@ -19,8 +19,10 @@
 
                 <tal:block condition="php:project_exists AND is_member">
 				    <div id="single-project-content" class="single-project">
-                        <h1 tal:content="project/title"></h1>
+                        <h1 id="project-title" tal:content="project/title"></h1>
+						<div id="project-goal" tal:content="structure project/getGoal"></div>
 						<div>
+							<span id="edit-project-button" class="teke-edit-button" title="Edit Project"></span>
 							<span id="add-document-button" class="teke-add-button" title="Create new Document" i18n:attributes="title"></span>
 						</div>
 

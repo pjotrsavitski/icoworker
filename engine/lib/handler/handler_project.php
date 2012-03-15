@@ -13,9 +13,11 @@ class ProjectHandler extends BaseHandler {
     }
     
     public function setNavigation() {
+        /*
         $id = "";
         if (isset($this->page[1])) $id = $this->page[1];
         $this->navigation []= array('title'=>_('View'), 'url'=>"project/view/{$id}", 'current'=>$this->is_current_page($this->page[0], "view"));
+         */
     }
 
     public function getProjectById() {

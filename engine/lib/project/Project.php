@@ -54,7 +54,7 @@ class Project {
     }
 
     public function getGoal() {
-        return $this->goal;
+        return nl2br($this->goal);
     }
 
     public function getStartDate() {
@@ -153,11 +153,17 @@ class Project {
         return false;
     }
 
-    public function update($project, $title, $goal, $start_date, $end_date) {
+    public function update($project, $title, $goal) {
         $title = mysql_real_escape_string($title);
         $goal = mysql_real_escape_string($goal);
-        $q = "UPDATE " . DB_PREFIX . "projects SET title='$title', goal='$goal', start_date=FROM_UNIXTIME('$start_date'), end_date=FROM_UNIXTIME('$end_date') WHERE id = {$project->id}";
-        return query_update($q);
+        $q = "UPDATE " . DB_PREFIX . "projects SET title='$title', goal='$goal' WHERE id = {$project->getId()}";
+        $updated = query_update($q);
+        if ($updated) {
+            // Add activity to stream
+            Activity::create(get_logged_in_user_id(), $project->getId(), 'activity', 'edit_project', '', '');
+            return $updated;
+        }
+        return false;
     }
 
     public function delete() {
