@@ -5,7 +5,6 @@ class Activity {
     public $creator = NULL;
     public $project_id = NULL;
     public $activity_type = "";// Either "activity" or "message"
-    // XXX This should probably just be some activity type information
     public $activity_subtype = "";// I guess structure should be based on that
     public $body = "";
     public $activity_data = "";// This would probably be the JSON-encoded string
@@ -144,7 +143,9 @@ class Activity {
         $activity_type = mysql_real_escape_string($activity_type);
         $activity_subtype = mysql_real_escape_string($activity_subtype);
         $body = mysql_real_escape_string($body);
-        $activity_data = json_encode($activity_data);
+        // NB! Information inside $activity_data Array should be UNESCAPED
+        // Need to escape resulting JSON string
+        $activity_data = mysql_real_escape_string(json_encode($activity_data));
         $q = "INSERT INTO " . DB_PREFIX . "activity (creator, project_id, activity_type, activity_subtype, body, activity_data, created) VALUES ($creator, $project_id, '$activity_type', '$activity_subtype', '$body', '$activity_data', NOW())";
         $uid = query_insert($q);
         if ($uid) {

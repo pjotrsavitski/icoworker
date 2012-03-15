@@ -73,6 +73,8 @@ class Task {
     }
 
     public function create($creator, $project_id, $title, $description) {
+        // Need unescaped data for JSON
+        $activity_data = array($title);
         $creator = (int)$creator;
         $project_id = (int)$project_id;
         $title = mysql_real_escape_string($title);
@@ -81,7 +83,7 @@ class Task {
         $uid = query_insert($q);
         if ($uid) {
             // Add to activity stream
-            Activity::create($creator, $project_id, 'activity', 'add_task', '', array($title));
+            Activity::create($creator, $project_id, 'activity', 'add_task', '', $activity_data);
             return $uid;
         }
         return false;
@@ -91,6 +93,7 @@ class Task {
         $title = mysql_real_escape_string($title);
         $description = mysql_real_escape_string($description);
         $q = "UPDATE " . DB_PREFIX . "tasks SET title='$title', description='$description' WHERE id = {$task->id}";
+        // XXX Activity missing
         return query_update($q);
     }
 

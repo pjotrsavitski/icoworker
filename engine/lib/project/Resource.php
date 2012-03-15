@@ -101,6 +101,8 @@ class Resource {
     }
 
     public function create($creator, $project_id, $title, $description, $url, $resource_type) {
+        // Need unescaped data for JSON
+        $activity_data = array($title);
         $creator = (int)$creator;
         $project_id = (int)$project_id;
         $title = mysql_real_escape_string($title);
@@ -111,7 +113,7 @@ class Resource {
         $uid = query_insert($q);
         if ($uid) {
              // Add to activity stream
-            Activity::create($creator, $project_id, 'activity', 'add_resource', '', array($title));
+            Activity::create($creator, $project_id, 'activity', 'add_resource', '', $activity_data);
             return $uid;
         }
         return false;
@@ -123,6 +125,7 @@ class Resource {
         $url = mysql_real_escape_string($url);
         $resource_type = mysql_real_escape_string($resource_type);
         $q = "UPDATE " . DB_PREFIX . "resources SET title='$title', description='$description', url='$url', resource_type='$resource_type' WHERE id = {$resource->id}";
+        // XXX Activity missing
         return query_update($q);
     }
 

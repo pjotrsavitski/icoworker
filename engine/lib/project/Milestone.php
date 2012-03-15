@@ -95,6 +95,8 @@ class Milestone {
     }
 
     public function create($creator, $project_id, $title, $milestone_date, $flag_color, $notes) {
+        // Need unescaped data for JSON
+        $activity_data = array($title, $milestone_date);
         $creator = (int)$creator;
         $project_id = (int)$project_id;
         $title = mysql_real_escape_string($title);
@@ -105,13 +107,15 @@ class Milestone {
         $uid = query_insert($q);
         if ($uid) {
             // Add to activity stream
-            Activity::create($creator, $project_id, 'activity', 'add_milestone', '', array($title, $milestone_date));
+            Activity::create($creator, $project_id, 'activity', 'add_milestone', '', $activity_data);
             return $uid;
         }
         return false;
     }
 
     public function update($milestone, $title, $milestone_date, $flag_color, $notes) {
+        // Need unescaped data for JSON
+        $activity_data = array($title, $milestone_date);
         $title = mysql_real_escape_string($title);
         $milestone_date = (int) $milestone_date;
         $flag_color = (int) $flag_color;
@@ -120,7 +124,7 @@ class Milestone {
         $updated = query_update($q);
         if ($updated) {
             // Add to activity stream
-            Activity::create(get_logged_in_user_id(), $milestone->getProjectId(), 'activity', 'edit_milestone', '', array($title, $milestone_date));
+            Activity::create(get_logged_in_user_id(), $milestone->getProjectId(), 'activity', 'edit_milestone', '', $activity_data);
             return $updated;
         }
         return false;

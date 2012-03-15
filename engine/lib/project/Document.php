@@ -99,6 +99,8 @@ class Document {
     }
 
     public function create($creator, $project_id, $title, $url, $notes) {
+        // Need unescaped data for JSON
+        $activity_data = array($title);
         $creator = (int)$creator;
         $project_id = (int)$project_id;
         $title = mysql_real_escape_string($title);
@@ -108,7 +110,7 @@ class Document {
         $uid = query_insert($q);
         if ($uid) {
             // Add to activity stream
-            Activity::create($creator, $project_id, 'activity', 'add_document', '', array($title));
+            Activity::create($creator, $project_id, 'activity', 'add_document', '', $activity_data);
             // Add version
             Document::addVersion($creator, $uid, $title, $url, $notes);
             return $uid;
@@ -117,6 +119,8 @@ class Document {
     }
 
     public function update($document, $title, $url, $notes) {
+        // Need unescaped data for JSON
+        $activity_data = array($title);
         $title = mysql_real_escape_string($title);
         $url = mysql_real_escape_string($url);
         $notes = mysql_real_escape_string($notes);
@@ -124,7 +128,7 @@ class Document {
         $updated = query_update($q);
         if ($updated) {
             // Add to activity stream
-            Activity::create($document->getCreator(), $document->getProjectId(), 'activity', 'add_document_version', '', array($title));
+            Activity::create($document->getCreator(), $document->getProjectId(), 'activity', 'add_document_version', '', $activity_data);
             // Add version
             Document::addVersion($document->getCreator(), $document->id, $title, $url, $notes);
             return $updated;
