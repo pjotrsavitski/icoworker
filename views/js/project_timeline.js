@@ -358,8 +358,30 @@ teke.add_beginning_end_to_timeline = function() {
                 {
                     text: teke.translate('button_change'),
                     click: function() {
-                        // TODO missing action
-                        return false;
+                        var _this = $(this);
+                        $.ajax({
+                            cache: false,
+                            type: "POST",
+                            url: teke.get_site_url()+"actions/edit_project_start.php",
+                            data: { project_id: teke.get_project_id(), start_date: _this.find('div[name="project-beginning-date"]').datepicker("getDate").toUTCString() },
+                            dataType: "json",
+                            success: function(data) {
+                                if (data.state == 0) {
+                                    // Make a refresh, as all timeline parameters need to be recalculated
+                                    window.location.reload();
+                                } else {
+                                    // Add messages if any provided
+                                    if (data.messages != "") {
+                                        teke.replace_system_messages(data.messages);
+                                    }
+                                }
+                            },
+                            error: function() {
+                                // TODO removeme
+                                alert("error occured");
+                            }
+                        });
+
                     }
                 },
                 {
@@ -393,8 +415,29 @@ teke.add_beginning_end_to_timeline = function() {
                 {
                     text: teke.translate('button_change'),
                     click: function() {
-                        // TODO missing action
-                        return false;
+                        var _this = $(this);
+                        $.ajax({
+                            cache: false,
+                            type: "POST",
+                            url: teke.get_site_url()+"actions/edit_project_end.php",
+                            data: { project_id: teke.get_project_id(), end_date: _this.find('div[name="project-end-date"]').datepicker("getDate").toUTCString() },
+                            dataType: "json",
+                            success: function(data) {
+                                if (data.state == 0) {
+                                    // Make a refresh, as all timeline parameters need to be recalculated
+                                    window.location.reload();
+                                } else {
+                                    // Add messages if any provided
+                                    if (data.messages != "") {
+                                        teke.replace_system_messages(data.messages);
+                                    }
+                                }
+                            },
+                            error: function() {
+                                // TODO removeme
+                                alert("error occured");
+                            }
+                        });
                     }
                 },
                 {

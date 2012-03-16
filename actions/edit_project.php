@@ -35,7 +35,6 @@
                 $response->addData('title', $project->getTitle());
                 $response->addData('goal', $project->getGoal());
                 $response->setStateSuccess();
-                $response->setForward($project->getURL());
                 $TeKe->add_system_message(_("Project changed."));
                 $response->setMessages();
             }
