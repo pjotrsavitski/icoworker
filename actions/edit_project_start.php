@@ -66,10 +66,6 @@
             }
         }
 
-        // XXX Send value to console, set to false, MISSING update_start_date method
-        error_log((int)$date_allowed);
-        $date_allowed = false;
-
         if (!$date_allowed) {
             $TeKe->add_system_message(_("Chosen date does not suit. It is either greater than the project end date or some of the elements are placed before chosen date."), 'error');
             $response->setMessages();
@@ -78,7 +74,7 @@
         }
 
         if (sizeof($response->getErrors()) == 0) {
-            if (Project::update_start_date($project, $inputs['start_date'])) {
+            if (Project::updateStartDate($project, $inputs['start_date'])) {
                 $response->setStateSuccess();
                 $TeKe->add_system_message(_("Project start date changed."));
             }

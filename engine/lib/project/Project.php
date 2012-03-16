@@ -166,6 +166,31 @@ class Project {
         return false;
     }
 
+    public function updateStartDate($project, $start_date) {
+        $start_date = (int)$start_date;
+        $q = "UPDATE " . DB_PREFIX . "projects SET start_date=FROM_UNIXTIME({$start_date}) WHERE id = {$project->getId()}";
+        $updated = query_update($q);
+        if ($updated) {
+            // Add activity to stream
+            Activity::create(get_logged_in_user_id(), $project->getId(), 'activity', 'edit_project_start_date', '', array( strtotime($project->getStartDate()), $start_date ));
+            return $updated;
+        }
+        return false;
+    }
+
+    public function updateEndDate($project, $end_date) {
+        $end_date = (int)$end_date;
+        $q = "UPDATE " . DB_PREFIX . "projects SET end_date=FROM_UNIXTIME({$end_date}) WHERE id = {$project->getId()}";
+        $updated = query_update($q);
+        if ($updated) {
+            // Add activity to stream
+            Activity::create(get_logged_in_user_id(), $project->getId(), 'activity', 'edit_project_end_date', '', array( strtotime($project->getEndDate()), $end_date ));
+            return $updated;
+        }
+        return false;
+    }
+
+
     public function delete() {
         // TODO Check on how can delete is needed
         // XXX This needs to be protected

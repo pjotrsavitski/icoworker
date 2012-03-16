@@ -74,6 +74,18 @@ class Activity {
                     $data[] = $this->getCreatorObject()->getFullname();
                     $body = vsprintf(_('%1$s changed the project.'), $data);
                     break;
+                case "edit_project_start_date":
+                    $data[] = $this->getCreatorObject()->getFullname();
+                    $data[0] = date('d.m.Y', $data[0]);
+                    $data[1] = date('d.m.Y', $data[1]);
+                    $body = vsprintf(_('%3$s changed the project start date from %1$s to %2$s.'), $data);
+                    break;
+                case "edit_project_end_date":
+                    $data[] = $this->getCreatorObject()->getFullname();
+                    $data[0] = date('d.m.Y', $data[0]);
+                    $data[1] = date('d.m.Y', $data[1]);
+                    $body = vsprintf(_('%3$s changed the project end date from %1$s to %2$s.'), $data);
+                    break;
                 case "join_project":
                     $data[] = $this->getCreatorObject()->getFullname();
                     $body = vsprintf(_('%1$s joined the project.'), $data);

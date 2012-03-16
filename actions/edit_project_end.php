@@ -66,10 +66,6 @@
             }
         }
 
-        // XXX Send value to console, set to false, MISSING update_end_date method
-        error_log((int)$date_allowed);
-        $date_allowed = false;
-
         if (!$date_allowed) {
             $TeKe->add_system_message(_("Chosen date does not suit. It is either lower than the project start date or some of the elements are placed after chosen date."), 'error');
             $response->setMessages();
@@ -78,7 +74,7 @@
         }
 
         if (sizeof($response->getErrors()) == 0) {
-            if (Project::update_end_date($project, $inputs['end_date'])) {
+            if (Project::updateEndDate($project, $inputs['end_date'])) {
                 $response->setStateSuccess();
                 $TeKe->add_system_message(_("Project end date changed."));
             }
