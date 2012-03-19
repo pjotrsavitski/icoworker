@@ -122,18 +122,3 @@ CREATE TABLE IF NOT EXISTS prefix_activity (
 	FOREIGN KEY (creator) REFERENCES prefix_users (id) ON DELETE CASCADE,
 	FOREIGN KEY (project_id) REFERENCES prefix_projects (id) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=UTF8;
-
--- XXX consider a need of me --
-CREATE TABLE IF NOT EXISTS prefix_images (
-    id bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    creator bigint(20) UNSIGNED default NULL,
-    name char(255) DEFAULT "",
-    type char(255) DEFAULT "",
-    size INT DEFAULT 0,
-    width INT DEFAULT 0,
-    height INT DEFAULT 0,
-    location char(255) DEFAULT "",
-    created TIMESTAMP DEFAULT NOW(),
-    locked BOOLEAN DEFAULT FALSE,
-    FOREIGN KEY (creator) REFERENCES prefix_users (id) ON DELETE SET NULL
-) ENGINE=InnoDB DEFAULT CHARSET=UTF8;

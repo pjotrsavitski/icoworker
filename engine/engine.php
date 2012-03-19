@@ -14,8 +14,6 @@ require_once(dirname(__FILE__)."/lib/ajax/AJAXResponse.php");
 // TODO Consider making UserManager as with Projectand ProjectManager
 require_once(dirname(__FILE__)."/lib/user/user.php");
 require_once(dirname(__FILE__)."/lib/project/ProjectManager.php");
-// TODO is image needed
-require_once(dirname(__FILE__)."/lib/image/Image.php");
 require_once(dirname(__FILE__)."/lib/handler/handler.php");
 require_once(dirname(__FILE__)."/lib/firephp/FirePHP.class.php");
 
