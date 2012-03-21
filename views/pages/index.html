@@ -66,9 +66,7 @@
 							    </div>
 						    </div>
 					    </td>
-					    <td class="project-timeline">
-							<input id="" value="" type="hidden" tal:attributes="id string:project-beginning-${project/getId}; value php:strtotime(project.getStartDate())" />
-							<input id="" value="" type="hidden" tal:attributes="id string:project-end-${project/getId}; value php:strtotime(project.getEndDate())" />
+					    <td class="project-timeline" data-project-start-date="" data-project-end-date="" tal:attributes="data-project-start-date php:strtotime(project.getStartDate()); data-project-end-date php:strtotime(project.getEndDate())">
 					    </td>
 				    </tr>
 			    </tbody>

@@ -42,15 +42,15 @@ teke.place_timelines = function() {
 		};
 
         $('#all-projects .project-timeline').each(function(index) {
-	        if ($(this).find('[id^="project-beginning-"]').val() < places_timelines.getBeginning()) {
-		        places_timelines.setBeginning($(this).find('[id^="project-beginning-"]').val());
+	        if ($(this).attr('data-project-start-date') < places_timelines.getBeginning()) {
+		        places_timelines.setBeginning($(this).attr('data-project-start-date'));
 		    } else if (places_timelines.getBeginning() == 0) {
-			    places_timelines.setBeginning($(this).find('[id^="project-beginning-"]').val());
+			    places_timelines.setBeginning($(this).attr('data-project-start-date'));
 		    }
-		    if ($(this).find('[id^="project-end-"]').val() > places_timelines.getEnd()) {
-		        places_timelines.setEnd($(this).find('[id^="project-end-"]').val());
+		    if ($(this).attr('data-project-end-date') > places_timelines.getEnd()) {
+		        places_timelines.setEnd($(this).attr('data-project-end-date'));
 		    }
-			places_timelines.addProject(index, $(this).find('[id^="project-beginning-"]').val(), $(this).find('[id^="project-end-"]').val());
+			places_timelines.addProject(index, $(this).attr('data-project-start-date'), $(this).attr('data-project-end-date'));
 	    });
 
 		if (places_timelines.getBeginning() > 0 && places_timelines.getEnd() > 0) {
