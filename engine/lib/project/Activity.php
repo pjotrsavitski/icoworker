@@ -126,6 +126,18 @@ class Activity {
                     $data[0] = date('d.m.Y', $data[0]);
                     $body = vsprintf(_('%2$s changed comment at %1$s'), $data);
                     break;
+                case "add_task_member":
+                    $body = vsprintf(_('Task <span class="activity-item-title">%1$s</span> assigned to <span class="activity-item-title">%2$s</span>'), $data);
+                    break;
+                case "remove_task_member":
+                    $body = vsprintf(_('Task <span class="activity-item-title">%1$s</span> assignment removed from <span class="activity-item-title">%2$s</span>'), $data);
+                    break;
+                case "add_task_resource":
+                    $body = vsprintf(_('Resource <span class="activity-item-title">%2$s</span> assigned to task <span class="activity-item-title">%1$s</span>'), $data);
+                    break;
+                case "remove_task_resource":
+                    $body = vsprintf(_('Resource <span class="activity-item-title">%2$s</span> is no longer assigned to task <span class="activity-item-title">%1$s</span>'), $data);
+                    break;
                 default:
                     // TODO Check if this stays that way
                     $body = "NOT IMPLEMENTED";

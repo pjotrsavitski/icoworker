@@ -59,6 +59,22 @@ CREATE TABLE IF NOT EXISTS prefix_resources (
 	FOREIGN KEY (project_id) REFERENCES prefix_projects (id) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=UTF8;
 
+CREATE TABLE IF NOT EXISTS prefix_task_members (
+	task_id bigint(20) UNSIGNED NOT NULL,
+	user_id bigint(20) UNSIGNED NOT NULL,
+	FOREIGN KEY (task_id) REFERENCES prefix_tasks (id) ON DELETE CASCADE,
+	FOREIGN KEY (user_id) REFERENCES prefix_users (id) ON DELETE CASCADE,
+	PRIMARY KEY task_member (task_id, user_id)
+) ENGINE=InnoDB DEFAULT CHARSET=UTF8;
+
+CREATE TABLE IF NOT EXISTS prefix_task_resources (
+	task_id bigint(20) UNSIGNED NOT NULL,
+	resource_id bigint(20) UNSIGNED NOT NULL,
+	FOREIGN KEY (task_id) REFERENCES prefix_tasks (id) ON DELETE CASCADE,
+	FOREIGN KEY (resource_id) REFERENCES prefix_resources (id) ON DELETE CASCADE,
+	PRIMARY KEY task_resource (task_id, resource_id)
+) ENGINE=InnoDB DEFAULT CHARSET=UTF8;
+
 CREATE TABLE IF NOT EXISTS prefix_milestones (
 	id bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
 	creator bigint(20) UNSIGNED NOT NULL,

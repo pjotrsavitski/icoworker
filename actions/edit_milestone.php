@@ -16,6 +16,7 @@
 
         $project = $milestone->getProjectObject();
 
+        // TODO Possibly admin should be allowed to see stuff
         if (!(($project instanceof Project) && ($project->isMember(get_logged_in_user_id())))) {
             $TeKe->add_system_message(_("No project or insufficient privileges."), 'error');
             $response->setMessages();

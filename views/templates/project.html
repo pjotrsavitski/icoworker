@@ -28,8 +28,8 @@
 	</tal:block>
 </tal:block>
 
-<tal:block metal:define-macro="member">
-    <div id="" class="project-member" tal:attributes="id string:project-member-${member/getId}">
+<tal:block metal:define-macro="member" define="showid showid | true">
+    <div id="" class="project-member" data-id="" tal:attributes="id php:(showid) ? 'project-member-'.member.getId() : ''; data-id member/getId">
         <a href="" title="" tal:attributes="href member/getURL; title member/getFullname">
 		    <img src="" alt="profile_image" tal:attributes="src member/getImageURL" />
 	    </a>
@@ -37,11 +37,26 @@
 </tal:block>
 
 <tal:block metal:define-macro="task">
-    <div id="" class="single-task ui-corner-all" title="" tal:content="task/getTitle" tal:attributes="title task/getDescription; id string:project-task-${task/getId}"></div>
+    <div id="" data-id="" class="single-task ui-corner-all" tal:attributes="id string:project-task-${task/getId}; data-id task/getId">
+		<span title="" tal:content="task/getTitle" tal:attributes="title task/getDescription"></span>
+		<span class="teke-toggler teke-slide-toggler project-side-widget-control"></span>
+		<div class="teke-togglable">
+		    <div class="task-members" tal:define="members task/getAssociatedMembers; showid false">
+				<tal:block repeat="member members">
+				    <tal:block metal:use-macro="member" />
+				</tal:block>
+		    </div>
+		    <div class="task-resources" tal:define="resources task/getAssociatedResources; showid false">
+				<tal:block repeat="resource resources">
+				    <tal:block metal:use-macro="resource" />
+				</tal:block>
+		    </div>
+	    </div>
+    </div>
 </tal:block>
 
-<tal:block metal:define-macro="resource">
-    <div id="" class="project-resource" tal:attributes="id string:project-resource-${resource/getId}">
+<tal:block metal:define-macro="resource" define="showid showid | true">
+    <div id="" class="project-resource" data-id="" tal:attributes="id php:(showid) ? 'project-resource-'.resource.getId() : ''; data-id resource/getId">
         <img src="" title="" alt="resource" class="teke-tooltip" tal:attributes="src resource/getResourceTypeURL; title resource/getTitle" />
 	    <div class="teke-tooltip-content">
 		    <tal:block condition="not:resource/getURL">

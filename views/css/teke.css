@@ -393,8 +393,21 @@ div.single-task {
 	margin: 5px 10px 5px 10px;
 }
 
+.single-task .task-members {
+	min-height: 25px;
+}
+
+.single-task .task-resources {
+	min-height: 16px;
+}
+
 .project-resource, .project-member {
 	display: inline;
+}
+
+.project-member img {
+	width: 25px;
+	height: 25px;
 }
 
 div#project-diary-and-messages-flow {
@@ -441,11 +454,6 @@ div.single-message .single-message-content, div.single-activity .single-activity
 
 #add-project div#end_date {
 	margin-left: 15px;
-}
-
-#project-participants img {
-	width: 25px;
-	height: 25px;
 }
 
 div.participant-search-results {

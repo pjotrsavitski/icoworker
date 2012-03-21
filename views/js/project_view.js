@@ -23,6 +23,31 @@ teke.project_initialize_tooltips = function() {
 	});
 };
 
+// Add tooltip to a single element
+teke.initialize_element_tooltip = function(element) {
+    $(element).find('.teke-tooltip').qtip({
+	    content: {
+		    text: function(api) {
+			    return $(this).next('.teke-tooltip-content').html();
+			}
+		},
+        position: {
+		    my: "bottom center",
+			at: "top center"
+		},
+        show: {
+		    event: 'click'
+	    },
+        hide: {
+		    delay: 500,
+			fixed: true
+		},
+        style: {
+		    classes: 'ui-tooltip-light ui-tooltip-shadow ui-tooltip-rounded'
+		}
+	});
+};
+
 // Updates message flow, respects filter
 teke.project_update_messages_flow = function() {
 	$.ajax({
@@ -97,10 +122,108 @@ teke.get_project_id = function() {
     return $('#project_id').val();
 };
 
+// Initializes project-member-<ID> as draggables
+teke.initialize_members_draggables = function() {
+    $('[id^="project-member-"]').draggable({
+        revert: 'invalid',
+        appendTo: "body",
+        helper: "clone",
+        zIndex: 100
+    });
+};
+
+// Initializes project-resource-<ID> as draggables
+teke.initialize_resources_draggables = function() {
+    $('[id^="project-resource-"]').draggable({
+        revert: 'invalid',
+        appendTo: "body",
+        helper: "clone",
+        zIndex: 100
+    });
+};
+
+// Initialize project-task-<ID> droppables
+teke.initialize_tasks_droppables = function() {
+    $('[id^="project-task-"]').droppable({
+        accept: '[id^="project-member-"], [id^="project-resource-"]',
+        activeClass: "ui-state-hover",
+        hoverClass: "ui-state-active",
+        drop: function(event, ui) {
+            _this = $(this);
+            tmp_elem = $('#'+ui.draggable.attr('id')).clone();
+            tmp_elem.removeAttr('id');
+            tmp_elem.removeClass('ui-draggable');
+            tmp_elem.draggable("destroy");
+            /* XXX Deletion is not decided yet
+            tmp_elem.on("dblclick", function() {
+                $(this).remove();
+            });
+            */
+            if (tmp_elem.hasClass('project-member')) {
+                $.ajax({
+                    cache: false,
+                    type: "POST",
+                    url: teke.get_site_url()+"actions/add_member_to_task.php",
+                    data: { task_id: $(this).attr('data-id'), member_id: tmp_elem.attr('data-id') },
+                    dataType: "json",
+                    success: function(data) {
+                        if (data.state == 0) {
+                            tmp_elem.appendTo(_this.find('.task-members'));
+                            // Update activity flow if needed
+                            if ($('#project-diary-and-messages-filter > select').val() != 'messages') {
+                                teke.project_update_messages_flow();
+                            }
+                        }
+                        // Add messages if any provided
+                        if (data.messages != "") {
+                            teke.replace_system_messages(data.messages);
+                        }
+                    },
+                    error: function() {
+                        // TODO removeme
+                        alert("error occured");
+                    }
+                });
+            } else if (tmp_elem.hasClass('project-resource')) {
+                $.ajax({
+                    cache: false,
+                    type: "POST",
+                    url: teke.get_site_url()+"actions/add_resource_to_task.php",
+                    data: { task_id: $(this).attr('data-id'), resource_id: tmp_elem.attr('data-id') },
+                    dataType: "json",
+                    success: function(data) {
+                        if (data.state == 0) {
+                            tmp_elem.appendTo(_this.find('.task-resources'));
+                            teke.initialize_element_tooltip(tmp_elem);
+                            // Update activity flow if needed
+                            if ($('#project-diary-and-messages-filter > select').val() != 'messages') {
+                                teke.project_update_messages_flow();
+                            }
+
+                        }
+                        // Add messages if any provided
+                        if (data.messages != "") {
+                            teke.replace_system_messages(data.messages);
+                        }
+                    },
+                    error: function() {
+                        // TODO removeme
+                        alert("error occured");
+                    }
+                });
+            }
+        }
+    });
+};
+
 // Hook things up when DOM is ready
 $(document).ready(function() {
 	// Initialize tooltips
 	teke.project_initialize_tooltips();
+    // Initialize draggables and droppables
+    teke.initialize_members_draggables();
+    teke.initialize_resources_draggables();
+    teke.initialize_tasks_droppables();
 	/**
 	 * Make aside widgets draggable (use <legend> as handle)
 	 */

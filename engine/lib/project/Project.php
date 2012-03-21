@@ -90,6 +90,7 @@ class Project {
     }
 
     public function isMember($user_id) {
+        $user_id = (int) $user_id;
         $q = "SELECT COUNT(*) as count FROM " . DB_PREFIX . "project_members WHERE project_id={$this->id} AND user_id=$user_id";
         $ret = query_row($q);
         if ($ret) {
@@ -101,6 +102,7 @@ class Project {
     }
 
     public function addMember($user_id) {
+        $user_id = (int) $user_id;
         $q = "INSERT INTO " . DB_PREFIX . "project_members (project_id, user_id) VALUES ({$this->id}, $user_id)";
         $result = query_insert($q);
         $result = $this->isMember($user_id);
@@ -112,6 +114,7 @@ class Project {
     }
 
     public function removeMember($user_id) {
+        $user_id = (int) $user_id;
         // Creator can not leave the project
         if ($this->creator == $user_id) {
             return false;
