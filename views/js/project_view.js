@@ -74,6 +74,8 @@ teke.update_project_participants = function() {
         url: teke.get_site_url()+"ajax/get_project_participants/"+teke.get_project_id(),
         success: function(data) {
             $('#project-participants').html(data);
+            // Initialize draggables
+            teke.initialize_members_draggables();
 		},
         error: function() {
             // TODO removeme
@@ -385,6 +387,8 @@ $(document).ready(function() {
 							                    url: teke.get_site_url()+"ajax/get_project_tasks/"+teke.get_project_id(),
 							                    success: function(data) {
 							                        $('#project-tasks').html(data);
+                                                    // Initialize droppables
+                                                    teke.initialize_tasks_droppables();
 													if ($('#project-diary-and-messages-filter > select').val() != 'messages') {
 											            // Update activity flow
 											            teke.project_update_messages_flow();
@@ -474,6 +478,8 @@ $(document).ready(function() {
 							                        $('#project-resources').html(data);
 											        // Reinitialize tooltips
 											        teke.project_initialize_tooltips();
+                                                    // Initialize draggables
+                                                    teke.initialize_resources_draggables();
 													if ($('#project-diary-and-messages-filter > select').val() != 'messages') {
 											            // Update activity flow
 										                teke.project_update_messages_flow();
