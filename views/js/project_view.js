@@ -144,6 +144,17 @@ teke.initialize_resources_draggables = function() {
     });
 };
 
+// XXX This is not finished
+teke.initialize_tasks_draggables = function() {
+    $('[id^="project-task-"]').draggable({
+        revert: 'invalid',
+        appendTo: "body",
+        helper: "clone",
+        handle: '.task-title',
+        zIndex: 100
+    });
+};
+
 // Initialize project-task-<ID> droppables
 teke.initialize_tasks_droppables = function() {
     $('[id^="project-task-"]').droppable({
@@ -226,6 +237,7 @@ $(document).ready(function() {
     teke.initialize_members_draggables();
     teke.initialize_resources_draggables();
     teke.initialize_tasks_droppables();
+    teke.initialize_tasks_draggables();
 	/**
 	 * Make aside widgets draggable (use <legend> as handle)
 	 */
@@ -389,6 +401,9 @@ $(document).ready(function() {
 							                        $('#project-tasks').html(data);
                                                     // Initialize droppables
                                                     teke.initialize_tasks_droppables();
+                                                    teke.initialize_tasks_draggables();
+                                                    teke.initialize_togglers();
+                                                    teke.project_initialize_tooltips();
 													if ($('#project-diary-and-messages-filter > select').val() != 'messages') {
 											            // Update activity flow
 											            teke.project_update_messages_flow();

@@ -54,6 +54,8 @@ Timeline.prototype.initializeTimeline = function() {
     $('<div id="project-timeline-project-comments" title="'+teke.translate('text_click_to_add_comment')+'"></div>').width(this.getWidth()).appendTo($('#project-timeline'));
     $('<div id="project-timeline-tasks"></div>').width(this.getWidth()).appendTo($('#project-timeline'));
     $('<div id="project-timeline-resources"></div>').width(this.getWidth()).appendTo($('#project-timeline'));
+    // Initialize project-timeline-tasks droppable
+    teke.initialize_tasks_timeline_droppable();
 };
 
 // Create global timeline object
@@ -63,7 +65,7 @@ var timeline = new Timeline();
 
 /* Add milestone to timeline */
 teke.add_milestone_to_timeline = function(offset, id, milestone_date, title, flag_url, notes) {
-	$('<div id="project-timeline-milestone-'+id+'" class="milestone" style="left: '+offset+'px;"><img src="'+flag_url+'" alt="flag" /><div class="timeline-above-date">'+teke.format_date(milestone_date, "dd.mm")+'</div><div class="teke-tooltip-content"><label>'+title+'</label><br />'+teke.format_date(milestone_date)+'<div class="milestone-notes">'+notes+'</div></div></div>'). appendTo($('#project-timeline-project'));
+	$('<div id="project-timeline-milestone-'+id+'" class="milestone" style="left: '+offset+'px;"><img src="'+flag_url+'" alt="flag" /><div class="timeline-above-date">'+teke.format_date(milestone_date, "dd.mm")+'</div><div class="teke-tooltip-content"><label>'+title+'</label><br />'+teke.format_date(milestone_date)+'<div class="milestone-notes">'+notes+'</div></div></div>').appendTo($('#project-timeline-project'));
     // Bind click
     $('#project-timeline-milestone-'+id).on('click', function(event) {
         // Prevent parent click from happening
@@ -342,6 +344,54 @@ teke.add_document_to_timeline = function(id, created, title, url, notes, version
     }
 };
 
+// XXX Experimental
+teke.add_task_to_timeline = function(data) {
+    /**
+     * 1. Data includes
+     *   * title
+     *   * description
+     *   * start_date
+     *   * end_date
+     *   * members
+     *   * resources
+     * 2. Register droppable
+     * 3. Register togglable 
+     */
+    tmp_task = $('<div id="" class="single-task ui-corner-all" data-id=""><span class="task-title" title=""></span><span class="teke-toggler teke-slide-toggler project-side-widget-control"></span><div class="teke-togglable"><div class="task-members"></div><div class="task-resources"></div></div></div>');
+    tmp_task.attr('id', 'project-timeline-task-'+data.id).attr('data-id', data.id);
+    tmp_task.find('.task-title').html(data.title).attr('title', data.description);
+    // Add members
+    if (data.members.length > 0) {
+        for (var i= 0; i < data.members.length; i++) {
+            tmp_task_member = $('<div class="project-member" data-id=""><a href="" title=""><img src="" alt="profile_image" /></a></div>');
+            tmp_task_member.attr('data-id', data.members[i].id);
+            tmp_task_member.find('a').attr('href', data.members[i].url).attr('title', data.members[i].fullname);
+            tmp_task_member.find('img').attr('src', data.members[i].image_url);
+            tmp_task_member.appendTo(tmp_task.find('.task-members'));
+        }
+    }
+    // Add resources
+    if (data.resources.length > 0) {
+        for (var i=0; i < data.resources.length; i++) {
+            tmp_task_resource = $('<div class="project-resource" data-id=""><img src="" title="" alt="resource" class="teke-tooltip" /><div class="teke-tooltip-content"><label></label><br /></div></div>');
+            tmp_task_resource.attr('data-id', data.resources[i].id);
+            tmp_task_resource.find('img').attr('src', data.resources[i].resource_type_url).attr('title', data.resources[i].title);
+            if (data.resources[i].url.length == 0) {
+                tmp_task_resource.find('.teke-tooltip-content label').html(data.resources[i].title);
+            } else {
+                tmp_task_resource.find('.teke-tooltip-content label').html($('<a href="" target="_blank"></a>').attr('href', data.resources[i].url).html(data.resources[i].title));
+            }
+            tmp_task_resource.find('.teke-tooltip-content').append(data.resources[i].description);
+            teke.initialize_element_tooltip(tmp_task_resource);
+            tmp_task_resource.appendTo(tmp_task.find('.task-resources'));
+        }
+    }
+    // XXX This can not be hard-coded
+    tmp_task.width(200).css('left', Math.floor(Math.random()*200));
+    teke.initialize_element_toggler(tmp_task);
+    tmp_task.appendTo('#project-timeline-tasks');
+};
+
 /* Add beginning and end pointo to timeline */
 teke.add_beginning_end_to_timeline = function() {
     $('<div id="project-timeline-beginning" class="beginning" style="left:0px;"><img src="'+teke.get_site_url()+'views/graphics/grey_circle.png" alt="circle" /><div class="timeline-above-date">'+teke.format_date(new Date(timeline.getTimelineData().beginning))+'</div></div>').appendTo($('#project-timeline-project'));
@@ -538,6 +588,54 @@ teke.add_new_document_version = function(id) {
     });
 };
 
+// XXX This is not finished
+teke.initialize_tasks_timeline_droppable = function() {
+    $('#project-timeline-tasks').droppable({
+        accept: '[id^="project-task-"]',
+        activeClass: "ui-state-hover",
+        hoverClass: "ui-state-active",
+        drop: function(event, ui) {
+            $('<div id="add-task-to-timeline" title="ADDME"><div name="task-start-date"></div><div name="task-end-date"></div></div>').dialog({
+                autoOpen: true,
+                height: 'auto',
+                width: 'auto',
+                modal: true,
+                buttons : [
+                    {
+                        text: teke.translate('button_add'),
+                        click: function() {
+                            _this = $(this);
+                            offset = ( _this.find('div[name="task-start-date"]').datepicker('getDate').getTime() - timeline.getStart() ) / timeline.getPixelValue();
+                            width = ( _this.find('div[name="task-end-date"]').datepicker('getDate').getTime() - _this.find('div[name="task-start-date"]').datepicker('getDate').getTime() ) / timeline.getPixelValue();
+                            tmp_elem = $('#'+ui.draggable.attr('id')).detach();
+                            tmp_elem.draggable('destroy');
+                            tmp_elem.attr('id', 'project-timeline-task-'+tmp_elem.attr('data-id'));
+                            tmp_elem.css('left', offset+'px').width(width).appendTo('#project-timeline-tasks');
+
+                            _this.dialog('close');
+                        }
+                    },
+                    {
+                        text: teke.translate('button_return'),
+                        click: function() {
+                            $(this).dialog('close');
+                        }
+                    }
+                ],
+                open: function() {
+                    // XXX Dates should depend on each other
+                    $(this).find('div[name="task-start-date"]').datepicker({ minDate: new Date(timeline.getStart()), maxDate: new Date(timeline.getEnd()) });
+                    $(this).find('div[name="task-end-date"]').datepicker({ minDate: new Date(timeline.getStart()), maxDate: new Date(timeline.getEnd()) });
+                },
+                close: function() {
+                    $(this).dialog('destroy');
+                    $(this).remove();
+                }
+            });
+        }
+    });
+};
+
 /* Initialize timeline related stuff (XXX Some portion should probably be moved to standalone methods onto Timeline class) */
 $(document).ready(function() {
 	// Add information to timeline
@@ -590,6 +688,10 @@ $(document).ready(function() {
             for (var key in data.comments) {
                 // XXX Possibly .getTime() needs to be used
                 teke.add_comment_to_timeline((new Date(data.comments[key].comment_date) - timeline.getStart()) / timeline.getPixelValue(), data.comments[key].id, new Date(data.comments[key].comment_date), data.comments[key].content);
+            }
+
+            for (var key in data.tasks) {
+                teke.add_task_to_timeline(data.tasks[key]);
             }
 		},
         error: function() {

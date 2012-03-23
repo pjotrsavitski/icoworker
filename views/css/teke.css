@@ -604,6 +604,11 @@ div#project-timeline-tasks {
 	z-index: 2;
 }
 
+div#project-timeline-tasks .single-task {
+	position: relative;
+	z-index: 2;
+}
+
 /* Project timeline resources */
 div#project-timeline-resources {
 	width: 600px;

@@ -56,8 +56,24 @@ teke.initialize_language_selection = function() {
     });
 };
 
+// Initialize all togglers (removes any previous click event)
 teke.initialize_togglers = function() {
+    // Remove any previous click events just to be on the safe side
+    $('.teke-toggler').off('click');
     $('.teke-toggler').click(function (e) {
+		e.preventDefault();
+		if ($(this).hasClass('teke-slide-toggler')) {
+		    $(this).nextAll('.teke-togglable').slideToggle("slow");
+		} else {
+		    $(this).nextAll('.teke-togglable').toggle();
+		}
+		$(this).toggleClass('teke-toggler-toggled');
+	});
+};
+
+// Initialize toggler for a specific element
+teke.initialize_element_toggler = function(elem) {
+    $(elem).find('.teke-toggler').click(function (e) {
 		e.preventDefault();
 		if ($(this).hasClass('teke-slide-toggler')) {
 		    $(this).nextAll('.teke-togglable').slideToggle("slow");
