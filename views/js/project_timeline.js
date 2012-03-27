@@ -344,7 +344,10 @@ teke.add_document_to_timeline = function(id, created, title, url, notes, version
     }
 };
 
-// XXX Experimental
+/**
+ * Add task to timeline
+ * Full data is provided, metod is calculationg and doing all the needed initializations
+ */
 teke.add_task_to_timeline = function(data) {
     /**
      * 1. Data includes
@@ -386,9 +389,12 @@ teke.add_task_to_timeline = function(data) {
             tmp_task_resource.appendTo(tmp_task.find('.task-resources'));
         }
     }
-    // XXX This can not be hard-coded
-    tmp_task.width(200).css('left', Math.floor(Math.random()*200));
+    start_date = new Date(data.start_date);
+    end_date = new Date(data.end_date);
+    tmp_task.width((end_date.getTime() - start_date.getTime()) / timeline.getPixelValue()).css('left', ( (start_date.getTime() - new Date(timeline.getStart()).getTime()) / timeline.getPixelValue() )+'px');
     teke.initialize_element_toggler(tmp_task);
+    // Initialize task as droppable
+    teke.initialize_tasks_droppables(tmp_task);
     tmp_task.appendTo('#project-timeline-tasks');
 };
 
@@ -588,14 +594,14 @@ teke.add_new_document_version = function(id) {
     });
 };
 
-// XXX This is not finished
+// Initialization for timeline tasks holder droppables
 teke.initialize_tasks_timeline_droppable = function() {
     $('#project-timeline-tasks').droppable({
         accept: '[id^="project-task-"]',
         activeClass: "ui-state-hover",
         hoverClass: "ui-state-active",
         drop: function(event, ui) {
-            $('<div id="add-task-to-timeline" title="ADDME"><div name="task-start-date"></div><div name="task-end-date"></div></div>').dialog({
+            $('<div id="add-task-to-timeline" title="'+teke.translate('title_add_task_to_timeline')+'"><div name="task-start-date"></div><div name="task-end-date"></div></div>').dialog({
                 autoOpen: true,
                 height: 'auto',
                 width: 'auto',
@@ -605,14 +611,35 @@ teke.initialize_tasks_timeline_droppable = function() {
                         text: teke.translate('button_add'),
                         click: function() {
                             _this = $(this);
-                            offset = ( _this.find('div[name="task-start-date"]').datepicker('getDate').getTime() - timeline.getStart() ) / timeline.getPixelValue();
-                            width = ( _this.find('div[name="task-end-date"]').datepicker('getDate').getTime() - _this.find('div[name="task-start-date"]').datepicker('getDate').getTime() ) / timeline.getPixelValue();
-                            tmp_elem = $('#'+ui.draggable.attr('id')).detach();
-                            tmp_elem.draggable('destroy');
-                            tmp_elem.attr('id', 'project-timeline-task-'+tmp_elem.attr('data-id'));
-                            tmp_elem.css('left', offset+'px').width(width).appendTo('#project-timeline-tasks');
-
-                            _this.dialog('close');
+                            $.ajax({
+                                cache: false,
+                                type: "POST",
+                                url: teke.get_site_url()+"actions/add_task_to_timeline.php",
+                                data: { task_id: ui.draggable.attr('data-id'), start_date: _this.find('div[name="task-start-date"]').datepicker('getDate').toUTCString(), end_date: _this.find('div[name="task-end-date"]').datepicker('getDate').toUTCString() },
+                                dataType: "json",
+                                success: function(data) {
+                                    if (data.state == 0) {
+                                        // Add task to timeline
+                                        teke.add_task_to_timeline(data.data.task);
+                                        // XXX Need to sort tasks by their positioning, so that order would remain the same
+                                        // Remove original element
+                                        $('#'+ui.draggable.attr('id')).remove();
+                                        // Update activity flow if needed
+                                        if ($('#project-diary-and-messages-filter > select').val() != 'messages') {
+                                            teke.project_update_messages_flow();
+                                        }
+                                        _this.dialog('close');
+                                    }
+                                    // Add messages if any provided
+                                    if (data.messages != "") {
+                                        teke.replace_system_messages(data.messages);
+                                    }
+                                },
+                                error: function() {
+                                    // TODO removeme
+                                    alert("error occured");
+                                }
+                            });
                         }
                     },
                     {

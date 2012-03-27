@@ -8,6 +8,9 @@ class Task {
     public $description = "";
     public $created = "";
     public $updated = "";
+    public $start_date = "";
+    public $end_date = "";
+    public $is_timelined = 0;
     
     public function __construct($id = NULL) {
         if ($id) {
@@ -31,6 +34,9 @@ class Task {
             $this->description = $ret->description;
             $this->created = $ret->created;
             $this->updated = $ret->updated;
+            $this->start_date = $ret->start_date;
+            $this->end_date = $ret->end_date;
+            $this->is_timelined = $ret->is_timelined;
         }
     }
 
@@ -70,6 +76,18 @@ class Task {
     public function getUpdated() {
         // TODO possibly formatting is needed
         return $this->updated;
+    }
+
+    public function getStartDate() {
+        return $this->start_date;
+    }
+
+    public function getEndDate() {
+        return $this->end_date;
+    }
+
+    public function isTimelined() {
+        return $this->is_timelined;
     }
 
     public function isAssociatedMember($user_id) {
@@ -146,6 +164,17 @@ class Task {
     public function getAssociatedResources() {
         $q = "SELECT * FROM " . DB_PREFIX . "resources WHERE id IN (SELECT resource_id FROM " . DB_PREFIX . "task_resources WHERE task_id = {$this->getId()})";
         return query_rows($q, 'Resource');
+    }
+
+    public function addToTimeline($start_date, $end_date) {
+        $q = "UPDATE " . DB_PREFIX . "tasks SET start_date=FROM_UNIXTIME('$start_date'), end_date=FROM_UNIXTIME('$end_date'), is_timelined=1 WHERE id = {$this->getId()}";
+        $updated = query_update($q);
+        if ($updated) {
+            // Add activity to stream
+            Activity::create(get_logged_in_user_id(), $this->getProjectId(), 'activity', 'add_task_to_timeline', '', array($this->getTitle(), $start_date, $end_date));
+            return $updated;
+        }
+        return $updated;
     }
 
     public function create($creator, $project_id, $title, $description) {

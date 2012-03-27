@@ -18,4 +18,5 @@ jQuery(document).ready(function() {
     teke.add_translation('text_click_to_add_comment', '<?php echo _('Click to add Comment'); ?>');
     teke.add_translation('title_change_project_beginning', '<?php echo _('Change Project Start Date'); ?>');
     teke.add_translation('title_change_project_end', '<?php echo _('Change Project End Date'); ?>');
+    teke.add_translation('title_add_task_to_timeline', '<?php echo _('Add Task to Timeline'); ?>');
 });

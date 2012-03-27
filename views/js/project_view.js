@@ -144,7 +144,7 @@ teke.initialize_resources_draggables = function() {
     });
 };
 
-// XXX This is not finished
+// Initializes sidebar tasks to be draggable
 teke.initialize_tasks_draggables = function() {
     $('[id^="project-task-"]').draggable({
         revert: 'invalid',
@@ -155,9 +155,17 @@ teke.initialize_tasks_draggables = function() {
     });
 };
 
-// Initialize project-task-<ID> droppables
-teke.initialize_tasks_droppables = function() {
-    $('[id^="project-task-"]').droppable({
+/**
+ * Initialize project-task-<ID> AND project-timeline-task-<ID> droppables
+ *   o Optional parameter can be provided, allows initialization for single element
+ */
+teke.initialize_tasks_droppables = function(element) {
+    selector = $('[id^="project-task-"], [id^="project-timeline-task-"]');
+    if (element != undefined) {
+        selector = $(element);
+    }
+
+    selector.droppable({
         accept: '[id^="project-member-"], [id^="project-resource-"]',
         activeClass: "ui-state-hover",
         hoverClass: "ui-state-active",

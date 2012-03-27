@@ -4,41 +4,51 @@
     global $TeKe;
 
     if ($TeKe->is_logged_in() && $TeKe->has_access(ACCESS_CAN_EDIT)) {
-        $project = ProjectManager::getProjectById(get_input('project_id'));
+        $response = new AJAXResponse();
+        $task = ProjectManager::getTaskById(get_input('task_id'));
 
-        // TODO Possibly admin should be allowed to see stuff
-        if (!(($project instanceof Project) && ($project->isMember(get_logged_in_user_id())))) {
-            header('HTTP/1.0 404 Not Found');
+        if (!($task instanceof Task)) {
+            $TeKe->add_system_message(_("No such milestone."), 'error');
+            $response->setMessages();
+            echo $response->getJSON();
             exit;
         }
 
-        // TODO Probably some general class could be needed for that
-        $data = array('beginning' => format_date_for_js($project->getStartDate()), 'end' => format_date_for_js($project->getEndDate()), 'milestones' => array(), 'documents' => array(), 'tasks' => array());
+        $project = $task->getProjectObject();
 
-        $milestones = ProjectManager::getProjectMilestones($project->getId());
-        if ($milestones && is_array($milestones) && sizeof($milestones) > 0) {
-            foreach ($milestones as $milestone) {
-                $data['milestones'][] = array('id' => $milestone->getId(), 'title' => $milestone->getTitle(), 'milestone_date' => format_date_for_js($milestone->getMilestoneDate()), 'flag_url' => $milestone->getFlagColorURL(), 'notes' => $milestone->getNotes());
+        // TODO Possibly admin should be allowed to see stuff
+        if (!(($project instanceof Project) && ($project->isMember(get_logged_in_user_id())))) {
+            $TeKe->add_system_message(_("No project or insufficient privileges."), 'error');
+            $response->setMessages();
+            echo $response->getJSON();
+            exit;
+        }
+
+        // Define fields array
+        $fields = array('start_date' => true, 'end_date' => true);
+        $inputs = array();
+
+        foreach ($fields as $key => $requirement) {
+            $inputs[$key] = get_input($key);
+            if (in_array($key, array('start_date', 'end_date'))) {
+                $inputs[$key] = strtotime($inputs[$key]);
+            }
+            if ($requirement && !$inputs[$key]) {
+                $response->addError($key);
             }
         }
 
-        $documents = ProjectManager::getProjectDocuments($project->getId());
-        if ($documents && is_array($documents) && sizeof($documents) > 0) {
-            foreach($documents as $document) {
-                $data['documents'][] = array('id' => $document->getId(), 'title' => $document->getTitle(), 'url' => $document->getUrl(), 'created' => format_date_for_js($document->getCreated()), 'versions' => $document->getVersions());
-            }
+        // Check if dates are allowed
+        if ( !( (strtotime($project->getStartDate()) <= $inputs['start_date']) && ($inputs['start_date'] <= strtotime($project->getEndDate())) && (strtotime($project->getStartDate()) <= $inputs['end_date']) && ($inputs['end_date'] <= strtotime($project->getEndDate())) && ($inputs['start_date'] < $inputs['end_date']) ) ) {
+            $TeKe->add_system_message(_("Provided dates are not suitable."), 'error');
+            $response->setMessages();
+            echo $response->getJSON();
+            exit;
         }
 
-        $comments = ProjectManager::getProjectComments($project->getId());
-        if ($comments && is_array($comments) && sizeof($comments) > 0) {
-            foreach($comments as $comment) {
-                $data['comments'][] = array('id' => $comment->getId(), 'content' => $comment->getContent(), 'comment_date' => format_date_for_js($comment->getCommentDate()));
-            }
-        }
-
-        $tasks = ProjectManager::getProjectTimelinedTasks($project->getId());
-        if ($tasks && is_array($tasks) && sizeof($tasks) > 0) {
-            foreach ($tasks as $task) {
+        if (sizeof($response->getErrors()) == 0) {
+            $creator = $TeKe->user->getId();
+            if ($task->addToTimeline($inputs['start_date'], $inputs['end_date'])) {
                 $task_data = array(
                     'id' => $task->getId(),
                     'title' => $task->getTitle(),
@@ -71,13 +81,15 @@
                         );
                     }
                 }
-                $data['tasks'][] = $task_data;
+                $response->addData('task', $task_data);
+                $response->setStateSuccess();
+                $TeKe->add_system_message(_("Task added to timeline."));
             }
+        } else {
+            $TeKe->add_system_message(_("Task could not be added to timeline."), 'error');
         }
 
-        echo json_encode($data);
+        $response->setMessages();
+        echo $response->getJSON();
         exit;
     }
-
-    header('HTTP/1.0 404 Not Found');
-    exit;

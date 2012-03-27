@@ -73,6 +73,18 @@ class ProjectManager {
         return query_rows($q, 'Task');
     }
 
+    public function getProjectStandaloneTasks($id) {
+        $id = (int)$id;
+        $q ="SELECT * FROM " . DB_PREFIX . "tasks WHERE project_id = $id AND is_timelined = 0";
+        return query_rows($q, 'Task');
+    }
+
+    public function getProjectTimelinedTasks($id) {
+        $id = (int)$id;
+        $q = "SELECT * FROM " . DB_PREFIX . "tasks WHERE project_id = $id AND is_timelined = 1";
+        return query_rows($q, 'Task');
+    }
+
     public function getProjectResources($id) {
         $id = (int)$id;
         $q = "SELECT * FROM " . DB_PREFIX . "resources WHERE project_id = $id";
