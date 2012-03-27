@@ -344,6 +344,23 @@ teke.add_document_to_timeline = function(id, created, title, url, notes, version
     }
 };
 
+// Sort tasks to be ordered by id if needed
+teke.sort_timeline_tasks = function() {
+    if ( $('#project-timeline-tasks [id^="project-timeline-task-"]').length > 1 ) {
+        sortable_tasks = [];
+        $('#project-timeline-tasks [id^="project-timeline-task-"]').each(function(key, elem) {
+            tmp_elem = $(elem).detach();
+            sortable_tasks[key] = tmp_elem;
+        });
+        sortable_tasks.sort(function(a, b) {
+            return a.attr('data-id') - b.attr('data-id')
+        });
+        for (i = 0; i < sortable_tasks.length; i++) {
+            sortable_tasks[i].appendTo('#project-timeline-tasks');
+        }
+    }
+};
+
 /**
  * Add task to timeline
  * Full data is provided, metod is calculationg and doing all the needed initializations
@@ -621,7 +638,8 @@ teke.initialize_tasks_timeline_droppable = function() {
                                     if (data.state == 0) {
                                         // Add task to timeline
                                         teke.add_task_to_timeline(data.data.task);
-                                        // XXX Need to sort tasks by their positioning, so that order would remain the same
+                                        // Sort tasks if needed
+                                        teke.sort_timeline_tasks();
                                         // Remove original element
                                         $('#'+ui.draggable.attr('id')).remove();
                                         // Update activity flow if needed

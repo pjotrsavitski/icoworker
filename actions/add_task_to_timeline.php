@@ -49,6 +49,8 @@
         if (sizeof($response->getErrors()) == 0) {
             $creator = $TeKe->user->getId();
             if ($task->addToTimeline($inputs['start_date'], $inputs['end_date'])) {
+                // Reload task
+                $task = new Task($task->getId());
                 $task_data = array(
                     'id' => $task->getId(),
                     'title' => $task->getTitle(),
