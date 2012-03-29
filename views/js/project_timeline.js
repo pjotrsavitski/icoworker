@@ -1,5 +1,7 @@
 /* Project timeline class */
 function Timeline() {
+    this.start_date = null;
+    this.end_date = null;
 	this.start = 0;
 	this.end = 0;
 	this.pixel_value = 0;
@@ -8,19 +10,35 @@ function Timeline() {
 }
 
 Timeline.prototype.setStart = function(value) {
-	this.start = value;
+    // Convert to Date, set date to the beginning of the day
+    start_date = new Date(value);
+    start_date.setHours(0, 0, 0, 0);
+	this.start = start_date.getTime();
+    this.start_date = start_date;
 };
 
 Timeline.prototype.getStart = function() {
 	return this.start;
 };
 
+Timeline.prototype.getStartDate = function() {
+    return this.start_date;
+};
+
 Timeline.prototype.setEnd = function(value) {
-	this.end = value;
+    // Convert to Date, set date to the end of the day
+    end_date = new Date(value);
+    end_date.setHours(23, 59, 59, 0);
+	this.end = end_date.getTime();
+    this.end_date = end_date;
 };
 
 Timeline.prototype.getEnd = function() {
 	return this.end;
+};
+
+Timeline.prototype.getEndDate = function() {
+    return this.end_date;
 };
 
 Timeline.prototype.setWidth = function(value) {
