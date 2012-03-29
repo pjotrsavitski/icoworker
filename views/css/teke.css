@@ -387,6 +387,11 @@ div#single-project-content div#aside li fieldset {
 	background-color: white;
 }
 
+#project-timeline-scale {
+	width: 200px;
+	margin: 10px 0px 10px 0px;
+}
+
 div.single-task {
 	border: 1px solid black;
 	padding: 5px 10px 5px 10px;

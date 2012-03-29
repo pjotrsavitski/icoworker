@@ -681,8 +681,22 @@ teke.initialize_tasks_timeline_droppable = function() {
     });
 };
 
+teke.initialize_timeline_scale = function() {
+    $('#project-timeline-scale').slider({
+        min: 0,
+        max: 50,
+        value: 0,
+        step: 10,
+        slide: function(event, ui) {
+            // XXX Resize routine needed
+        }
+    });
+};
+
 /* Initialize timeline related stuff (XXX Some portion should probably be moved to standalone methods onto Timeline class) */
 $(document).ready(function() {
+    // Initialize time scale
+    teke.initialize_timeline_scale();
 	// Add information to timeline
 	// Seconds are transformed into milliseconds as JS Date uses those
 	timeline.setStart(parseInt($('#project_start').val()) * 1000);
