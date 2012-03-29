@@ -45,6 +45,12 @@
 			<input type="text" name="url" class="text ui-widget-content ui-corner-all" />
             <label for="notes" i18n:translate="">Notes (255 characters, plaintext)</label>
 		    <textarea name="notes" class="text ui-widget-content ui-corner-all"></textarea>
+            <select name="version_type" tal:define="types php:Document::getVersionTypes()">
+				<tal:block repeat="type types">
+				    <option value="" tal:attributes="value repeat/type/key" tal:content="type"></option>
+				</tal:block>
+			</select>
+
 		</fieldset>
 	</div>
 </tal:block>

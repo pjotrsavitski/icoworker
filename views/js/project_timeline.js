@@ -316,7 +316,7 @@ teke.remove_document_versions = function(id) {
 
 /* Add a version to a document on timeline */
 teke.add_document_version_to_document = function(document_id, document_created, version) {
-    $('<div id="project-timeline-document-version-'+version.id+'" class="timeline-document-version" style="left:'+( ( (new Date(version.created).getTime() - document_created.getTime()) / timeline.getPixelValue() ) - 2 )+'px;"><img src="'+teke.get_site_url()+'views/graphics/timeline_document.png" alt="document" /><div class="teke-tooltip-content"><label>'+( (version.url == '') ? version.title : '<a href="'+version.url+'" target="_blank">'+version.title+'</a>' )+'</label><br />'+teke.format_date(new Date(version.created))+'<div class="document-version-note">'+version.notes+'</div></div></div>').appendTo('#project-timeline-document-'+document_id);
+    $('<div id="project-timeline-document-version-'+version.id+'" class="timeline-document-version" style="left:'+( ( (new Date(version.created).getTime() - document_created.getTime()) / timeline.getPixelValue() ) - 2 )+'px;"><img src="'+teke.get_site_url()+'views/graphics/timeline_document'+( (version.version_type == 1) ? '' : '_'+version.version_type )+'.png" alt="document" /><div class="teke-tooltip-content"><label>'+( (version.url == '') ? version.title : '<a href="'+version.url+'" target="_blank">'+version.title+'</a>' )+'</label><br />'+teke.format_date(new Date(version.created))+'<div class="document-version-note">'+version.notes+'</div></div></div>').appendTo('#project-timeline-document-'+document_id);
     // Add tooltip
     $('#project-timeline-document-version-'+version.id+' img').qtip({
         content: {
@@ -343,22 +343,28 @@ teke.add_document_version_to_document = function(document_id, document_created, 
 };
 
 /* Add document to timeline */
-teke.add_document_to_timeline = function(id, created, title, url, notes, versions) {
+teke.add_document_to_timeline = function(data) {
+    created = new Date(data.created);
     offset = (created.getTime() - timeline.getStart()) / timeline.getPixelValue();
-    now_time = new Date().getTime();
-    if ( (now_time > timeline.getStart()) && (now_time < timeline.getEnd())) {
-        width = (now_time - created.getTime()) / timeline.getPixelValue();
+    if (data.is_active == 1) {
+        now_time = new Date().getTime();
+        if ( (now_time > timeline.getStart()) && (now_time < timeline.getEnd())) {
+            width = (now_time - created.getTime()) / timeline.getPixelValue();
+        } else {
+            width = (timeline.getEnd() - created.getTime()) / timeline.getPixelValue();
+        }
     } else {
-        width = (timeline.getEnd() - created.getTime()) / timeline.getPixelValue();
+        end_date = new Date(data.end_date);
+        width = (end_date.getTime() - created.getTime()) / timeline.getPixelValue();
     }
-    $('<div id="project-timeline-document-'+id+'" class="timeline-document" style="left:'+offset+'px;"></div>').width(width).appendTo('#project-timeline-documents');
+    $('<div id="project-timeline-document-'+data.id+'" class="timeline-document" style="left:'+offset+'px;"></div>').width(width).appendTo('#project-timeline-documents');
     // Add click event
-    $('#project-timeline-document-'+id).on('click', function() {
-        teke.add_new_document_version(id);
+    $('#project-timeline-document-'+data.id).on('click', function() {
+        teke.add_new_document_version(data.id);
     });
     // Add versions
-    for (var key in versions) {
-        teke.add_document_version_to_document(id, created, versions[key]);
+    for (var key in data.versions) {
+        teke.add_document_version_to_document(data.id, created, data.versions[key]);
     }
 };
 
@@ -576,7 +582,7 @@ teke.add_new_document_version = function(id) {
                                 cache: false,
                                 type: "POST",
                                 url: teke.get_site_url()+"actions/add_document_version.php",
-                                data: { project_id: $('#project_id').val(), document_id: id, title: _this.find('input[name="title"]').val(), url: _this.find('input[name="url"]').val(), notes: _this.find('textarea[name="notes"]').val() },
+                                data: { project_id: $('#project_id').val(), document_id: id, title: _this.find('input[name="title"]').val(), url: _this.find('input[name="url"]').val(), notes: _this.find('textarea[name="notes"]').val(), version_type: _this.find('select[name="version_type"]').val() },
                                 dataType: "json",
                                 success: function(data) {
                                     if (data.state == 0) {
@@ -602,7 +608,7 @@ teke.add_new_document_version = function(id) {
                                         teke.replace_system_messages(data.messages);
                                     }
                                 },
-                                error: function() {
+                                error: function(data) {
                                     // TODO removeme
                                     alert('error occured');
                                 }
@@ -759,7 +765,7 @@ $(document).ready(function() {
 			}
             // Add documents
             for (var key in data.documents) {
-                teke.add_document_to_timeline(data.documents[key].id, new Date(data.documents[key].created), data.documents[key].title, data.documents[key].url, data.documents[key].notes, data.documents[key].versions);
+                teke.add_document_to_timeline(data.documents[key]);
             }
             // Add comments
             for (var key in data.comments) {
@@ -974,7 +980,7 @@ $(document).ready(function() {
                                     success: function(data) {
                                         if (data.state == 0) {
                                             // Add document to timeline
-                                            teke.add_document_to_timeline(data.data.id, new Date(data.data.created), data.data.title, data.data.url, data.data.notes, data.data.versions);
+                                            teke.add_document_to_timeline(data.data);
                                             // Update activity flow if needed
                                             if ($('#project-diary-and-messages-filter > select').val() != 'messages') {
                                                 teke.project_update_messages_flow();

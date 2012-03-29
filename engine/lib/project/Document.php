@@ -9,6 +9,8 @@ class Document {
     public $notes = "";
     public $created = "";
     public $updated = "";
+    public $is_active = 1;
+    public $end_date = "";
     
     public function __construct($id = NULL) {
         if ($id) {
@@ -33,6 +35,8 @@ class Document {
             $this->notes = $ret->notes;
             $this->created = $ret->created;
             $this->updated = $ret->updated;
+            $this->is_active = $ret->is_active;
+            $this->end_date = $ret->end_date;
         }
     }
 
@@ -78,10 +82,24 @@ class Document {
         return $this->updated;
     }
 
+    public function isActive() {
+        return $this->is_active;
+    }
+
+    public function getEndDate() {
+        return $this->end_date;
+    }
+
     // Adding version is handled internally
-    private function addVersion($creator, $document_id, $title, $url, $notes) {
-        $q = "INSERT INTO " . DB_PREFIX . "document_versions (creator, document_id, title, url, notes, created) VALUES ($creator, $document_id, '$title', '$url', '$notes', NOW())";
+    private function addVersion($creator, $document_id, $title, $url, $notes, $version_type) {
+        $now = time();
+        $q = "INSERT INTO " . DB_PREFIX . "document_versions (creator, document_id, title, url, notes, version_type, created) VALUES ($creator, $document_id, '$title', '$url', '$notes', $version_type, FROM_UNIXTIME('$now'))";
         $uid = query_insert($q);
+        // Finishing the document if needed
+        if ($uid && ($version_type == 2 || $version_type == 3)) {
+            $q = "UPDATE " . DB_PREFIX . "documents SET is_active = 0, end_date = FROM_UNIXTIME('$now') WHERE id = $document_id";
+            query_update($q);
+        }
         return $uid;
     }
 
@@ -118,7 +136,7 @@ class Document {
         return false;
     }
 
-    public function update($document, $title, $url, $notes) {
+    public function update($document, $title, $url, $notes, $version_type) {
         // Need unescaped data for JSON
         $activity_data = array($title);
         $title = mysql_real_escape_string($title);
@@ -130,7 +148,7 @@ class Document {
             // Add to activity stream
             Activity::create($document->getCreator(), $document->getProjectId(), 'activity', 'add_document_version', '', $activity_data);
             // Add version
-            Document::addVersion($document->getCreator(), $document->id, $title, $url, $notes);
+            Document::addVersion($document->getCreator(), $document->id, $title, $url, $notes, $version_type);
             return $updated;
         }
         return false;
@@ -141,5 +159,13 @@ class Document {
         // XXX This needs to be protected
         $q = "DELETE FROM " . DB_PREFIX . "documents WHERE id = {$this->id}";
         return query_delete($q);
+    }
+
+    public function getVersionTypes($translated = true) {
+        return array(
+            '1' => $translated ? _('Live') : 'Live',
+            '2' => $translated ? _('Ready') : 'Ready',
+            '3' => $translated ? _('Dropped') : 'Dropped'
+        );
     }
 }

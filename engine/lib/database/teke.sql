@@ -101,6 +101,8 @@ CREATE TABLE IF NOT EXISTS prefix_documents (
 	notes varchar(255) DEFAULT '',
 	created DATETIME NOT NULL DEFAULT '0000-00-00 00:00:00',
 	updated DATETIME NOT NULL DEFAULT '0000-00-00 00:00:00',
+	is_active TINYINT(1) DEFAULT 1,
+    end_date DATETIME DEFAULT '0000-00-00 00:00:00',
 	FOREIGN KEY (creator) REFERENCES prefix_users (id) ON DELETE CASCADE,
 	FOREIGN KEY (project_id) REFERENCES prefix_projects (id) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=UTF8;
@@ -113,6 +115,7 @@ CREATE TABLE IF NOT EXISTS prefix_document_versions (
 	url varchar(255) DEFAULT '',
 	notes varchar(255) DEFAULT '',
 	created DATETIME NOT NULL DEFAULT '0000-00-00 00:00:00',
+	version_type int(4) DEFAULT 1,
 	FOREIGN KEY (creator) REFERENCES prefix_users (id) ON DELETE CASCADE,
 	FOREIGN KEY (document_id) REFERENCES prefix_documents (id) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=UTF8;
