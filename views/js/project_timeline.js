@@ -360,7 +360,15 @@ teke.add_document_to_timeline = function(data) {
     $('<div id="project-timeline-document-'+data.id+'" class="timeline-document" style="left:'+offset+'px;"></div>').width(width).appendTo('#project-timeline-documents');
     // Add click event
     $('#project-timeline-document-'+data.id).on('click', function() {
-        teke.add_new_document_version(data.id);
+        if (data.is_active == 1) {
+            teke.add_new_document_version(data.id);
+        } else {
+            if (data.versions[data.versions.length - 1].version_type == 2) {
+                alert(teke.translate('message_document_is_finished'));
+            } else if (data.versions[data.versions.length - 1].version_type == 3) {
+                alert(teke.translate('message_document_is_dropped'));
+            }
+        }
     });
     // Add versions
     for (var key in data.versions) {

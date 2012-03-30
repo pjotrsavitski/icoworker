@@ -19,4 +19,6 @@ jQuery(document).ready(function() {
     teke.add_translation('title_change_project_beginning', '<?php echo _('Change Project Start Date'); ?>');
     teke.add_translation('title_change_project_end', '<?php echo _('Change Project End Date'); ?>');
     teke.add_translation('title_add_task_to_timeline', '<?php echo _('Add Task to Timeline'); ?>');
+    teke.add_translation('message_document_is_finished', '<?php echo _('This document is finished and can not be modified!'); ?>');
+    teke.add_translation('message_document_is_dropped', '<?php echo _('This document is dropped and can not be modified!'); ?>');
 });
