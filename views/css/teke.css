@@ -498,7 +498,6 @@ div#project-timeline-documents .timeline-document {
 	background-color: #38B6E0;
 	position: relative;
 	height: 5px;
-	cursor: pointer;
 	margin-top: 15px;
 	margin-bottom: 15px;
     -webkit-border-radius: 5px;
@@ -514,6 +513,28 @@ div#project-timeline-documents .timeline-document .timeline-document-version {
 	display: inline;
 	position: absolute;
 	top: -5px;
+	cursor: pointer;
+}
+
+
+.timeline-document-version-dialog-content a {
+	text-decoration: underline;
+	color: blue !important;
+}
+
+div#project-timeline-documents .timeline-document .timeline-document-version .timeline-document-version-dialog-content {
+	display: none;
+}
+
+div#project-timeline-documents .timeline-document .project-timeline-add-document-version {
+	width: 16px;
+	height: 16px;
+	background: transparent;
+	display: inline;
+	position: absolute;
+	top: -5px;
+	right: -30px;
+	cursor: pointer;
 }
 
 .document-version-note, .milestone-notes {

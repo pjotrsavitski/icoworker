@@ -316,30 +316,26 @@ teke.remove_document_versions = function(id) {
 
 /* Add a version to a document on timeline */
 teke.add_document_version_to_document = function(document_id, document_created, version) {
-    $('<div id="project-timeline-document-version-'+version.id+'" class="timeline-document-version" style="left:'+( ( (new Date(version.created).getTime() - document_created.getTime()) / timeline.getPixelValue() ) - 2 )+'px;"><img src="'+teke.get_site_url()+'views/graphics/timeline_document'+( (version.version_type == 1) ? '' : '_'+version.version_type )+'.png" alt="document" /><div class="teke-tooltip-content"><label>'+( (version.url == '') ? version.title : '<a href="'+version.url+'" target="_blank">'+version.title+'</a>' )+'</label><br />'+teke.format_date(new Date(version.created))+'<div class="document-version-note">'+version.notes+'</div></div></div>').appendTo('#project-timeline-document-'+document_id);
-    // Add tooltip
-    $('#project-timeline-document-version-'+version.id+' img').qtip({
-        content: {
-            text: function(api) {
-                return $(this).parent().find('.teke-tooltip-content').html();
-            }
-        },
-        position: {
-            my: "bottom center",
-            at: "top center"
-        },
-        show: {
-            event: 'mouseenter'
-        },
-        hide: {
-            delay: 500,
-            fixed: true
-        },
-        style: {
-            classes: 'ui-tooltip-light ui-tooltip-shadow ui-tooltip-rounded'
+    $('<div id="project-timeline-document-version-'+version.id+'" class="timeline-document-version" style="left:'+( ( (new Date(version.created).getTime() - document_created.getTime()) / timeline.getPixelValue() ) - 2 )+'px;"><img src="'+teke.get_site_url()+'views/graphics/timeline_document'+( (version.version_type == 1) ? '' : '_'+version.version_type )+'.png" alt="document" /><div class="timeline-document-version-dialog-content" title="'+version.title+'"><label>'+( (version.url == '') ? version.title : '<a href="'+version.url+'" target="_blank">'+version.title+'</a>' )+'</label><br />'+teke.format_date(new Date(version.created))+'<div class="document-version-note">'+version.notes+'</div></div></div>').appendTo('#project-timeline-document-'+document_id);
+    // Add click
+    $('#project-timeline-document-version-'+version.id+' img').on('click', function() {
+        tmp_dialog_content = $(this).parent().find('.timeline-document-version-dialog-content').clone();
+        if (version.version_type == 2) {
+            $('<div>'+teke.translate('message_document_is_finished')+'</div>').appendTo(tmp_dialog_content);
+        } else if (version.version_type == 3) {
+            $('<div>'+teke.translate('message_document_is_dropped')+'</div>').appendTo(tmp_dialog_content);
         }
+        tmp_dialog_content.dialog({
+            autoOpen: true,
+            height: 'auto',
+            width: 'auto',
+            modal: true,
+            close: function() {
+                $(this).dialog('destroy');
+                $(this).remove();
+            }
+        });
     });
-
 };
 
 /* Add document to timeline */
@@ -358,18 +354,14 @@ teke.add_document_to_timeline = function(data) {
         width = (end_date.getTime() - created.getTime()) / timeline.getPixelValue();
     }
     $('<div id="project-timeline-document-'+data.id+'" class="timeline-document" style="left:'+offset+'px;"></div>').width(width).appendTo('#project-timeline-documents');
-    // Add click event
-    $('#project-timeline-document-'+data.id).on('click', function() {
-        if (data.is_active == 1) {
+    if (data.is_active == 1) {
+        // Add add new version button
+        $('<div class="project-timeline-add-document-version"><img src="'+teke.get_site_url()+'views/graphics/add.png" alt="add" /></div>').appendTo($('#project-timeline-document-'+data.id));
+        // Add click event
+        $('#project-timeline-document-'+data.id+' .project-timeline-add-document-version').on('click', function() {
             teke.add_new_document_version(data.id);
-        } else {
-            if (data.versions[data.versions.length - 1].version_type == 2) {
-                alert(teke.translate('message_document_is_finished'));
-            } else if (data.versions[data.versions.length - 1].version_type == 3) {
-                alert(teke.translate('message_document_is_dropped'));
-            }
-        }
-    });
+        });
+    }
     // Add versions
     for (var key in data.versions) {
         teke.add_document_version_to_document(data.id, created, data.versions[key]);
