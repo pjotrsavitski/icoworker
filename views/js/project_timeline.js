@@ -724,7 +724,7 @@ teke.initialize_timeline_scale = function() {
         min: 0,
         max: 50,
         value: 0,
-        step: 10,
+        step: 50,
         slide: function(event, ui) {
             // XXX Resize routine needed
         }

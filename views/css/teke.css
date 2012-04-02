@@ -390,6 +390,7 @@ div#single-project-content div#aside li fieldset {
 #project-timeline-scale {
 	width: 200px;
 	margin: 10px 0px 10px 0px;
+	float: right;
 }
 
 div.single-task {
