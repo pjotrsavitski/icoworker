@@ -76,6 +76,56 @@ Timeline.prototype.initializeTimeline = function() {
     teke.initialize_tasks_timeline_droppable();
 };
 
+Timeline.prototype.addToday = function() {
+    now_time = new Date().getTime();
+	if ( (now_time > this.getStart()) && (now_time < this.getEnd())) {
+		now_offset = (now_time - this.getStart()) / this.getPixelValue();
+        // XXX Compensate for padding, a better solution is needed
+        now_offset = now_offset + parseInt($('#project-timeline').css('padding-left'), 10);
+	    $('<div class="now" style="left: '+now_offset+'px"></div>').appendTo($('#project-timeline'));
+	}
+};
+
+Timeline.prototype.fillWithData = function() {
+    _this = this;
+    $.ajax({
+        cache: false,
+		type: "POST",
+		url: teke.get_site_url()+"actions/get_timeline_data.php",
+		data: { project_id : teke.get_project_id() },
+		dataType: "json",
+		success: function(data) {
+		    // Add dat to timeline object
+		    _this.setTimelineData(data);
+		    // Add beginning and end
+			teke.add_beginning_end_to_timeline();
+
+		    // Add milestones
+		    for (var key in data.milestones) {
+                // XXX Possibly .getTime() needs to be used
+				teke.add_milestone_to_timeline((new Date(data.milestones[key].milestone_date) - timeline.getStart()) / timeline.getPixelValue(), data.milestones[key].id, new Date(data.milestones[key].milestone_date), data.milestones[key].title, data.milestones[key].flag_url, data.milestones[key].notes);
+			}
+            // Add documents
+            for (var key in data.documents) {
+                teke.add_document_to_timeline(data.documents[key]);
+            }
+            // Add comments
+            for (var key in data.comments) {
+                // XXX Possibly .getTime() needs to be used
+                teke.add_comment_to_timeline((new Date(data.comments[key].comment_date) - timeline.getStart()) / timeline.getPixelValue(), data.comments[key].id, new Date(data.comments[key].comment_date), data.comments[key].content);
+            }
+
+            for (var key in data.tasks) {
+                teke.add_task_to_timeline(data.tasks[key]);
+            }
+		},
+        error: function() {
+		    // TODO removeme
+			alert("timeline data could not be loaded");
+		}
+	});
+};
+
 // Create global timeline object
 var timeline = new Timeline();
 
@@ -706,8 +756,6 @@ teke.initialize_tasks_timeline_droppable = function() {
                                         teke.add_task_to_timeline(data.data.task);
                                         // Sort tasks if needed
                                         teke.sort_timeline_tasks();
-                                        // Remove original element
-                                        $('#'+ui.draggable.attr('id')).remove();
                                         // Update activity flow if needed
                                         if ($('#project-diary-and-messages-filter > select').val() != 'messages') {
                                             teke.project_update_messages_flow();
@@ -759,7 +807,7 @@ teke.initialize_timeline_scale = function() {
     });
 };
 
-/* Initialize timeline related stuff (XXX Some portion should probably be moved to standalone methods onto Timeline class) */
+/* Initialize timeline related stuff */
 $(document).ready(function() {
     // Initialize time scale
     teke.initialize_timeline_scale();
@@ -780,50 +828,9 @@ $(document).ready(function() {
 	timeline.calculatePixesValue();
 	timeline.initializeTimeline();
     // Add now line to the project if applicable
-	now_time = new Date().getTime();
-	if ( (now_time > timeline.getStart()) && (now_time < timeline.getEnd())) {
-		now_offset = (now_time - timeline.getStart()) / timeline.getPixelValue();
-        // XXX Compensate for padding, a better solution is needed
-        now_offset = now_offset + parseInt($('#project-timeline').css('padding-left'), 10);
-	    $('<div class="now" style="left: '+now_offset+'px"></div>').appendTo($('#project-timeline'));
-	}
-	// Fill timeline with data (XXX THIS SHOULD USE A STANDALONE METHOD)
-	$.ajax({
-        cache: false,
-		type: "POST",
-		url: teke.get_site_url()+"actions/get_timeline_data.php",
-		data: { project_id : $('#project_id').val() },
-		dataType: "json",
-		success: function(data) {
-		    // Add dat to timeline object
-		    timeline.setTimelineData(data);
-		    // Add beginning and end
-			teke.add_beginning_end_to_timeline();
-
-		    // Add milestones
-		    for (var key in data.milestones) {
-                // XXX Possibly .getTime() needs to be used
-				teke.add_milestone_to_timeline((new Date(data.milestones[key].milestone_date) - timeline.getStart()) / timeline.getPixelValue(), data.milestones[key].id, new Date(data.milestones[key].milestone_date), data.milestones[key].title, data.milestones[key].flag_url, data.milestones[key].notes);
-			}
-            // Add documents
-            for (var key in data.documents) {
-                teke.add_document_to_timeline(data.documents[key]);
-            }
-            // Add comments
-            for (var key in data.comments) {
-                // XXX Possibly .getTime() needs to be used
-                teke.add_comment_to_timeline((new Date(data.comments[key].comment_date) - timeline.getStart()) / timeline.getPixelValue(), data.comments[key].id, new Date(data.comments[key].comment_date), data.comments[key].content);
-            }
-
-            for (var key in data.tasks) {
-                teke.add_task_to_timeline(data.tasks[key]);
-            }
-		},
-        error: function() {
-		    // TODO removeme
-			alert("timeline data could not be loaded");
-		}
-	});
+    timeline.addToday();
+	// Fill timeline with data
+    timeline.fillWithData();
 
 	// Add milestone when projct timeline is clicked
 	$('#project-timeline-project').on('click', function(event) {

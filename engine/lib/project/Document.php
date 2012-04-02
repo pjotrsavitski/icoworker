@@ -130,7 +130,7 @@ class Document {
             // Add to activity stream
             Activity::create($creator, $project_id, 'activity', 'add_document', '', $activity_data);
             // Add version
-            Document::addVersion($creator, $uid, $title, $url, $notes);
+            Document::addVersion($creator, $uid, $title, $url, $notes, 1);
             return $uid;
         }
         return false;

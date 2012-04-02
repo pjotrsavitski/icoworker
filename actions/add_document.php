@@ -47,6 +47,7 @@
                 $response->addData('url', $document->getUrl());
                 $response->addData('notes', $document->getNotes());
                 $response->addData('created', format_date_for_js($document->getCreated()));
+                $response->addData('is_active', $document->isActive());
                 $response->addData('versions', $document->getVersions());
                 $response->setStateSuccess();
                 $TeKe->add_system_message(_("New document added."));
