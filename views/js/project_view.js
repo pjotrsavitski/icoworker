@@ -160,7 +160,7 @@ teke.initialize_tasks_draggables = function() {
  *   o Optional parameter can be provided, allows initialization for single element
  */
 teke.initialize_tasks_droppables = function(element) {
-    selector = $('[id^="project-task-"], [id^="project-timeline-task-"]');
+    selector = $('[id^="project-task-"]');
     if (element != undefined) {
         selector = $(element);
     }
@@ -190,6 +190,14 @@ teke.initialize_tasks_droppables = function(element) {
                     success: function(data) {
                         if (data.state == 0) {
                             tmp_elem.appendTo(_this.find('.task-members'));
+                            // Sync between timeline and sidebar
+                            if (_this.attr('id') == 'project-task-'+_this.attr('data-id')) {
+                                if ($('#project-timeline-task-content-'+_this.attr('data-id')).length == 1) {
+                                    $('#project-timeline-task-content-'+_this.attr('data-id')).find('.task-members').append(tmp_elem.clone());
+                                }
+                            } else if (_this.attr('id') == 'project-timeline-task-content-'+_this.attr('data-id')) {
+                                $('#project-task-'+_this.attr('data-id')).find('.task-members').append(tmp_elem.clone());
+                            }
                             // Update activity flow if needed
                             if ($('#project-diary-and-messages-filter > select').val() != 'messages') {
                                 teke.project_update_messages_flow();
@@ -216,6 +224,18 @@ teke.initialize_tasks_droppables = function(element) {
                         if (data.state == 0) {
                             tmp_elem.appendTo(_this.find('.task-resources'));
                             teke.initialize_element_tooltip(tmp_elem);
+                            // Sync between timeline and sidebar
+                            if (_this.attr('id') == 'project-task-'+_this.attr('data-id')) {
+                                if ($('#project-timeline-task-content-'+_this.attr('data-id')).length == 1) {
+                                    tmp_clone = tmp_elem.clone();
+                                    $('#project-timeline-task-content-'+_this.attr('data-id')).find('.task-resources').append(tmp_clone);
+                                    teke.initialize_element_tooltip(tmp_clone);
+                                }
+                            } else if (_this.attr('id') == 'project-timeline-task-content-'+_this.attr('data-id')) {
+                                tmp_clone = tmp_elem.clone();
+                                $('#project-task-'+_this.attr('data-id')).find('.task-resources').append(tmp_clone);
+                                teke.initialize_element_tooltip(tmp_clone);
+                            }
                             // Update activity flow if needed
                             if ($('#project-diary-and-messages-filter > select').val() != 'messages') {
                                 teke.project_update_messages_flow();

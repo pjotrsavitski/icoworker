@@ -630,9 +630,39 @@ div#project-timeline-tasks {
 	z-index: 2;
 }
 
-div#project-timeline-tasks .single-task {
+div#project-timeline-tasks .timeline-task-holder {
 	position: relative;
 	z-index: 2;
+
+}
+
+div#project-timeline-tasks .timeline-task {
+	background-color: #38B6E0;
+	position: relative;
+	height: 5px;
+	margin-top: 15px;
+	margin-bottom: 15px;
+    -webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+	z-index: 2;
+	cursor: pointer;
+}
+
+div#project-timeline-tasks .timeline-task-holder .timeline-task-content {
+	border: 1px solid black;
+	padding: 5px 10px 5px 10px;
+	margin: 5px 10px 5px 10px;
+	min-width: 150px;
+	max-width: 200px;
+}
+
+div#project-timeline-tasks .timeline-task-holder .timeline-task-content .task-members {
+	min-height: 25px;
+}
+
+div#project-timeline-tasks .timeline-task-holder .timeline-task-content .task-resources {
+	min-height: 16px;
 }
 
 /* Project timeline resources */

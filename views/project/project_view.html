@@ -30,7 +30,7 @@
 
 						<div id="aside">
 						    <ul>
-								<li tal:define="tasks php:ProjectManager::getProjectStandaloneTasks(project.getId())">
+								<li tal:define="tasks php:ProjectManager::getProjectTasks(project.getId())">
 								    <fieldset>
 										<legend i18n:translate="">Tasks</legend>
 										<span class="teke-toggler teke-slide-toggler project-side-widget-control"></span>

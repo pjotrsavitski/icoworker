@@ -401,9 +401,16 @@ teke.add_task_to_timeline = function(data) {
      * 2. Register droppable
      * 3. Register togglable 
      */
-    tmp_task = $('<div id="" class="single-task ui-corner-all" data-id=""><span class="task-title" title=""></span><span class="teke-toggler teke-slide-toggler project-side-widget-control"></span><div class="teke-togglable"><div class="task-members"></div><div class="task-resources"></div></div></div>');
-    tmp_task.attr('id', 'project-timeline-task-'+data.id).attr('data-id', data.id);
+    // Create task holder
+    tmp_task = $('<div id="" class="timeline-task-holder" data-id=""></div>');
+    tmp_task.attr('id', 'project-timeline-task-holder-'+data.id).attr('data-id', data.id);
+    // Add timeline-task to holder
+    $('<div id="" class="timeline-task" data-id="" title=""></div>').attr('id', 'project-timeline-task-'+data.id).attr('data-id', data.id).attr('title', data.title).appendTo(tmp_task);
+    // Add content to holder
+    $('<div id="" class="timeline-task-content ui-corner-all" data-id="" style="display:none;"><span class="task-title"></span><div class="task-members"></div><div class="task-resources"></div></div>').attr('id', 'project-timeline-task-content-'+data.id).attr('data-id', data.id).appendTo(tmp_task);
+    // Set task title and description 
     tmp_task.find('.task-title').html(data.title).attr('title', data.description);
+
     // Add members
     if (data.members.length > 0) {
         for (var i= 0; i < data.members.length; i++) {
@@ -433,9 +440,14 @@ teke.add_task_to_timeline = function(data) {
     start_date = new Date(data.start_date);
     end_date = new Date(data.end_date);
     tmp_task.width((end_date.getTime() - start_date.getTime()) / timeline.getPixelValue()).css('left', ( (start_date.getTime() - new Date(timeline.getStart()).getTime()) / timeline.getPixelValue() )+'px');
-    teke.initialize_element_toggler(tmp_task);
+    tmp_task.find('.timeline-task').width((end_date.getTime() - start_date.getTime()) / timeline.getPixelValue()).on('click', function() {
+        $(this).next('.timeline-task-content').toggle();
+    }).on('contextmenu', function() {
+        alert("REMOVAL DOES NOT WORK YET");
+        return false;
+    });
     // Initialize task as droppable
-    teke.initialize_tasks_droppables(tmp_task);
+    teke.initialize_tasks_droppables(tmp_task.find('.timeline-task-content'));
     tmp_task.appendTo('#project-timeline-tasks');
 };
 

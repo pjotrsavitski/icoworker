@@ -8,7 +8,7 @@
         $task = ProjectManager::getTaskById(get_input('task_id'));
 
         if (!($task instanceof Task)) {
-            $TeKe->add_system_message(_("No such milestone."), 'error');
+            $TeKe->add_system_message(_("No such task."), 'error');
             $response->setMessages();
             echo $response->getJSON();
             exit;
@@ -19,6 +19,13 @@
         // TODO Possibly admin should be allowed to see stuff
         if (!(($project instanceof Project) && ($project->isMember(get_logged_in_user_id())))) {
             $TeKe->add_system_message(_("No project or insufficient privileges."), 'error');
+            $response->setMessages();
+            echo $response->getJSON();
+            exit;
+        }
+
+        if ($task->isTimelined()) {
+            $TeKe->add_system_message(_("This task has already been added to the timeline. Same task can not be added twice."), 'error');
             $response->setMessages();
             echo $response->getJSON();
             exit;
