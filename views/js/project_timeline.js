@@ -443,7 +443,9 @@ teke.add_task_to_timeline = function(data) {
     tmp_task.find('.timeline-task').width((end_date.getTime() - start_date.getTime()) / timeline.getPixelValue()).on('click', function() {
         $(this).next('.timeline-task-content').toggle();
     }).on('contextmenu', function() {
-        alert("REMOVAL DOES NOT WORK YET");
+        if (confirm(teke.translate('confirmation_remove_task_from_timeline'))) {
+            alert("REMOVAL DOES NOT WORK YET");
+        }
         return false;
     });
     // Initialize task as droppable

@@ -21,4 +21,5 @@ jQuery(document).ready(function() {
     teke.add_translation('title_add_task_to_timeline', '<?php echo _('Add Task to Timeline'); ?>');
     teke.add_translation('message_document_is_finished', '<?php echo _('This document is finished and can not be modified!'); ?>');
     teke.add_translation('message_document_is_dropped', '<?php echo _('This document is dropped and can not be modified!'); ?>');
+    teke.add_translation('confirmation_remove_task_from_timeline', '<?php echo _('Are you sure you want to remove this task from timeline ?'); ?>')
 });
