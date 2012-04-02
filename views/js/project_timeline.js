@@ -370,9 +370,9 @@ teke.add_document_to_timeline = function(data) {
 
 // Sort tasks to be ordered by id if needed
 teke.sort_timeline_tasks = function() {
-    if ( $('#project-timeline-tasks [id^="project-timeline-task-"]').length > 1 ) {
+    if ( $('#project-timeline-tasks [id^="project-timeline-task-holder-"]').length > 1 ) {
         sortable_tasks = [];
-        $('#project-timeline-tasks [id^="project-timeline-task-"]').each(function(key, elem) {
+        $('#project-timeline-tasks [id^="project-timeline-task-holder-"]').each(function(key, elem) {
             tmp_elem = $(elem).detach();
             sortable_tasks[key] = tmp_elem;
         });
