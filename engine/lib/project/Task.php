@@ -177,6 +177,17 @@ class Task {
         return $updated;
     }
 
+    public function removeFromTimeline() {
+        $q = "UPDATE " . DB_PREFIX . "tasks SET is_timelined=0 WHERE id = {$this->getId()}";
+        $updated = query_update($q);
+        if ($updated) {
+            // Add actvity to stream
+            Activity::create(get_logged_in_user_id(), $this->getProjectId(), 'activity', 'remove_task_from_timeline', '', array($this->getTitle()));
+            return $updated;
+        }
+        return $updated;
+    }
+
     public function create($creator, $project_id, $title, $description) {
         // Need unescaped data for JSON
         $activity_data = array($title);

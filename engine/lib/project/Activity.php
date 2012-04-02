@@ -100,6 +100,10 @@ class Activity {
                     $data[2] = date('d.m.Y', $data[2]);
                     $body = vsprintf(_('%4$s added task <span class="activity-item-title">%1$s</span> to timeline from %2$s until %3$s'), $data);
                     break;
+                case "remove_task_from_timeline":
+                    $data[] = $this->getCreatorObject()->getFullname();
+                    $body = vsprintf(_('%2$s removed task <span class="activity-item-title">%1$s</span> from timeline.'), $data);
+                    break;
                 case "add_resource":
                     $data[] = $this->getCreatorObject()->getFullname();
                     $body = vsprintf(_('%2$s added resource <span class="activity-item-title">%1$s</span>'), $data);

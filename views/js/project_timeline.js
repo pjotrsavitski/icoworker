@@ -385,6 +385,34 @@ teke.sort_timeline_tasks = function() {
     }
 };
 
+teke.remove_task_from_timeline = function(id) {
+    $.ajax({
+        cache: false,
+        type: "POST",
+        url: teke.get_site_url()+"actions/remove_task_from_timeline.php",
+        data: { task_id: id },
+        dataType: "json",
+        success: function(data) {
+            if (data.state == 0) {
+                // Remove task from timeline
+                $('#project-timeline-task-holder-'+id).remove();
+                // Update activity flow if needed
+                if ($('#project-diary-and-messages-filter > select').val() != 'messages') {
+                    teke.project_update_messages_flow();
+                }
+            }
+            // Add messages if any provided
+            if (data.messages != "") {
+                teke.replace_system_messages(data.messages);
+            }
+        },
+        error: function() {
+            // TODO removeme
+            alert("Task from timeline removal error.");
+        }
+    });
+};
+
 /**
  * Add task to timeline
  * Full data is provided, metod is calculationg and doing all the needed initializations
@@ -444,7 +472,7 @@ teke.add_task_to_timeline = function(data) {
         $(this).next('.timeline-task-content').toggle();
     }).on('contextmenu', function() {
         if (confirm(teke.translate('confirmation_remove_task_from_timeline'))) {
-            alert("REMOVAL DOES NOT WORK YET");
+            teke.remove_task_from_timeline(data.id);
         }
         return false;
     });
