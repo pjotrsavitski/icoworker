@@ -11,7 +11,7 @@ function Timeline() {
 
 Timeline.prototype.setStart = function(value) {
     // Convert to Date, set date to the beginning of the day
-    start_date = new Date(value);
+    var start_date = new Date(value);
     start_date.setHours(0, 0, 0, 0);
 	this.start = start_date.getTime();
     this.start_date = start_date;
@@ -27,7 +27,7 @@ Timeline.prototype.getStartDate = function() {
 
 Timeline.prototype.setEnd = function(value) {
     // Convert to Date, set date to the end of the day
-    end_date = new Date(value);
+    var end_date = new Date(value);
     end_date.setHours(23, 59, 59, 0);
 	this.end = end_date.getTime();
     this.end_date = end_date;
@@ -77,9 +77,9 @@ Timeline.prototype.initializeTimeline = function() {
 };
 
 Timeline.prototype.addToday = function() {
-    now_time = new Date().getTime();
+    var now_time = new Date().getTime();
 	if ( (now_time > this.getStart()) && (now_time < this.getEnd())) {
-		now_offset = (now_time - this.getStart()) / this.getPixelValue();
+		var now_offset = (now_time - this.getStart()) / this.getPixelValue();
         // XXX Compensate for padding, a better solution is needed
         now_offset = now_offset + parseInt($('#project-timeline').css('padding-left'), 10);
 	    $('<div class="now" style="left: '+now_offset+'px"></div>').appendTo($('#project-timeline'));
@@ -87,7 +87,7 @@ Timeline.prototype.addToday = function() {
 };
 
 Timeline.prototype.fillWithData = function() {
-    _this = this;
+    var _this = this;
     $.ajax({
         cache: false,
 		type: "POST",
@@ -194,7 +194,7 @@ teke.edit_milestone = function(id) {
                                     if (data.state == 0) {
                                         // Replace milestone on timeline
                                         // Recalculate offset, it might have been changed
-                                        offset = (_this.find('input[name="milestone_date"]').datepicker("getDate").getTime() - timeline.getStart()) / timeline.getPixelValue();
+                                        var offset = (_this.find('input[name="milestone_date"]').datepicker("getDate").getTime() - timeline.getStart()) / timeline.getPixelValue();
                                         // Remove old milestone object
                                         $('#project-timeline-milestone-'+id).remove();
                                         // Add new one instead
@@ -230,7 +230,7 @@ teke.edit_milestone = function(id) {
                     }
                 ],
                 open: function() {
-                    $(this).find('input[name="milestone_date"]').datepicker({ minDate: new Date(timeline.getStart()), maxDate: new Date(timeline.getEnd()), dateFormat: 'dd.mm.yy' }).datepicker('setDate', new Date($(this).find('input[name="milestone_date"]').val()));
+                    $(this).find('input[name="milestone_date"]').datepicker({ minDate: timeline.getStartDate(), maxDate: timeline.getEndDate(), dateFormat: 'dd.mm.yy' }).datepicker('setDate', new Date($(this).find('input[name="milestone_date"]').val()));
                 },
                 close: function() {
                     $(this).dialog("destroy");
@@ -308,7 +308,7 @@ teke.edit_comment = function(id) {
                                     if (data.state == 0) {
                                         // Replace comment on timeline
                                         // Recalculate offset, it might have been changed
-                                        offset = (_this.find('input[name="comment_date"]').datepicker("getDate").getTime() - timeline.getStart()) / timeline.getPixelValue();
+                                        var offset = (_this.find('input[name="comment_date"]').datepicker("getDate").getTime() - timeline.getStart()) / timeline.getPixelValue();
                                         // Remove old comment object
                                         $('#project-timeline-comment-'+id).remove();
                                         // Add new one instead
@@ -344,7 +344,7 @@ teke.edit_comment = function(id) {
                     }
                 ],
                 open: function() {
-                    $(this).find('input[name="comment_date"]').datepicker({ minDate: new Date(timeline.getStart()), maxDate: new Date(timeline.getEnd()), dateFormat: 'dd.mm.yy' }).datepicker('setDate', new Date($(this).find('input[name="comment_date"]').val()));
+                    $(this).find('input[name="comment_date"]').datepicker({ minDate: timeline.getStartDate(), maxDate: timeline.getEndDate(), dateFormat: 'dd.mm.yy' }).datepicker('setDate', new Date($(this).find('input[name="comment_date"]').val()));
                 },
                 close: function() {
                     $(this).dialog("destroy");
@@ -369,7 +369,7 @@ teke.add_document_version_to_document = function(document_id, document_created, 
     $('<div id="project-timeline-document-version-'+version.id+'" class="timeline-document-version" style="left:'+( ( (new Date(version.created).getTime() - document_created.getTime()) / timeline.getPixelValue() ) - 2 )+'px;"><img src="'+teke.get_site_url()+'views/graphics/timeline_document'+( (version.version_type == 1) ? '' : '_'+version.version_type )+'.png" alt="document" /><div class="timeline-document-version-dialog-content" title="'+version.title+'"><label>'+( (version.url == '') ? version.title : '<a href="'+version.url+'" target="_blank">'+version.title+'</a>' )+'</label><br />'+teke.format_date(new Date(version.created))+'<div class="document-version-note">'+version.notes+'</div></div></div>').appendTo('#project-timeline-document-'+document_id);
     // Add click
     $('#project-timeline-document-version-'+version.id+' img').on('click', function() {
-        tmp_dialog_content = $(this).parent().find('.timeline-document-version-dialog-content').clone();
+        var tmp_dialog_content = $(this).parent().find('.timeline-document-version-dialog-content').clone();
         if (version.version_type == 2) {
             $('<div>'+teke.translate('message_document_is_finished')+'</div>').appendTo(tmp_dialog_content);
         } else if (version.version_type == 3) {
@@ -390,10 +390,11 @@ teke.add_document_version_to_document = function(document_id, document_created, 
 
 /* Add document to timeline */
 teke.add_document_to_timeline = function(data) {
-    created = new Date(data.created);
-    offset = (created.getTime() - timeline.getStart()) / timeline.getPixelValue();
+    var width;
+    var created = new Date(data.created);
+    var offset = (created.getTime() - timeline.getStart()) / timeline.getPixelValue();
     if (data.is_active == 1) {
-        now_time = new Date().getTime();
+        var now_time = new Date().getTime();
         if ( (now_time > timeline.getStart()) && (now_time < timeline.getEnd())) {
             width = (now_time - created.getTime()) / timeline.getPixelValue();
         } else {
@@ -421,15 +422,15 @@ teke.add_document_to_timeline = function(data) {
 // Sort tasks to be ordered by id if needed
 teke.sort_timeline_tasks = function() {
     if ( $('#project-timeline-tasks [id^="project-timeline-task-holder-"]').length > 1 ) {
-        sortable_tasks = [];
+        var sortable_tasks = [];
         $('#project-timeline-tasks [id^="project-timeline-task-holder-"]').each(function(key, elem) {
-            tmp_elem = $(elem).detach();
+            var tmp_elem = $(elem).detach();
             sortable_tasks[key] = tmp_elem;
         });
         sortable_tasks.sort(function(a, b) {
             return a.attr('data-id') - b.attr('data-id')
         });
-        for (i = 0; i < sortable_tasks.length; i++) {
+        for (var i=0; i < sortable_tasks.length; i++) {
             sortable_tasks[i].appendTo('#project-timeline-tasks');
         }
     }
@@ -480,7 +481,7 @@ teke.add_task_to_timeline = function(data) {
      * 3. Register togglable 
      */
     // Create task holder
-    tmp_task = $('<div id="" class="timeline-task-holder" data-id=""></div>');
+    var tmp_task = $('<div id="" class="timeline-task-holder" data-id=""></div>');
     tmp_task.attr('id', 'project-timeline-task-holder-'+data.id).attr('data-id', data.id);
     // Add timeline-task to holder
     $('<div id="" class="timeline-task" data-id="" title=""></div>').attr('id', 'project-timeline-task-'+data.id).attr('data-id', data.id).attr('title', data.title).appendTo(tmp_task);
@@ -491,8 +492,8 @@ teke.add_task_to_timeline = function(data) {
 
     // Add members
     if (data.members.length > 0) {
-        for (var i= 0; i < data.members.length; i++) {
-            tmp_task_member = $('<div class="project-member" data-id=""><a href="" title=""><img src="" alt="profile_image" /></a></div>');
+        for (var i=0; i < data.members.length; i++) {
+            var tmp_task_member = $('<div class="project-member" data-id=""><a href="" title=""><img src="" alt="profile_image" /></a></div>');
             tmp_task_member.attr('data-id', data.members[i].id);
             tmp_task_member.find('a').attr('href', data.members[i].url).attr('title', data.members[i].fullname);
             tmp_task_member.find('img').attr('src', data.members[i].image_url);
@@ -502,7 +503,7 @@ teke.add_task_to_timeline = function(data) {
     // Add resources
     if (data.resources.length > 0) {
         for (var i=0; i < data.resources.length; i++) {
-            tmp_task_resource = $('<div class="project-resource" data-id=""><img src="" title="" alt="resource" class="teke-tooltip" /><div class="teke-tooltip-content"><label></label><br /></div></div>');
+            var tmp_task_resource = $('<div class="project-resource" data-id=""><img src="" title="" alt="resource" class="teke-tooltip" /><div class="teke-tooltip-content"><label></label><br /></div></div>');
             tmp_task_resource.attr('data-id', data.resources[i].id);
             tmp_task_resource.find('img').attr('src', data.resources[i].resource_type_url).attr('title', data.resources[i].title);
             if (data.resources[i].url.length == 0) {
@@ -515,8 +516,8 @@ teke.add_task_to_timeline = function(data) {
             tmp_task_resource.appendTo(tmp_task.find('.task-resources'));
         }
     }
-    start_date = new Date(data.start_date);
-    end_date = new Date(data.end_date);
+    var start_date = new Date(data.start_date);
+    var end_date = new Date(data.end_date);
     tmp_task.width((end_date.getTime() - start_date.getTime()) / timeline.getPixelValue()).css('left', ( (start_date.getTime() - new Date(timeline.getStart()).getTime()) / timeline.getPixelValue() )+'px');
     tmp_task.find('.timeline-task').width((end_date.getTime() - start_date.getTime()) / timeline.getPixelValue()).on('click', function() {
         $(this).next('.timeline-task-content').toggle();
@@ -581,7 +582,7 @@ teke.add_beginning_end_to_timeline = function() {
                 }
             ],
             open: function() {
-                $(this).find('div[name="project-beginning-date"]').datepicker({ maxDate: new Date(timeline.getEnd()) }).datepicker('setDate', new Date(timeline.getStart()));
+                $(this).find('div[name="project-beginning-date"]').datepicker({ maxDate: timeline.getEndDate() }).datepicker('setDate', timeline.getStartDate());
             },
             close: function() {
                 $(this).dialog('destroy');
@@ -637,7 +638,7 @@ teke.add_beginning_end_to_timeline = function() {
                 }
             ],
             open: function() {
-                $(this).find('div[name="project-end-date"]').datepicker({ minDate: new Date(timeline.getStart()) }).datepicker('setDate', new Date(timeline.getEnd()));
+                $(this).find('div[name="project-end-date"]').datepicker({ minDate: timeline.getStartDate() }).datepicker('setDate', timeline.getEndDate());
             },
             close: function() {
                 $(this).dialog('destroy');
@@ -743,7 +744,7 @@ teke.initialize_tasks_timeline_droppable = function() {
                     {
                         text: teke.translate('button_add'),
                         click: function() {
-                            _this = $(this);
+                            var _this = $(this);
                             $.ajax({
                                 cache: false,
                                 type: "POST",
@@ -783,8 +784,8 @@ teke.initialize_tasks_timeline_droppable = function() {
                 ],
                 open: function() {
                     // XXX Dates should depend on each other
-                    $(this).find('div[name="task-start-date"]').datepicker({ minDate: new Date(timeline.getStart()), maxDate: new Date(timeline.getEnd()) });
-                    $(this).find('div[name="task-end-date"]').datepicker({ minDate: new Date(timeline.getStart()), maxDate: new Date(timeline.getEnd()) });
+                    $(this).find('div[name="task-start-date"]').datepicker({ minDate: timeline.getStartDate(), maxDate: timeline.getEndDate() });
+                    $(this).find('div[name="task-end-date"]').datepicker({ minDate: timeline.getStartDate(), maxDate: timeline.getEndDate() });
                 },
                 close: function() {
                     $(this).dialog('destroy');
@@ -817,7 +818,7 @@ $(document).ready(function() {
 	timeline.setEnd(parseInt($('#project_end').val()) * 1000);
 	timeline.setWidth(600);
     // XXX CHNAGEME START
-    tcase = 'farthest';
+    var tcase = 'farthest';
     if (tcase == 'closest') {
         timeline.setWidth(parseInt((timeline.getEnd() - timeline.getStart()) / (86400000)) * 50);
         //timeline.setWidth( parseInt((timeline.getEnd() - timeline.getStart()) / (3600 * 1000)) );
@@ -835,10 +836,10 @@ $(document).ready(function() {
 	// Add milestone when projct timeline is clicked
 	$('#project-timeline-project').on('click', function(event) {
 		// TODO see position() method
-		offset = parseInt(event.pageX) - parseInt($(this).offset().left);
+		var offset = parseInt(event.pageX) - parseInt($(this).offset().left);
 		// XXX One day seems to be lot from the end
-		time = timeline.getStart() + (offset * timeline.getPixelValue());
-		time_date = new Date(time);
+		var time = timeline.getStart() + (offset * timeline.getPixelValue());
+		var time_date = new Date(time);
 
 		// Show the form
 		$.ajax({
@@ -868,7 +869,7 @@ $(document).ready(function() {
 									    if (data.state == 0) {
 										    // Add milestone to timeline
 											// Recalculate offset, it might have been changed
-											offset = (_this.find('div[name="milestone_date"]').datepicker("getDate").getTime() - timeline.getStart()) / timeline.getPixelValue();
+											var offset = (_this.find('div[name="milestone_date"]').datepicker("getDate").getTime() - timeline.getStart()) / timeline.getPixelValue();
 											teke.add_milestone_to_timeline(offset, data.data.id, _this.find('div[name="milestone_date"]').datepicker("getDate"), data.data.title, data.data.flag_url, data.data.notes);
 											// Update activity flow if needed
 											if ($('#project-diary-and-messages-filter > select').val() != 'messages') {
@@ -901,7 +902,7 @@ $(document).ready(function() {
 						}
 					],
 					open: function() {
-						$(this).find('div[name="milestone_date"]').datepicker({ minDate: new Date(timeline.getStart()), maxDate: new Date(timeline.getEnd()) }).datepicker('setDate', time_date);
+						$(this).find('div[name="milestone_date"]').datepicker({ minDate: timeline.getStartDate(), maxDate: timeline.getEndDate() }).datepicker('setDate', time_date);
 					},
 					close: function() {
 					    $(this).dialog("destroy");
@@ -919,10 +920,10 @@ $(document).ready(function() {
     // Add comment when project-comments timeline is clicked
 	$('#project-timeline-project-comments').on('click', function(event) {
 		// TODO see position() method
-		offset = parseInt(event.pageX) - parseInt($(this).offset().left);
+		var offset = parseInt(event.pageX) - parseInt($(this).offset().left);
 		// XXX One day seems to be lot from the end
-		time = timeline.getStart() + (offset * timeline.getPixelValue());
-		time_date = new Date(time);
+		var time = timeline.getStart() + (offset * timeline.getPixelValue());
+		var time_date = new Date(time);
 
 		// Show the form
 		$.ajax({
@@ -952,7 +953,7 @@ $(document).ready(function() {
 									    if (data.state == 0) {
 										    // Add project comment to timeline
 											// Recalculate offset, it might have been changed
-											offset = (_this.find('div[name="comment_date"]').datepicker("getDate").getTime() - timeline.getStart()) / timeline.getPixelValue();
+											var offset = (_this.find('div[name="comment_date"]').datepicker("getDate").getTime() - timeline.getStart()) / timeline.getPixelValue();
 											teke.add_comment_to_timeline(offset, data.data.id, _this.find('div[name="comment_date"]').datepicker("getDate"), data.data.content);
 											// Update activity flow if needed
 											if ($('#project-diary-and-messages-filter > select').val() != 'messages') {
@@ -985,7 +986,7 @@ $(document).ready(function() {
 						}
 					],
 					open: function() {
-						$(this).find('div[name="comment_date"]').datepicker({ minDate: new Date(timeline.getStart()), maxDate: new Date(timeline.getEnd()) }).datepicker('setDate', time_date);
+						$(this).find('div[name="comment_date"]').datepicker({ minDate: timeline.getStartDate(), maxDate: timeline.getEndDate() }).datepicker('setDate', time_date);
 					},
 					close: function() {
 					    $(this).dialog("destroy");

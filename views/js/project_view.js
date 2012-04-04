@@ -160,7 +160,7 @@ teke.initialize_tasks_draggables = function() {
  *   o Optional parameter can be provided, allows initialization for single element
  */
 teke.initialize_tasks_droppables = function(element) {
-    selector = $('[id^="project-task-"]');
+    var selector = $('[id^="project-task-"]');
     if (element != undefined) {
         selector = $(element);
     }
@@ -170,8 +170,8 @@ teke.initialize_tasks_droppables = function(element) {
         activeClass: "ui-state-hover",
         hoverClass: "ui-state-active",
         drop: function(event, ui) {
-            _this = $(this);
-            tmp_elem = $('#'+ui.draggable.attr('id')).clone();
+            var _this = $(this);
+            var tmp_elem = $('#'+ui.draggable.attr('id')).clone();
             tmp_elem.removeAttr('id');
             tmp_elem.removeClass('ui-draggable');
             tmp_elem.draggable("destroy");
@@ -227,12 +227,12 @@ teke.initialize_tasks_droppables = function(element) {
                             // Sync between timeline and sidebar
                             if (_this.attr('id') == 'project-task-'+_this.attr('data-id')) {
                                 if ($('#project-timeline-task-content-'+_this.attr('data-id')).length == 1) {
-                                    tmp_clone = tmp_elem.clone();
+                                    var tmp_clone = tmp_elem.clone();
                                     $('#project-timeline-task-content-'+_this.attr('data-id')).find('.task-resources').append(tmp_clone);
                                     teke.initialize_element_tooltip(tmp_clone);
                                 }
                             } else if (_this.attr('id') == 'project-timeline-task-content-'+_this.attr('data-id')) {
-                                tmp_clone = tmp_elem.clone();
+                                var tmp_clone = tmp_elem.clone();
                                 $('#project-task-'+_this.attr('data-id')).find('.task-resources').append(tmp_clone);
                                 teke.initialize_element_tooltip(tmp_clone);
                             }
@@ -334,7 +334,7 @@ $(document).ready(function() {
                         {
                             text: teke.translate('button_edit'),
                             click: function() {
-                                _this = $(this);
+                                var _this = $(this);
                                 _this.find('.ui-state-error').removeClass('ui-state-error');
                                 $.ajax({
                                     cache: false,

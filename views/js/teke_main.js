@@ -26,6 +26,7 @@ teke.animate_system_messages = function() {
     $("div[id^='system_message_']").delay(5000).fadeOut(1600);
 };
 
+/* Replace system messages with and restart animation */
 teke.replace_system_messages = function(messages) {
 	$('#system_messages').show();
 	$('#system_messages').html(messages);
