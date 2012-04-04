@@ -800,12 +800,13 @@ teke.initialize_tasks_timeline_droppable = function() {
     });
 };
 
+/* Initialize timeline scale changer */
 teke.initialize_timeline_scale = function() {
     $('#project-timeline-scale').slider({
         min: 0,
         max: 50,
         value: 0,
-        step: 50,
+        step: 10,
         change: function(event, ui) {
             // Reinitialize timeline
             teke.reinitialize_timeline();
@@ -813,6 +814,7 @@ teke.initialize_timeline_scale = function() {
     });
 };
 
+/* Reinitialize timeline content */
 teke.reinitialize_timeline = function() {
     var current_time_scale = $('#project-timeline-scale').slider('value');
     var new_timeline_width  = parseInt((timeline.getEnd() - timeline.getStart()) / (86400000)) * current_time_scale;
@@ -836,6 +838,11 @@ teke.reinitialize_timeline = function() {
 
 /* Initialize timeline related stuff */
 $(document).ready(function() {
+    /* XXX UNFINISHED START
+    $('#project-timeline').on('scroll', function() {
+        console.log('scrolled');
+    });
+    XXX UNFINISHED END */
     // Initialize time scale
     teke.initialize_timeline_scale();
 	// Add information to timeline
