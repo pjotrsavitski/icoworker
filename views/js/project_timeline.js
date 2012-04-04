@@ -76,6 +76,10 @@ Timeline.prototype.initializeTimeline = function() {
     teke.initialize_tasks_timeline_droppable();
 };
 
+Timeline.prototype.clearTimeline = function() {
+    $('#project-timeline').html('');
+};
+
 Timeline.prototype.addToday = function() {
     var now_time = new Date().getTime();
 	if ( (now_time > this.getStart()) && (now_time < this.getEnd())) {
@@ -803,9 +807,31 @@ teke.initialize_timeline_scale = function() {
         value: 0,
         step: 50,
         change: function(event, ui) {
-            // XXX Resize routine needed
+            // Reinitialize timeline
+            teke.reinitialize_timeline();
         }
     });
+};
+
+teke.reinitialize_timeline = function() {
+    var current_time_scale = $('#project-timeline-scale').slider('value');
+    var new_timeline_width  = parseInt((timeline.getEnd() - timeline.getStart()) / (86400000)) * current_time_scale;
+    // Minimum width is 600, endorce it
+    if (new_timeline_width < 600) {
+        new_timeline_width = 600;
+    }
+    // Do not reinitialize if width is the same
+    if (timeline.getWidth() == new_timeline_width) {
+        return false;
+    }
+    timeline.setWidth(new_timeline_width);
+    timeline.calculatePixesValue();
+    timeline.clearTimeline();
+    timeline.initializeTimeline();
+    // Add now line to the project if applicable
+    timeline.addToday();
+    // Fill timeline with data
+    timeline.fillWithData();
 };
 
 /* Initialize timeline related stuff */
@@ -817,15 +843,6 @@ $(document).ready(function() {
 	timeline.setStart(parseInt($('#project_start').val()) * 1000);
 	timeline.setEnd(parseInt($('#project_end').val()) * 1000);
 	timeline.setWidth(600);
-    // XXX CHNAGEME START
-    var tcase = 'farthest';
-    if (tcase == 'closest') {
-        timeline.setWidth(parseInt((timeline.getEnd() - timeline.getStart()) / (86400000)) * 50);
-        //timeline.setWidth( parseInt((timeline.getEnd() - timeline.getStart()) / (3600 * 1000)) );
-    } else {
-        timeline.setWidth(600);
-    }
-    // XXX CHANGEME END
 	timeline.calculatePixesValue();
 	timeline.initializeTimeline();
     // Add now line to the project if applicable
