@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2012-02-22 16:13+0200\n"
+"POT-Creation-Date: 2012-04-05 10:33+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -23,23 +23,83 @@ msgstr ""
 "Language: \n"
 
 # , php-format
-#: ../engine/lib/project/Activity.php:76
+#: ../engine/lib/project/Activity.php:75
+msgid "%1$s changed the project."
+msgstr ""
+
+# , php-format
+#: ../engine/lib/project/Activity.php:91
 msgid "%1$s joined the project."
 msgstr ""
 
 # , php-format
-#: ../engine/lib/project/Activity.php:84
-msgid "%2$s added resource %1$s"
+#: ../engine/lib/project/Activity.php:132
+msgid "%2$s added comment at %1$s"
 msgstr ""
 
 # , php-format
-#: ../engine/lib/project/Activity.php:80
-msgid "%2$s added task %1$s"
+#: ../engine/lib/project/Activity.php:123
+msgid "%2$s added document <span class=\"activity-item-title\">%1$s</span>"
+msgstr ""
+
+# , php-format
+#: ../engine/lib/project/Activity.php:127
+msgid "%2$s added document version  <span class=\"activity-item-title\">%1$s</span>"
+msgstr ""
+
+# , php-format
+#: ../engine/lib/project/Activity.php:109
+msgid "%2$s added resource <span class=\"activity-item-title\">%1$s</span>"
+msgstr ""
+
+# , php-format
+#: ../engine/lib/project/Activity.php:95
+msgid "%2$s added task <span class=\"activity-item-title\">%1$s</span>"
+msgstr ""
+
+# , php-format
+#: ../engine/lib/project/Activity.php:137
+msgid "%2$s changed comment at %1$s"
+msgstr ""
+
+# , php-format
+#: ../engine/lib/project/Activity.php:105
+msgid "%2$s removed task <span class=\"activity-item-title\">%1$s</span> from timeline."
+msgstr ""
+
+# , php-format
+#: ../engine/lib/project/Activity.php:114
+msgid "%3$s added milestone <span class=\"activity-item-title\">%1$s</span> at %2$s"
+msgstr ""
+
+# , php-format
+#: ../engine/lib/project/Activity.php:87
+msgid "%3$s changed the project end date from %1$s to %2$s."
+msgstr ""
+
+# , php-format
+#: ../engine/lib/project/Activity.php:81
+msgid "%3$s changed the project start date from %1$s to %2$s."
+msgstr ""
+
+# , php-format
+#: ../engine/lib/project/Activity.php:119
+msgid "%3$s updated milestone <span class=\"activity-item-title\">%1$s</span> at %2$s"
+msgstr ""
+
+# , php-format
+#: ../engine/lib/project/Activity.php:101
+msgid "%4$s added task <span class=\"activity-item-title\">%1$s</span> to timeline from %2$s until %3$s"
 msgstr ""
 
 # , php-format
 #: ../actions/add_participant.php:35
 msgid "%s added to participants."
+msgstr ""
+
+# , php-format
+#: ../actions/add_member_to_task.php:44 ../actions/add_resource_to_task.php:44
+msgid "%s added to task %s."
 msgstr ""
 
 #: ../views/js/teke_config.php:12
@@ -50,19 +110,35 @@ msgstr ""
 msgid "Add New Project"
 msgstr ""
 
-#: ../views/templates/forms.html:57
+#: ../views/templates/forms.html:89
 msgid "Add Participant"
 msgstr ""
 
-#: ../views/pages/index.html:40
+#: ../views/js/teke_config.php:21
+msgid "Add Task to Timeline"
+msgstr ""
+
+#: ../views/templates/forms.html:165
+msgid "Add new Comment"
+msgstr ""
+
+#: ../views/templates/forms.html:40
+msgid "Add new Document Version"
+msgstr ""
+
+#: ../views/templates/forms.html:120
+msgid "Add new Milestone"
+msgstr ""
+
+#: ../views/pages/index.html:42
 msgid "Add new Project"
 msgstr ""
 
-#: ../views/templates/forms.html:38
+#: ../views/templates/forms.html:70
 msgid "Add new Resource"
 msgstr ""
 
-#: ../views/templates/forms.html:27
+#: ../views/templates/forms.html:59
 msgid "Add new Task"
 msgstr ""
 
@@ -86,6 +162,10 @@ msgstr ""
 msgid "Already is a participant."
 msgstr ""
 
+#: ../views/js/teke_config.php:24
+msgid "Are you sure you want to remove this task from timeline ?"
+msgstr ""
+
 #: ../actions/update_user_settings.php:41
 msgid "At least one of the parameters is empty."
 msgstr ""
@@ -94,19 +174,47 @@ msgstr ""
 msgid "Back"
 msgstr ""
 
+#: ../engine/lib/project/Milestone.php:147
+msgid "Black"
+msgstr ""
+
+#: ../engine/lib/project/Milestone.php:145
+msgid "Blue"
+msgstr ""
+
 #: ../actions/change_role.php:21
 msgid "Can not change own role."
 msgstr ""
 
-#: ../views/js/teke_config.php:13
+#: ../views/js/teke_config.php:14
 msgid "Change"
 msgstr ""
 
-#: ../views/templates/forms.html:68
+#: ../views/js/teke_config.php:20
+msgid "Change Project End Date"
+msgstr ""
+
+#: ../views/js/teke_config.php:19
+msgid "Change Project Start Date"
+msgstr ""
+
+#: ../views/templates/forms.html:100
 msgid "Change Role"
 msgstr ""
 
-#: ../engine/lib/ajax/AJAXResponse.php:49
+#: ../actions/edit_project_start.php:70
+msgid "Chosen date does not suit. It is either greater than the project end date or some of the elements are placed before chosen date."
+msgstr ""
+
+#: ../actions/edit_project_end.php:70
+msgid "Chosen date does not suit. It is either lower than the project start date or some of the elements are placed after chosen date."
+msgstr ""
+
+#: ../views/js/teke_config.php:18
+msgid "Click to add Comment"
+msgstr ""
+
+#: ../engine/lib/ajax/AJAXResponse.php:50
 msgid "Close"
 msgstr ""
 
@@ -114,24 +222,76 @@ msgstr ""
 msgid "Collaborate"
 msgstr ""
 
-#: ../views/templates/forms.html:16
+#: ../views/templates/forms.html:126
+msgid "Color"
+msgstr ""
+
+#: ../views/templates/forms.html:167
+msgid "Comment (255 characters, plaintext)"
+msgstr ""
+
+#: ../actions/edit_project_comment.php:55
+msgid "Comment changed."
+msgstr ""
+
+#: ../actions/edit_project_comment.php:59
+msgid "Comment could not be changed."
+msgstr ""
+
+#: ../views/js/teke_config.php:13
+msgid "Create"
+msgstr ""
+
+#: ../views/project/project_view.html:26 ../views/templates/forms.html:27
 msgid "Create new Document"
+msgstr ""
+
+#: ../views/templates/forms.html:144
+msgid "Date"
 msgstr ""
 
 #: ../engine/lib/project/Resource.php:86
 msgid "Default Document"
 msgstr ""
 
-#: ../views/project/project_view.html:67
+#: ../views/project/project_view.html:78
 msgid "Diary and Messages"
 msgstr ""
 
-#: ../views/templates/forms.html:20
+#: ../views/templates/forms.html:31
 msgid "Document URL"
 msgstr ""
 
-#: ../views/templates/forms.html:18
+#: ../actions/add_document_version.php:38
+msgid "Document is inactive. Adding versions to inactive document is not allowed."
+msgstr ""
+
+#: ../actions/add_document_version.php:12
+msgid "Document not found."
+msgstr ""
+
+#: ../views/templates/forms.html:29
 msgid "Document title"
+msgstr ""
+
+#: ../engine/lib/project/Document.php:168
+msgid "Dropped"
+msgstr ""
+
+#: ../views/js/teke_config.php:17
+msgid "Edit"
+msgstr ""
+
+#: ../views/templates/forms.html:175
+msgid "Edit Comment"
+msgstr ""
+
+#: ../views/templates/forms.html:139
+msgid "Edit Milestone"
+msgstr ""
+
+#: ../views/templates/forms.html:16
+msgid "Edit Project"
 msgstr ""
 
 #: ../engine/lib/handler/handler_user.php:20
@@ -147,7 +307,7 @@ msgstr ""
 msgid "Email is not valid."
 msgstr ""
 
-#: ../views/pages/index.html:60
+#: ../views/pages/index.html:62
 msgid "End date"
 msgstr ""
 
@@ -184,7 +344,11 @@ msgid "Fullname"
 msgstr ""
 
 #: ../views/templates/forms.html:6
-msgid "Goal"
+msgid "Goal (255 characters, plaintext)"
+msgstr ""
+
+#: ../engine/lib/project/Milestone.php:144
+msgid "Green"
 msgstr ""
 
 #: ../engine/teke.php:280
@@ -192,10 +356,6 @@ msgid "Guest"
 msgstr ""
 
 msgid "Hi %s,\n\nWe have received your password reset request.\n\nPlease visit the following link to reset your password:\n%s\n\nThe link will expire after 24 hours for security reasons.\n\nIf you did not request this forgotten password email, no action is needed, your password will not be reset as long as the link above is not visited.\n\nThanks,\n%s \n\n--\nPlease do not reply to this message."
-msgstr ""
-
-#: ../engine/lib/image/Image.php:153
-msgid "Invalid image. Type: "
 msgstr ""
 
 #: ../views/administrate/administrate_user.html:19
@@ -209,6 +369,10 @@ msgstr ""
 
 #: ../views/user/user_settings.html:18
 msgid "Last name"
+msgstr ""
+
+#: ../engine/lib/project/Document.php:166
+msgid "Live"
 msgstr ""
 
 #: ../views/templates/top_bar.html:17
@@ -227,7 +391,7 @@ msgstr ""
 msgid "Member"
 msgstr ""
 
-#: ../views/pages/index.html:64
+#: ../views/pages/index.html:66
 msgid "Members"
 msgstr ""
 
@@ -235,15 +399,63 @@ msgstr ""
 msgid "Message could not be added."
 msgstr ""
 
+#: ../actions/edit_milestone.php:57
+msgid "Milestone changed."
+msgstr ""
+
+#: ../actions/edit_milestone.php:61
+msgid "Milestone could not be changed."
+msgstr ""
+
+#: ../views/templates/forms.html:122
+msgid "Milestone title"
+msgstr ""
+
+#: ../views/pages/index.html:38
+msgid "My Projects"
+msgstr ""
+
+#: ../actions/add_project_comment.php:46
+msgid "New comment added."
+msgstr ""
+
+#: ../actions/add_project_comment.php:50
+msgid "New comment could not be added."
+msgstr ""
+
+#: ../actions/add_document.php:53
+msgid "New document added."
+msgstr ""
+
+#: ../actions/add_document.php:57
+msgid "New document could not be added."
+msgstr ""
+
+#: ../actions/add_document_version.php:78
+msgid "New document version added."
+msgstr ""
+
+#: ../actions/add_document_version.php:82
+msgid "New document version could not be added."
+msgstr ""
+
 #: ../actions/add_message.php:33
 msgid "New message added."
 msgstr ""
 
-#: ../actions/create_project.php:31
+#: ../actions/add_milestone.php:48
+msgid "New milestone added."
+msgstr ""
+
+#: ../actions/add_milestone.php:52
+msgid "New milestone could not be added."
+msgstr ""
+
+#: ../actions/create_project.php:34
 msgid "New project could not be created."
 msgstr ""
 
-#: ../actions/create_project.php:28
+#: ../actions/create_project.php:31
 msgid "New project created."
 msgstr ""
 
@@ -267,25 +479,44 @@ msgstr ""
 msgid "No authenticated user found."
 msgstr ""
 
-#: ../actions/add_message.php:12 ../actions/add_participant.php:12
-#: ../actions/add_resource.php:12 ../actions/add_task.php:12
+#: ../actions/add_document.php:12 ../actions/add_document_version.php:22
+#: ../actions/add_member_to_task.php:21 ../actions/add_message.php:12
+#: ../actions/add_milestone.php:12 ../actions/add_participant.php:12
 msgid "No project or insufficient privileges."
 msgstr ""
 
-#: ../views/project/project_view.html:97
+#: ../views/project/project_view.html:111
 msgid "No rights to see the project."
 msgstr ""
 
-#: ../views/project/project_view.html:101
+#: ../actions/edit_project_comment.php:11
+msgid "No such comment."
+msgstr ""
+
+#: ../actions/edit_milestone.php:11
+msgid "No such milestone."
+msgstr ""
+
+#: ../views/project/project_view.html:115
 msgid "No such project."
+msgstr ""
+
+#: ../actions/add_resource_to_task.php:29
+msgid "No such resource."
 msgstr ""
 
 #: ../actions/change_role.php:28
 msgid "No such role."
 msgstr ""
 
-#: ../actions/add_participant.php:20 ../actions/change_role.php:14
-#: ../actions/update_user_settings.php:34
+#: ../actions/add_member_to_task.php:11 ../actions/add_resource_to_task.php:11
+#: ../actions/add_task_to_timeline.php:11
+#: ../actions/remove_task_from_timeline.php:11
+msgid "No such task."
+msgstr ""
+
+#: ../actions/add_member_to_task.php:29 ../actions/add_participant.php:20
+#: ../actions/change_role.php:14 ../actions/update_user_settings.php:34
 msgid "No such user."
 msgstr ""
 
@@ -293,15 +524,31 @@ msgstr ""
 msgid "Not allowed to change settings for that user."
 msgstr ""
 
+#: ../views/templates/forms.html:33
+msgid "Notes (255 characters, plaintext)"
+msgstr ""
+
 #: ../views/ajax/ajax_search_for_participants.html:16
 msgid "Nothing found"
+msgstr ""
+
+#: ../engine/lib/project/Milestone.php:146
+msgid "Orange"
 msgstr ""
 
 #: ../actions/add_participant.php:38
 msgid "Participant could not be added."
 msgstr ""
 
-#: ../views/project/project_view.html:39
+#: ../actions/add_member_to_task.php:47
+msgid "Participant could not be associated with task."
+msgstr ""
+
+#: ../actions/add_member_to_task.php:36
+msgid "Participant is already associated with this task."
+msgstr ""
+
+#: ../views/project/project_view.html:50
 msgid "Participants"
 msgstr ""
 
@@ -317,6 +564,46 @@ msgstr ""
 msgid "Presentation"
 msgstr ""
 
+#: ../actions/edit_project.php:38
+msgid "Project changed."
+msgstr ""
+
+#: ../actions/edit_project.php:42
+msgid "Project could not be changed."
+msgstr ""
+
+#: ../actions/edit_project_end.php:79
+msgid "Project end date changed."
+msgstr ""
+
+#: ../actions/edit_project_end.php:82
+msgid "Project end date could not be changed."
+msgstr ""
+
+#: ../actions/add_document.php:20 ../actions/add_document_version.php:30
+msgid "Project is either not active yet or already finished."
+msgstr ""
+
+#: ../actions/edit_project_start.php:79
+msgid "Project start date changed."
+msgstr ""
+
+#: ../actions/edit_project_start.php:82
+msgid "Project start date could not be changed."
+msgstr ""
+
+#: ../actions/add_task_to_timeline.php:50
+msgid "Provided dates are not suitable."
+msgstr ""
+
+#: ../engine/lib/project/Document.php:167
+msgid "Ready"
+msgstr ""
+
+#: ../engine/lib/project/Milestone.php:142
+msgid "Red"
+msgstr ""
+
 #: ../views/administrate/administrate_user.html:20
 msgid "Registered"
 msgstr ""
@@ -324,32 +611,50 @@ msgstr ""
 msgid "Remove"
 msgstr ""
 
-#: ../views/templates/forms.html:46
+# , php-format
+#: ../engine/lib/project/Activity.php:146
+msgid "Resource <span class=\"activity-item-title\">%2$s</span> assigned to task <span class=\"activity-item-title\">%1$s</span>"
+msgstr ""
+
+# , php-format
+#: ../engine/lib/project/Activity.php:149
+msgid "Resource <span class=\"activity-item-title\">%2$s</span> is no longer assigned to task <span class=\"activity-item-title\">%1$s</span>"
+msgstr ""
+
+#: ../views/templates/forms.html:78
 msgid "Resource Type"
 msgstr ""
 
-#: ../views/templates/forms.html:44
+#: ../views/templates/forms.html:76
 msgid "Resource URL"
 msgstr ""
 
-#: ../views/templates/forms.html:42
+#: ../actions/add_resource_to_task.php:47
+msgid "Resource could not be associated with task."
+msgstr ""
+
+#: ../views/templates/forms.html:74
 msgid "Resource description"
 msgstr ""
 
-#: ../views/templates/forms.html:40
+#: ../actions/add_resource_to_task.php:36
+msgid "Resource is already associated with this task."
+msgstr ""
+
+#: ../views/templates/forms.html:72
 msgid "Resource title"
 msgstr ""
 
-#: ../views/project/project_view.html:54
+#: ../views/project/project_view.html:65
 msgid "Resources"
 msgstr ""
 
-#: ../views/js/teke_config.php:15
+#: ../views/js/teke_config.php:16
 msgid "Return"
 msgstr ""
 
 #: ../views/administrate/administrate_user.html:22
-#: ../views/templates/forms.html:71
+#: ../views/templates/forms.html:103
 msgid "Role"
 msgstr ""
 
@@ -369,11 +674,11 @@ msgstr ""
 msgid "Save"
 msgstr ""
 
-#: ../views/js/teke_config.php:14
+#: ../views/js/teke_config.php:15
 msgid "Search"
 msgstr ""
 
-#: ../views/templates/forms.html:59
+#: ../views/templates/forms.html:91
 msgid "Search Criteria"
 msgstr ""
 
@@ -381,7 +686,7 @@ msgstr ""
 msgid "Settings saved."
 msgstr ""
 
-#: ../views/project/project_view.html:80
+#: ../views/project/project_view.html:91
 msgid "Show:"
 msgstr ""
 
@@ -393,7 +698,7 @@ msgstr ""
 msgid "Spreadsheet"
 msgstr ""
 
-#: ../views/pages/index.html:56
+#: ../views/pages/index.html:58
 msgid "Start date"
 msgstr ""
 
@@ -401,20 +706,62 @@ msgstr ""
 msgid "Start/end dates"
 msgstr ""
 
-#: ../views/templates/forms.html:31
+# , php-format
+#: ../engine/lib/project/Activity.php:140
+msgid "Task <span class=\"activity-item-title\">%1$s</span> assigned to <span class=\"activity-item-title\">%2$s</span>"
+msgstr ""
+
+# , php-format
+#: ../engine/lib/project/Activity.php:143
+msgid "Task <span class=\"activity-item-title\">%1$s</span> assignment removed from <span class=\"activity-item-title\">%2$s</span>"
+msgstr ""
+
+#: ../actions/add_task_to_timeline.php:95
+msgid "Task added to timeline."
+msgstr ""
+
+#: ../actions/add_task_to_timeline.php:98
+msgid "Task could not be added to timeline."
+msgstr ""
+
+#: ../actions/remove_task_from_timeline.php:38
+msgid "Task could not be removed from timeline."
+msgstr ""
+
+#: ../views/templates/forms.html:63
 msgid "Task description"
 msgstr ""
 
-#: ../views/templates/forms.html:29
+#: ../actions/remove_task_from_timeline.php:36
+msgid "Task removed from timeline."
+msgstr ""
+
+#: ../views/templates/forms.html:61
 msgid "Task title"
 msgstr ""
 
-#: ../views/project/project_view.html:25
+#: ../views/project/project_view.html:36
 msgid "Tasks"
 msgstr ""
 
 #: ../engine/lib/project/Resource.php:87
 msgid "Text"
+msgstr ""
+
+#: ../views/js/teke_config.php:23
+msgid "This document is dropped and can not be modified!"
+msgstr ""
+
+#: ../views/js/teke_config.php:22
+msgid "This document is finished and can not be modified!"
+msgstr ""
+
+#: ../actions/add_task_to_timeline.php:28
+msgid "This task has already been added to the timeline. Same task can not be added twice."
+msgstr ""
+
+#: ../actions/remove_task_from_timeline.php:28
+msgid "This task is not present on timeline. Removal not possible."
 msgstr ""
 
 #: ../views/templates/forms.html:4
@@ -429,9 +776,12 @@ msgstr ""
 msgid "Username"
 msgstr ""
 
-#: ../engine/lib/handler/handler_project.php:18
 #: ../engine/lib/handler/handler_user.php:18
 msgid "View"
+msgstr ""
+
+#: ../engine/lib/project/Milestone.php:143
+msgid "Violet"
 msgstr ""
 
 #: ../engine/lib/phptal/PHPTAL/GetTextTranslator.php:148
