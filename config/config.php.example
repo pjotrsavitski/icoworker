@@ -6,7 +6,6 @@
     DEFINE("SITE_NAME", "TeKe");
     DEFINE("ACCESS_CAN_VIEW", 1);
     DEFINE("ACCESS_CAN_EDIT", 5);
-    DEFINE("EXAMINEES", true); // turn ON / OFF examinee user type
     
     /*******************
     * Session settings *
