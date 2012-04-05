@@ -35,6 +35,8 @@
 
 	    <tal:block tal:condition="is_logged_in">
 
+		    <h1 i18n:translate="">My Projects</h1>
+
 	        <tal:block condition="php:teke.has_access(ACCESS_CAN_EDIT)">
 		        <div id="projects-index-actions">
 		            <a href="" id="add-new-project" title="Add new Project" i18n:attributes="title">
@@ -44,7 +46,7 @@
 		        </div>
 		    </tal:block>
 			
-			<table id="all-projects" tal:define="projects php: ProjectManager::getProjects()">
+			<table id="all-projects" tal:define="projects php: ProjectManager::getUserProjects(get_logged_in_user_id())">
 			    <tbody>
 				    <tr tal:repeat="project projects">
 					    <td class="project-info">

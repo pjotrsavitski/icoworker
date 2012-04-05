@@ -17,6 +17,12 @@ class ProjectManager {
 
     public function getUserProjects($user_id) {
         $user_id = (int)$user_id;
+        $q = "SELECT * FROM " . DB_PREFIX . "projects WHERE $user_id IN ( SELECT user_id FROM " . DB_PREFIX . "project_members WHERE project_id = id)";
+        return query_rows($q, 'Project');
+    }
+
+    public function getOwnedProjects($user_id) {
+        $user_id = (int)$user_id;
         $q = "SELECT * FROM " . DB_PREFIX . "projects WHERE creator = $user_id";
         return query_rows($q, 'Project');
     }
