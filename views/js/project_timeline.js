@@ -76,8 +76,15 @@ Timeline.prototype.initializeTimeline = function() {
     teke.initialize_tasks_timeline_droppable();
 };
 
-Timeline.prototype.clearTimeline = function() {
-    $('#project-timeline').html('');
+Timeline.prototype.reinitializeTimeline = function() {
+    $('#project-timeline-documents').html('').width(this.getWidth());
+	$('#project-timeline-project').html('').width(this.getWidth());
+    $('#project-timeline-project-comments').html('').width(this.getWidth());
+    $('#project-timeline-tasks').html('').width(this.getWidth());
+    $('#project-timeline-resources').html('').width(this.getWidth());
+    if ($('#project-timeline').find('div.now').length > 0) {
+        $('#project-timeline').find('div.now').remove();
+    }
 };
 
 Timeline.prototype.addToday = function() {
@@ -828,8 +835,7 @@ teke.reinitialize_timeline = function() {
     }
     timeline.setWidth(new_timeline_width);
     timeline.calculatePixesValue();
-    timeline.clearTimeline();
-    timeline.initializeTimeline();
+    timeline.reinitializeTimeline();
     // Add now line to the project if applicable
     timeline.addToday();
     // Fill timeline with data
@@ -838,11 +844,26 @@ teke.reinitialize_timeline = function() {
 
 /* Initialize timeline related stuff */
 $(document).ready(function() {
-    /* XXX UNFINISHED START
-    $('#project-timeline').on('scroll', function() {
-        console.log('scrolled');
+    /* XXX UNFINISHED START */
+    // Probably this might be moved into a separate method
+    $('#project-timeline').on('scroll', function(e) {
+        var current_scroll = $(this).scrollLeft();
+        var scrollables = $('[id^="project-timeline-task-content-"]:visible');
+        if (scrollables.length > 0) {
+            for (var i=0; i<scrollables.length; i++) {
+                var cs = $(scrollables[i]);
+                var cs_parent = cs.parent();
+                var cs_parent_left = parseInt(cs_parent.css('left'));
+                if (cs_parent.width() > cs.width()) {
+                    if (cs_parent_left < current_scroll && (cs_parent_left + cs_parent.width() - cs.width()) > current_scroll) {
+                        // XXX Better boundaries needed, positioning in a bit sloppy
+                        cs.css('left', (current_scroll - cs_parent_left)+'px');
+                    }
+                }
+            }
+        }
     });
-    XXX UNFINISHED END */
+    /* XXX UNFINISHED END */
     // Initialize time scale
     teke.initialize_timeline_scale();
 	// Add information to timeline

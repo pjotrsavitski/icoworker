@@ -653,9 +653,11 @@ div#project-timeline-tasks .timeline-task {
 div#project-timeline-tasks .timeline-task-holder .timeline-task-content {
 	border: 1px solid black;
 	padding: 5px 10px 5px 10px;
-	margin: 5px 10px 5px 10px;
+	margin-top: 5px;
+	margin-bottom: 5px;
 	min-width: 150px;
 	max-width: 200px;
+	position: relative;
 }
 
 div#project-timeline-tasks .timeline-task-holder .timeline-task-content .task-members {
