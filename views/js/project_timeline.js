@@ -530,8 +530,25 @@ teke.add_task_to_timeline = function(data) {
     var start_date = new Date(data.start_date);
     var end_date = new Date(data.end_date);
     tmp_task.width((end_date.getTime() - start_date.getTime()) / timeline.getPixelValue()).css('left', ( (start_date.getTime() - new Date(timeline.getStart()).getTime()) / timeline.getPixelValue() )+'px');
-    tmp_task.find('.timeline-task').width((end_date.getTime() - start_date.getTime()) / timeline.getPixelValue()).on('click', function() {
+    tmp_task.find('.timeline-task').width((end_date.getTime() - start_date.getTime()) / timeline.getPixelValue()).on('click', function(e) {
+        // Determine if repositioning is needed
+        var needs_repositioning = false;
+        if ($(this).next('.timeline-task-content').is(':hidden')) {
+            needs_repositioning = true;
+        }
+        // Make element visible, otherwise width will be totally wrong
         $(this).next('.timeline-task-content').toggle();
+        if (needs_repositioning) {
+            var ce_content = $(this).next('.timeline-task-content');
+            var ce_content_width = ce_content.outerWidth(true);
+            if ($(this).outerWidth(true) > ce_content_width) {
+                var position_left = parseInt(e.pageX) - parseInt($(this).offset().left);
+                if (position_left > ($(this).outerWidth(true) - ce_content_width)) {
+                    position_left = $(this).outerWidth(true) - ce_content_width;
+                }
+                ce_content.css('left', position_left+'px');
+            }
+        }
     }).on('contextmenu', function() {
         if (confirm(teke.translate('confirmation_remove_task_from_timeline'))) {
             teke.remove_task_from_timeline(data.id);
@@ -844,8 +861,7 @@ teke.reinitialize_timeline = function() {
 
 /* Initialize timeline related stuff */
 $(document).ready(function() {
-    /* XXX UNFINISHED START */
-    // Probably this might be moved into a separate method
+    // Hook into timeline main element scroll
     $('#project-timeline').on('scroll', function(e) {
         var current_scroll = $(this).scrollLeft();
         var scrollables = $('[id^="project-timeline-task-content-"]:visible');
@@ -854,16 +870,14 @@ $(document).ready(function() {
                 var cs = $(scrollables[i]);
                 var cs_parent = cs.parent();
                 var cs_parent_left = parseInt(cs_parent.css('left'));
-                if (cs_parent.width() > cs.width()) {
-                    if (cs_parent_left < current_scroll && (cs_parent_left + cs_parent.width() - cs.width()) > current_scroll) {
-                        // XXX Better boundaries needed, positioning in a bit sloppy
+                if (cs_parent.outerWidth(true) > cs.outerWidth(true)) {
+                    if (cs_parent_left < current_scroll && (cs_parent_left + cs_parent.outerWidth(true) - cs.outerWidth(true)) > current_scroll) {
                         cs.css('left', (current_scroll - cs_parent_left)+'px');
                     }
                 }
             }
         }
     });
-    /* XXX UNFINISHED END */
     // Initialize time scale
     teke.initialize_timeline_scale();
 	// Add information to timeline
