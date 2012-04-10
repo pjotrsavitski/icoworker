@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Early\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-04-05 10:33+0300\n"
+"POT-Creation-Date: 2012-04-10 13:29+0300\n"
 "PO-Revision-Date: 2011-02-25 14:45+0200\n"
 "Last-Translator: Meelis Mets <meelis.mets@tlu.ee>\n"
 "Language-Team: Estonian <et@li.org>\n"
@@ -346,6 +346,10 @@ msgstr "Ümberpaigutamine nurjus"
 
 #: ../actions/login.php:28
 msgid "Facebook profile could not be loaded."
+msgstr ""
+
+#: ../engine/teke.php:299
+msgid "Finnish"
 msgstr ""
 
 #: ../views/user/user_settings.html:14
@@ -772,6 +776,10 @@ msgstr "Start nurjus"
 
 #: ../views/templates/forms.html:8
 msgid "Start/end dates"
+msgstr ""
+
+#: ../engine/teke.php:300
+msgid "Swedish"
 msgstr ""
 
 # , php-format

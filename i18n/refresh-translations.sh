@@ -61,5 +61,11 @@ mv new.po et_EE.UTF-8/LC_MESSAGES/teke.po
 # RUS
 msgmerge ru_RU.UTF-8/LC_MESSAGES/teke.po teke.pot > new.po
 mv new.po ru_RU.UTF-8/LC_MESSAGES/teke.po
+# FIN
+msgmerge fi_FI.UTF-8/LC_MESSAGES/teke.po teke.pot > new.po
+mv new.po fi_FI.UTF-8/LC_MESSAGES/teke.po
+# SWE
+msgmerge sv_SE.UTF-8/LC_MESSAGES/teke.po teke.pot > new.po
+mv new.po sv_SE.UTF-8/LC_MESSAGES/teke.po
 
 echo "Done"

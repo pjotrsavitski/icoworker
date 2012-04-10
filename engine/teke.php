@@ -295,7 +295,9 @@ class TeKe {
         return array(
             'et' => _("Estonian"),
             'ru' => _("Russian"),
-            'en' => _("English")
+            'en' => _("English"),
+            'fi' => _('Finnish'),
+            'sv' => _('Swedish')
         );
     }
 

@@ -27,6 +27,8 @@
     DEFINE("LOCALE_et", 'et_EE'); //for windows server use 'est_EST'
     DEFINE("LOCALE_en", 'en_GB'); 
     DEFINE("LOCALE_ru", 'ru_RU');
+    DEFINE("LOCALE_fi", 'fi_FI');
+    DEFINE("LOCALE_sv", 'sv_SE');
     DEFINE("DEFAULT_LANGUAGE", "et");
     DEFINE("DEFAULT_ENCODING", ".UTF-8"); //for windows server use empty string ''
     DEFINE("DEFAULT_DOMAIN", 'teke'); 

@@ -1,26 +1,21 @@
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-# 
-# , fuzzy
+# Swedish translation for TeKe package.
+# Copyright (C) 2011 Dippler team
+# This file is distributed under the same license as the TeKe package.
+# Meelis Mets <meelis.mets@tlu.ee>, 2011.
+#
+#
 msgid ""
 msgstr ""
-"Project-Id-Version: PACKAGE VERSION\n"
+"Project-Id-Version: Early\n"
+"Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-04-10 13:29+0300\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
+"PO-Revision-Date: 2011-02-25 14:45+0200\n"
+"Last-Translator: Meelis Mets <meelis.mets@tlu.ee>\n"
+"Language-Team: Swedish <sv@li.org>\n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=1; plural=0\n"
-"Language-Code: en\n"
-"Language-Name: English\n"
-"Preferred-Encodings: utf-8 latin1\n"
-"Domain: DOMAIN\n"
-"Report-Msgid-Bugs-To: \n"
-"Language: \n"
 
 # , php-format
 #: ../engine/lib/project/Activity.php:75
@@ -44,7 +39,8 @@ msgstr ""
 
 # , php-format
 #: ../engine/lib/project/Activity.php:127
-msgid "%2$s added document version  <span class=\"activity-item-title\">%1$s</span>"
+msgid ""
+"%2$s added document version  <span class=\"activity-item-title\">%1$s</span>"
 msgstr ""
 
 # , php-format
@@ -64,12 +60,15 @@ msgstr ""
 
 # , php-format
 #: ../engine/lib/project/Activity.php:105
-msgid "%2$s removed task <span class=\"activity-item-title\">%1$s</span> from timeline."
+msgid ""
+"%2$s removed task <span class=\"activity-item-title\">%1$s</span> from "
+"timeline."
 msgstr ""
 
 # , php-format
 #: ../engine/lib/project/Activity.php:114
-msgid "%3$s added milestone <span class=\"activity-item-title\">%1$s</span> at %2$s"
+msgid ""
+"%3$s added milestone <span class=\"activity-item-title\">%1$s</span> at %2$s"
 msgstr ""
 
 # , php-format
@@ -84,12 +83,16 @@ msgstr ""
 
 # , php-format
 #: ../engine/lib/project/Activity.php:119
-msgid "%3$s updated milestone <span class=\"activity-item-title\">%1$s</span> at %2$s"
+msgid ""
+"%3$s updated milestone <span class=\"activity-item-title\">%1$s</span> at "
+"%2$s"
 msgstr ""
 
 # , php-format
 #: ../engine/lib/project/Activity.php:101
-msgid "%4$s added task <span class=\"activity-item-title\">%1$s</span> to timeline from %2$s until %3$s"
+msgid ""
+"%4$s added task <span class=\"activity-item-title\">%1$s</span> to timeline "
+"from %2$s until %3$s"
 msgstr ""
 
 # , php-format
@@ -148,15 +151,15 @@ msgstr ""
 
 #: ../engine/lib/handler/handler_administrate.php:17
 msgid "Administrate TeKe"
-msgstr ""
+msgstr "Administrate TeKe"
 
 #: ../engine/lib/handler/handler_administrate.php:18
 msgid "Administrate users"
-msgstr ""
+msgstr "Administrate users"
 
 #: ../engine/teke.php:69
 msgid "Administration"
-msgstr ""
+msgstr "Administration"
 
 #: ../actions/add_participant.php:27
 msgid "Already is a participant."
@@ -168,11 +171,11 @@ msgstr ""
 
 #: ../actions/update_user_settings.php:41
 msgid "At least one of the parameters is empty."
-msgstr ""
+msgstr "At least one of the parameters is empty."
 
 #: ../views/administrate/administrate_teke.html:6
 msgid "Back"
-msgstr ""
+msgstr "Back"
 
 #: ../engine/lib/project/Milestone.php:147
 msgid "Black"
@@ -188,7 +191,7 @@ msgstr ""
 
 #: ../views/js/teke_config.php:14
 msgid "Change"
-msgstr ""
+msgstr "Change"
 
 #: ../views/js/teke_config.php:20
 msgid "Change Project End Date"
@@ -199,15 +202,20 @@ msgid "Change Project Start Date"
 msgstr ""
 
 #: ../views/templates/forms.html:100
+#, fuzzy
 msgid "Change Role"
-msgstr ""
+msgstr "Change"
 
 #: ../actions/edit_project_start.php:70
-msgid "Chosen date does not suit. It is either greater than the project end date or some of the elements are placed before chosen date."
+msgid ""
+"Chosen date does not suit. It is either greater than the project end date or "
+"some of the elements are placed before chosen date."
 msgstr ""
 
 #: ../actions/edit_project_end.php:70
-msgid "Chosen date does not suit. It is either lower than the project start date or some of the elements are placed after chosen date."
+msgid ""
+"Chosen date does not suit. It is either lower than the project start date or "
+"some of the elements are placed after chosen date."
 msgstr ""
 
 #: ../views/js/teke_config.php:18
@@ -216,7 +224,7 @@ msgstr ""
 
 #: ../engine/lib/ajax/AJAXResponse.php:50
 msgid "Close"
-msgstr ""
+msgstr "Close"
 
 #: ../views/pages/index.html:21
 msgid "Collaborate"
@@ -263,7 +271,8 @@ msgid "Document URL"
 msgstr ""
 
 #: ../actions/add_document_version.php:38
-msgid "Document is inactive. Adding versions to inactive document is not allowed."
+msgid ""
+"Document is inactive. Adding versions to inactive document is not allowed."
 msgstr ""
 
 #: ../actions/add_document_version.php:12
@@ -280,7 +289,7 @@ msgstr ""
 
 #: ../views/js/teke_config.php:17
 msgid "Edit"
-msgstr ""
+msgstr "Edit"
 
 #: ../views/templates/forms.html:175
 msgid "Edit Comment"
@@ -296,7 +305,7 @@ msgstr ""
 
 #: ../engine/lib/handler/handler_user.php:20
 msgid "Edit settings"
-msgstr ""
+msgstr "Edit settings"
 
 #: ../views/administrate/administrate_user.html:18
 #: ../views/user/user_settings.html:22
@@ -305,7 +314,7 @@ msgstr ""
 
 #: ../actions/update_user_settings.php:44
 msgid "Email is not valid."
-msgstr ""
+msgstr "Email is not valid."
 
 #: ../views/pages/index.html:62
 msgid "End date"
@@ -359,7 +368,24 @@ msgstr ""
 msgid "Guest"
 msgstr ""
 
-msgid "Hi %s,\n\nWe have received your password reset request.\n\nPlease visit the following link to reset your password:\n%s\n\nThe link will expire after 24 hours for security reasons.\n\nIf you did not request this forgotten password email, no action is needed, your password will not be reset as long as the link above is not visited.\n\nThanks,\n%s \n\n--\nPlease do not reply to this message."
+msgid ""
+"Hi %s,\n"
+"\n"
+"We have received your password reset request.\n"
+"\n"
+"Please visit the following link to reset your password:\n"
+"%s\n"
+"\n"
+"The link will expire after 24 hours for security reasons.\n"
+"\n"
+"If you did not request this forgotten password email, no action is needed, "
+"your password will not be reset as long as the link above is not visited.\n"
+"\n"
+"Thanks,\n"
+"%s \n"
+"\n"
+"--\n"
+"Please do not reply to this message."
 msgstr ""
 
 #: ../views/administrate/administrate_user.html:19
@@ -537,8 +563,9 @@ msgid "Nothing found"
 msgstr ""
 
 #: ../engine/lib/project/Milestone.php:146
+#, fuzzy
 msgid "Orange"
-msgstr ""
+msgstr "Change"
 
 #: ../actions/add_participant.php:38
 msgid "Participant could not be added."
@@ -557,8 +584,9 @@ msgid "Participants"
 msgstr ""
 
 #: ../engine/lib/user/user.php:309
+#, fuzzy
 msgid "Password reset"
-msgstr ""
+msgstr "Change password"
 
 #: ../views/pages/index.html:18
 msgid "Plan your Work"
@@ -617,12 +645,16 @@ msgstr ""
 
 # , php-format
 #: ../engine/lib/project/Activity.php:146
-msgid "Resource <span class=\"activity-item-title\">%2$s</span> assigned to task <span class=\"activity-item-title\">%1$s</span>"
+msgid ""
+"Resource <span class=\"activity-item-title\">%2$s</span> assigned to task "
+"<span class=\"activity-item-title\">%1$s</span>"
 msgstr ""
 
 # , php-format
 #: ../engine/lib/project/Activity.php:149
-msgid "Resource <span class=\"activity-item-title\">%2$s</span> is no longer assigned to task <span class=\"activity-item-title\">%1$s</span>"
+msgid ""
+"Resource <span class=\"activity-item-title\">%2$s</span> is no longer "
+"assigned to task <span class=\"activity-item-title\">%1$s</span>"
 msgstr ""
 
 #: ../views/templates/forms.html:78
@@ -716,12 +748,16 @@ msgstr ""
 
 # , php-format
 #: ../engine/lib/project/Activity.php:140
-msgid "Task <span class=\"activity-item-title\">%1$s</span> assigned to <span class=\"activity-item-title\">%2$s</span>"
+msgid ""
+"Task <span class=\"activity-item-title\">%1$s</span> assigned to <span class="
+"\"activity-item-title\">%2$s</span>"
 msgstr ""
 
 # , php-format
 #: ../engine/lib/project/Activity.php:143
-msgid "Task <span class=\"activity-item-title\">%1$s</span> assignment removed from <span class=\"activity-item-title\">%2$s</span>"
+msgid ""
+"Task <span class=\"activity-item-title\">%1$s</span> assignment removed from "
+"<span class=\"activity-item-title\">%2$s</span>"
 msgstr ""
 
 #: ../actions/add_task_to_timeline.php:95
@@ -765,7 +801,9 @@ msgid "This document is finished and can not be modified!"
 msgstr ""
 
 #: ../actions/add_task_to_timeline.php:28
-msgid "This task has already been added to the timeline. Same task can not be added twice."
+msgid ""
+"This task has already been added to the timeline. Same task can not be added "
+"twice."
 msgstr ""
 
 #: ../actions/remove_task_from_timeline.php:28
@@ -796,3 +834,51 @@ msgstr ""
 msgid "string:"
 msgstr ""
 
+#~ msgid "... or create a new one"
+#~ msgstr "... or create a new one"
+
+#~ msgid "Change password"
+#~ msgstr "Change password"
+
+#, fuzzy
+#~ msgid "Change your password"
+#~ msgstr "Change password"
+
+#~ msgid "Choose group"
+#~ msgstr "Choose group"
+
+#~ msgid "Could not log in."
+#~ msgstr "Could not log in."
+
+#~ msgid "Could not verify that this user requested a password reset."
+#~ msgstr "Could not verify that this user requested a password reset."
+
+#~ msgid "Current password was incorrect."
+#~ msgstr "Current password was incorrect."
+
+#~ msgid "Delete"
+#~ msgstr "Delete"
+
+#, fuzzy
+#~ msgid "Forgot your password?"
+#~ msgstr "Change password"
+
+#, fuzzy
+#~ msgid "New Password"
+#~ msgstr "Change password"
+
+#, fuzzy
+#~ msgid "New Password Confirm"
+#~ msgstr "Change password"
+
+#, fuzzy
+#~ msgid "Password Confirm"
+#~ msgstr "Change password"
+
+#~ msgid "string:_password_recovery_helptext"
+#~ msgstr ""
+#~ "To reset your password, enter either your username or email address. We "
+#~ "will send you an email to enable you to reset your password."
+
+#~ msgid "string:_password_reset_link_not_valid"
+#~ msgstr "This password reset link is no longer valid."
