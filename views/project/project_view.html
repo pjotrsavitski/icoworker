@@ -34,11 +34,10 @@
 								<li tal:define="tasks php:ProjectManager::getProjectTasks(project.getId())">
 								    <fieldset>
 										<legend i18n:translate="">Tasks</legend>
-										<span class="teke-toggler teke-slide-toggler project-side-widget-control"></span>
-										<span class="teke-delete-button project-side-widget-control"></span>
-										<span id="add-task-button" class="teke-add-button project-side-widget-control"></span>
+										<span class="teke-toggler teke-slide-toggler project-side-widget-control teke-toggler-toggled"></span>
+										<span id="add-task-button" class="teke-add-button project-side-widget-control" title="Add new Task" i18n:attributes="title"></span>
 										<div class="clearfloat"></div>
-										<div class="teke-togglable" id="project-tasks">
+										<div class="teke-togglable" id="project-tasks" style="display:block;">
 											<tal:block repeat="task tasks">
 											    <tal:block metal:use-macro="project.html/task" />
 											</tal:block>
@@ -48,10 +47,9 @@
                                 <li tal:define="members project/getMembers">
 								    <fieldset>
 										<legend i18n:translate="">Participants</legend>
-                                        <span class="teke-toggler teke-slide-toggler project-side-widget-control"></span>
-                                        <span class="teke-delete-button project-side-widget-control"></span>
-                                        <span id="add-participant-button" class="teke-add-button project-side-widget-control"></span>
-										<div class="teke-togglable">
+                                        <span class="teke-toggler teke-slide-toggler project-side-widget-control teke-toggler-toggled"></span>
+                                        <span id="add-participant-button" class="teke-add-button project-side-widget-control" title="Add Participant" i18n:attributes="title"></span>
+										<div class="teke-togglable" style="display:block;">
 											<div id="project-participants">
 											    <tal:block repeat="member members">
 											        <tal:block metal:use-macro="project.html/member" />
@@ -63,10 +61,9 @@
                                 <li tal:define="resources php:ProjectManager::getProjectResources(project.getId())">
 								    <fieldset>
 										<legend i18n:translate="">Resources</legend>
-                                        <span class="teke-toggler teke-slide-toggler project-side-widget-control"></span>
-										<span class="teke-delete-button project-side-widget-control"></span>
-                                        <span id="add-resource-button" class="teke-add-button project-side-widget-control"></span>
-										<div class="teke-togglable" id="project-resources">
+                                        <span class="teke-toggler teke-slide-toggler project-side-widget-control teke-toggler-toggled"></span>
+                                        <span id="add-resource-button" class="teke-add-button project-side-widget-control" title="Add new Resource" i18n:attributes="title"></span>
+										<div class="teke-togglable" id="project-resources" style="display:block;">
 											<tal:block repeat="resource resources">
 											    <tal:block metal:use-macro="project.html/resource" />
 											</tal:block>
@@ -76,8 +73,8 @@
                                 <li tal:define="flow php:ProjectManager::getProjectActivity(project.getId())">
 								    <fieldset>
 										<legend i18n:translate="">Diary and Messages</legend>
-                                        <span class="teke-toggler teke-slide-toggler project-side-widget-control"></span>
-										<div class="teke-togglable">
+                                        <span class="teke-toggler teke-slide-toggler project-side-widget-control teke-toggler-toggled"></span>
+										<div class="teke-togglable" style="display:block;">
 											<div id="project-diary-and-messages-flow">
 												<tal:block repeat="activity flow">
 												    <tal:block metal:use-macro="project.html/activity" />
@@ -85,7 +82,7 @@
 											</div>
 											<div id="project-diary-and-messages-add">
 												<input type="text" name="body" value="" class="text ui-widget-content ui-corner-all" style="width:140px;"/>
-                                                <span class="teke-add-button"></span>
+                                                <span class="teke-add-button" title="Post new Message" i18n:attributes="title"></span>
 											</div>
 											<div id="project-diary-and-messages-filter">
 												<tal:block i18n:translate="">Show:</tal:block>
