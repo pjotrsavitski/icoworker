@@ -1,4 +1,4 @@
-/* Project timeline class */
+/* PROJECT TIMELINE CLASS */
 function Timeline() {
     this.start_date = null;
     this.end_date = null;
@@ -141,6 +141,89 @@ Timeline.prototype.fillWithData = function() {
 var timeline = new Timeline();
 
 /* Extend teke with additional methods */
+
+/* CONTEXT MENUS */
+// Initialize contextmenu for Resource elements
+teke.initialize_resources_context_menus = function() {
+    $.contextMenu({
+        selector: '.project-resource',
+        build: function($trigger, e) {
+            return {
+                items: {
+                    "edit": {
+                        name: teke.translate('title_edit'),
+                        icon: "edit",
+                        callback: function(key, opt) {
+                            console.log("Resource-edit-being-selected");
+                            alert("THIS FEATURE DOES NOT WORK YET");
+                            return true;
+                        }
+                    },
+                    "delete": {
+                        name: teke.translate('title_delete'),
+                        icon: "delete",
+                        callback: function(key, opt) {
+                            if (confirm(teke.translate('confirmation_remove_resource'))) {
+                                alert("THIS FEATURE DOES NOT WORK YET, THUS RESOURCE WILL NOT BE REMOVED FROM THE DATABASE");
+                                $('.project-resource').filter('[data-id="'+opt.$trigger.attr('data-id')+'"]').remove();
+                            }
+                            return true;
+                        }
+                    }
+                }
+            };
+        }
+    });
+};
+// Initialize contextmenu for Task elements
+teke.initialize_tasks_context_menus = function() {
+    // Deal with timeline task
+    $.contextMenu({
+        selector: '.timeline-task',
+        build: function($trigger, e) {
+            return {
+                items: {
+                    "removefromtimeline": {
+                        name: teke.translate('title_remove_from_timeline'),
+                        icon: "unlink",
+                        callback: function(key, opt) { 
+                            if (confirm(teke.translate('confirmation_remove_task_from_timeline'))) {
+                                teke.remove_task_from_timeline(opt.$trigger.attr('data-id'));
+                            }
+                            return true;
+                        }
+                    }
+                }
+            };
+        }
+    });
+    // Deal with any task general logic
+    $.contextMenu({
+        selector: '.single-task > span.task-title, .timeline-task-content > span.task-title',
+        build: function($trigger, e) {
+            return {
+                items: {
+                    "edit": {
+                        name: teke.translate('title_edit'),
+                        icon: "edit",
+                        callback: function(key, opt) {
+                            console.log("Task-edit-being-selected");
+                            return true;
+                        }
+                    },
+                    "delete": {
+                        name: teke.translate('title_delete'),
+                        icon: "delete",
+                        callback: function(key, opt) {
+                            console.log("Task-delete-being-selected");
+                            return true;
+                        }
+                    }
+                }
+            };
+        }
+    });
+};
 
 /* Add milestone to timeline */
 teke.add_milestone_to_timeline = function(offset, id, milestone_date, title, flag_url, notes) {
@@ -551,26 +634,6 @@ teke.add_task_to_timeline = function(data) {
             }
         }
     });
-    // Add contextmenu
-    $.contextMenu({
-        selector: '#project-timeline-task-'+data.id,
-        build: function($trigger, e) {
-            return {
-                items: {
-                    "removefromtimeline": {
-                        name: teke.translate('title_remove_from_timeline'),
-                        icon: "unlink",
-                        callback: function(key, opt) { 
-                            if (confirm(teke.translate('confirmation_remove_task_from_timeline'))) {
-                                teke.remove_task_from_timeline($(this).attr('data-id'));
-                            }
-                            return true;
-                        }
-                    }
-                }
-            };
-        }
-    });
     // Initialize task as droppable
     teke.initialize_tasks_droppables(tmp_task.find('.timeline-task-content'));
     tmp_task.appendTo('#project-timeline-tasks');
@@ -877,6 +940,9 @@ teke.reinitialize_timeline = function() {
 
 /* Initialize timeline related stuff */
 $(document).ready(function() {
+    // XXX Initialize context menus
+    teke.initialize_resources_context_menus();
+    teke.initialize_tasks_context_menus();
     // Hook into timeline main element scroll
     $('#project-timeline').on('scroll', function(e) {
         var current_scroll = $(this).scrollLeft();
