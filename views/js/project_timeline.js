@@ -530,6 +530,7 @@ teke.add_task_to_timeline = function(data) {
     var start_date = new Date(data.start_date);
     var end_date = new Date(data.end_date);
     tmp_task.width((end_date.getTime() - start_date.getTime()) / timeline.getPixelValue()).css('left', ( (start_date.getTime() - new Date(timeline.getStart()).getTime()) / timeline.getPixelValue() )+'px');
+    // Add click
     tmp_task.find('.timeline-task').width((end_date.getTime() - start_date.getTime()) / timeline.getPixelValue()).on('click', function(e) {
         // Determine if repositioning is needed
         var needs_repositioning = false;
@@ -549,11 +550,26 @@ teke.add_task_to_timeline = function(data) {
                 ce_content.css('left', position_left+'px');
             }
         }
-    }).on('contextmenu', function() {
-        if (confirm(teke.translate('confirmation_remove_task_from_timeline'))) {
-            teke.remove_task_from_timeline(data.id);
+    });
+    // Add contextmenu
+    $.contextMenu({
+        selector: '#project-timeline-task-'+data.id,
+        build: function($trigger, e) {
+            return {
+                items: {
+                    "removefromtimeline": {
+                        name: teke.translate('title_remove_from_timeline'),
+                        icon: "unlink",
+                        callback: function(key, opt) { 
+                            if (confirm(teke.translate('confirmation_remove_task_from_timeline'))) {
+                                teke.remove_task_from_timeline($(this).attr('data-id'));
+                            }
+                            return true;
+                        }
+                    }
+                }
+            };
         }
-        return false;
     });
     // Initialize task as droppable
     teke.initialize_tasks_droppables(tmp_task.find('.timeline-task-content'));
@@ -835,7 +851,7 @@ teke.initialize_timeline_scale = function() {
             // Reinitialize timeline
             teke.reinitialize_timeline();
         }
-    });
+    }).find('.ui-slider-handle').attr('title', teke.translate('title_slide_to_change_time_scale'));
 };
 
 /* Reinitialize timeline content */
