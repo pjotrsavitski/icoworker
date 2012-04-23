@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2012-04-23 12:10+0300\n"
+"POT-Creation-Date: 2012-04-23 14:34+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -146,16 +146,20 @@ msgstr ""
 msgid "Admin"
 msgstr ""
 
-#: ../engine/lib/handler/handler_administrate.php:17
+#: ../engine/lib/handler/handler_administrate.php:18
 msgid "Administrate TeKe"
 msgstr ""
 
-#: ../engine/lib/handler/handler_administrate.php:18
+#: ../engine/lib/handler/handler_administrate.php:19
 msgid "Administrate users"
 msgstr ""
 
 #: ../engine/teke.php:69
 msgid "Administration"
+msgstr ""
+
+#: ../views/administrate/administrate_teke.html:17
+msgid "Admins"
 msgstr ""
 
 #: ../actions/add_participant.php:27
@@ -363,6 +367,10 @@ msgstr ""
 msgid "Guest"
 msgstr ""
 
+#: ../views/administrate/administrate_teke.html:25
+msgid "Guests"
+msgstr ""
+
 msgid "Hi %s,\n\nWe have received your password reset request.\n\nPlease visit the following link to reset your password:\n%s\n\nThe link will expire after 24 hours for security reasons.\n\nIf you did not request this forgotten password email, no action is needed, your password will not be reset as long as the link above is not visited.\n\nThanks,\n%s \n\n--\nPlease do not reply to this message."
 msgstr ""
 
@@ -399,6 +407,7 @@ msgstr ""
 msgid "Member"
 msgstr ""
 
+#: ../views/administrate/administrate_teke.html:21
 #: ../views/pages/index.html:69
 msgid "Members"
 msgstr ""
@@ -604,6 +613,10 @@ msgstr ""
 msgid "Project start date could not be changed."
 msgstr ""
 
+#: ../views/administrate/administrate_teke.html:29
+msgid "Projects"
+msgstr ""
+
 #: ../actions/add_task_to_timeline.php:50
 msgid "Provided dates are not suitable."
 msgstr ""
@@ -726,6 +739,10 @@ msgstr ""
 msgid "Start/end dates"
 msgstr ""
 
+#: ../views/administrate/administrate_teke.html:8
+msgid "Statistics"
+msgstr ""
+
 #: ../engine/teke.php:300
 msgid "Swedish"
 msgstr ""
@@ -798,6 +815,10 @@ msgstr ""
 
 #: ../views/administrate/administrate_user.html:16
 msgid "Username"
+msgstr ""
+
+#: ../views/administrate/administrate_teke.html:13
+msgid "Users"
 msgstr ""
 
 #: ../engine/lib/handler/handler_user.php:18

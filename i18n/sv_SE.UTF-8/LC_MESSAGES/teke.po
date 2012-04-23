@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Early\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-04-23 12:10+0300\n"
+"POT-Creation-Date: 2012-04-23 14:34+0300\n"
 "PO-Revision-Date: 2011-02-25 14:45+0200\n"
 "Last-Translator: Meelis Mets <meelis.mets@tlu.ee>\n"
 "Language-Team: Swedish <sv@li.org>\n"
@@ -149,16 +149,21 @@ msgstr ""
 msgid "Admin"
 msgstr ""
 
-#: ../engine/lib/handler/handler_administrate.php:17
+#: ../engine/lib/handler/handler_administrate.php:18
 msgid "Administrate TeKe"
 msgstr "Administrate TeKe"
 
-#: ../engine/lib/handler/handler_administrate.php:18
+#: ../engine/lib/handler/handler_administrate.php:19
 msgid "Administrate users"
 msgstr "Administrate users"
 
 #: ../engine/teke.php:69
 msgid "Administration"
+msgstr "Administration"
+
+#: ../views/administrate/administrate_teke.html:17
+#, fuzzy
+msgid "Admins"
 msgstr "Administration"
 
 #: ../actions/add_participant.php:27
@@ -374,6 +379,10 @@ msgstr ""
 msgid "Guest"
 msgstr ""
 
+#: ../views/administrate/administrate_teke.html:25
+msgid "Guests"
+msgstr ""
+
 msgid ""
 "Hi %s,\n"
 "\n"
@@ -427,6 +436,7 @@ msgstr ""
 msgid "Member"
 msgstr ""
 
+#: ../views/administrate/administrate_teke.html:21
 #: ../views/pages/index.html:69
 msgid "Members"
 msgstr ""
@@ -634,6 +644,10 @@ msgstr ""
 msgid "Project start date could not be changed."
 msgstr ""
 
+#: ../views/administrate/administrate_teke.html:29
+msgid "Projects"
+msgstr ""
+
 #: ../actions/add_task_to_timeline.php:50
 msgid "Provided dates are not suitable."
 msgstr ""
@@ -760,6 +774,10 @@ msgstr ""
 msgid "Start/end dates"
 msgstr ""
 
+#: ../views/administrate/administrate_teke.html:8
+msgid "Statistics"
+msgstr ""
+
 #: ../engine/teke.php:300
 msgid "Swedish"
 msgstr ""
@@ -838,6 +856,10 @@ msgstr ""
 
 #: ../views/administrate/administrate_user.html:16
 msgid "Username"
+msgstr ""
+
+#: ../views/administrate/administrate_teke.html:13
+msgid "Users"
 msgstr ""
 
 #: ../engine/lib/handler/handler_user.php:18

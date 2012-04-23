@@ -305,6 +305,16 @@ table#administrate-users th {
 	background-color: #cccccc;
 }
 
+#administrate-statistics-heading {
+	margin-top: 5px;
+	margin-bottom: 5px;
+}
+
+table#administrate-statistics td:first-child {
+	font-weight: bold;
+	padding-right: 5px;
+}
+
 div#add-new-project-form label {
 	display: block;
 }

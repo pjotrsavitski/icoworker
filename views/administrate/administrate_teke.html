@@ -5,6 +5,33 @@
 
             <a href="" i18n:translate="" tal:attributes="href string:${WWW_ROOT}">Back</a>
 
+			<h2 id="administrate-statistics-heading" i18n:translate="">Statistics</h2>
+
+			<table id="administrate-statistics">
+				<tbody>
+					<tr>
+						<td i18n:translate="">Users</td>
+						<td tal:content="teke/handler/getUsersCount"></td>
+					</tr>
+                    <tr>
+						<td i18n:translate="">Admins</td>
+						<td tal:content="teke/handler/getAdminsCount"></td>
+					</tr>
+                    <tr>
+						<td i18n:translate="">Members</td>
+						<td tal:content="teke/handler/getMembersCount"></td>
+					</tr>
+                    <tr>
+						<td i18n:translate="">Guests</td>
+						<td tal:content="teke/handler/getGuestsCount"></td>
+					</tr>
+                    <tr>
+						<td i18n:translate="">Projects</td>
+						<td tal:content="teke/handler/getProjectsCount"></td>
+					</tr>
+				</tbody>
+			</table>
+
         </tal:block>
     </tal:block>
     

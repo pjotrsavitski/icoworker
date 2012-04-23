@@ -2,6 +2,7 @@
 class AdministrateHandler extends BaseHandler {
     
     public $name = "administrate";
+    public $db_prefix = DB_PREFIX;
     
     function __construct($page) {
         parent::__construct($page);
@@ -17,5 +18,44 @@ class AdministrateHandler extends BaseHandler {
         $this->navigation []= array('title'=>_('Administrate TeKe'), 'url'=>"administrate/teke", 'current'=>$this->is_current_page($this->page[0], "teke"));
         $this->navigation []= array('title'=>_('Administrate users'), 'url'=>"administrate/user", 'current'=>$this->is_current_page($this->page[0], "user"));
     }
+
+    public function getUsersCount() {
+        $q = "SELECT COUNT(id) AS count FROM {$this->db_prefix}users WHERE 1";
+        $result = query_row($q);
+        if ($result) {
+            return $result->count;
+        }
+        return 0;
+    }
+
+    public function getUsersCountWithRole($roleid) {
+        $roleid = (int)$roleid;
+        $q = "SELECT COUNT(id) AS count FROM {$this->db_prefix}users WHERE role = {$roleid}";
+        $result = query_row($q);
+        if ($result) {
+            return $result->count;
+        }
+        return 0;
+    }
+
+    public function getAdminsCount() {
+        return $this->getUsersCountWithRole(9);
+    }
+
+    public function getMembersCount() {
+        return $this->getUsersCountWithRole(ACCESS_CAN_EDIT);
+    }
+
+    public function getGuestsCount() {
+        return $this->getUsersCountWithRole(ACCESS_CAN_VIEW);
+    }
+
+    public function getProjectsCount() {
+        $q = "SELECT COUNT(id) AS count FROM {$this->db_prefix}projects WHERE 1";
+        $result = query_row($q);
+        if ($result) {
+            return $result->count;
+        }
+        return 0;
+    }
 }
-?>
