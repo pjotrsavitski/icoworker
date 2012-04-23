@@ -304,6 +304,10 @@ div#index-facebook-login {
 	text-align: center;
 }
 
+div#index-facebook-login .facebook-login-text {
+	margin-bottom: 5px;
+}
+
 div#index-facebook-login img {
 	width: 25px;
 	height: 25px;

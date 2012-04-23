@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Early\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-04-23 14:34+0300\n"
+"POT-Creation-Date: 2012-04-23 15:44+0300\n"
 "PO-Revision-Date: 2011-02-25 14:45+0200\n"
 "Last-Translator: Meelis Mets <meelis.mets@tlu.ee>\n"
 "Language-Team: Swedish <sv@li.org>\n"
@@ -133,7 +133,7 @@ msgstr ""
 msgid "Add new Milestone"
 msgstr ""
 
-#: ../views/pages/index.html:45
+#: ../views/pages/index.html:48
 msgid "Add new Project"
 msgstr ""
 
@@ -327,7 +327,7 @@ msgstr ""
 msgid "Email is not valid."
 msgstr "Email is not valid."
 
-#: ../views/pages/index.html:65
+#: ../views/pages/index.html:68
 msgid "End date"
 msgstr ""
 
@@ -428,8 +428,8 @@ msgstr ""
 msgid "Login failed."
 msgstr ""
 
-#: ../views/pages/index.html:32
-msgid "Login with Facebook"
+#: ../views/pages/index.html:33
+msgid "Login with your Facebook account"
 msgstr ""
 
 #: ../engine/teke.php:281
@@ -437,7 +437,7 @@ msgid "Member"
 msgstr ""
 
 #: ../views/administrate/administrate_teke.html:21
-#: ../views/pages/index.html:69
+#: ../views/pages/index.html:72
 msgid "Members"
 msgstr ""
 
@@ -457,7 +457,7 @@ msgstr ""
 msgid "Milestone title"
 msgstr ""
 
-#: ../views/pages/index.html:41
+#: ../views/pages/index.html:44
 msgid "My Projects"
 msgstr ""
 
@@ -766,7 +766,7 @@ msgstr ""
 msgid "Spreadsheet"
 msgstr ""
 
-#: ../views/pages/index.html:61
+#: ../views/pages/index.html:64
 msgid "Start date"
 msgstr ""
 
