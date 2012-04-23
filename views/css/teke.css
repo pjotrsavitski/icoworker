@@ -132,6 +132,19 @@ tr.odd {
 	border: 1px solid #F2C968;
 }
 
+/*FOOTER*/
+#footer {
+	padding: 10px;
+	width: 870px;
+	margin-left: 150px;
+	margin-right: auto;
+	text-align: center;
+}
+
+#footer img {
+	margin: 0px 25px 0px 25px;
+}
+
 /*MESSAGES*/
 #system_messages {
 	width: 100%;
