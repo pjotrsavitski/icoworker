@@ -8,7 +8,10 @@
 
 	    <tal:block condition="not:is_logged_in">
 
-	        <h1 id="index-heading" i18n:translate="SITE_NAME"></h1>
+		    <h1 id="index-heading">
+				<tal:block i18n:translate="SITE_NAME"></tal:block>
+				<span id="index-beta-notice">Beta</span>
+		    </h1>
 
 		    <div id="index-hints">
 			    <div class="hint">

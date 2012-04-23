@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Early\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-04-10 13:29+0300\n"
+"POT-Creation-Date: 2012-04-23 12:10+0300\n"
 "PO-Revision-Date: 2011-02-25 14:45+0200\n"
 "Last-Translator: Meelis Mets <meelis.mets@tlu.ee>\n"
 "Language-Team: Estonian <et@li.org>\n"
@@ -113,7 +113,7 @@ msgstr ""
 msgid "Add New Project"
 msgstr ""
 
-#: ../views/templates/forms.html:89
+#: ../views/project/project_view.html:53 ../views/templates/forms.html:89
 msgid "Add Participant"
 msgstr ""
 
@@ -133,15 +133,15 @@ msgstr ""
 msgid "Add new Milestone"
 msgstr ""
 
-#: ../views/pages/index.html:42
+#: ../views/pages/index.html:45
 msgid "Add new Project"
 msgstr ""
 
-#: ../views/templates/forms.html:70
+#: ../views/project/project_view.html:67 ../views/templates/forms.html:70
 msgid "Add new Resource"
 msgstr ""
 
-#: ../views/templates/forms.html:59
+#: ../views/project/project_view.html:40 ../views/templates/forms.html:59
 msgid "Add new Task"
 msgstr ""
 
@@ -166,7 +166,9 @@ msgid "Already is a participant."
 msgstr ""
 
 #: ../views/js/teke_config.php:24
-msgid "Are you sure you want to remove this task from timeline ?"
+msgid ""
+"Are you sure you want to remove this task from timeline ? Task itself will "
+"not be deleted."
 msgstr ""
 
 #: ../actions/update_user_settings.php:41
@@ -226,7 +228,7 @@ msgstr ""
 msgid "Close"
 msgstr "Sulge"
 
-#: ../views/pages/index.html:21
+#: ../views/pages/index.html:24
 msgid "Collaborate"
 msgstr ""
 
@@ -251,7 +253,7 @@ msgstr "Kopeerimisel tekkis viga: mõnda kopeeritavat objekti ei saanud luua."
 msgid "Create"
 msgstr ""
 
-#: ../views/project/project_view.html:26 ../views/templates/forms.html:27
+#: ../views/project/project_view.html:28 ../views/templates/forms.html:27
 msgid "Create new Document"
 msgstr ""
 
@@ -263,7 +265,11 @@ msgstr ""
 msgid "Default Document"
 msgstr ""
 
-#: ../views/project/project_view.html:78
+#: ../views/js/teke_config.php:28
+msgid "Delete"
+msgstr "Kustuta"
+
+#: ../views/project/project_view.html:77
 msgid "Diary and Messages"
 msgstr ""
 
@@ -288,7 +294,7 @@ msgstr ""
 msgid "Dropped"
 msgstr ""
 
-#: ../views/js/teke_config.php:17
+#: ../views/js/teke_config.php:17 ../views/js/teke_config.php:27
 msgid "Edit"
 msgstr "Toimeta"
 
@@ -319,7 +325,7 @@ msgstr "E-post"
 msgid "Email is not valid."
 msgstr "E-post on vigane."
 
-#: ../views/pages/index.html:62
+#: ../views/pages/index.html:65
 msgid "End date"
 msgstr ""
 
@@ -327,7 +333,7 @@ msgstr ""
 msgid "English"
 msgstr ""
 
-#: ../views/pages/index.html:15
+#: ../views/pages/index.html:18
 msgid "Enter your Goals"
 msgstr ""
 
@@ -429,7 +435,7 @@ msgstr "Perekonnanimi"
 msgid "Live"
 msgstr ""
 
-#: ../views/templates/top_bar.html:17
+#: ../views/templates/top_bar.html:20
 msgid "Log out"
 msgstr "Välju"
 
@@ -438,7 +444,7 @@ msgstr "Välju"
 msgid "Login failed."
 msgstr "Registreerimine nurjus"
 
-#: ../views/pages/index.html:29
+#: ../views/pages/index.html:32
 msgid "Login with Facebook"
 msgstr ""
 
@@ -446,7 +452,7 @@ msgstr ""
 msgid "Member"
 msgstr ""
 
-#: ../views/pages/index.html:66
+#: ../views/pages/index.html:69
 msgid "Members"
 msgstr ""
 
@@ -467,7 +473,7 @@ msgstr "Kopeerimisel tekkis viga: mõnda kopeeritavat objekti ei saanud luua."
 msgid "Milestone title"
 msgstr ""
 
-#: ../views/pages/index.html:38
+#: ../views/pages/index.html:41
 msgid "My Projects"
 msgstr ""
 
@@ -546,7 +552,7 @@ msgstr "Autoriseeritud kasutajat ei leitud."
 msgid "No project or insufficient privileges."
 msgstr ""
 
-#: ../views/project/project_view.html:111
+#: ../views/project/project_view.html:110
 msgid "No rights to see the project."
 msgstr ""
 
@@ -558,7 +564,7 @@ msgstr ""
 msgid "No such milestone."
 msgstr ""
 
-#: ../views/project/project_view.html:115
+#: ../views/project/project_view.html:114
 msgid "No such project."
 msgstr ""
 
@@ -610,7 +616,7 @@ msgstr ""
 msgid "Participant is already associated with this task."
 msgstr ""
 
-#: ../views/project/project_view.html:50
+#: ../views/project/project_view.html:51
 msgid "Participants"
 msgstr ""
 
@@ -618,8 +624,12 @@ msgstr ""
 msgid "Password reset"
 msgstr "Parooli lähtestamine"
 
-#: ../views/pages/index.html:18
+#: ../views/pages/index.html:21
 msgid "Plan your Work"
+msgstr ""
+
+#: ../views/project/project_view.html:87
+msgid "Post new Message"
 msgstr ""
 
 #: ../engine/lib/project/Resource.php:89
@@ -676,6 +686,10 @@ msgstr "Registreeru"
 
 msgid "Remove"
 msgstr "Eemalda"
+
+#: ../views/js/teke_config.php:25
+msgid "Remove from timeline"
+msgstr ""
 
 # , php-format
 #: ../engine/lib/project/Activity.php:146
@@ -757,8 +771,12 @@ msgstr ""
 msgid "Settings saved."
 msgstr "Sätted salvestati."
 
-#: ../views/project/project_view.html:91
+#: ../views/project/project_view.html:90
 msgid "Show:"
+msgstr ""
+
+#: ../views/js/teke_config.php:26
+msgid "Slide to change time scale"
 msgstr ""
 
 #: ../views/pages/page_not_found.html:3
@@ -769,7 +787,7 @@ msgstr ""
 msgid "Spreadsheet"
 msgstr ""
 
-#: ../views/pages/index.html:58
+#: ../views/pages/index.html:61
 #, fuzzy
 msgid "Start date"
 msgstr "Start nurjus"
@@ -820,7 +838,7 @@ msgstr ""
 msgid "Task title"
 msgstr ""
 
-#: ../views/project/project_view.html:36
+#: ../views/project/project_view.html:38
 msgid "Tasks"
 msgstr ""
 
@@ -893,9 +911,6 @@ msgstr ""
 
 #~ msgid "Current password was incorrect."
 #~ msgstr "Käesolev salasõna ei ole õige."
-
-#~ msgid "Delete"
-#~ msgstr "Kustuta"
 
 #~ msgid "Deleting! Are you sure?"
 #~ msgstr "Oled kindel, et soovid kustutada?"

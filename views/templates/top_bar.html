@@ -1,7 +1,10 @@
 <tal:block metal:define-macro="top_bar" i18n:domain="teke">
     <div id="top_bar">
 		<div id="top_bar_left">
-			<a href="#" tal:attributes="href teke/get_site_url; title SITE_NAME" i18n:translate="SITE_NAME"></a>
+			<a href="#" tal:attributes="href teke/get_site_url; title SITE_NAME">
+				<tal:block i18n:translate="SITE_NAME"></tal:block>
+				<div id="main-beta-notice">Beta</div>
+			</a>
 
 		</div>
         <div id="top_bar_right">
