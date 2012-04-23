@@ -1,5 +1,6 @@
 <?php
     require_once(dirname(dirname(__FILE__))."/engine/engine.php");
+    global $TeKe;
         
     if (isset($_SESSION["user"])) {
         unset($_SESSION["user"]);

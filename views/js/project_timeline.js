@@ -225,9 +225,103 @@ teke.initialize_tasks_context_menus = function() {
     });
 };
 
+// Initialize contextmenu for Milestone elements
+teke.initialize_milestones_context_menus = function() {
+    $.contextMenu({
+        selector: '#project-timeline-project .milestone',
+        build: function($trigger, e) {
+            return {
+                items: {
+                    "delete": {
+                        name: teke.translate('title_delete'),
+                        icon: "delete",
+                        callback: function(key, opt) {
+                            if (confirm(teke.translate('confirmation_delete_object'))) {
+                                $.ajax({
+                                    cache: false,
+                                    type: "POST",
+                                    url: teke.get_site_url()+"actions/delete_milestone.php",
+                                    data: { milestone_id: opt.$trigger.attr('data-id') },
+                                    dataType: "json",
+                                    success: function(data) {
+                                        if (data.state == 0) {
+                                            // Remove milestone from timeline
+                                            opt.$trigger.remove();
+                                            // Update activity flow if needed
+                                            if ($('#project-diary-and-messages-filter > select').val() != 'messages') {
+                                                teke.project_update_messages_flow();
+                                            }
+                                        }
+                                        // Add messages if any provided
+                                        if (data.messages != "") {
+                                            teke.replace_system_messages(data.messages);
+                                        }
+                                    },
+                                    error: function() {
+                                        // TODO removeme
+                                        alert("milestone delete failed");
+                                    }
+                                });
+                            }
+                            return true;
+                        }
+                    }
+                }
+            };
+        }
+    });
+};
+
+// Initialize contextmenu for Comment elements
+teke.initialize_comments_context_menus = function() {
+    $.contextMenu({
+        selector: '#project-timeline-project-comments .project-comment',
+        build: function($trigger, e) {
+            return {
+                items: {
+                    "delete": {
+                        name: teke.translate('title_delete'),
+                        icon: "delete",
+                        callback: function(key, opt) {
+                            if (confirm(teke.translate('confirmation_delete_object'))) {
+                                $.ajax({
+                                    cache: false,
+                                    type: "POST",
+                                    url: teke.get_site_url()+"actions/delete_comment.php",
+                                    data: { milestone_id: opt.$trigger.attr('data-id') },
+                                    dataType: "json",
+                                    success: function(data) {
+                                        if (data.state == 0) {
+                                            // Remove comment from timeline
+                                            opt.$trigger.remove();
+                                            // Update activity flow if needed
+                                            if ($('#project-diary-and-messages-filter > select').val() != 'messages') {
+                                                teke.project_update_messages_flow();
+                                            }
+                                        }
+                                        // Add messages if any provided
+                                        if (data.messages != "") {
+                                            teke.replace_system_messages(data.messages);
+                                        }
+                                    },
+                                    error: function() {
+                                        // TODO removeme
+                                        alert("comment delete failed");
+                                    }
+                                });
+                            }
+                            return true;
+                        }
+                    }
+                }
+            };
+        }
+    });
+};
+
 /* Add milestone to timeline */
 teke.add_milestone_to_timeline = function(offset, id, milestone_date, title, flag_url, notes) {
-	$('<div id="project-timeline-milestone-'+id+'" class="milestone" style="left: '+offset+'px;"><img src="'+flag_url+'" alt="flag" /><div class="timeline-above-date">'+teke.format_date(milestone_date, "dd.mm")+'</div><div class="teke-tooltip-content"><label>'+title+'</label><br />'+teke.format_date(milestone_date)+'<div class="milestone-notes">'+notes+'</div></div></div>').appendTo($('#project-timeline-project'));
+	$('<div id="project-timeline-milestone-'+id+'" data-id="'+id+'" class="milestone" style="left: '+offset+'px;"><img src="'+flag_url+'" alt="flag" /><div class="timeline-above-date">'+teke.format_date(milestone_date, "dd.mm")+'</div><div class="teke-tooltip-content"><label>'+title+'</label><br />'+teke.format_date(milestone_date)+'<div class="milestone-notes">'+notes+'</div></div></div>').appendTo($('#project-timeline-project'));
     // Bind click
     $('#project-timeline-milestone-'+id).on('click', function(event) {
         // Prevent parent click from happening
@@ -341,7 +435,7 @@ teke.edit_milestone = function(id) {
 
 /* Add comment to timeline */
 teke.add_comment_to_timeline = function(offset, id, comment_date, content) {
-	$('<div id="project-timeline-comment-'+id+'" class="project-comment" style="left: '+offset+'px;"><img src="'+teke.get_site_url()+'views/graphics/timeline_comment.png" alt="comment" /><div class="teke-tooltip-content"><label>'+content+'</label><br />'+teke.format_date(comment_date)+'</div></div>'). appendTo($('#project-timeline-project-comments'));
+	$('<div id="project-timeline-comment-'+id+'" data-id="'+id+'" class="project-comment" style="left: '+offset+'px;"><img src="'+teke.get_site_url()+'views/graphics/timeline_comment.png" alt="comment" /><div class="teke-tooltip-content"><label>'+content+'</label><br />'+teke.format_date(comment_date)+'</div></div>'). appendTo($('#project-timeline-project-comments'));
     // Bind click
     $('#project-timeline-comment-'+id).on('click', function(event) {
         // Prevent parent click from happening
@@ -943,6 +1037,8 @@ $(document).ready(function() {
     // XXX Initialize context menus
     teke.initialize_resources_context_menus();
     teke.initialize_tasks_context_menus();
+    teke.initialize_milestones_context_menus();
+    teke.initialize_comments_context_menus();
     // Hook into timeline main element scroll
     $('#project-timeline').on('scroll', function(e) {
         var current_scroll = $(this).scrollLeft();

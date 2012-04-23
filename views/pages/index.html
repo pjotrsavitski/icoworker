@@ -13,18 +13,9 @@
 				<span id="index-beta-notice">Beta</span>
 		    </h1>
 
-		    <div id="index-hints">
-			    <div class="hint">
-				    <div class="hint-text" i18n:translate="">Enter your Goals</div>
-			    </div>
-			    <div class="hint">
-				    <div class="hint-text" i18n:translate="">Plan your Work</div>
-			    </div>
-			    <div class="hint">
-				    <div class="hint-text" i18n:translate="">Collaborate</div>
-			    </div>
-		    </div>
-		    <div class="clearfloat"></div>
+			<div id="index-welcome">
+				<img src="" alt="welcome" tal:attributes="src string:${WWW_ROOT}views/graphics/welcome.jpg" />
+			</div>
 
 		    <tal:block metal:use-macro="languages.html/language_selection" tal:define="class string:index-language-selection" />
 

@@ -17,7 +17,7 @@
                     <a href="#" title="" tal:attributes="href teke/user/getURL | nothingi; title teke/user/getFullName | nothing" 
                         tal:content="teke/user/getFullName | nothing"></a>
                 </tal:block> 
-                <input type="button" class="logout_button" onclick="" tal:attributes="onclick string:javascript:window.location='${WWW_ROOT}actions/logout.php'" value="Log out" i18n:attributes="value" />
+				<input tal:define="fb_logout_url php:teke.getFacebookLogoutURL()" type="button" class="logout_button" onclick="" tal:attributes="onclick string:javascript:window.location='${fb_logout_url}'" value="Log out" i18n:attributes="value" />
             </tal:block>
             <tal:block tal:condition="php: !is_logged_in">
             <a href="#" tal:attributes="href string:${WWW_ROOT}login">Log in</a>

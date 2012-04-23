@@ -309,5 +309,9 @@ class TeKe {
         return $lang;
     }
 
+    public function getFacebookLogoutURL() {
+        return $this->facebook->getLogoutUrl(array('next' => WWW_ROOT . "actions/logout.php"));
+    }
+
 }
 ?>

@@ -21,9 +21,10 @@ jQuery(document).ready(function() {
     teke.add_translation('title_add_task_to_timeline', '<?php echo _('Add Task to Timeline'); ?>');
     teke.add_translation('message_document_is_finished', '<?php echo _('This document is finished and can not be modified!'); ?>');
     teke.add_translation('message_document_is_dropped', '<?php echo _('This document is dropped and can not be modified!'); ?>');
-    teke.add_translation('confirmation_remove_task_from_timeline', '<?php echo _('Are you sure you want to remove this task from timeline ? Task itself will not be deleted.'); ?>')
+    teke.add_translation('confirmation_remove_task_from_timeline', '<?php echo _('Are you sure you want to remove this task from timeline? Task itself will not be deleted.'); ?>')
     teke.add_translation('title_remove_from_timeline', '<?php echo _('Remove from timeline'); ?>');
     teke.add_translation('title_slide_to_change_time_scale', '<?php echo _('Slide to change time scale'); ?>');
     teke.add_translation('title_edit', '<?php echo _('Edit'); ?>');
     teke.add_translation('title_delete', '<?php echo _('Delete'); ?>');
+    teke.add_translation('confirmation_delete_object', '<?php echo _('Are you sure you want to delete this object? Object will be deleted premanently!'); ?>');
 });

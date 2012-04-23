@@ -271,23 +271,11 @@ div#language-selection a.language-selected img {
 }
 
 /* INDEX */
-div#index-hints {
+
+div#index-welcome {
 	position: relative;
-	width: 812px;
-	margin: 30px auto 0 auto;
-}
-
-div#index-hints div.hint {
-	height: auto;
-	width: 250px;
-	height: 250px;
-	float: left;
-	margin-right: 25px;
-	border: 2px dashed grey;
-}
-
-div#index-hints div.hint:last-child {
-	margin-right: 0px;
+	text-align: center;
+	margin-top: 30px;
 }
 
 h1#index-heading {
