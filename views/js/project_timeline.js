@@ -148,7 +148,7 @@ teke.initialize_resources_context_menus = function() {
     $.contextMenu({
         selector: '.project-resource',
         build: function($trigger, e) {
-            return {
+            var _menu = {
                 items: {
                     "edit": {
                         name: teke.translate('title_edit'),
@@ -156,6 +156,7 @@ teke.initialize_resources_context_menus = function() {
                         callback: function(key, opt) {
                             console.log("Resource-edit-being-selected");
                             alert("THIS FEATURE DOES NOT WORK YET");
+                            // XXX NOT IMPLEMENTED
                             return true;
                         }
                     },
@@ -165,6 +166,7 @@ teke.initialize_resources_context_menus = function() {
                         callback: function(key, opt) {
                             if (confirm(teke.translate('confirmation_remove_resource'))) {
                                 alert("THIS FEATURE DOES NOT WORK YET, THUS RESOURCE WILL NOT BE REMOVED FROM THE DATABASE");
+                                // XXX NOT IMPLEMENTED
                                 $('.project-resource').filter('[data-id="'+opt.$trigger.attr('data-id')+'"]').remove();
                             }
                             return true;
@@ -172,6 +174,17 @@ teke.initialize_resources_context_menus = function() {
                     }
                 }
             };
+            if ($trigger.parent().hasClass('task-resources')) {
+                _menu.items.remove = {
+                    name: teke.translate('title_remove_from_task'),
+                    icon: "unlink",
+                    callback: function(key, opt) {
+                        // XXX NOT IMPLEMENTED
+                        return true;
+                    }
+                };
+            }
+            return _menu;
         }
     });
 };
@@ -208,6 +221,7 @@ teke.initialize_tasks_context_menus = function() {
                         icon: "edit",
                         callback: function(key, opt) {
                             console.log("Task-edit-being-selected");
+                            // XXX NOT IMPLEMENTED
                             return true;
                         }
                     },
@@ -216,6 +230,7 @@ teke.initialize_tasks_context_menus = function() {
                         icon: "delete",
                         callback: function(key, opt) {
                             console.log("Task-delete-being-selected");
+                            // XXX NOT IMPLEMENTED
                             return true;
                         }
                     }
@@ -315,6 +330,61 @@ teke.initialize_comments_context_menus = function() {
                     }
                 }
             };
+        }
+    });
+};
+
+// Initialize contextmenu for Member elements
+teke.initialize_members_context_menus = function() {
+    $.contextMenu({
+        selector: '.task-members .project-member',
+        build: function($trigger, e) {
+            var _menu = {
+                items: {
+                }
+            };
+            if ($trigger.parent().hasClass('task-members')) {
+                _menu.items.remove = {
+                    name: teke.translate('title_remove_from_task'),
+                    icon: "unlink",
+                    callback: function(key, opt) {
+                        if (confirm(teke.translate('confirmation_remove_participant_from_task'))) {
+                            var task_id = $trigger.parent().parent().parent().attr('data-id');
+                            var member_id = $trigger.attr('data-id');
+                            $.ajax({
+                                cache: false,
+                                type: "POST",
+                                url: teke.get_site_url()+"actions/remove_member_from_task.php",
+                                data: { member_id: member_id, task_id: task_id },
+                                dataType: "json",
+                                success: function(data) {
+                                    if (data.state == 0) {
+                                        // Remove UI elements
+                                        $('#project-task-'+task_id).find('.task-members > .project-member[data-id="'+member_id+'"]').remove();
+                                        if ($('#project-timeline-task-holder-'+task_id).length > 0) {
+                                            $('#project-timeline-task-holder-'+task_id).find('.task-members > .project-member[data-id="'+member_id+'"]').remove();
+                                        }
+                                        // Update activity flow if needed
+                                        if ($('#project-diary-and-messages-filter > select').val() != 'messages') {
+                                            teke.project_update_messages_flow();
+                                        }
+                                    }
+                                    // Add messages if any provided
+                                    if (data.messages != "") {
+                                        teke.replace_system_messages(data.messages);
+                                    }
+                                },
+                                error: function() {
+                                    // TODO removeme
+                                    alert("participant removel from task failed");
+                                }
+                            });
+                        }
+                        return true;
+                    }
+                };
+            }
+            return _menu;
         }
     });
 };
@@ -1034,11 +1104,12 @@ teke.reinitialize_timeline = function() {
 
 /* Initialize timeline related stuff */
 $(document).ready(function() {
-    // XXX Initialize context menus
+    // Initialize context menus
     teke.initialize_resources_context_menus();
     teke.initialize_tasks_context_menus();
     teke.initialize_milestones_context_menus();
     teke.initialize_comments_context_menus();
+    teke.initialize_members_context_menus();
     // Hook into timeline main element scroll
     $('#project-timeline').on('scroll', function(e) {
         var current_scroll = $(this).scrollLeft();
