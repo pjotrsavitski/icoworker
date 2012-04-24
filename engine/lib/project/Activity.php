@@ -118,6 +118,10 @@ class Activity {
                     $data[1] = date('d.m.Y', $data[1]);
                     $body = vsprintf(_('%3$s updated milestone <span class="activity-item-title">%1$s</span> at %2$s'), $data);
                     break;
+                case "delete_milestone":
+                    $data[] = $this->getCreatorObject()->getFullname();
+                    $body = vsprintf(_('%2$s deleted milestone <span class="activity-item-title">%1$s</span>'), $data);
+                    break;
                 case "add_document":
                     $data[] = $this->getCreatorObject()->getFullname();
                     $body = vsprintf(_('%2$s added document <span class="activity-item-title">%1$s</span>'), $data);
@@ -135,6 +139,11 @@ class Activity {
                     $data[] = $this->getCreatorObject()->getFullname();
                     $data[0] = date('d.m.Y', $data[0]);
                     $body = vsprintf(_('%2$s changed comment at %1$s'), $data);
+                    break;
+                case "delete_comment":
+                    $data[] = $this->getCreatorObject()->getFullname();
+                    $data[0] = date('d.m.Y', $data[0]);
+                    $body = vsprintf(_('%2$s deleted comment at %1$s'), $data);
                     break;
                 case "add_task_member":
                     $body = vsprintf(_('Task <span class="activity-item-title">%1$s</span> assigned to <span class="activity-item-title">%2$s</span>'), $data);
@@ -193,10 +202,10 @@ class Activity {
         return false;
     }
 
-    public function delete() {
+    /*public function delete() {
         // TODO Check on how can delete is needed
         // XXX This needs to be protected
         $q = "DELETE FROM " . DB_PREFIX . "activity WHERE id = {$this->id}";
         return query_delete($q);
-    }
+    }*/
 }

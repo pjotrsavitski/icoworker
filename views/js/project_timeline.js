@@ -246,7 +246,7 @@ teke.initialize_milestones_context_menus = function() {
                                     success: function(data) {
                                         if (data.state == 0) {
                                             // Remove milestone from timeline
-                                            opt.$trigger.remove();
+                                            $trigger.remove();
                                             // Update activity flow if needed
                                             if ($('#project-diary-and-messages-filter > select').val() != 'messages') {
                                                 teke.project_update_messages_flow();
@@ -288,12 +288,12 @@ teke.initialize_comments_context_menus = function() {
                                     cache: false,
                                     type: "POST",
                                     url: teke.get_site_url()+"actions/delete_comment.php",
-                                    data: { milestone_id: opt.$trigger.attr('data-id') },
+                                    data: { comment_id: opt.$trigger.attr('data-id') },
                                     dataType: "json",
                                     success: function(data) {
                                         if (data.state == 0) {
                                             // Remove comment from timeline
-                                            opt.$trigger.remove();
+                                            $trigger.remove();
                                             // Update activity flow if needed
                                             if ($('#project-diary-and-messages-filter > select').val() != 'messages') {
                                                 teke.project_update_messages_flow();
