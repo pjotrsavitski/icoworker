@@ -339,52 +339,49 @@ teke.initialize_members_context_menus = function() {
     $.contextMenu({
         selector: '.task-members .project-member',
         build: function($trigger, e) {
-            var _menu = {
+            return {
                 items: {
-                }
-            };
-            if ($trigger.parent().hasClass('task-members')) {
-                _menu.items.remove = {
-                    name: teke.translate('title_remove_from_task'),
-                    icon: "unlink",
-                    callback: function(key, opt) {
-                        if (confirm(teke.translate('confirmation_remove_participant_from_task'))) {
-                            var task_id = $trigger.parent().parent().parent().attr('data-id');
-                            var member_id = $trigger.attr('data-id');
-                            $.ajax({
-                                cache: false,
-                                type: "POST",
-                                url: teke.get_site_url()+"actions/remove_member_from_task.php",
-                                data: { member_id: member_id, task_id: task_id },
-                                dataType: "json",
-                                success: function(data) {
-                                    if (data.state == 0) {
-                                        // Remove UI elements
-                                        $('#project-task-'+task_id).find('.task-members > .project-member[data-id="'+member_id+'"]').remove();
-                                        if ($('#project-timeline-task-holder-'+task_id).length > 0) {
-                                            $('#project-timeline-task-holder-'+task_id).find('.task-members > .project-member[data-id="'+member_id+'"]').remove();
+                    "remove" : {
+                        name: teke.translate('title_remove_from_task'),
+                        icon: "unlink",
+                        callback: function(key, opt) {
+                            if (confirm(teke.translate('confirmation_remove_participant_from_task'))) {
+                                var task_id = $trigger.parent().parent().parent().attr('data-id');
+                                var member_id = $trigger.attr('data-id');
+                                $.ajax({
+                                    cache: false,
+                                    type: "POST",
+                                    url: teke.get_site_url()+"actions/remove_member_from_task.php",
+                                    data: { member_id: member_id, task_id: task_id },
+                                    dataType: "json",
+                                    success: function(data) {
+                                        if (data.state == 0) {
+                                            // Remove UI elements
+                                            $('#project-task-'+task_id).find('.task-members > .project-member[data-id="'+member_id+'"]').remove();
+                                            if ($('#project-timeline-task-holder-'+task_id).length > 0) {
+                                                $('#project-timeline-task-holder-'+task_id).find('.task-members > .project-member[data-id="'+member_id+'"]').remove();
+                                            }
+                                            // Update activity flow if needed
+                                            if ($('#project-diary-and-messages-filter > select').val() != 'messages') {
+                                                teke.project_update_messages_flow();
+                                            }
                                         }
-                                        // Update activity flow if needed
-                                        if ($('#project-diary-and-messages-filter > select').val() != 'messages') {
-                                            teke.project_update_messages_flow();
+                                        // Add messages if any provided
+                                        if (data.messages != "") {
+                                            teke.replace_system_messages(data.messages);
                                         }
+                                    },
+                                    error: function() {
+                                        // TODO removeme
+                                        alert("participant removel from task failed");
                                     }
-                                    // Add messages if any provided
-                                    if (data.messages != "") {
-                                        teke.replace_system_messages(data.messages);
-                                    }
-                                },
-                                error: function() {
-                                    // TODO removeme
-                                    alert("participant removel from task failed");
-                                }
-                            });
+                                });
+                            }
+                            return true;
                         }
-                        return true;
                     }
-                };
-            }
-            return _menu;
+                }
+           };
         }
     });
 };
