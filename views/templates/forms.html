@@ -66,6 +66,18 @@
 	</div>
 </tal:block>
 
+<tal:block metal:define-macro="edit_task" i18n:domain="teke">
+    <div id="edit-task" class="teke-dialog-form" title="Edit Task" i18n:attributes="title">
+		<fieldset>
+			<label for="title" i18n:translate="">Task title</label>
+			<input type="text" name="title" class="text ui-widget-content ui-corner-all" tal:attributes="value task/title" />
+			<label for="description" i18n:translate="">Task description</label>
+			<input type="text" name="description" class="text ui-widget-content ui-corner-all" tal:attributes="value task/description" />
+		</fieldset>
+	</div>
+</tal:block>
+
+
 <tal:block metal:define-macro="add_resource" i18n:domain="teke">
     <div id="add-resource" class="teke-dialog-form" title="Add new Resource" i18n:attributes="title">
 		<fieldset>
@@ -79,6 +91,31 @@
 			<select name="resource_type" tal:define="types php:Resource::getResourceTypes()">
 				<tal:block repeat="type types">
 				    <option value="" tal:attributes="value repeat/type/key" tal:content="type"></option>
+				</tal:block>
+			</select>
+		</fieldset>
+	</div>
+</tal:block>
+
+<tal:block metal:define-macro="edit_resource" i18n:domain="teke">
+    <div id="edit-resource" class="teke-dialog-form" title="Edit Resource" i18n:attributes="title">
+		<fieldset>
+			<label for="title" i18n:translate="">Resource title</label>
+			<input type="text" name="title" class="text ui-widget-content ui-corner-all" tal:attributes="value resource/title" />
+			<label for="description" i18n:translate="">Resource description</label>
+			<input type="text" name="description" class="text ui-widget-content ui-corner-all" tal:attributes="value resource/description" />
+			<label for="url" i18n:translate="">Resource URL</label>
+			<input type="text" name="url" class="text ui-widget-content ui-corner-all" tal:attributes="value resource/url" />
+			<label for="resource_type" i18n:translate="">Resource Type</label>
+			<select name="resource_type" tal:define="types php:Resource::getResourceTypes()">
+				<tal:block repeat="type types">
+				    <tal:block condition="php:resource.resource_type EQ repeat.type.key">
+					    <option value="" selected="selected" tal:attributes="value repeat/type/key" tal:content="type"></option>
+					</tal:block>
+                    
+					<tal:block condition="not: php:resource.resource_type EQ repeat.type.key">
+					    <option value="" tal:attributes="value repeat/type/key" tal:content="type"></option>
+					</tal:block>
 				</tal:block>
 			</select>
 		</fieldset>
