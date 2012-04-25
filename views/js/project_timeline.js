@@ -676,6 +676,7 @@ teke.add_document_version_to_document = function(document_id, document_created, 
 
 /* Add document to timeline */
 teke.add_document_to_timeline = function(data) {
+    var is_active_project = true;
     var width;
     var created = new Date(data.created);
     var offset = (created.getTime() - timeline.getStart()) / timeline.getPixelValue();
@@ -684,6 +685,7 @@ teke.add_document_to_timeline = function(data) {
         if ( (now_time > timeline.getStart()) && (now_time < timeline.getEnd())) {
             width = (now_time - created.getTime()) / timeline.getPixelValue();
         } else {
+            is_active_project = false;
             width = (timeline.getEnd() - created.getTime()) / timeline.getPixelValue();
         }
     } else {
@@ -692,8 +694,11 @@ teke.add_document_to_timeline = function(data) {
     }
     $('<div id="project-timeline-document-'+data.id+'" class="timeline-document" style="left:'+offset+'px;"></div>').width(width).appendTo('#project-timeline-documents');
     if (data.is_active == 1) {
-        // Add add new version button
-        $('<div class="project-timeline-add-document-version"><img src="'+teke.get_site_url()+'views/graphics/add.png" alt="add" /></div>').appendTo($('#project-timeline-document-'+data.id));
+        // Do not show add new version button if project has ended
+        if (is_active_project) {
+            // Add add new version button
+            $('<div class="project-timeline-add-document-version"><img src="'+teke.get_site_url()+'views/graphics/add.png" alt="add" /></div>').appendTo($('#project-timeline-document-'+data.id));
+        }
         // Add click event
         $('#project-timeline-document-'+data.id+' .project-timeline-add-document-version').on('click', function() {
             teke.add_new_document_version(data.id);
