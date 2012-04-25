@@ -179,7 +179,38 @@ teke.initialize_resources_context_menus = function() {
                     name: teke.translate('title_remove_from_task'),
                     icon: "unlink",
                     callback: function(key, opt) {
-                        // XXX NOT IMPLEMENTED
+                        if (confirm(teke.translate('confirmation_remove_resource_from_task'))) {
+                            var task_id = $trigger.parent().parent().parent().attr('data-id');
+                            var resource_id = $trigger.attr('data-id');
+                            $.ajax({
+                                cache: false,
+                                type: "POST",
+                                url: teke.get_site_url()+"actions/remove_resource_from_task.php",
+                                data: { resource_id: resource_id, task_id: task_id },
+                                dataType: "json",
+                                success: function(data) {
+                                    if (data.state == 0) {
+                                        // Remove UI elements
+                                        $('#project-task-'+task_id).find('.task-resources > .project-resource[data-id="'+resource_id+'"]').remove();
+                                        if ($('#project-timeline-task-holder-'+task_id).length > 0) {
+                                            $('#project-timeline-task-holder-'+task_id).find('.task-resources > .project-resource[data-id="'+resource_id+'"]').remove();
+                                        }
+                                        // Update activity flow if needed
+                                        if ($('#project-diary-and-messages-filter > select').val() != 'messages') {
+                                            teke.project_update_messages_flow();
+                                        }
+                                    }
+                                    // Add messages if any provided
+                                    if (data.messages != "") {
+                                        teke.replace_system_messages(data.messages);
+                                    }
+                                },
+                                error: function() {
+                                    // TODO removeme
+                                    alert("resource removal from task failed");
+                                }
+                            });
+                        }
                         return true;
                     }
                 };
