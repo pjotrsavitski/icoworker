@@ -164,10 +164,33 @@ teke.initialize_resources_context_menus = function() {
                         name: teke.translate('title_delete'),
                         icon: "delete",
                         callback: function(key, opt) {
-                            if (confirm(teke.translate('confirmation_remove_resource'))) {
-                                alert("THIS FEATURE DOES NOT WORK YET, THUS RESOURCE WILL NOT BE REMOVED FROM THE DATABASE");
-                                // XXX NOT IMPLEMENTED
-                                $('.project-resource').filter('[data-id="'+opt.$trigger.attr('data-id')+'"]').remove();
+                            if (confirm(teke.translate('confirmation_delete_object'))) {
+                                var resource_id = $trigger.attr('data-id');
+                                $.ajax({
+                                    cache: false,
+                                    type: "POST",
+                                    url: teke.get_site_url()+"actions/delete_resource.php",
+                                    data: { resource_id: resource_id },
+                                    dataType: "json",
+                                    success: function(data) {
+                                        if (data.state == 0) {
+                                            // Remove UI elements
+                                            $('.project-resource').filter('[data-id="'+resource_id+'"]').remove();
+                                            // Update activity flow if needed
+                                            if ($('#project-diary-and-messages-filter > select').val() != 'messages') {
+                                                teke.project_update_messages_flow();
+                                            }
+                                        }
+                                        // Add messages if any provided
+                                        if (data.messages != "") {
+                                            teke.replace_system_messages(data.messages);
+                                        }
+                                    },
+                                    error: function() {
+                                        // TODO removeme
+                                        alert("resource delete failed");
+                                    }
+                                });
                             }
                             return true;
                         }
@@ -260,8 +283,37 @@ teke.initialize_tasks_context_menus = function() {
                         name: teke.translate('title_delete'),
                         icon: "delete",
                         callback: function(key, opt) {
-                            console.log("Task-delete-being-selected");
-                            // XXX NOT IMPLEMENTED
+                            if (confirm(teke.translate('confirmation_delete_object'))) {
+                                var task_id = $trigger.parent().attr('data-id');
+                                $.ajax({
+                                    cache: false,
+                                    type: "POST",
+                                    url: teke.get_site_url()+"actions/delete_task.php",
+                                    data: { task_id: task_id },
+                                    dataType: "json",
+                                    success: function(data) {
+                                        if (data.state == 0) {
+                                            // Remove UI elements
+                                            $('#project-task-'+task_id).remove();
+                                            if ($('#project-timeline-task-holder-'+task_id).length > 0) {
+                                                $('#project-timeline-task-holder-'+task_id).remove();
+                                            }
+                                            // Update activity flow if needed
+                                            if ($('#project-diary-and-messages-filter > select').val() != 'messages') {
+                                                teke.project_update_messages_flow();
+                                            }
+                                        }
+                                        // Add messages if any provided
+                                        if (data.messages != "") {
+                                            teke.replace_system_messages(data.messages);
+                                        }
+                                    },
+                                    error: function() {
+                                        // TODO removeme
+                                        alert("task delete failed");
+                                    }
+                                });
+                            }
                             return true;
                         }
                     }
@@ -1178,7 +1230,6 @@ $(document).ready(function() {
 	$('#project-timeline-project').on('click', function(event) {
 		// TODO see position() method
 		var offset = parseInt(event.pageX) - parseInt($(this).offset().left);
-		// XXX One day seems to be lot from the end
 		var time = timeline.getStart() + (offset * timeline.getPixelValue());
 		var time_date = new Date(time);
 
@@ -1262,7 +1313,6 @@ $(document).ready(function() {
 	$('#project-timeline-project-comments').on('click', function(event) {
 		// TODO see position() method
 		var offset = parseInt(event.pageX) - parseInt($(this).offset().left);
-		// XXX One day seems to be lot from the end
 		var time = timeline.getStart() + (offset * timeline.getPixelValue());
 		var time_date = new Date(time);
 

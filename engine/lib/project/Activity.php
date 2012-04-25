@@ -98,6 +98,10 @@ class Activity {
                     $data[] = $this->getCreatorObject()->getFullname();
                     $body = vsprintf(_('%2$s added task <span class="activity-item-title">%1$s</span>'), $data);
                     break;
+                case "delete_task":
+                    $data[] = $this->getCreatorObject()->getFullname();
+                    $body = vsprintf(_('%2$s deleted task <span class="activity-item-title">%1$s</span>'), $data);
+                    break;
                 case "add_task_to_timeline":
                     $data[] = $this->getCreatorObject()->getFullname();
                     $data[1] = date('d.m.Y', $data[1]);
@@ -111,6 +115,10 @@ class Activity {
                 case "add_resource":
                     $data[] = $this->getCreatorObject()->getFullname();
                     $body = vsprintf(_('%2$s added resource <span class="activity-item-title">%1$s</span>'), $data);
+                    break;
+                case "delete_resource":
+                    $data[] = $this->getCreatorObject()->getFullname();
+                    $body = vsprintf(_('%2$s deleted resource <span class="activity-item-title">%1$s</span>'), $data);
                     break;
                 case "add_milestone":
                     $data[] = $this->getCreatorObject()->getFullname();

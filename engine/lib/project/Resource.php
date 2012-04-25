@@ -130,9 +130,12 @@ class Resource {
     }
 
     public function delete() {
-        // TODO Check on how can delete is needed
-        // XXX This needs to be protected
         $q = "DELETE FROM " . DB_PREFIX . "resources WHERE id = {$this->id}";
-        return query_delete($q);
+        $deleted = query_delete($q);
+        if ($deleted) {
+            // Add to activity stream
+            Activity::create(get_logged_in_user_id(), $this->getProjectId(), 'activity', 'delete_resource', '', array($this->title));
+        }
+        return $deleted;
     }
 }
