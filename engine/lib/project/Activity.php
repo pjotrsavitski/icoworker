@@ -90,6 +90,10 @@ class Activity {
                     $data[] = $this->getCreatorObject()->getFullname();
                     $body = vsprintf(_('%1$s joined the project.'), $data);
                     break;
+                case "leave_project":
+                    $data[] = $this->getCreatorObject()->getFullname();
+                    $body = vsprintf(_('%1$s left the project.'), $data);
+                    break;
                 case "add_task":
                     $data[] = $this->getCreatorObject()->getFullname();
                     $body = vsprintf(_('%2$s added task <span class="activity-item-title">%1$s</span>'), $data);

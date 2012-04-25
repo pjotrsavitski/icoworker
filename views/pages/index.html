@@ -62,7 +62,15 @@
 							    <div>
 								    <label i18n:translate="">Members</label>
 								    <tal:block content="project/getmembersCount" />
-							    </div>
+								</div>
+								<div>
+									<tal:block condition="php:project.getCreator() EQ get_logged_in_user_id()">
+									    <strong><label i18n:translate="">Owned</label></strong>
+									</tal:block>
+									<tal:block condition="not: php:project.getCreator() EQ get_logged_in_user_id()">
+									    <strong><a href="" onclick="" tal:attributes="href string:${WWW_ROOT}actions/leave_project.php?project_id=${project/getId}; onclick string:return confirm(teke.translate('confirmation_leave_project'));">Leave</a></strong>
+									</tal:block>
+								</div>
 						    </div>
 					    </td>
 					    <td class="project-timeline" data-project-start-date="" data-project-end-date="" tal:attributes="data-project-start-date php:strtotime(project.getStartDate()); data-project-end-date php:strtotime(project.getEndDate())">

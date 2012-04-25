@@ -29,4 +29,5 @@ jQuery(document).ready(function() {
     teke.add_translation('confirmation_delete_object', '<?php echo _('Are you sure you want to delete this object? Object will be deleted premanently!'); ?>');
     teke.add_translation('title_remove_from_task', '<?php echo _('Remove from task'); ?>');
     teke.add_translation('confirmation_remove_participant_from_task', '<?php echo _('Are you sure you want to remove this participant from this task?'); ?>');
+    teke.add_translation('confirmation_leave_project', '<?php echo _('Are you sure you really want to leave this project?'); ?>')
 });

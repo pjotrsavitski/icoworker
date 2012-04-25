@@ -125,6 +125,7 @@ class Project {
             // Add to activity stream
             Activity::create($user_id, $this->id, 'activity', 'leave_project', '', '');
         }
+        return $result;
     }
 
     public function getMembers() {
