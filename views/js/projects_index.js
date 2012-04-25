@@ -30,8 +30,8 @@ teke.place_timelines = function() {
 		    getPixelValue: function() {
 				return this.pixel_value;
 			},
-			addProject: function(index, beginning, end) {
-			    this.projects[index] = { beginning: beginning, end: end, duration: (end - beginning) };
+			addProject: function(index, beginning, end, id) {
+			    this.projects[index] = { beginning: beginning, end: end, duration: (end - beginning), id: id};
 			},
 			getProject: function(index) {
 			    if (index in this.projects) {
@@ -50,7 +50,7 @@ teke.place_timelines = function() {
 		    if ($(this).attr('data-project-end-date') > places_timelines.getEnd()) {
 		        places_timelines.setEnd($(this).attr('data-project-end-date'));
 		    }
-			places_timelines.addProject(index, $(this).attr('data-project-start-date'), $(this).attr('data-project-end-date'));
+			places_timelines.addProject(index, $(this).attr('data-project-start-date'), $(this).attr('data-project-end-date'), $(this).attr('data-id'));
 	    });
 
 		if (places_timelines.getBeginning() > 0 && places_timelines.getEnd() > 0) {
@@ -58,9 +58,11 @@ teke.place_timelines = function() {
 			places_timelines.calculatePixelValue();
 
 		$('#all-projects .project-timeline').each(function(index) {
-			project = places_timelines.getProject(index);
+			var project = places_timelines.getProject(index);
 			if (project) {
-			    $('<div class="timeline" style="position:relative; left: '+( (project.beginning - places_timelines.getBeginning()) / places_timelines.getPixelValue() )+'px; width: '+( project.duration / places_timelines.getPixelValue() )+'px"></div>').appendTo($(this));
+			    $('<div class="timeline" style="position:relative; left: '+( (project.beginning - places_timelines.getBeginning()) / places_timelines.getPixelValue() )+'px; width: '+( project.duration / places_timelines.getPixelValue() )+'px"></div>').appendTo($(this)).on('click', function() {
+                    window.location = teke.get_site_url()+"project/view/"+project.id;
+                });
 			}
 		});
 

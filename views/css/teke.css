@@ -368,6 +368,7 @@ table#all-projects td.project-timeline .timeline {
 	-moz-border-radius: 10px;
 	border-radius: 10px;
 	background-color: #A4A4A4;
+	cursor: pointer;
 }
 
 div.project-info-extended {

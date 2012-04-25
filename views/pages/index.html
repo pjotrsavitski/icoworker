@@ -73,7 +73,7 @@
 								</div>
 						    </div>
 					    </td>
-					    <td class="project-timeline" data-project-start-date="" data-project-end-date="" tal:attributes="data-project-start-date php:strtotime(project.getStartDate()); data-project-end-date php:strtotime(project.getEndDate())">
+					    <td class="project-timeline" data-project-start-date="" data-project-end-date="" data-id="" tal:attributes="data-project-start-date php:strtotime(project.getStartDate()); data-project-end-date php:strtotime(project.getEndDate()); data-id project/getId">
 					    </td>
 				    </tr>
 			    </tbody>
