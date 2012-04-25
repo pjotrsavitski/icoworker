@@ -308,8 +308,43 @@ teke.initialize_tasks_context_menus = function() {
                         name: teke.translate('title_edit'),
                         icon: "edit",
                         callback: function(key, opt) {
-                            console.log("Task-edit-being-selected");
-                            // XXX NOT IMPLEMENTED
+                            var task_id = $trigger.parent().attr('data-id');
+                            $.ajax({
+                                cache: false,
+                                dataType: "html",
+                                type: "GET",
+                                url: teke.get_site_url()+"ajax/edit_task_form/"+task_id,
+                                success: function(data) {
+                                    $(data).dialog({
+                                        autoOpen: true,
+                                        height: 'auto',
+                                        width: 'auto',
+                                        modal: true,
+                                        buttons: [
+                                            {
+                                                text: teke.translate('button_edit'),
+                                                click: function() {
+                                                    //TODO NOT IMPLEMENTED
+                                                }
+                                            },
+                                            {
+                                                text: teke.translate('button_return'),
+                                                click: function() {
+                                                    $(this).dialog("close");
+                                                }
+                                            }
+                                        ],
+                                        close: function() {
+                                            $(this).dialog("destroy");
+                                            $(this).remove();
+                                        }
+                                    });
+                                },
+                                error: function() {
+                                    // TODO removeme
+                                    alert("could not bring task edit form");
+                                }
+                            });
                             return true;
                         }
                     },
