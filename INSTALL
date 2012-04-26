@@ -1,9 +1,27 @@
 # .htaccess:
 # Move htaccess_example to .htaccess
 #
-# Create folders:
+# Create folders (OPTIONAL):
 # Datastore - data like images and other files for config::DATA_STORE
 # session - session data for config::SESSION_SAVE_PATH
 # Datastore can contain session folder
 # edit config.php to point them out
 # makse sure that apache can write into them 
+#
+# If you chose not to create datafolders some constants should be disabled in config.php
+# * DATA_STORE
+# * PHPTAL_TMP
+# Optionally you could also disable SESSION_SAVE_PATH
+#
+# Please make sure that FACEBOOK is enabled and APP_ID along with APP_SECRET are provided.
+#
+# Disable DEV_MODE in production environment
+#
+# Please note that database and tables will be created automatically if one does not exists
+# You can always use the file to create tables manually
+# File is located in engine/lib/database/teke.sql.
+# Please replace prefix_ with something you chose in that case.
+#
+# Please note that initial admin role has to be granted to a user with direct query.
+# Set role to 9
+# Later on that administrator may change roles for others using the GUI

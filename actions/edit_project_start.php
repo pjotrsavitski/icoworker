@@ -66,6 +66,8 @@
             }
         }
 
+        // TODO Check for tasks is needed
+
         if (!$date_allowed) {
             $TeKe->add_system_message(_("Chosen date does not suit. It is either greater than the project end date or some of the elements are placed before chosen date."), 'error');
             $response->setMessages();

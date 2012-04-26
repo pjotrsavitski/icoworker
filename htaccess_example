@@ -30,7 +30,7 @@ DirectoryIndex index.php
     # upload size limit to 5Mb  
     php_value upload_max_filesize 5242880
     # hide errors, enable only if debug enabled
-    php_value display_errors 1
+    php_value display_errors 0
 </IfModule>
 
 # Turn on mod_gzip if available
