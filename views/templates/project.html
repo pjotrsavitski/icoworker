@@ -29,11 +29,22 @@
 </tal:block>
 
 <tal:block metal:define-macro="member" define="showid showid | true">
-    <div id="" class="project-member" data-id="" tal:attributes="id php:(showid) ? 'project-member-'.member.getId() : ''; data-id member/getId">
-        <a href="" title="" tal:attributes="href member/getURL; title member/getFullname">
-		    <img src="" alt="profile_image" tal:attributes="src member/getImageURL" />
-	    </a>
-    </div>
+    <tal:block condition="showid">
+	<div id="" class="project-member" data-id="" tal:attributes="id string:project-member-${member/getId}; data-id member/getId">
+            <a href="" title="" tal:attributes="href member/getURL; title member/getFullname">
+		        <img src="" alt="profile_image" tal:attributes="src member/getImageURL" />
+	        </a>
+        </div>
+	</tal:block>
+
+    <tal:block condition="not: showid">
+        <div class="project-member" data-id="" tal:attributes="data-id member/getId">
+            <a href="" title="" tal:attributes="href member/getURL; title member/getFullname">
+		        <img src="" alt="profile_image" tal:attributes="src member/getImageURL" />
+	        </a>
+        </div>
+	</tal:block>
+
 </tal:block>
 
 <tal:block metal:define-macro="task">
@@ -56,19 +67,39 @@
 </tal:block>
 
 <tal:block metal:define-macro="resource" define="showid showid | true">
-    <div id="" class="project-resource" data-id="" tal:attributes="id php:(showid) ? 'project-resource-'.resource.getId() : ''; data-id resource/getId">
-        <img src="" title="" alt="resource" class="teke-tooltip" tal:attributes="src resource/getResourceTypeURL; title resource/getTitle" />
-	    <div class="teke-tooltip-content">
-		    <tal:block condition="not:resource/getURL">
-		        <label tal:content="resource/getTitle"></label>
-		    </tal:block>
-		    <tal:block condition="resource/getURL">
-		        <label>
-		            <a href="" target="_blank" tal:attributes="href resource/getURL" tal:content="resource/getTitle"></a>
-		        </label>
-		    </tal:block>
-		    <br />
-		    <tal:block condition="resource/getDescription" content="resource/getDescription" />
+    <tal:block condition="showid">
+	    <div id="" class="project-resource" data-id="" tal:attributes="id string:project-resource-${resource/getId}; data-id resource/getId">
+            <img src="" title="" alt="resource" class="teke-tooltip" tal:attributes="src resource/getResourceTypeURL; title resource/getTitle" />
+	        <div class="teke-tooltip-content">
+		        <tal:block condition="not:resource/getURL">
+		            <label tal:content="resource/getTitle"></label>
+		        </tal:block>
+		        <tal:block condition="resource/getURL">
+		            <label>
+		                <a href="" target="_blank" tal:attributes="href resource/getURL" tal:content="resource/getTitle"></a>
+		            </label>
+		        </tal:block>
+		        <br />
+		        <tal:block condition="resource/getDescription" content="resource/getDescription" />
+	        </div>
 	    </div>
-    </div>
+	</tal:block>
+
+    <tal:block condition="not: showid">
+	    <div class="project-resource" data-id="" tal:attributes="data-id resource/getId">
+            <img src="" title="" alt="resource" class="teke-tooltip" tal:attributes="src resource/getResourceTypeURL; title resource/getTitle" />
+	        <div class="teke-tooltip-content">
+		        <tal:block condition="not:resource/getURL">
+		            <label tal:content="resource/getTitle"></label>
+		        </tal:block>
+		        <tal:block condition="resource/getURL">
+		            <label>
+		                <a href="" target="_blank" tal:attributes="href resource/getURL" tal:content="resource/getTitle"></a>
+		            </label>
+		        </tal:block>
+		        <br />
+		        <tal:block condition="resource/getDescription" content="resource/getDescription" />
+	        </div>
+	    </div>
+	</tal:block>
 </tal:block>
