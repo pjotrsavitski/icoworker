@@ -142,6 +142,21 @@ var timeline = new Timeline();
 
 /* Extend teke with additional methods */
 
+// Create Resource element for Task
+teke.create_resource_element_for_task = function(resource_data) {
+    var tmp_task_resource = $('<div class="project-resource" data-id=""><img src="" title="" alt="resource" class="teke-tooltip" /><div class="teke-tooltip-content"><label></label><br /></div></div>');
+    tmp_task_resource.attr('data-id', resource_data.id);
+    tmp_task_resource.find('img').attr('src', resource_data.resource_type_url).attr('title', resource_data.title);
+    if (resource_data.url.length == 0) {
+        tmp_task_resource.find('.teke-tooltip-content label').html(resource_data.title);
+    } else {
+        tmp_task_resource.find('.teke-tooltip-content label').html($('<a href="" target="_blank"></a>').attr('href', resource_data.url).html(resource_data.title));
+    }
+    tmp_task_resource.find('.teke-tooltip-content').append(resource_data.description);
+    teke.initialize_element_tooltip(tmp_task_resource);
+    return tmp_task_resource;
+};
+
 /* CONTEXT MENUS */
 // Initialize contextmenu for Resource elements
 teke.initialize_resources_context_menus = function() {
@@ -170,6 +185,47 @@ teke.initialize_resources_context_menus = function() {
                                             {
                                                 text: teke.translate('button_edit'),
                                                 click: function() {
+                                                    var _this = $(this);
+                                                    _this.find('.ui-state-error').removeClass('ui-state-error');
+                                                    $.ajax({
+                                                        cache: false,
+                                                        type: "POST",
+                                                        url: teke.get_site_url()+"actions/edit_resource.php",
+                                                        data: { resource_id: resource_id, title: _this.find('input[name="title"]').val(), description: _this.find('input[name="description"]').val(), url: _this.find('input[name="url"]').val(), resource_type: _this.find('select[name="resource_type"]').val() },
+                                                        dataType: "json",
+                                                        success: function(data) {
+                                                            if (data.state == 0) {
+                                                                // Create new resource
+                                                                var tmp_resource = teke.create_resource_element_for_task(data.data.resource);
+                                                                // Get existing Resource elements (excluding the main resource element in sidebar), replace them if needed
+                                                                var previous_resources = $('.project-resource[data-id="'+resource_id+'"]').filter('[id!="project-resource-'+resource_id+'"]');
+                                                                if (previous_resources.length > 0) {
+                                                                    $.each(previous_resources, function(index, value) {
+                                                                        var tmp_clone = tmp_resource.clone();
+                                                                        teke.initialize_element_tooltip(tmp_clone);
+                                                                         $(value).replaceWith(tmp_clone);
+                                                                    });
+                                                                }
+                                                                // Get main Resource element (tune tmp_resource as needed)
+                                                                var sidebar_resource = $('#project-resource-'+resource_id).replaceWith(tmp_resource.clone().attr('id', 'project-resource-'+resource_id));
+                                                                teke.initialize_resources_draggables($('#project-resource-'+resource_id));
+                                                                teke.initialize_element_tooltip($('#project-resource-'+resource_id));
+                                                                // Update activity flow if needed
+                                                                if ($('#project-diary-and-messages-filter > select').val() != 'messages') {
+                                                                    teke.project_update_messages_flow();
+                                                                    _this.dialog("close");
+                                                                }
+                                                            }
+                                                            // Add messages if any provided
+                                                            if (data.messages != "") {
+                                                                teke.replace_system_messages(data.messages);
+                                                            }
+                                                        },
+                                                        error: function() {
+                                                            // TODO removeme
+                                                            alert("edit resource failed");
+                                                        }
+                                                    });
                                                     //TODO NOT IMPLEMENTED
                                                 }
                                             },
@@ -915,16 +971,8 @@ teke.add_task_to_timeline = function(data) {
     // Add resources
     if (data.resources.length > 0) {
         for (var i=0; i < data.resources.length; i++) {
-            var tmp_task_resource = $('<div class="project-resource" data-id=""><img src="" title="" alt="resource" class="teke-tooltip" /><div class="teke-tooltip-content"><label></label><br /></div></div>');
-            tmp_task_resource.attr('data-id', data.resources[i].id);
-            tmp_task_resource.find('img').attr('src', data.resources[i].resource_type_url).attr('title', data.resources[i].title);
-            if (data.resources[i].url.length == 0) {
-                tmp_task_resource.find('.teke-tooltip-content label').html(data.resources[i].title);
-            } else {
-                tmp_task_resource.find('.teke-tooltip-content label').html($('<a href="" target="_blank"></a>').attr('href', data.resources[i].url).html(data.resources[i].title));
-            }
-            tmp_task_resource.find('.teke-tooltip-content').append(data.resources[i].description);
-            teke.initialize_element_tooltip(tmp_task_resource);
+            // Create Resource element and append that to Task
+            var tmp_task_resource = teke.create_resource_element_for_task(data.resources[i]);
             tmp_task_resource.appendTo(tmp_task.find('.task-resources'));
         }
     }

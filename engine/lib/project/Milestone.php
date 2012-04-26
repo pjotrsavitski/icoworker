@@ -120,7 +120,7 @@ class Milestone {
         $milestone_date = (int) $milestone_date;
         $flag_color = (int) $flag_color;
         $notes = mysql_real_escape_string($notes);
-        $q = "UPDATE " . DB_PREFIX . "milestones SET title='$title', milestone_date=FROM_UNIXTIME('$milestone_date'), flag_color=$flag_color, notes='$notes' WHERE id = {$milestone->id}";
+        $q = "UPDATE " . DB_PREFIX . "milestones SET title='$title', milestone_date=FROM_UNIXTIME('$milestone_date'), flag_color=$flag_color, notes='$notes', updated=NOW() WHERE id = {$milestone->id}";
         $updated = query_update($q);
         if ($updated) {
             // Add to activity stream

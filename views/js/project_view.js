@@ -135,8 +135,13 @@ teke.initialize_members_draggables = function() {
 };
 
 // Initializes project-resource-<ID> as draggables
-teke.initialize_resources_draggables = function() {
-    $('[id^="project-resource-"]').draggable({
+teke.initialize_resources_draggables = function(element) {
+    var selector = $('[id^="project-resource-"]');
+    if (element != undefined) {
+        selector = $(element);
+    }
+    
+    selector.draggable({
         revert: 'invalid',
         appendTo: "body",
         helper: "clone",
@@ -175,11 +180,6 @@ teke.initialize_tasks_droppables = function(element) {
             tmp_elem.removeAttr('id');
             tmp_elem.removeClass('ui-draggable');
             tmp_elem.draggable("destroy");
-            /* XXX Deletion is not decided yet
-            tmp_elem.on("dblclick", function() {
-                $(this).remove();
-            });
-            */
             if (tmp_elem.hasClass('project-member')) {
                 $.ajax({
                     cache: false,

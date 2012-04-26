@@ -116,6 +116,10 @@ class Activity {
                     $data[] = $this->getCreatorObject()->getFullname();
                     $body = vsprintf(_('%2$s added resource <span class="activity-item-title">%1$s</span>'), $data);
                     break;
+                case "edit_resource":
+                    $data[] = $this->getCreatorObject()->getFullname();
+                    $body = vsprintf(_('%2$s updated resource <span class="activity-item-title">%1$s</span>'), $data);
+                    break;
                 case "delete_resource":
                     $data[] = $this->getCreatorObject()->getFullname();
                     $body = vsprintf(_('%2$s deleted resource <span class="activity-item-title">%1$s</span>'), $data);

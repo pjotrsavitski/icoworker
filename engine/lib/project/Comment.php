@@ -90,7 +90,7 @@ class Comment {
     public function update($comment, $content, $comment_date) {
         $content = mysql_real_escape_string($content);
         $comment_date = (int) $comment_date;
-        $q = "UPDATE " . DB_PREFIX . "project_comments SET content='$content', comment_date=FROM_UNIXTIME('$comment_date') WHERE id = {$comment->id}";
+        $q = "UPDATE " . DB_PREFIX . "project_comments SET content='$content', comment_date=FROM_UNIXTIME('$comment_date'), updated=NOW() WHERE id = {$comment->id}";
         $updated = query_update($q);
         if ($updated) {
             // Add to activity stream

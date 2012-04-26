@@ -34,6 +34,7 @@ class Resource {
             $this->url = $ret->url;
             $this->created = $ret->created;
             $this->updated = $ret->updated;
+            $this->resource_type = $ret->resource_type;
         }
     }
 
@@ -120,13 +121,18 @@ class Resource {
     }
 
     public function update($resource, $title, $description, $url, $resource_type) {
+        $activity_data = array($title);
         $title = mysql_real_escape_string($title);
         $description = mysql_real_escape_string($description);
         $url = mysql_real_escape_string($url);
         $resource_type = mysql_real_escape_string($resource_type);
-        $q = "UPDATE " . DB_PREFIX . "resources SET title='$title', description='$description', url='$url', resource_type='$resource_type' WHERE id = {$resource->id}";
-        // XXX Activity missing
-        return query_update($q);
+        $q = "UPDATE " . DB_PREFIX . "resources SET title='$title', description='$description', url='$url', resource_type='$resource_type', updated=NOW() WHERE id = {$resource->id}";
+        $updated = query_update($q);
+        if ($updated) {
+            // Add to activity stream
+            Activity::create(get_logged_in_user_id(), $resource->getProjectId(), 'activity', 'edit_resource', '', $activity_data);
+        }
+        return $updated;
     }
 
     public function delete() {
