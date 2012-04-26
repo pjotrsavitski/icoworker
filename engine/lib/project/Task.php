@@ -206,11 +206,16 @@ class Task {
     }
 
     public function update($task, $title, $description) {
+        $activity_data = array($title);
         $title = mysql_real_escape_string($title);
         $description = mysql_real_escape_string($description);
-        $q = "UPDATE " . DB_PREFIX . "tasks SET title='$title', description='$description' WHERE id = {$task->id}";
-        // XXX Activity missing
-        return query_update($q);
+        $q = "UPDATE " . DB_PREFIX . "tasks SET title='$title', description='$description', updated=NOW() WHERE id = {$task->id}";
+        $updated = query_update($q);
+        if ($updated) {
+            // Add to activity stream
+            Activity::create(get_logged_in_user_id(), $task->getProjectId(), 'activity', 'edit_task', '', $activity_data);
+        }
+        return $updated;
     }
 
     public function delete() {

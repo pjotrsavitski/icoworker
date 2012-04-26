@@ -213,7 +213,11 @@ teke.initialize_resources_context_menus = function() {
                                                                 // Update activity flow if needed
                                                                 if ($('#project-diary-and-messages-filter > select').val() != 'messages') {
                                                                     teke.project_update_messages_flow();
-                                                                    _this.dialog("close");
+                                                                }
+                                                                _this.dialog("close");
+                                                            } else {
+                                                                for (var key in data.errors) {
+                                                                    _this.find('[name="'+data.errors[key]+'"]').addClass('ui-state-error');
                                                                 }
                                                             }
                                                             // Add messages if any provided
@@ -226,7 +230,6 @@ teke.initialize_resources_context_menus = function() {
                                                             alert("edit resource failed");
                                                         }
                                                     });
-                                                    //TODO NOT IMPLEMENTED
                                                 }
                                             },
                                             {
@@ -380,6 +383,37 @@ teke.initialize_tasks_context_menus = function() {
                                             {
                                                 text: teke.translate('button_edit'),
                                                 click: function() {
+                                                    var _this = $(this);
+                                                     _this.find('.ui-state-error').removeClass('ui-state-error');
+                                                     $.ajax({
+                                                         cache: false,
+                                                         type: "POST",
+                                                         url: teke.get_site_url()+"actions/edit_task.php",
+                                                         data: { task_id: task_id, title: _this.find('input[name="title"]').val(), description: _this.find('input[name="description"]').val() },
+                                                         dataType: "json",
+                                                         success: function(data) {
+                                                             if (data.state == 0) {
+                                                                 // Change UI element data (title and description)
+                                                                 $('#project-task-'+task_id).find('.task-title').attr('title', data.data.task.description).html(data.data.task.title);
+                                                                 if ($('#project-timeline-task-content-'+task_id).length > 0) {
+                                                                     $('#project-timeline-task-content-'+task_id).find('.task-title').attr('title', data.data.task.description).html(data.data.task.title);
+                                                                 }
+                                                                 _this.dialog('close');
+                                                             } else {
+                                                                 for (var key in data.errors) {
+                                                                     _this.find('[name="'+data.errors[key]+'"]').addClass('ui-state-error');
+                                                                 }
+                                                             }
+                                                             // Add messages if any provided
+                                                             if (data.messages != "") {
+                                                                 teke.replace_system_messages(data.messages);
+                                                             }
+                                                         },
+                                                         error: function() {
+                                                             // TODO removeme
+                                                             alert("edit task failed");
+                                                         }
+                                                     });
                                                     //TODO NOT IMPLEMENTED
                                                 }
                                             },

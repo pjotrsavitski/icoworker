@@ -98,6 +98,10 @@ class Activity {
                     $data[] = $this->getCreatorObject()->getFullname();
                     $body = vsprintf(_('%2$s added task <span class="activity-item-title">%1$s</span>'), $data);
                     break;
+                case "edit_task":
+                    $data[] = $this->getCreatorObject()->getFullname();
+                    $body = vsprintf(_('%2$s updated task <span class="activity-item-title">%1$s</span>'), $data);
+                    break;
                 case "delete_task":
                     $data[] = $this->getCreatorObject()->getFullname();
                     $body = vsprintf(_('%2$s deleted task <span class="activity-item-title">%1$s</span>'), $data);
