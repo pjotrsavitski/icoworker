@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2012-04-26 17:01+0300\n"
+"POT-Creation-Date: 2012-04-27 11:14+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -219,6 +219,10 @@ msgstr ""
 msgid "Are you sure you want to remove this participant from this task?"
 msgstr ""
 
+#: ../views/js/teke_config.php:33
+msgid "Are you sure you want to remove this resource from this task?"
+msgstr ""
+
 #: ../views/js/teke_config.php:24
 msgid "Are you sure you want to remove this task from timeline? Task itself will not be deleted."
 msgstr ""
@@ -259,11 +263,11 @@ msgstr ""
 msgid "Change Role"
 msgstr ""
 
-#: ../actions/edit_project_start.php:70
+#: ../actions/edit_project_start.php:72
 msgid "Chosen date does not suit. It is either greater than the project end date or some of the elements are placed before chosen date."
 msgstr ""
 
-#: ../actions/edit_project_end.php:70
+#: ../actions/edit_project_end.php:72
 msgid "Chosen date does not suit. It is either lower than the project start date or some of the elements are placed after chosen date."
 msgstr ""
 
@@ -684,11 +688,11 @@ msgstr ""
 msgid "Project could not be changed."
 msgstr ""
 
-#: ../actions/edit_project_end.php:79
+#: ../actions/edit_project_end.php:81
 msgid "Project end date changed."
 msgstr ""
 
-#: ../actions/edit_project_end.php:82
+#: ../actions/edit_project_end.php:84
 msgid "Project end date could not be changed."
 msgstr ""
 
@@ -696,11 +700,11 @@ msgstr ""
 msgid "Project is either not active yet or already finished."
 msgstr ""
 
-#: ../actions/edit_project_start.php:79
+#: ../actions/edit_project_start.php:81
 msgid "Project start date changed."
 msgstr ""
 
-#: ../actions/edit_project_start.php:82
+#: ../actions/edit_project_start.php:84
 msgid "Project start date could not be changed."
 msgstr ""
 
