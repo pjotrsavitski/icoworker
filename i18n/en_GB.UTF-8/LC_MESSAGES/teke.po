@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Early\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-10-08 14:52+0300\n"
+"POT-Creation-Date: 2012-10-10 14:36+0300\n"
 "PO-Revision-Date: 2011-02-25 14:45+0200\n"
 "Last-Translator: Meelis Mets <meelis.mets@tlu.ee>\n"
 "Language-Team: English <en@li.org>\n"
@@ -144,6 +144,10 @@ msgstr ""
 #: ../actions/remove_member_from_task.php:44
 #: ../actions/remove_resource_from_task.php:44
 msgid "%s removed from task %s."
+msgstr ""
+
+#: ../views/project/project_view.html:93
+msgid "Activities"
 msgstr ""
 
 #: ../views/js/teke_config.php:12
@@ -415,6 +419,10 @@ msgstr ""
 msgid "Estonian"
 msgstr ""
 
+#: ../views/project/project_view.html:92
+msgid "Everything"
+msgstr ""
+
 #: ../actions/login.php:31
 msgid "Facebook login failed."
 msgstr ""
@@ -511,6 +519,10 @@ msgstr ""
 
 #: ../actions/add_message.php:37
 msgid "Message could not be added."
+msgstr ""
+
+#: ../views/project/project_view.html:94
+msgid "Messages"
 msgstr ""
 
 #: ../actions/edit_milestone.php:57

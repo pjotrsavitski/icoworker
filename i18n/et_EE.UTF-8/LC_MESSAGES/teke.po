@@ -8,232 +8,228 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Early\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-10-08 14:52+0300\n"
-"PO-Revision-Date: 2011-02-25 14:45+0200\n"
-"Last-Translator: Meelis Mets <meelis.mets@tlu.ee>\n"
+"POT-Creation-Date: 2012-10-10 14:36+0300\n"
+"PO-Revision-Date: 2012-10-10 14:43+0300\n"
+"Last-Translator: Pjotr Savitski <pjotr.savitski@gmail.com>\n"
 "Language-Team: Estonian <et@li.org>\n"
-"Language: \n"
+"Language: et\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.5.4\n"
 
 # , php-format
 #: ../engine/lib/project/Activity.php:75
 msgid "%1$s changed the project."
-msgstr ""
+msgstr "%1$s muutis projekti."
 
 # , php-format
 #: ../engine/lib/project/Activity.php:91
 msgid "%1$s joined the project."
-msgstr ""
+msgstr "%1$s liitus projektiga."
 
 # , php-format
 #: ../engine/lib/project/Activity.php:95
 msgid "%1$s left the project."
-msgstr ""
+msgstr "%1$s lahkus projektist."
 
 # , php-format
 #: ../engine/lib/project/Activity.php:156
 msgid "%2$s added comment at %1$s"
-msgstr ""
+msgstr "%2$s lisas kommentaari %1$s"
 
 # , php-format
 #: ../engine/lib/project/Activity.php:147
 msgid "%2$s added document <span class=\"activity-item-title\">%1$s</span>"
-msgstr ""
+msgstr "%2$s lisas dokumendi <span class=\"activity-item-title\">%1$s</span>"
 
 # , php-format
 #: ../engine/lib/project/Activity.php:151
-msgid ""
-"%2$s added document version  <span class=\"activity-item-title\">%1$s</span>"
-msgstr ""
+msgid "%2$s added document version  <span class=\"activity-item-title\">%1$s</span>"
+msgstr "%2$s lisas uue versiooni dokumendist <span class=\"activity-item-title\">%1$s</span>"
 
 # , php-format
 #: ../engine/lib/project/Activity.php:121
 msgid "%2$s added resource <span class=\"activity-item-title\">%1$s</span>"
-msgstr ""
+msgstr "%2$s lisas allika <span class=\"activity-item-title\">%1$s</span>"
 
 # , php-format
 #: ../engine/lib/project/Activity.php:99
 msgid "%2$s added task <span class=\"activity-item-title\">%1$s</span>"
-msgstr ""
+msgstr "%2$s lisas ülesande <span class=\"activity-item-title\">%1$s</span>"
 
 # , php-format
 #: ../engine/lib/project/Activity.php:161
 msgid "%2$s changed comment at %1$s"
-msgstr ""
+msgstr "%2$s muutis kommentaari %1$s"
 
 # , php-format
 #: ../engine/lib/project/Activity.php:166
 msgid "%2$s deleted comment at %1$s"
-msgstr ""
+msgstr "%2$s kustutas kommentaari %1$s"
 
 # , php-format
 #: ../engine/lib/project/Activity.php:143
 msgid "%2$s deleted milestone <span class=\"activity-item-title\">%1$s</span>"
-msgstr ""
+msgstr "%2$s kustutas verstaposti <span class=\"activity-item-title\">%1$s</span>"
 
 # , php-format
 #: ../engine/lib/project/Activity.php:129
 msgid "%2$s deleted resource <span class=\"activity-item-title\">%1$s</span>"
-msgstr ""
+msgstr "%2$s kustutas allika <span class=\"activity-item-title\">%1$s</span>"
 
 # , php-format
 #: ../engine/lib/project/Activity.php:107
 msgid "%2$s deleted task <span class=\"activity-item-title\">%1$s</span>"
-msgstr ""
+msgstr "%2$s kustutas ülesande <span class=\"activity-item-title\">%1$s</span>"
 
 # , php-format
 #: ../engine/lib/project/Activity.php:117
-msgid ""
-"%2$s removed task <span class=\"activity-item-title\">%1$s</span> from "
-"timeline."
-msgstr ""
+msgid "%2$s removed task <span class=\"activity-item-title\">%1$s</span> from timeline."
+msgstr "%2$s eemaldas ülesande <span class=\"activity-item-title\">%1$s</span> ajateljelt."
 
 # , php-format
 #: ../engine/lib/project/Activity.php:125
 msgid "%2$s updated resource <span class=\"activity-item-title\">%1$s</span>"
-msgstr ""
+msgstr "%2$s uuendas allikat <span class=\"activity-item-title\">%1$s</span>"
 
 # , php-format
 #: ../engine/lib/project/Activity.php:103
 msgid "%2$s updated task <span class=\"activity-item-title\">%1$s</span>"
-msgstr ""
+msgstr "%2$s uuendas ülesannet <span class=\"activity-item-title\">%1$s</span>"
 
 # , php-format
 #: ../engine/lib/project/Activity.php:134
-msgid ""
-"%3$s added milestone <span class=\"activity-item-title\">%1$s</span> at %2$s"
-msgstr ""
+msgid "%3$s added milestone <span class=\"activity-item-title\">%1$s</span> at %2$s"
+msgstr "%3$s lisas verstaposti <span class=\"activity-item-title\">%1$s</span> %2$s"
 
 # , php-format
 #: ../engine/lib/project/Activity.php:87
 msgid "%3$s changed the project end date from %1$s to %2$s."
-msgstr ""
+msgstr "%3$s muutis projekti lõpukuupäeva päevalt %1$s päevale %2$s."
 
 # , php-format
 #: ../engine/lib/project/Activity.php:81
 msgid "%3$s changed the project start date from %1$s to %2$s."
-msgstr ""
+msgstr "%3$s muutis projekti algusekuupäeva päevalt %1$s päevale %2$s."
 
 # , php-format
 #: ../engine/lib/project/Activity.php:139
-msgid ""
-"%3$s updated milestone <span class=\"activity-item-title\">%1$s</span> at "
-"%2$s"
-msgstr ""
+msgid "%3$s updated milestone <span class=\"activity-item-title\">%1$s</span> at %2$s"
+msgstr "%3$s uuendas verstaposti <span class=\"activity-item-title\">%1$s</span> %2$s"
 
 # , php-format
 #: ../engine/lib/project/Activity.php:113
-msgid ""
-"%4$s added task <span class=\"activity-item-title\">%1$s</span> to timeline "
-"from %2$s until %3$s"
-msgstr ""
+msgid "%4$s added task <span class=\"activity-item-title\">%1$s</span> to timeline from %2$s until %3$s"
+msgstr "%4$s lisas ülesande <span class=\"activity-item-title\">%1$s</span> ajateljele alates %2$s kuni %3$s"
 
 # , php-format
 #: ../actions/add_participant.php:35
 msgid "%s added to participants."
-msgstr ""
+msgstr "%s on lisatud osalejatele."
 
 # , php-format
-#: ../actions/add_member_to_task.php:44 ../actions/add_resource_to_task.php:44
+#: ../actions/add_member_to_task.php:44
+#: ../actions/add_resource_to_task.php:44
 msgid "%s added to task %s."
-msgstr ""
+msgstr "%s on lisatud ülesandele %s."
 
 # , php-format
 #: ../actions/remove_member_from_task.php:44
 #: ../actions/remove_resource_from_task.php:44
 msgid "%s removed from task %s."
-msgstr ""
+msgstr "%s on eemaldatud ülesandest %s."
+
+#: ../views/project/project_view.html:93
+msgid "Activities"
+msgstr "Sündmused"
 
 #: ../views/js/teke_config.php:12
 msgid "Add"
-msgstr ""
+msgstr "Lisa"
 
 #: ../views/templates/forms.html:2
 msgid "Add New Project"
-msgstr ""
+msgstr "Lisa uus projekt"
 
-#: ../views/project/project_view.html:53 ../views/templates/forms.html:126
+#: ../views/project/project_view.html:53
+#: ../views/templates/forms.html:126
 msgid "Add Participant"
-msgstr ""
+msgstr "Lisa osaleja"
 
 #: ../views/js/teke_config.php:21
 msgid "Add Task to Timeline"
-msgstr ""
+msgstr "Lisa ülesanne ajateljele"
 
 #: ../views/templates/forms.html:202
 msgid "Add new Comment"
-msgstr ""
+msgstr "Lisa uus kommentaar"
 
 #: ../views/templates/forms.html:40
 msgid "Add new Document Version"
-msgstr ""
+msgstr "Lisa dokumendi uus versioon"
 
 #: ../views/templates/forms.html:157
 msgid "Add new Milestone"
-msgstr ""
+msgstr "Lisa uus verstapost"
 
 #: ../views/pages/index.html:39
 msgid "Add new Project"
-msgstr ""
+msgstr "Lisa uus projekt"
 
-#: ../views/project/project_view.html:67 ../views/templates/forms.html:82
+#: ../views/project/project_view.html:67
+#: ../views/templates/forms.html:82
 msgid "Add new Resource"
-msgstr ""
+msgstr "Lisa uus allikas"
 
-#: ../views/project/project_view.html:40 ../views/templates/forms.html:59
+#: ../views/project/project_view.html:40
+#: ../views/templates/forms.html:59
 msgid "Add new Task"
-msgstr ""
+msgstr "Lisa uus ülesanne"
 
 #: ../engine/teke.php:282
 msgid "Admin"
-msgstr ""
+msgstr "Haldaja"
 
 #: ../engine/lib/handler/handler_administrate.php:18
 msgid "Administrate TeKe"
-msgstr "TeKe Administreerimine"
+msgstr "TeKe haldamine"
 
 #: ../engine/lib/handler/handler_administrate.php:19
 msgid "Administrate users"
-msgstr "Kasutajate administreerimine"
+msgstr "Kasutajate haldamine"
 
 #: ../engine/teke.php:69
 msgid "Administration"
-msgstr "Administreerimine"
+msgstr "Haldamine"
 
 #: ../views/administrate/administrate_teke.html:17
-#, fuzzy
 msgid "Admins"
-msgstr "Administreerimine"
+msgstr "Haldajad"
 
 #: ../actions/add_participant.php:27
 msgid "Already is a participant."
-msgstr ""
+msgstr "On juba osaleja."
 
 #: ../views/js/teke_config.php:32
 msgid "Are you sure you really want to leave this project?"
-msgstr ""
+msgstr "Kas oled kindel, et soovid projektist lahkuda?"
 
 #: ../views/js/teke_config.php:29
-msgid ""
-"Are you sure you want to delete this object? Object will be deleted "
-"premanently!"
-msgstr ""
+msgid "Are you sure you want to delete this object? Object will be deleted premanently!"
+msgstr "Kas oled kindel, et soovid seda kustutada? Kustutamine on lõplik!"
 
 #: ../views/js/teke_config.php:31
 msgid "Are you sure you want to remove this participant from this task?"
-msgstr ""
+msgstr "Kas oled kindel, et soovid osaleja sellelt ülesandelt eemaldada?"
 
 #: ../views/js/teke_config.php:33
 msgid "Are you sure you want to remove this resource from this task?"
-msgstr ""
+msgstr "Kas oled kindel, et soovid allika sellelt ülesandelt eemaldada?"
 
 #: ../views/js/teke_config.php:24
-msgid ""
-"Are you sure you want to remove this task from timeline? Task itself will "
-"not be deleted."
-msgstr ""
+msgid "Are you sure you want to remove this task from timeline? Task itself will not be deleted."
+msgstr "Kas oled kindel, et soovid ülesande ajateljelt eemaldada? Ülesanne ise jääb alles."
 
 #: ../actions/update_user_settings.php:41
 msgid "At least one of the parameters is empty."
@@ -245,15 +241,15 @@ msgstr "Tagasi"
 
 #: ../engine/lib/project/Milestone.php:150
 msgid "Black"
-msgstr ""
+msgstr "Must"
 
 #: ../engine/lib/project/Milestone.php:148
 msgid "Blue"
-msgstr ""
+msgstr "Sinine"
 
 #: ../actions/change_role.php:21
 msgid "Can not change own role."
-msgstr ""
+msgstr "Ei ole võimalik muuta oma rolli."
 
 #: ../views/js/teke_config.php:14
 msgid "Change"
@@ -261,32 +257,27 @@ msgstr "Muuda"
 
 #: ../views/js/teke_config.php:20
 msgid "Change Project End Date"
-msgstr ""
+msgstr "Muuda projekti lõpukuupäeva"
 
 #: ../views/js/teke_config.php:19
 msgid "Change Project Start Date"
-msgstr ""
+msgstr "Muuda projekti alguskuupäeva"
 
 #: ../views/templates/forms.html:137
-#, fuzzy
 msgid "Change Role"
-msgstr "Muuda"
+msgstr "Muuda rolli"
 
 #: ../actions/edit_project_start.php:72
-msgid ""
-"Chosen date does not suit. It is either greater than the project end date or "
-"some of the elements are placed before chosen date."
-msgstr ""
+msgid "Chosen date does not suit. It is either greater than the project end date or some of the elements are placed before chosen date."
+msgstr "Valitud kuupäev ei sobi. See on kas hilisem kui projekti lõpukuupäev või mõned sündmused on paigutatud valitud kuupäevast varasemaks."
 
 #: ../actions/edit_project_end.php:72
-msgid ""
-"Chosen date does not suit. It is either lower than the project start date or "
-"some of the elements are placed after chosen date."
-msgstr ""
+msgid "Chosen date does not suit. It is either lower than the project start date or some of the elements are placed after chosen date."
+msgstr "Valitud kuupäev ei sobi. See on kas varasem kui projekti alguskuupäev või mõned sündmused on paigutatud valitud kuupäevast hilisemaks."
 
 #: ../views/js/teke_config.php:18
 msgid "Click to add Comment"
-msgstr ""
+msgstr "Lisa kommentaar"
 
 #: ../engine/lib/ajax/AJAXResponse.php:50
 msgid "Close"
@@ -294,45 +285,44 @@ msgstr "Sulge"
 
 #: ../views/templates/forms.html:163
 msgid "Color"
-msgstr ""
+msgstr "Värv"
 
 #: ../views/templates/forms.html:204
 msgid "Comment (255 characters, plaintext)"
-msgstr ""
+msgstr "Kommentaar (255 tähte, lihttekst)"
 
 #: ../actions/edit_project_comment.php:55
 msgid "Comment changed."
-msgstr ""
+msgstr "Kommentaar muudetud"
 
 #: ../actions/edit_project_comment.php:59
-#, fuzzy
 msgid "Comment could not be changed."
-msgstr "Kopeerimisel tekkis viga: mõnda kopeeritavat objekti ei saanud luua."
+msgstr "Kommentaari ei saanud muuta."
 
 #: ../actions/delete_comment.php:31
-#, fuzzy
 msgid "Comment could not be deleted."
-msgstr "Kopeerimisel tekkis viga: mõnda kopeeritavat objekti ei saanud luua."
+msgstr "Kommentaari ei saanud kustutada."
 
 #: ../actions/delete_comment.php:29
 msgid "Comment deleted."
-msgstr ""
+msgstr "Kommentaar kustutatud"
 
 #: ../views/js/teke_config.php:13
 msgid "Create"
-msgstr ""
+msgstr "Loo"
 
-#: ../views/project/project_view.html:28 ../views/templates/forms.html:27
+#: ../views/project/project_view.html:28
+#: ../views/templates/forms.html:27
 msgid "Create new Document"
-msgstr ""
+msgstr "Loo uus dokument"
 
 #: ../views/templates/forms.html:181
 msgid "Date"
-msgstr ""
+msgstr "Kuupäev"
 
 #: ../engine/lib/project/Resource.php:87
 msgid "Default Document"
-msgstr ""
+msgstr "Dokument"
 
 #: ../views/js/teke_config.php:28
 msgid "Delete"
@@ -340,60 +330,56 @@ msgstr "Kustuta"
 
 #: ../views/project/project_view.html:77
 msgid "Diary and Messages"
-msgstr ""
+msgstr "Sündmused ja sõnumid"
 
 #: ../views/templates/forms.html:31
 msgid "Document URL"
-msgstr ""
+msgstr "Dokumendi veebiaadress"
 
 #: ../actions/add_document_version.php:38
-msgid ""
-"Document is inactive. Adding versions to inactive document is not allowed."
-msgstr ""
+msgid "Document is inactive. Adding versions to inactive document is not allowed."
+msgstr "Dokument ei ole aktiivne. Versioone saab lisada ainult aktiivsele dokumendile."
 
 #: ../actions/add_document_version.php:12
 msgid "Document not found."
-msgstr ""
+msgstr "Dokumenti ei leitud."
 
 #: ../views/templates/forms.html:29
 msgid "Document title"
-msgstr ""
+msgstr "Dokumendi pealkiri"
 
 #: ../engine/lib/project/Document.php:168
 msgid "Dropped"
-msgstr ""
+msgstr "Eemaldatud"
 
-#: ../views/js/teke_config.php:17 ../views/js/teke_config.php:27
+#: ../views/js/teke_config.php:17
+#: ../views/js/teke_config.php:27
 msgid "Edit"
-msgstr "Toimeta"
+msgstr "Muuda"
 
 #: ../views/templates/forms.html:212
 msgid "Edit Comment"
-msgstr ""
+msgstr "Muuda kommentaari"
 
 #: ../views/templates/forms.html:176
-#, fuzzy
 msgid "Edit Milestone"
-msgstr "Toimetamine nurjus"
+msgstr "Muuta verstaposti"
 
 #: ../views/templates/forms.html:16
-#, fuzzy
 msgid "Edit Project"
-msgstr "Toimeta profiili"
+msgstr "Muuta projekti"
 
 #: ../views/templates/forms.html:101
-#, fuzzy
 msgid "Edit Resource"
-msgstr "Toimetamine nurjus"
+msgstr "Muuda allikat"
 
 #: ../views/templates/forms.html:70
-#, fuzzy
 msgid "Edit Task"
-msgstr "Toimeta"
+msgstr "Muuda ülesannet"
 
 #: ../engine/lib/handler/handler_user.php:20
 msgid "Edit settings"
-msgstr "Toimeta sätteid"
+msgstr "Muuda seadeid"
 
 #: ../views/administrate/administrate_user.html:18
 #: ../views/user/user_settings.html:22
@@ -406,11 +392,11 @@ msgstr "E-post on vigane."
 
 #: ../views/pages/index.html:59
 msgid "End date"
-msgstr ""
+msgstr "Lõpukuupäev"
 
 #: ../engine/teke.php:298
 msgid "English"
-msgstr ""
+msgstr "Inglise keel"
 
 #: ../actions/update_user_settings.php:53
 msgid "Error occured."
@@ -418,45 +404,47 @@ msgstr "Tekkis viga."
 
 #: ../engine/teke.php:296
 msgid "Estonian"
-msgstr ""
+msgstr "Eesti keel"
+
+#: ../views/project/project_view.html:92
+msgid "Everything"
+msgstr "Kõik"
 
 #: ../actions/login.php:31
-#, fuzzy
 msgid "Facebook login failed."
-msgstr "Ümberpaigutamine nurjus"
+msgstr "Facebooki kontoga sisselogimine nurjus"
 
 #: ../actions/login.php:28
 msgid "Facebook profile could not be loaded."
-msgstr ""
+msgstr "Facebooki profiili laadimine ebaõnnestus."
 
 #: ../engine/teke.php:299
 msgid "Finnish"
-msgstr ""
+msgstr "Soome keel"
 
 #: ../views/user/user_settings.html:14
-#, fuzzy
 msgid "First name"
 msgstr "Eesnimi"
 
 #: ../views/administrate/administrate_user.html:17
 msgid "Fullname"
-msgstr ""
+msgstr "Täisnimi"
 
 #: ../views/templates/forms.html:6
 msgid "Goal (255 characters, plaintext)"
-msgstr ""
+msgstr "Eesmärk (255 tähte, lihttekst)"
 
 #: ../engine/lib/project/Milestone.php:147
 msgid "Green"
-msgstr ""
+msgstr "Roheline"
 
 #: ../engine/teke.php:280
 msgid "Guest"
-msgstr ""
+msgstr "Külaline"
 
 #: ../views/administrate/administrate_teke.html:25
 msgid "Guests"
-msgstr ""
+msgstr "Külalised"
 
 msgid ""
 "Hi %s,\n"
@@ -468,8 +456,7 @@ msgid ""
 "\n"
 "The link will expire after 24 hours for security reasons.\n"
 "\n"
-"If you did not request this forgotten password email, no action is needed, "
-"your password will not be reset as long as the link above is not visited.\n"
+"If you did not request this forgotten password email, no action is needed, your password will not be reset as long as the link above is not visited.\n"
 "\n"
 "Thanks,\n"
 "%s \n"
@@ -479,15 +466,14 @@ msgid ""
 msgstr ""
 "Tere %s,\n"
 "\n"
-"Saime su parooli lähtestamise soovi.\n"
+"Saime su parooli vahetamise soovi.\n"
 "\n"
-"Palun külasta alljärnevat linki, et lähtestada oma parool:\n"
+"Palun külasta alljärnevat linki, et vahetada oma parool:\n"
 "%s\n"
 "\n"
 "Turvakaalutlustel aegub see link 24 tunni pärast.\n"
 "\n"
-"Kui sa ei soovinud oma parooli lähtestada, siis ignoreeri seda kirja. Kuniks "
-"seda linki ei külastata, su parooli ei lähtestata.\n"
+"Kui sa ei soovinud oma parooli vahetada, siis ignoreeri seda kirja. Kuni seda linki ei külastata, su parooli ei vahetata.\n"
 "\n"
 "Parimat,\n"
 "%s \n"
@@ -498,418 +484,406 @@ msgstr ""
 #: ../views/administrate/administrate_user.html:19
 #: ../views/user/user_settings.html:26
 msgid "Language"
-msgstr ""
+msgstr "Keel"
 
 #: ../views/administrate/administrate_user.html:21
-#, fuzzy
 msgid "Last login"
-msgstr "Sisene"
+msgstr "Viimane külastus"
 
 #: ../views/user/user_settings.html:18
-#, fuzzy
 msgid "Last name"
 msgstr "Perekonnanimi"
 
 #: ../engine/lib/project/Document.php:166
 msgid "Live"
-msgstr ""
+msgstr "Praegune"
 
 #: ../views/templates/top_bar.html:20
 msgid "Log out"
 msgstr "Välju"
 
 #: ../actions/login.php:25
-#, fuzzy
 msgid "Login failed."
-msgstr "Registreerimine nurjus"
+msgstr "Sisselogimine nurjus"
 
 #: ../views/pages/index.html:24
 msgid "Login with your Facebook account"
-msgstr ""
+msgstr "Logi sisse oma Facebooki kontoga"
 
 #: ../engine/teke.php:281
 msgid "Member"
-msgstr ""
+msgstr "Liige"
 
 #: ../views/administrate/administrate_teke.html:21
 #: ../views/pages/index.html:63
 msgid "Members"
-msgstr ""
+msgstr "Liikmed"
 
 #: ../actions/add_message.php:37
 msgid "Message could not be added."
-msgstr ""
+msgstr "Sõnumit ei saanud lisada."
+
+#: ../views/project/project_view.html:94
+msgid "Messages"
+msgstr "Sündmused ja sõnumid"
 
 #: ../actions/edit_milestone.php:57
 msgid "Milestone changed."
-msgstr ""
+msgstr "Verstapost muudetud."
 
 #: ../actions/edit_milestone.php:61
-#, fuzzy
 msgid "Milestone could not be changed."
-msgstr "Kopeerimisel tekkis viga: mõnda kopeeritavat objekti ei saanud luua."
+msgstr "Verstaposti ei saanud muuta."
 
 #: ../actions/delete_milestone.php:31
-#, fuzzy
 msgid "Milestone could not be deleted."
-msgstr "Kopeerimisel tekkis viga: mõnda kopeeritavat objekti ei saanud luua."
+msgstr "Verstaposti ei saanud kustutada."
 
 #: ../actions/delete_milestone.php:29
-#, fuzzy
 msgid "Milestone deleted."
-msgstr "Kopeerimisel tekkis viga: mõnda kopeeritavat objekti ei saanud luua."
+msgstr "Verstapost kustutatud."
 
 #: ../views/templates/forms.html:159
 msgid "Milestone title"
-msgstr ""
+msgstr "Verstaposti pealkiri"
 
 #: ../views/pages/index.html:35
 msgid "My Projects"
-msgstr ""
+msgstr "Minu projektid"
 
 #: ../actions/add_project_comment.php:46
 msgid "New comment added."
-msgstr ""
+msgstr "Uus kommentaar lisatud."
 
 #: ../actions/add_project_comment.php:50
-#, fuzzy
 msgid "New comment could not be added."
-msgstr "Kopeerimisel tekkis viga: mõnda kopeeritavat objekti ei saanud luua."
+msgstr "Uut kommentaari ei saanud lisada."
 
 #: ../actions/add_document.php:53
 msgid "New document added."
-msgstr ""
+msgstr "Uus dokument lisatud."
 
 #: ../actions/add_document.php:57
-#, fuzzy
 msgid "New document could not be added."
-msgstr "Kopeerimisel tekkis viga: mõnda kopeeritavat objekti ei saanud luua."
+msgstr "Uut dokumenti ei saanud lisada."
 
 #: ../actions/add_document_version.php:78
 msgid "New document version added."
-msgstr ""
+msgstr "Dokumendi uus versioon lisatud."
 
 #: ../actions/add_document_version.php:82
-#, fuzzy
 msgid "New document version could not be added."
-msgstr "Kopeerimisel tekkis viga: mõnda kopeeritavat objekti ei saanud luua."
+msgstr "Uut versiooni dokumendist ei saanud lisada."
 
 #: ../actions/add_message.php:33
 msgid "New message added."
-msgstr ""
+msgstr "Uus sõnum lisatud."
 
 #: ../actions/add_milestone.php:48
 msgid "New milestone added."
-msgstr ""
+msgstr "Uus verstapost lisatud."
 
 #: ../actions/add_milestone.php:52
-#, fuzzy
 msgid "New milestone could not be added."
-msgstr "Kopeerimisel tekkis viga: mõnda kopeeritavat objekti ei saanud luua."
+msgstr "Uut verstaposti ei saanud lisada."
 
 #: ../actions/create_project.php:34
-#, fuzzy
 msgid "New project could not be created."
-msgstr "Kopeerimisel tekkis viga: mõnda kopeeritavat objekti ei saanud luua."
+msgstr "Uut projekti ei saanud luua."
 
 #: ../actions/create_project.php:31
 msgid "New project created."
-msgstr ""
+msgstr "Uus projekt loodud."
 
 #: ../actions/add_resource.php:39
 msgid "New resource added."
-msgstr ""
+msgstr "Uus allikas lisatud."
 
 #: ../actions/add_resource.php:43
 msgid "New resource could not be added."
-msgstr ""
+msgstr "Uut allikat ei saanud lisada."
 
 #: ../actions/add_task.php:33
 msgid "New task added."
-msgstr ""
+msgstr "Uus ülesanne lisatud."
 
 #: ../actions/add_task.php:37
 msgid "New task could not be added."
-msgstr ""
+msgstr "Uut ülesannet ei saanud lisada."
 
 #: ../actions/logout.php:16
 msgid "No authenticated user found."
-msgstr "Autoriseeritud kasutajat ei leitud."
+msgstr "Ei leitud ühtegi sisselogitud kasutajat."
 
-#: ../actions/add_document.php:12 ../actions/add_document_version.php:22
-#: ../actions/add_member_to_task.php:21 ../actions/add_message.php:12
-#: ../actions/add_milestone.php:12 ../actions/add_participant.php:12
+#: ../actions/add_document.php:12
+#: ../actions/add_document_version.php:22
+#: ../actions/add_member_to_task.php:21
+#: ../actions/add_message.php:12
+#: ../actions/add_milestone.php:12
+#: ../actions/add_participant.php:12
 msgid "No project or insufficient privileges."
-msgstr ""
+msgstr "Projekti ei ole või puuduvad õigused projekti vaatamiseks."
 
 #: ../views/project/project_view.html:110
 msgid "No rights to see the project."
-msgstr ""
+msgstr "Puuduvad õigused projekti näha."
 
-#: ../actions/delete_comment.php:11 ../actions/edit_project_comment.php:11
+#: ../actions/delete_comment.php:11
+#: ../actions/edit_project_comment.php:11
 msgid "No such comment."
-msgstr ""
+msgstr "Sellist kommentaari ei ole."
 
-#: ../actions/delete_milestone.php:11 ../actions/edit_milestone.php:11
+#: ../actions/delete_milestone.php:11
+#: ../actions/edit_milestone.php:11
 msgid "No such milestone."
-msgstr ""
+msgstr "Sellist verstaposti ei ole."
 
 #: ../views/project/project_view.html:114
 msgid "No such project."
-msgstr ""
+msgstr "Sellist projekti ei ole. "
 
-#: ../actions/add_resource_to_task.php:29 ../actions/delete_resource.php:11
-#: ../actions/edit_resource.php:11 ../actions/remove_resource_from_task.php:29
+#: ../actions/add_resource_to_task.php:29
+#: ../actions/delete_resource.php:11
+#: ../actions/edit_resource.php:11
+#: ../actions/remove_resource_from_task.php:29
 msgid "No such resource."
-msgstr ""
+msgstr "Sellist allikat ei ole."
 
 #: ../actions/change_role.php:28
 msgid "No such role."
-msgstr ""
+msgstr "Sellist rolli ei ole."
 
-#: ../actions/add_member_to_task.php:11 ../actions/add_resource_to_task.php:11
-#: ../actions/add_task_to_timeline.php:11 ../actions/delete_task.php:11
-#: ../actions/edit_task.php:11 ../actions/remove_member_from_task.php:11
+#: ../actions/add_member_to_task.php:11
+#: ../actions/add_resource_to_task.php:11
+#: ../actions/add_task_to_timeline.php:11
+#: ../actions/delete_task.php:11
+#: ../actions/edit_task.php:11
+#: ../actions/remove_member_from_task.php:11
 msgid "No such task."
-msgstr ""
+msgstr "Sellist ülesannet ei ole."
 
-#: ../actions/add_member_to_task.php:29 ../actions/add_participant.php:20
-#: ../actions/change_role.php:14 ../actions/remove_member_from_task.php:29
+#: ../actions/add_member_to_task.php:29
+#: ../actions/add_participant.php:20
+#: ../actions/change_role.php:14
+#: ../actions/remove_member_from_task.php:29
 #: ../actions/update_user_settings.php:34
 msgid "No such user."
-msgstr ""
+msgstr "Sellist kasutajat ei ole."
 
 #: ../actions/leave_project.php:19
 msgid "Not a participant."
-msgstr ""
+msgstr "Ei ole osaleja."
 
 #: ../actions/update_user_settings.php:57
 msgid "Not allowed to change settings for that user."
-msgstr ""
+msgstr "Selle kasutaja seadeid ei ole lubatud muuta."
 
 #: ../views/templates/forms.html:33
 msgid "Notes (255 characters, plaintext)"
-msgstr ""
+msgstr "Märkmed (255 tähte, lihttekst)"
 
 #: ../views/ajax/ajax_search_for_participants.html:16
 msgid "Nothing found"
-msgstr ""
+msgstr "Otsingule ei leitud vastet"
 
 #: ../engine/lib/project/Milestone.php:149
-#, fuzzy
 msgid "Orange"
-msgstr "Muuda"
+msgstr "Oranž"
 
 #: ../views/pages/index.html:68
 msgid "Owned"
-msgstr ""
+msgstr "Omanik"
 
 #: ../actions/leave_project.php:25
 msgid "Owner can not leave the project."
-msgstr ""
+msgstr "Omanik ei saa projektist lahkuda."
 
 #: ../actions/add_participant.php:38
 msgid "Participant could not be added."
-msgstr ""
+msgstr "Osalejat ei olnud võimalik lisada."
 
 #: ../actions/add_member_to_task.php:47
 msgid "Participant could not be associated with task."
-msgstr ""
+msgstr "Osalejat ei olnud võimalik ülesandega siduda."
 
 #: ../actions/remove_member_from_task.php:47
-#, fuzzy
 msgid "Participant could not be removed from task."
-msgstr "Kopeerimisel tekkis viga: mõnda kopeeritavat objekti ei saanud luua."
+msgstr "Osalejat ei saanud ülesandest eemaldada."
 
 #: ../actions/leave_project.php:33
-#, fuzzy
 msgid "Participant could not be removed."
-msgstr "Kopeerimisel tekkis viga: mõnda kopeeritavat objekti ei saanud luua."
+msgstr "Osalejat ei saanud eemaldada."
 
 #: ../actions/add_member_to_task.php:36
 msgid "Participant is already associated with this task."
-msgstr ""
+msgstr "Osaleja on juba selle ülesandega seotud."
 
 #: ../actions/remove_member_from_task.php:36
-#, fuzzy
 msgid "Participant is not associated with this task."
-msgstr "Kopeerimisel tekkis viga: mõnda kopeeritavat objekti ei saanud luua."
+msgstr "Osaleja ei ole ülesandega seotud."
 
 #: ../views/project/project_view.html:51
 msgid "Participants"
-msgstr ""
+msgstr "Osalejad"
 
 #: ../engine/lib/user/user.php:309
 msgid "Password reset"
-msgstr "Parooli lähtestamine"
+msgstr "Parooli vahetamine"
 
 #: ../views/project/project_view.html:87
 msgid "Post new Message"
-msgstr ""
+msgstr "Postita uus sõnum"
 
 #: ../engine/lib/project/Resource.php:90
 msgid "Presentation"
-msgstr ""
+msgstr "Esitlus"
 
 #: ../actions/edit_project.php:38
 msgid "Project changed."
-msgstr ""
+msgstr "Projekt muudetud."
 
 #: ../actions/edit_project.php:42
-#, fuzzy
 msgid "Project could not be changed."
-msgstr "Kopeerimisel tekkis viga: mõnda kopeeritavat objekti ei saanud luua."
+msgstr "Projekti ei saanud muuta."
 
 #: ../actions/edit_project_end.php:81
 msgid "Project end date changed."
-msgstr ""
+msgstr "Projekti lõpukuupäev muudetud."
 
 #: ../actions/edit_project_end.php:84
-#, fuzzy
 msgid "Project end date could not be changed."
-msgstr "Kopeerimisel tekkis viga: mõnda kopeeritavat objekti ei saanud luua."
+msgstr "Projekti lõpukuupäeva ei saanud muuta."
 
-#: ../actions/add_document.php:20 ../actions/add_document_version.php:30
+#: ../actions/add_document.php:20
+#: ../actions/add_document_version.php:30
 msgid "Project is either not active yet or already finished."
-msgstr ""
+msgstr "Projekt ei ole veel aktiivne või on juba lõpetatud."
 
 #: ../actions/edit_project_start.php:81
 msgid "Project start date changed."
-msgstr ""
+msgstr "Projekti alguskuupäev muudetud."
 
 #: ../actions/edit_project_start.php:84
-#, fuzzy
 msgid "Project start date could not be changed."
-msgstr "Kopeerimisel tekkis viga: mõnda kopeeritavat objekti ei saanud luua."
+msgstr "Projekti alguskuupäeva ei saanud muuta."
 
 #: ../views/administrate/administrate_teke.html:29
-#, fuzzy
 msgid "Projects"
-msgstr "Toimeta profiili"
+msgstr "Projektid"
 
 #: ../actions/add_task_to_timeline.php:50
 msgid "Provided dates are not suitable."
-msgstr ""
+msgstr "Märgitud kuupäevad ei sobi."
 
 #: ../engine/lib/project/Document.php:167
 msgid "Ready"
-msgstr ""
+msgstr "Valmis"
 
 #: ../engine/lib/project/Milestone.php:145
 msgid "Red"
-msgstr ""
+msgstr "Punane"
 
 #: ../views/administrate/administrate_user.html:20
-#, fuzzy
 msgid "Registered"
-msgstr "Registreeru"
+msgstr "Registreeritud"
 
 msgid "Remove"
 msgstr "Eemalda"
 
 #: ../views/js/teke_config.php:30
 msgid "Remove from task"
-msgstr ""
+msgstr "Eemalda ülesandest"
 
 #: ../views/js/teke_config.php:25
 msgid "Remove from timeline"
-msgstr ""
+msgstr "Eemalda ajateljelt"
 
 # , php-format
 #: ../engine/lib/project/Activity.php:175
-msgid ""
-"Resource <span class=\"activity-item-title\">%2$s</span> assigned to task "
-"<span class=\"activity-item-title\">%1$s</span>"
-msgstr ""
+msgid "Resource <span class=\"activity-item-title\">%2$s</span> assigned to task <span class=\"activity-item-title\">%1$s</span>"
+msgstr "Allikas <span class=\"activity-item-title\">%2$s</span> on lisatud ülesandele <span class=\"activity-item-title\">%1$s</span>"
 
 # , php-format
 #: ../engine/lib/project/Activity.php:178
-msgid ""
-"Resource <span class=\"activity-item-title\">%2$s</span> is no longer "
-"assigned to task <span class=\"activity-item-title\">%1$s</span>"
-msgstr ""
+msgid "Resource <span class=\"activity-item-title\">%2$s</span> is no longer assigned to task <span class=\"activity-item-title\">%1$s</span>"
+msgstr "Allikas <span class=\"activity-item-title\">%2$s</span> on eemaldatud ülesandest <span class=\"activity-item-title\">%1$s</span>"
 
 #: ../views/templates/forms.html:90
 msgid "Resource Type"
-msgstr ""
+msgstr "Allika tüüp"
 
 #: ../views/templates/forms.html:88
 msgid "Resource URL"
-msgstr ""
+msgstr "Allika veebiaadress"
 
 #: ../actions/edit_resource.php:57
 msgid "Resource changed."
-msgstr ""
+msgstr "Allikas muudetud."
 
 #: ../actions/add_resource_to_task.php:47
-#, fuzzy
 msgid "Resource could not be associated with task."
-msgstr "Kopeerimisel tekkis viga: mõnda kopeeritavat objekti ei saanud luua."
+msgstr "Allikat ei saanud ülesandega seostada."
 
 #: ../actions/edit_resource.php:61
-#, fuzzy
 msgid "Resource could not be changed."
-msgstr "Kopeerimisel tekkis viga: mõnda kopeeritavat objekti ei saanud luua."
+msgstr "Allikat ei saanud muuta."
 
 #: ../actions/delete_resource.php:31
-#, fuzzy
 msgid "Resource could not be deleted."
-msgstr "Kopeerimisel tekkis viga: mõnda kopeeritavat objekti ei saanud luua."
+msgstr "Allikat ei saanud kustutada."
 
 #: ../actions/remove_resource_from_task.php:47
-#, fuzzy
 msgid "Resource could not be removed from task."
-msgstr "Kopeerimisel tekkis viga: mõnda kopeeritavat objekti ei saanud luua."
+msgstr "Allikat ei saanud ülesandest eemaldada."
 
 #: ../actions/delete_resource.php:29
 msgid "Resource deleted."
-msgstr ""
+msgstr "Allikas kustutatud."
 
 #: ../views/templates/forms.html:86
 msgid "Resource description"
-msgstr ""
+msgstr "Allika kirjeldus"
 
 #: ../actions/add_resource_to_task.php:36
 msgid "Resource is already associated with this task."
-msgstr ""
+msgstr "Allikas on juba ülesandega seotud."
 
 #: ../actions/remove_resource_from_task.php:36
-#, fuzzy
 msgid "Resource is not associated with this task."
-msgstr "Kopeerimisel tekkis viga: mõnda kopeeritavat objekti ei saanud luua."
+msgstr "Allikas ei ole ülesandega seotud. "
 
 #: ../views/templates/forms.html:84
 msgid "Resource title"
-msgstr ""
+msgstr "Allika pealkiri"
 
 #: ../views/project/project_view.html:65
 msgid "Resources"
-msgstr ""
+msgstr "Allikad"
 
 #: ../views/js/teke_config.php:16
 msgid "Return"
-msgstr ""
+msgstr "Tagasi"
 
 #: ../views/administrate/administrate_user.html:22
 #: ../views/templates/forms.html:140
 msgid "Role"
-msgstr ""
+msgstr "Roll"
 
 #: ../actions/change_role.php:35
 msgid "Role changed."
-msgstr ""
+msgstr "Roll muudetud."
 
 #: ../actions/change_role.php:38
 msgid "Role could not be changed."
-msgstr ""
+msgstr "Rolli ei saanud muuta."
 
 #: ../engine/teke.php:297
 msgid "Russian"
-msgstr ""
+msgstr "Vene keel"
 
 #: ../views/user/user_settings.html:30
 msgid "Save"
-msgstr ""
+msgstr "Salvesta"
 
 #: ../views/js/teke_config.php:15
 msgid "Search"
@@ -917,131 +891,121 @@ msgstr "Otsi"
 
 #: ../views/templates/forms.html:128
 msgid "Search Criteria"
-msgstr ""
+msgstr "Otsingukriteeriumid"
 
 #: ../actions/update_user_settings.php:51
 msgid "Settings saved."
-msgstr "Sätted salvestati."
+msgstr "Seaded salvestati."
 
 #: ../views/project/project_view.html:90
 msgid "Show:"
-msgstr ""
+msgstr "Näita:"
 
 #: ../views/js/teke_config.php:26
 msgid "Slide to change time scale"
-msgstr ""
+msgstr "Liuguri abil saad muuta ajaskaalat"
 
 #: ../views/pages/page_not_found.html:3
 msgid "Sorry, page not found"
-msgstr ""
+msgstr "Vabandust, lehekülge ei leitud"
 
 #: ../engine/lib/project/Resource.php:89
 msgid "Spreadsheet"
-msgstr ""
+msgstr "Tabel"
 
 #: ../views/pages/index.html:55
-#, fuzzy
 msgid "Start date"
-msgstr "Start nurjus"
+msgstr "Alguskuupäev"
 
 #: ../views/templates/forms.html:8
 msgid "Start/end dates"
-msgstr ""
+msgstr "Algus- ja lõpukuupäev"
 
 #: ../views/administrate/administrate_teke.html:8
 msgid "Statistics"
-msgstr ""
+msgstr "Statistika"
 
 #: ../engine/teke.php:300
 msgid "Swedish"
-msgstr ""
+msgstr "Rootsi keel"
 
 # , php-format
 #: ../engine/lib/project/Activity.php:169
-msgid ""
-"Task <span class=\"activity-item-title\">%1$s</span> assigned to <span class="
-"\"activity-item-title\">%2$s</span>"
-msgstr ""
+msgid "Task <span class=\"activity-item-title\">%1$s</span> assigned to <span class=\"activity-item-title\">%2$s</span>"
+msgstr "Ülesanne <span class=\"activity-item-title\">%1$s</span> lisatud tegevusse <span class=\"activity-item-title\">%2$s</span>"
 
 # , php-format
 #: ../engine/lib/project/Activity.php:172
-msgid ""
-"Task <span class=\"activity-item-title\">%1$s</span> assignment removed from "
-"<span class=\"activity-item-title\">%2$s</span>"
-msgstr ""
+msgid "Task <span class=\"activity-item-title\">%1$s</span> assignment removed from <span class=\"activity-item-title\">%2$s</span>"
+msgstr "Ülesanne <span class=\"activity-item-title\">%1$s</span> eemaldatud tegevusest <span class=\"activity-item-title\">%2$s</span>"
 
 #: ../actions/add_task_to_timeline.php:95
 msgid "Task added to timeline."
-msgstr ""
+msgstr "Ülesanne lisatud ajateljele."
 
 #: ../actions/edit_task.php:49
 msgid "Task changed."
-msgstr ""
+msgstr "Ülesanne muudetud."
 
 #: ../actions/add_task_to_timeline.php:98
 msgid "Task could not be added to timeline."
-msgstr ""
+msgstr "Ülesannet ei saanud ajateljele lisada."
 
 #: ../actions/edit_task.php:53
-#, fuzzy
 msgid "Task could not be changed."
-msgstr "Kopeerimisel tekkis viga: mõnda kopeeritavat objekti ei saanud luua."
+msgstr "Ülesannet ei saanud muuta."
 
 #: ../actions/delete_task.php:31
-#, fuzzy
 msgid "Task could not be deleted."
-msgstr "Kopeerimisel tekkis viga: mõnda kopeeritavat objekti ei saanud luua."
+msgstr "Ülesannet ei saanud kustutada."
 
 #: ../actions/remove_task_from_timeline.php:38
 msgid "Task could not be removed from timeline."
-msgstr ""
+msgstr "Ülesannet ei saanud ajateljelt eemaldada."
 
 #: ../actions/delete_task.php:29
-#, fuzzy
 msgid "Task deleted."
-msgstr "Kustutatud"
+msgstr "Ülesanne kustutatud."
 
 #: ../views/templates/forms.html:63
 msgid "Task description"
-msgstr ""
+msgstr "Ülesande kirjeldus"
 
 #: ../actions/remove_task_from_timeline.php:36
 msgid "Task removed from timeline."
-msgstr ""
+msgstr "Ülesanne eemaldatud ajateljelt."
 
 #: ../views/templates/forms.html:61
 msgid "Task title"
-msgstr ""
+msgstr "Ülesande pealkiri"
 
 #: ../views/project/project_view.html:38
 msgid "Tasks"
-msgstr ""
+msgstr "Ülesanded"
 
 #: ../engine/lib/project/Resource.php:88
 msgid "Text"
-msgstr ""
+msgstr "Tekst"
 
 #: ../views/js/teke_config.php:23
 msgid "This document is dropped and can not be modified!"
-msgstr ""
+msgstr "Dokument on eemaldatud ja seda ei saa muuta!"
 
 #: ../views/js/teke_config.php:22
 msgid "This document is finished and can not be modified!"
-msgstr ""
+msgstr "Dokument on valmis ja seda ei saa enam muuta!"
 
 #: ../actions/add_task_to_timeline.php:28
-msgid ""
-"This task has already been added to the timeline. Same task can not be added "
-"twice."
-msgstr ""
+msgid "This task has already been added to the timeline. Same task can not be added twice."
+msgstr "See ülesanne on juba ajateljele lisatud. Sama ülesannet ei saa lisada teist korda."
 
 #: ../actions/remove_task_from_timeline.php:28
 msgid "This task is not present on timeline. Removal not possible."
-msgstr ""
+msgstr "Seda ülesannet ei ole ajateljel. Eemaldamine ei ole võimalik."
 
 #: ../views/templates/forms.html:4
 msgid "Title"
-msgstr ""
+msgstr "Pealkiri"
 
 #: ../actions/update_user_settings.php:47
 msgid "User with that email already exists."
@@ -1052,26 +1016,26 @@ msgid "Username"
 msgstr "Kasutajanimi"
 
 #: ../views/administrate/administrate_teke.html:13
-#, fuzzy
 msgid "Users"
-msgstr "Kasutajanimi"
+msgstr "Kasutajad"
 
 #: ../engine/lib/handler/handler_user.php:18
 msgid "View"
-msgstr "Vaade"
+msgstr "Vaata"
 
 #: ../engine/lib/project/Milestone.php:146
 msgid "Violet"
-msgstr ""
+msgstr "Lilla"
 
 # , php-format
 #: ../actions/leave_project.php:31
 msgid "You have left the project %s."
-msgstr ""
+msgstr "Lahkusid projektist %."
 
 #: ../engine/lib/phptal/PHPTAL/GetTextTranslator.php:148
+#, fuzzy
 msgid "string:"
-msgstr ""
+msgstr "string:"
 
 #~ msgid "Invalid image. Type: "
 #~ msgstr "Vigane pilt. Failitüüp: "
