@@ -82,7 +82,7 @@ class Resource {
         return WWW_ROOT . "views/graphics/resource_{$type}.png";
     }
 
-    public function getResourceTypes() {
+    public static function getResourceTypes() {
         return array(
             1 => _('Default Document'),
             2 => _('Text'),
@@ -101,7 +101,7 @@ class Resource {
         return $this->updated;
     }
 
-    public function create($creator, $project_id, $title, $description, $url, $resource_type) {
+    public static function create($creator, $project_id, $title, $description, $url, $resource_type) {
         // Need unescaped data for JSON
         $activity_data = array($title);
         $creator = (int)$creator;
@@ -120,7 +120,7 @@ class Resource {
         return false;
     }
 
-    public function update($resource, $title, $description, $url, $resource_type) {
+    public static function update($resource, $title, $description, $url, $resource_type) {
         $activity_data = array($title);
         $title = mysql_real_escape_string($title);
         $description = mysql_real_escape_string($description);

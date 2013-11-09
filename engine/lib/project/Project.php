@@ -142,7 +142,7 @@ class Project {
         return 0;
     }
 
-    public function create($creator, $title, $goal, $start_date, $end_date) {
+    public static function create($creator, $title, $goal, $start_date, $end_date) {
         $creator = (int)$creator;
         $title = mysql_real_escape_string($title);
         $goal = mysql_real_escape_string($goal);
@@ -157,7 +157,7 @@ class Project {
         return false;
     }
 
-    public function update($project, $title, $goal) {
+    public static function update($project, $title, $goal) {
         $title = mysql_real_escape_string($title);
         $goal = mysql_real_escape_string($goal);
         $q = "UPDATE " . DB_PREFIX . "projects SET title='$title', goal='$goal' WHERE id = {$project->getId()}";
@@ -170,7 +170,7 @@ class Project {
         return false;
     }
 
-    public function updateStartDate($project, $start_date) {
+    public static function updateStartDate($project, $start_date) {
         $start_date = (int)$start_date;
         $q = "UPDATE " . DB_PREFIX . "projects SET start_date=FROM_UNIXTIME({$start_date}) WHERE id = {$project->getId()}";
         $updated = query_update($q);
@@ -182,7 +182,7 @@ class Project {
         return false;
     }
 
-    public function updateEndDate($project, $end_date) {
+    public static function updateEndDate($project, $end_date) {
         $end_date = (int)$end_date;
         $q = "UPDATE " . DB_PREFIX . "projects SET end_date=FROM_UNIXTIME({$end_date}) WHERE id = {$project->getId()}";
         $updated = query_update($q);

@@ -204,7 +204,7 @@ class Activity {
         return $this->created;
     }
 
-    public function create($creator, $project_id, $activity_type, $activity_subtype, $body, $activity_data) {
+    public static function create($creator, $project_id, $activity_type, $activity_subtype, $body, $activity_data) {
         $creator = (int)$creator;
         $project_id = (int)$project_id;
         $activity_type = mysql_real_escape_string($activity_type);

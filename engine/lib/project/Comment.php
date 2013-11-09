@@ -72,7 +72,7 @@ class Comment {
         return $this->updated;
     }
 
-    public function create($creator, $project_id, $content, $comment_date) {
+    public static function create($creator, $project_id, $content, $comment_date) {
         $creator = (int)$creator;
         $project_id = (int)$project_id;
         $content = mysql_real_escape_string($content);
@@ -87,7 +87,7 @@ class Comment {
         return false;
     }
 
-    public function update($comment, $content, $comment_date) {
+    public static function update($comment, $content, $comment_date) {
         $content = mysql_real_escape_string($content);
         $comment_date = (int) $comment_date;
         $q = "UPDATE " . DB_PREFIX . "project_comments SET content='$content', comment_date=FROM_UNIXTIME('$comment_date'), updated=NOW() WHERE id = {$comment->id}";

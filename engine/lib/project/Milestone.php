@@ -94,7 +94,7 @@ class Milestone {
         return $this->updated;
     }
 
-    public function create($creator, $project_id, $title, $milestone_date, $flag_color, $notes) {
+    public static function create($creator, $project_id, $title, $milestone_date, $flag_color, $notes) {
         // Need unescaped data for JSON
         $activity_data = array($title, $milestone_date);
         $creator = (int)$creator;
@@ -113,7 +113,7 @@ class Milestone {
         return false;
     }
 
-    public function update($milestone, $title, $milestone_date, $flag_color, $notes) {
+    public static function update($milestone, $title, $milestone_date, $flag_color, $notes) {
         // Need unescaped data for JSON
         $activity_data = array($title, $milestone_date);
         $title = mysql_real_escape_string($title);
@@ -140,7 +140,7 @@ class Milestone {
         return $deleted;
     }
 
-    public function getAvailableColors($translated = true) {
+    public static function getAvailableColors($translated = true) {
         return array(
             '1' => $translated ? _('Red') : 'Red',
             '2' => $translated ? _('Violet') : 'Violet',

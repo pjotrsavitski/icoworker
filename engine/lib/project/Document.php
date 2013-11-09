@@ -91,7 +91,7 @@ class Document {
     }
 
     // Adding version is handled internally
-    private function addVersion($creator, $document_id, $title, $url, $notes, $version_type) {
+    private static function addVersion($creator, $document_id, $title, $url, $notes, $version_type) {
         $now = time();
         $q = "INSERT INTO " . DB_PREFIX . "document_versions (creator, document_id, title, url, notes, version_type, created) VALUES ($creator, $document_id, '$title', '$url', '$notes', $version_type, FROM_UNIXTIME('$now'))";
         $uid = query_insert($q);
@@ -116,7 +116,7 @@ class Document {
         return $versions;
     }
 
-    public function create($creator, $project_id, $title, $url, $notes) {
+    public static function create($creator, $project_id, $title, $url, $notes) {
         // Need unescaped data for JSON
         $activity_data = array($title);
         $creator = (int)$creator;
@@ -136,7 +136,7 @@ class Document {
         return false;
     }
 
-    public function update($document, $title, $url, $notes, $version_type) {
+    public static function update($document, $title, $url, $notes, $version_type) {
         // Need unescaped data for JSON
         $activity_data = array($title);
         $title = mysql_real_escape_string($title);
@@ -161,7 +161,7 @@ class Document {
         return query_delete($q);
     }
 
-    public function getVersionTypes($translated = true) {
+    public static function getVersionTypes($translated = true) {
         return array(
             '1' => $translated ? _('Live') : 'Live',
             '2' => $translated ? _('Ready') : 'Ready',

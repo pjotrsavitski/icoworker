@@ -188,7 +188,7 @@ class Task {
         return $updated;
     }
 
-    public function create($creator, $project_id, $title, $description) {
+    public static function create($creator, $project_id, $title, $description) {
         // Need unescaped data for JSON
         $activity_data = array($title);
         $creator = (int)$creator;
@@ -205,7 +205,7 @@ class Task {
         return false;
     }
 
-    public function update($task, $title, $description) {
+    public static function update($task, $title, $description) {
         $activity_data = array($title);
         $title = mysql_real_escape_string($title);
         $description = mysql_real_escape_string($description);
