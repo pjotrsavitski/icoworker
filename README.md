@@ -7,8 +7,7 @@ Requirements
 
 1. Apache with mod_php
 2. PHP version 5.4 or above (due to Facebook SDK 4)
- * Make sure your version has **mysql extension** (is deprecated in newer versions)
- * Extensions: gettext, json (possibly others that are part of the default installaton package)
+ * Extensions: mysqli, gettext, json (possibly others that are part of the default installaton package)
 
 Installation
 ============
