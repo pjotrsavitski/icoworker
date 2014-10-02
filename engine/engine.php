@@ -1,4 +1,8 @@
 <?php
+// Require composer autoload
+require_once(dirname(dirname(__FILE__)) . '/vendor/autoload.php');
+use Facebook\FacebookSession;
+
 require_once(dirname(dirname(__FILE__))."/config/config.php");
 if (defined("SESSION_SAVE_PATH")) {
     if (file_exists(SESSION_SAVE_PATH)) {
@@ -62,9 +66,7 @@ if (is_file(dirname(dirname(__FILE__))."/includes/".PLUGIN."/".PLUGIN.".php")) {
  ******************/
 
 if (FACEBOOK) {
-    require_once(dirname(dirname(__FILE__)) . '/vendor/autoload.php');
-    
-    Facebook\FacebookSession::setDefaultApplication(FACEBOOK_APP_ID, FACEBOOK_APP_SECRET);
+    FacebookSession::setDefaultApplication(FACEBOOK_APP_ID, FACEBOOK_APP_SECRET);
 }
 
 if (isset($_REQUEST["set_language"]) && isset($_REQUEST["language"]) && in_array($_REQUEST["language"], array_keys($TeKe->getAvailableLanguages()))) {

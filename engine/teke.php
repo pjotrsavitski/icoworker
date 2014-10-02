@@ -1,4 +1,6 @@
 <?php
+use Facebook\FacebookSession;
+use Facebook\FacebookRedirectLoginHelper;
 
 class TeKe {
     public $title = "TeKe";
@@ -310,16 +312,15 @@ class TeKe {
     }
 
     public function getFacebookLoginURL() {
-        $helper = new Facebook\FacebookRedirectLoginHelper(WWW_ROOT . "actions/login.php");
+        $helper = new FacebookRedirectLoginHelper(WWW_ROOT . "actions/login.php");
         return $helper->getLoginUrl(array('email'));
     }
 
     public function getFacebookLogoutURL() {
-        $session = Facebook\FacebookSession::newAppSession();
-        $helper = new Facebook\FacebookRedirectLoginHelper(WWW_ROOT . "actions/login.php");
+        $session = FacebookSession::newAppSession();
+        $helper = new FacebookRedirectLoginHelper(WWW_ROOT . "actions/login.php");
         return $helper->getLogoutUrl($session, WWW_ROOT . "actions/logout.php");
 
     }
 
 }
-?>
