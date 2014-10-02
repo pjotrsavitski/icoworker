@@ -202,15 +202,15 @@ class User {
         }
 
         function check_username_exists($username) {
-            $query = "SELECT count(username) FROM " . DB_PREFIX . "users WHERE username='{$username}'";
+            $query = "SELECT count(username) AS count FROM " . DB_PREFIX . "users WHERE username='{$username}'";
             $check = query_row($query);
-            return $check;
+            return $check->count;
         }
 
         function check_facebook_id_exists($facebook_id) {
-            $query = "SELECT count(facebook_id) FROM " . DB_PREFIX . "users WHERE facebook_id=$facebook_id";
+            $query = "SELECT count(facebook_id) AS count FROM " . DB_PREFIX . "users WHERE facebook_id=$facebook_id";
             $check = query_row($query);
-            return $check;
+            return $check->count;
         }
 
         // TODO possibly not needed
@@ -220,9 +220,9 @@ class User {
         
         function check_email_exists($email) {
             $email = real_escape_string($email);
-            $query = "SELECT count(email) FROM " . DB_PREFIX . "users WHERE email='{$email}'";
+            $query = "SELECT count(email) AS count FROM " . DB_PREFIX . "users WHERE email='{$email}'";
             $check = query_row($query);
-            return $check;
+            return $check->count;
         }
         
         function is_valid_email($email) {
@@ -230,9 +230,9 @@ class User {
         }
 
         function check_username_or_email_exists($identificator) {
-            $query = "SELECT count(*) FROM " . DB_PREFIX . "users WHERE username='{$identificator}' OR email='{$identificator}'";
+            $query = "SELECT count(*) AS count FROM " . DB_PREFIX . "users WHERE username='{$identificator}' OR email='{$identificator}'";
             $res = query_row($query);
-            return $res;
+            return $res->count;
         }
         
         function get_user_by_username_or_email($identificator) {
@@ -387,4 +387,3 @@ class User {
         }
     }
 
-?>
