@@ -23,7 +23,7 @@
 				<div class="facebook-login-text">
 					<tal:block i18n:translate="">Login with your Facebook account</tal:block>:
 				</div>
-			    <a href="" title="Login with your Facebook account" tal:attributes="href php:teke.facebook.getLoginUrl(array('scope' => 'email', 'redirect_uri' => teke.get_site_url() . 'actions/login.php'))" i18n:attributes="title">
+			    <a href="" title="Login with your Facebook account" tal:attributes="href php:teke.getFacebookLoginURL()" i18n:attributes="title">
 				    <img src="" alt="facebook logo" tal:attributes="src string:${WWW_ROOT}views/graphics/f_logo.png" />
 			    </a>
 		    </div>

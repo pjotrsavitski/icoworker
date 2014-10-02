@@ -19,7 +19,6 @@ require_once(dirname(__FILE__)."/lib/firephp/FirePHP.class.php");
 
 DEFINE("PLUGIN_ROOT", WWW_ROOT.'includes/'.PLUGIN.'/');
 
-
 /**************
 * Page Loader *
 ***************/
@@ -63,14 +62,9 @@ if (is_file(dirname(dirname(__FILE__))."/includes/".PLUGIN."/".PLUGIN.".php")) {
  ******************/
 
 if (FACEBOOK) {
-    require_once(dirname(__FILE__)."/lib/facebook/facebook.php");
-    $facebook = new Facebook(array(
-        'appId' => FACEBOOK_APP_ID,
-        'secret' => FACEBOOK_APP_SECRET,
-        'fileUpload' => false,
-        'cookie' => true
-    ));
-    $TeKe->facebook = $facebook;
+    require_once(dirname(dirname(__FILE__)) . '/vendor/autoload.php');
+    
+    Facebook\FacebookSession::setDefaultApplication(FACEBOOK_APP_ID, FACEBOOK_APP_SECRET);
 }
 
 if (isset($_REQUEST["set_language"]) && isset($_REQUEST["language"]) && in_array($_REQUEST["language"], array_keys($TeKe->getAvailableLanguages()))) {

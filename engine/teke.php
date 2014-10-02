@@ -309,8 +309,16 @@ class TeKe {
         return $lang;
     }
 
+    public function getFacebookLoginURL() {
+        $helper = new Facebook\FacebookRedirectLoginHelper(WWW_ROOT . "actions/login.php");
+        return $helper->getLoginUrl(array('email'));
+    }
+
     public function getFacebookLogoutURL() {
-        return $this->facebook->getLogoutUrl(array('next' => WWW_ROOT . "actions/logout.php"));
+        $session = Facebook\FacebookSession::newAppSession();
+        $helper = new Facebook\FacebookRedirectLoginHelper(WWW_ROOT . "actions/login.php");
+        return $helper->getLogoutUrl($session, WWW_ROOT . "actions/logout.php");
+
     }
 
 }
