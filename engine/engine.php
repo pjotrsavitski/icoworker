@@ -140,7 +140,7 @@ function query_row($sql, $classname = NULL) {
     }
     $res = query($sql);
     if ($res) {
-        $ret = mysql_fetch_object($res, $classname);
+        $ret = mysqli_fetch_object($res, $classname);
         return $ret;
     }
     return false;
@@ -152,8 +152,8 @@ function query_rows($sql, $classname = NULL) {
     }
     $res = query($sql);
     $rows = array();
-    if(mysql_num_rows($res)) {
-        while($row = mysql_fetch_object($res, $classname)) {
+    if(mysqli_num_rows($res)) {
+        while($row = mysqli_fetch_object($res, $classname)) {
             $rows []= $row;
         }
     }
@@ -161,9 +161,11 @@ function query_rows($sql, $classname = NULL) {
 }
 
 function query_insert($sql) {
+    global $TeKe;
+
     $res = query($sql);
     if ($res) {
-        return mysql_insert_id();
+        return $TeKe->db->insert_id();
     }
     return false;
 }
@@ -177,9 +179,11 @@ function query_update($sql) {
 }
 
 function query_delete($sql) {
+    global $TeKe;
+
     $res = query($sql);
     if ($res) {
-        return mysql_affected_rows();
+        return $TeKe->db->affected_rows();
     }
     return false;
 }
@@ -216,11 +220,13 @@ function get_file($input) {
 
 function get_logged_in_user() {
     global $TeKe;
+
     return $TeKe->user;
 }
 
 function get_logged_in_user_id() {
     global $TeKe;
+
     if ($TeKe->is_logged_in()) {
         return $TeKe->user->getId();
     }
@@ -229,6 +235,7 @@ function get_logged_in_user_id() {
 
 function is_admin() {
     global $TeKe;
+
     return $TeKe->is_admin();
 }
 

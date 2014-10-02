@@ -7,14 +7,14 @@
         }
         
         function connect() {
-            $this->link = mysql_connect(DB_HOST, DB_USERNAME, DB_PASSWORD, true);
-            mysql_set_charset("UTF8");
+            $this->link = mysqli_connect(DB_HOST, DB_USERNAME, DB_PASSWORD);
+            mysqli_set_charset($this->link, "UTF8");
             
             if (!$this->link) {
-                die('Could not connect: ' . mysql_error());
-            } else if (!mysql_select_db(DB_NAME, $this->link)) {
+                die('Could not connect: ' . mysqli_error($this->link));
+            } else if (!mysqli_select_db($this->link, DB_NAME)) {
                 if ($this->query("CREATE DATABASE " . DB_NAME . ";")) {
-                    mysql_select_db(DB_NAME, $this->link);
+                    mysqli_select_db($this->link, DB_NAME);
                     $this->execute_sql("teke.sql");
                     forward("index.php");   
                 }
@@ -22,7 +22,7 @@
         }
 
         function disconnect() {
-            mysql_close();
+            mysqli_close($this->link);
         }
         
         function execute_sql($sql) {
@@ -57,7 +57,7 @@
 
         function query($query)
         {
-            $ret = mysql_query($query, $this->link) or print(mysql_error()." with query: ".$query);
+            $ret = mysqli_query($this->link, $query) or print(mysqli_error($this->link)." with query: ".$query);
             return $ret;
         }
 
@@ -68,7 +68,25 @@
          * @return string
          */
         function real_escape_string($string) {
-            return mysql_real_escape_string($string, $this->link);
+            return mysqli_real_escape_string($this->link, $string);
+        }
+
+        /**
+         * Returns last inserted id.
+         * Uses database function.
+         * @return int|string
+         */
+        function insert_id() {
+            return mysqli_insert_id($this->link);
+        }
+
+        /**
+         * Returns number of affected rows.
+         * Uses database function.
+         * @return int|string
+         */
+        function affected_rows() {
+            return mysqli_affected_rows($this->link);
         }
     
     }
