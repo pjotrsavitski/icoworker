@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2012-10-10 14:36+0300\n"
+"POT-Creation-Date: 2014-10-02 09:48+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -408,11 +408,11 @@ msgstr ""
 msgid "Everything"
 msgstr ""
 
-#: ../actions/login.php:31
+#: ../actions/login.php:52
 msgid "Facebook login failed."
 msgstr ""
 
-#: ../actions/login.php:28
+#: ../actions/login.php:46 ../actions/login.php:49
 msgid "Facebook profile could not be loaded."
 msgstr ""
 
@@ -468,7 +468,7 @@ msgstr ""
 msgid "Log out"
 msgstr ""
 
-#: ../actions/login.php:25
+#: ../actions/login.php:42
 msgid "Login failed."
 msgstr ""
 

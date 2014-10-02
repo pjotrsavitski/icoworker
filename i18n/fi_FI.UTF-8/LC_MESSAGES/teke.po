@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Early\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-10-10 14:36+0300\n"
+"POT-Creation-Date: 2014-10-02 09:48+0300\n"
 "PO-Revision-Date: 2011-02-25 14:45+0200\n"
 "Last-Translator: Meelis Mets <meelis.mets@tlu.ee>\n"
 "Language-Team: Finnish <fi@li.org>\n"
@@ -423,11 +423,11 @@ msgstr ""
 msgid "Everything"
 msgstr ""
 
-#: ../actions/login.php:31
+#: ../actions/login.php:52
 msgid "Facebook login failed."
 msgstr ""
 
-#: ../actions/login.php:28
+#: ../actions/login.php:46 ../actions/login.php:49
 msgid "Facebook profile could not be loaded."
 msgstr ""
 
@@ -500,7 +500,7 @@ msgstr ""
 msgid "Log out"
 msgstr ""
 
-#: ../actions/login.php:25
+#: ../actions/login.php:42
 msgid "Login failed."
 msgstr ""
 
