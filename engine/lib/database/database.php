@@ -60,7 +60,16 @@
             $ret = mysql_query($query, $this->link) or print(mysql_error()." with query: ".$query);
             return $ret;
         }
+
+        /**
+         * Excapes string for database queries.
+         * Used database escape function.
+         * @param string $string String to be escaped
+         * @return string
+         */
+        function real_escape_string($string) {
+            return mysql_real_escape_string($string, $this->link);
+        }
     
     }
-     
-?>
+

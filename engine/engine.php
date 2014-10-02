@@ -118,6 +118,17 @@ function forward($location) {
     exit;
 }
 
+/**
+ * Escapes string for database query.
+ * Used database object method behind scenes.
+ * @param string $string String to escape.
+ * @return string
+ */
+function real_escape_string($string) {
+    global $TeKe;
+    return $TeKe->db->real_escape_string($string);
+}
+
 function query($sql) {
     global $TeKe;
     return $TeKe->db->query($sql);

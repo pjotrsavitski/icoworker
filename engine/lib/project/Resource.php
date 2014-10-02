@@ -106,10 +106,10 @@ class Resource {
         $activity_data = array($title);
         $creator = (int)$creator;
         $project_id = (int)$project_id;
-        $title = mysql_real_escape_string($title);
-        $description = mysql_real_escape_string($description);
-        $url = mysql_real_escape_string($url);
-        $resource_type = mysql_real_escape_string($resource_type);
+        $title = real_escape_string($title);
+        $description = real_escape_string($description);
+        $url = real_escape_string($url);
+        $resource_type = real_escape_string($resource_type);
         $q = "INSERT INTO " . DB_PREFIX . "resources (creator, project_id, title, description, url, resource_type, created, updated) VALUES ($creator, $project_id, '$title', '$description', '$url', '$resource_type', NOW(), NOW())";
         $uid = query_insert($q);
         if ($uid) {
@@ -122,10 +122,10 @@ class Resource {
 
     public static function update($resource, $title, $description, $url, $resource_type) {
         $activity_data = array($title);
-        $title = mysql_real_escape_string($title);
-        $description = mysql_real_escape_string($description);
-        $url = mysql_real_escape_string($url);
-        $resource_type = mysql_real_escape_string($resource_type);
+        $title = real_escape_string($title);
+        $description = real_escape_string($description);
+        $url = real_escape_string($url);
+        $resource_type = real_escape_string($resource_type);
         $q = "UPDATE " . DB_PREFIX . "resources SET title='$title', description='$description', url='$url', resource_type='$resource_type', updated=NOW() WHERE id = {$resource->id}";
         $updated = query_update($q);
         if ($updated) {

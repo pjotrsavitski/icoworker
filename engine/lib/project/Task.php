@@ -193,8 +193,8 @@ class Task {
         $activity_data = array($title);
         $creator = (int)$creator;
         $project_id = (int)$project_id;
-        $title = mysql_real_escape_string($title);
-        $description = mysql_real_escape_string($description);
+        $title = real_escape_string($title);
+        $description = real_escape_string($description);
         $q = "INSERT INTO " . DB_PREFIX . "tasks (creator, project_id, title, description, created, updated) VALUES ($creator, $project_id, '$title', '$description', NOW(), NOW())";
         $uid = query_insert($q);
         if ($uid) {
@@ -207,8 +207,8 @@ class Task {
 
     public static function update($task, $title, $description) {
         $activity_data = array($title);
-        $title = mysql_real_escape_string($title);
-        $description = mysql_real_escape_string($description);
+        $title = real_escape_string($title);
+        $description = real_escape_string($description);
         $q = "UPDATE " . DB_PREFIX . "tasks SET title='$title', description='$description', updated=NOW() WHERE id = {$task->id}";
         $updated = query_update($q);
         if ($updated) {

@@ -121,9 +121,9 @@ class Document {
         $activity_data = array($title);
         $creator = (int)$creator;
         $project_id = (int)$project_id;
-        $title = mysql_real_escape_string($title);
-        $url = mysql_real_escape_string($url);
-        $notes = mysql_real_escape_string($notes);
+        $title = real_escape_string($title);
+        $url = real_escape_string($url);
+        $notes = real_escape_string($notes);
         $q = "INSERT INTO " . DB_PREFIX . "documents (creator, project_id, title, url, notes, created, updated) VALUES ($creator, $project_id, '$title', '$url', '$notes', NOW(), NOW())";
         $uid = query_insert($q);
         if ($uid) {
@@ -139,9 +139,9 @@ class Document {
     public static function update($document, $title, $url, $notes, $version_type) {
         // Need unescaped data for JSON
         $activity_data = array($title);
-        $title = mysql_real_escape_string($title);
-        $url = mysql_real_escape_string($url);
-        $notes = mysql_real_escape_string($notes);
+        $title = real_escape_string($title);
+        $url = real_escape_string($url);
+        $notes = real_escape_string($notes);
         $q = "UPDATE " . DB_PREFIX . "documents SET title='$title', url='$url', notes='$notes' WHERE id = {$document->id}";
         $updated = query_update($q);
         if ($updated) {

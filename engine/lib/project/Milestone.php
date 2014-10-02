@@ -99,10 +99,10 @@ class Milestone {
         $activity_data = array($title, $milestone_date);
         $creator = (int)$creator;
         $project_id = (int)$project_id;
-        $title = mysql_real_escape_string($title);
+        $title = real_escape_string($title);
         $milestone_date = (int) $milestone_date;
         $flag_color = (int) $flag_color;
-        $notes = mysql_real_escape_string($notes);
+        $notes = real_escape_string($notes);
         $q = "INSERT INTO " . DB_PREFIX . "milestones (creator, project_id, title, milestone_date, flag_color, notes, created, updated) VALUES ($creator, $project_id, '$title', FROM_UNIXTIME('$milestone_date'), $flag_color, '$notes', NOW(), NOW())";
         $uid = query_insert($q);
         if ($uid) {
@@ -116,10 +116,10 @@ class Milestone {
     public static function update($milestone, $title, $milestone_date, $flag_color, $notes) {
         // Need unescaped data for JSON
         $activity_data = array($title, $milestone_date);
-        $title = mysql_real_escape_string($title);
+        $title = real_escape_string($title);
         $milestone_date = (int) $milestone_date;
         $flag_color = (int) $flag_color;
-        $notes = mysql_real_escape_string($notes);
+        $notes = real_escape_string($notes);
         $q = "UPDATE " . DB_PREFIX . "milestones SET title='$title', milestone_date=FROM_UNIXTIME('$milestone_date'), flag_color=$flag_color, notes='$notes', updated=NOW() WHERE id = {$milestone->id}";
         $updated = query_update($q);
         if ($updated) {

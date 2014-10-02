@@ -207,12 +207,12 @@ class Activity {
     public static function create($creator, $project_id, $activity_type, $activity_subtype, $body, $activity_data) {
         $creator = (int)$creator;
         $project_id = (int)$project_id;
-        $activity_type = mysql_real_escape_string($activity_type);
-        $activity_subtype = mysql_real_escape_string($activity_subtype);
-        $body = mysql_real_escape_string($body);
+        $activity_type = real_escape_string($activity_type);
+        $activity_subtype = real_escape_string($activity_subtype);
+        $body = real_escape_string($body);
         // NB! Information inside $activity_data Array should be UNESCAPED
         // Need to escape resulting JSON string
-        $activity_data = mysql_real_escape_string(json_encode($activity_data));
+        $activity_data = real_escape_string(json_encode($activity_data));
         $q = "INSERT INTO " . DB_PREFIX . "activity (creator, project_id, activity_type, activity_subtype, body, activity_data, created) VALUES ($creator, $project_id, '$activity_type', '$activity_subtype', '$body', '$activity_data', NOW())";
         $uid = query_insert($q);
         if ($uid) {

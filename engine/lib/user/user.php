@@ -141,12 +141,11 @@ class User {
         
         function getUserIdByUname($uname) {
             global $db;
-            $q = "SELECT id FROM " . DB_PREFIX . "users WHERE uname='".$uname."'";
-            $ret = $db->query($q);
-            $num = mysql_num_rows($ret);
-            if ( $num == 1) { // OK
-                $res = mysql_fetch_array($ret);
-                return $res['id'];
+            $query = "SELECT id FROM " . DB_PREFIX . "users WHERE uname='".$uname."'";
+            $ret = query_rows($query);
+            if ( $ret && is_array($res) && sizeof($res) == 1) { // OK
+                $user = $res[0];
+                return $user->id;
             }
             return -1;
         }
@@ -179,20 +178,20 @@ class User {
 
         // XXX This is not needed
         function isAuthenticationCorrect($username, $password) {
-            $res = query("SELECT * FROM "  . DB_PREFIX . "users WHERE username='{$username}'");
-            $check = mysql_fetch_array($res);
-            if ($this->valid_password($password, $check["password"], $check["salt"])){
-               return $check["id"]; 
+            $query = "SELECT * FROM "  . DB_PREFIX . "users WHERE username='{$username}'";
+            $check = query_row($query);
+            if ($this->valid_password($password, $check->password, $check->salt)){
+               return $check->id; 
             }
             return false;
         } 
 
         // XXX This is not needed
         function authenticate_user($username, $password) {
-            $res = query("SELECT * FROM "  . DB_PREFIX . "users WHERE username='{$username}'");
-            $check = mysql_fetch_array($res);
-            if ($this->valid_password($password, $check["password"], $check["salt"])){
-                $this->load($check["id"]);
+            $query = "SELECT * FROM "  . DB_PREFIX . "users WHERE username='{$username}'";
+            $check = query_row($query);
+            if ($this->valid_password($password, $check->password, $check->salt)){
+                $this->load($check->id);
                return $this;  
             }
         }
@@ -203,15 +202,15 @@ class User {
         }
 
         function check_username_exists($username) {
-            $res = query("SELECT count(username) FROM " . DB_PREFIX . "users WHERE username='{$username}'");
-            $check = mysql_fetch_row($res);
-            return $check[0];
+            $query = "SELECT count(username) FROM " . DB_PREFIX . "users WHERE username='{$username}'";
+            $check = query_row($query);
+            return $check;
         }
 
         function check_facebook_id_exists($facebook_id) {
-            $res = query("SELECT count(facebook_id) FROM " . DB_PREFIX . "users WHERE facebook_id=$facebook_id");
-            $check = mysql_fetch_row($res);
-            return $check[0];
+            $query = "SELECT count(facebook_id) FROM " . DB_PREFIX . "users WHERE facebook_id=$facebook_id";
+            $check = query_row($query);
+            return $check;
         }
 
         // TODO possibly not needed
@@ -220,10 +219,10 @@ class User {
         }
         
         function check_email_exists($email) {
-            $email = mysql_real_escape_string($email);
-            $res = query("SELECT count(email) FROM " . DB_PREFIX . "users WHERE email='{$email}'");
-            $check = mysql_fetch_row($res);
-            return $check[0];
+            $email = real_escape_string($email);
+            $query = "SELECT count(email) FROM " . DB_PREFIX . "users WHERE email='{$email}'";
+            $check = query_row($query);
+            return $check;
         }
         
         function is_valid_email($email) {
@@ -231,9 +230,9 @@ class User {
         }
 
         function check_username_or_email_exists($identificator) {
-            $q = query("SELECT count(*) FROM " . DB_PREFIX . "users WHERE username='{$identificator}' OR email='{$identificator}'");
-            $res = mysql_fetch_row($q);
-            return $res[0];
+            $query = "SELECT count(*) FROM " . DB_PREFIX . "users WHERE username='{$identificator}' OR email='{$identificator}'";
+            $res = query_row($query);
+            return $res;
         }
         
         function get_user_by_username_or_email($identificator) {
@@ -262,10 +261,10 @@ class User {
         }
         
         public function update_settings($user, $first_name, $last_name, $email, $language) {
-            $first_name = mysql_real_escape_string($first_name);
-            $last_name = mysql_real_escape_string($last_name);
-            $email = mysql_real_escape_string($email);
-            $language = mysql_real_escape_string($language);
+            $first_name = real_escape_string($first_name);
+            $last_name = real_escape_string($last_name);
+            $email = real_escape_string($email);
+            $language = real_escape_string($language);
             $q = "UPDATE " . DB_PREFIX . "users SET first_name='{$first_name}', last_name='{$last_name}', email='{$email}', language='{$language}' WHERE id = '{$user->id}'";
             return query($q);
         }
@@ -289,11 +288,11 @@ class User {
 
         // XXX unneeded
         private function create_password_reset_token($user) {
-            $q = query("SELECT * FROM "  . DB_PREFIX . "users WHERE id='{$user->id}'");
-            $res = mysql_fetch_array($q);
+            $query = "SELECT * FROM "  . DB_PREFIX . "users WHERE id='{$user->id}'";
+            $res = query_row($query);
             $expiration_time = time() + (24 * 60 * 60);    // expires in 24 hours
-            $hash = $res["password"];
-            $salt = $res["salt"];
+            $hash = $res->password;
+            $salt = $res->salt;
             $token = $this->create_token($expiration_time, $hash, $salt);
             return $token . '-' . $expiration_time;
         }
@@ -335,10 +334,10 @@ class User {
             if (!$this->isLinkExpired($timestamp)) {
                 return false;
             }
-            $q = query("SELECT * FROM " . DB_PREFIX . "users WHERE email='{$email}'");
-            $res = mysql_fetch_array($q);
-            $hash = $res["password"];
-            $salt = $res["salt"];
+            $query = "SELECT * FROM " . DB_PREFIX . "users WHERE email='{$email}'";
+            $res = query_row($query);
+            $hash = $res->password;
+            $salt = $res->salt;
             return $this->create_token($timestamp, $hash, $salt) == $token;
         }
 
@@ -353,9 +352,9 @@ class User {
 
         // XXX unneeded
         function reset_password($email, $password) {
-            $q = query("SELECT * FROM " . DB_PREFIX . "users WHERE email='{$email}'");
-            $res = mysql_fetch_array($q);
-            $username = $res["username"];
+            $query = "SELECT * FROM " . DB_PREFIX . "users WHERE email='{$email}'";
+            $res = query_row($query);
+            $username = $res->username;
             $salt = $this->generate_salt($username);
             $hash = $this->hash_password($password, $salt);
             $q = "UPDATE " . DB_PREFIX . "users SET password='{$hash}', salt='{$salt}' WHERE email = '{$email}'";
@@ -372,9 +371,9 @@ class User {
         
         // XXX unneeded
         function is_password_correct($user, $password) {
-            $q = query("SELECT * FROM "  . DB_PREFIX . "users WHERE id={$user->id}");
-            $res = mysql_fetch_array($q);
-            return $this->valid_password($password, $res["password"], $res["salt"]);
+            $query = "SELECT * FROM "  . DB_PREFIX . "users WHERE id={$user->id}";
+            $res = query_row($query);
+            return $this->valid_password($password, $res->password, $res->salt);
         }
 
         function delete() {
