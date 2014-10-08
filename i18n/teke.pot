@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2012-10-10 14:36+0300\n"
+"POT-Creation-Date: 2014-10-08 17:45+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -249,6 +249,10 @@ msgstr ""
 
 #: ../actions/change_role.php:21
 msgid "Can not change own role."
+msgstr ""
+
+#: ../views/js/teke_config.php:16
+msgid "Cancel"
 msgstr ""
 
 #: ../views/js/teke_config.php:14
@@ -811,10 +815,6 @@ msgstr ""
 
 #: ../views/project/project_view.html:65
 msgid "Resources"
-msgstr ""
-
-#: ../views/js/teke_config.php:16
-msgid "Return"
 msgstr ""
 
 #: ../views/administrate/administrate_user.html:22

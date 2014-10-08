@@ -13,7 +13,7 @@ jQuery(document).ready(function() {
     teke.add_translation('button_create', '<?php echo _('Create'); ?>');
     teke.add_translation('button_change', '<?php echo _('Change'); ?>');
     teke.add_translation('button_search', '<?php echo _('Search'); ?>');
-    teke.add_translation('button_return', '<?php echo _('Return'); ?>');
+    teke.add_translation('button_return', '<?php echo _('Cancel'); ?>');
     teke.add_translation('button_edit', '<?php echo _('Edit'); ?>');
     teke.add_translation('text_click_to_add_comment', '<?php echo _('Click to add Comment'); ?>');
     teke.add_translation('title_change_project_beginning', '<?php echo _('Change Project Start Date'); ?>');
