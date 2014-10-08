@@ -1,5 +1,5 @@
 .htaccess
 config/config.php
-composer.lock
-composer.phar
 vendor/
+composer.phar
+composer.lock

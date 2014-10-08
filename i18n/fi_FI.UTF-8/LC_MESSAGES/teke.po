@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Early\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-10-02 09:48+0300\n"
+"POT-Creation-Date: 2014-10-08 17:45+0300\n"
 "PO-Revision-Date: 2011-02-25 14:45+0200\n"
 "Last-Translator: Meelis Mets <meelis.mets@tlu.ee>\n"
 "Language-Team: Finnish <fi@li.org>\n"
@@ -259,6 +259,10 @@ msgstr ""
 msgid "Can not change own role."
 msgstr ""
 
+#: ../views/js/teke_config.php:16
+msgid "Cancel"
+msgstr ""
+
 #: ../views/js/teke_config.php:14
 msgid "Change"
 msgstr "Change"
@@ -423,11 +427,11 @@ msgstr ""
 msgid "Everything"
 msgstr ""
 
-#: ../actions/login.php:52
+#: ../actions/login.php:31
 msgid "Facebook login failed."
 msgstr ""
 
-#: ../actions/login.php:46 ../actions/login.php:49
+#: ../actions/login.php:28
 msgid "Facebook profile could not be loaded."
 msgstr ""
 
@@ -500,7 +504,7 @@ msgstr ""
 msgid "Log out"
 msgstr ""
 
-#: ../actions/login.php:42
+#: ../actions/login.php:25
 msgid "Login failed."
 msgstr ""
 
@@ -849,10 +853,6 @@ msgstr ""
 
 #: ../views/project/project_view.html:65
 msgid "Resources"
-msgstr ""
-
-#: ../views/js/teke_config.php:16
-msgid "Return"
 msgstr ""
 
 #: ../views/administrate/administrate_user.html:22
