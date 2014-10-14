@@ -1,6 +1,5 @@
-iCoworker
+Projektur
 =========
-Project initial wiki page http://trac.htk.tlu.ee/icoworker
 
 Requirements
 ============
