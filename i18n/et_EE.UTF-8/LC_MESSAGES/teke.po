@@ -960,7 +960,7 @@ msgid ""
 "Task <span class=\"activity-item-title\">%1$s</span> assigned to <span class="
 "\"activity-item-title\">%2$s</span>"
 msgstr ""
-"Ülesanne <span class=\"activity-item-title\">%1$s</span> lisatud tegevusse "
+"Ülesande <span class=\"activity-item-title\">%1$s</span> tähtajaks määrati "
 "<span class=\"activity-item-title\">%2$s</span>"
 
 # , php-format

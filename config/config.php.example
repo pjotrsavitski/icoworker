@@ -2,8 +2,8 @@
     /**********************
     *    Site Settings    *
     **********************/
-    DEFINE("WWW_ROOT", 'http://localhost/teke/');
-    DEFINE("SITE_NAME", "TeKe");
+    DEFINE("WWW_ROOT", 'http://localhost/pjojektur/');
+    DEFINE("SITE_NAME", "Pjojektur");
     DEFINE("ACCESS_CAN_VIEW", 1);
     DEFINE("ACCESS_CAN_EDIT", 5);
     
@@ -55,5 +55,5 @@
     /***************
     * Used plugins *
     ****************/
-    DEFINE("PLUGIN", "psyhvel");
+    DEFINE("PLUGIN", "pjojektur");
 ?>

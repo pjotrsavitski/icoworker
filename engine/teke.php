@@ -298,8 +298,8 @@ class TeKe {
             'et' => _("Estonian"),
             'ru' => _("Russian"),
             'en' => _("English"),
-            'fi' => _('Finnish'),
-            'sv' => _('Swedish')
+            //'fi' => _('Finnish'),
+            //'sv' => _('Swedish'),
         );
     }
 
@@ -321,6 +321,14 @@ class TeKe {
         $helper = new FacebookRedirectLoginHelper(WWW_ROOT . "actions/login.php");
         return $helper->getLogoutUrl($session, WWW_ROOT . "actions/logout.php");
 
+    }
+
+    public function getTranslatedWelcomeImageURL() {
+        $current = $this->get_language();
+        if (array_key_exists($current, $this->getAvailableLanguages())) {
+            return WWW_ROOT . "views/graphics/welcome_{$current}.png";
+        }
+        return WWW_ROOT . "views/graphics/welcome_et.png";
     }
 
 }

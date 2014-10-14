@@ -14,7 +14,7 @@
 		    </h1>
 
 			<div id="index-welcome">
-				<img src="" alt="welcome" tal:attributes="src string:${WWW_ROOT}views/graphics/welcome.jpg" />
+				<img src="" alt="welcome" tal:attributes="src teke/getTranslatedWelcomeImageURL" />
 			</div>
 
 		    <tal:block metal:use-macro="languages.html/language_selection" tal:define="class string:index-language-selection" />
