@@ -773,3 +773,9 @@ div#main-beta-notice {
 	font-size: 75%;
 	vertical-align: top;
 }
+
+img.user-profile-image-listing {
+	width: 15px;
+	height: 15px;
+}
+
