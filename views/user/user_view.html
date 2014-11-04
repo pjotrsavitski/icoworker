@@ -8,9 +8,18 @@
 		    <tal:block define="user_exists user/id | false">
 			
 			    <tal:block condition="user_exists">
-                    <div tal:content="user/getFullName | nothing"></div>
-                    <div tal:content="user/email | nothing"></div>
-                    <div tal:content="user/getLanguageName | nothing"></div>
+                    <div class="user-profile">
+                        <div class="user-profile-image">
+                            <img src="" alt="image" tal:attributes="src user/getImageURL" />
+                        </div>
+                        <div class="user-profile-info">
+                            <div tal:content="user/getFullName | nothing"></div>
+                            <div>
+                                <tal:block define="value user/getEmail" metal:use-macro="outputs.html/email" />
+                            </div>
+                            <div tal:content="user/getLanguageName | nothing"></div>
+                        </div>
+                    </div>
 			    </tal:block>
 
 			    <tal:block condition="not:user_exists">
