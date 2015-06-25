@@ -13,11 +13,18 @@ class ProjectHandler extends BaseHandler {
     }
     
     public function setNavigation() {
-        /*
-        $id = "";
-        if (isset($this->page[1])) $id = $this->page[1];
-        $this->navigation []= array('title'=>_('View'), 'url'=>"project/view/{$id}", 'current'=>$this->is_current_page($this->page[0], "view"));
-         */
+        global $TeKe;
+
+        if ($TeKe->is_admin()) {
+            $id = "";
+            if (isset($this->page[1])) $id = $this->page[1];
+            $this->navigation[] = [
+                'title' => _('Download Data'),
+                'url' => "actions/download_project_data.php?project_id={$id}",
+                'current' => 0,
+                'target' => '_blank',
+            ];
+        }
     }
 
     public function getProjectById() {
