@@ -13,6 +13,7 @@
 			    <table id="administrate-users">
                     <tbody>
 						<tr>
+                            <th></th>
 							<th i18n:translate="">Username</th>
 							<th i18n:translate="">Fullname</th>
 							<th i18n:translate="">Email</th>
@@ -23,6 +24,9 @@
 						</tr>
 
 						<tr tal:repeat="user users">
+                            <td>
+                                <img src="" class="user-profile-image-listing" alt="image" tal:attributes="src user/getImageURL" />
+                            </td>
 							<td>
 								<a href="" tal:attributes="href user/getURL" tal:content="user/getUsername"></a>
 							</td>

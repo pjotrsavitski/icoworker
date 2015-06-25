@@ -75,7 +75,7 @@ class Comment {
     public static function create($creator, $project_id, $content, $comment_date) {
         $creator = (int)$creator;
         $project_id = (int)$project_id;
-        $content = mysql_real_escape_string($content);
+        $content = real_escape_string($content);
         $comment_date = (int) $comment_date;
         $q = "INSERT INTO " . DB_PREFIX . "project_comments (creator, project_id, content, comment_date, created, updated) VALUES ($creator, $project_id, '$content', FROM_UNIXTIME('$comment_date'), NOW(), NOW())";
         $uid = query_insert($q);
@@ -88,7 +88,7 @@ class Comment {
     }
 
     public static function update($comment, $content, $comment_date) {
-        $content = mysql_real_escape_string($content);
+        $content = real_escape_string($content);
         $comment_date = (int) $comment_date;
         $q = "UPDATE " . DB_PREFIX . "project_comments SET content='$content', comment_date=FROM_UNIXTIME('$comment_date'), updated=NOW() WHERE id = {$comment->id}";
         $updated = query_update($q);

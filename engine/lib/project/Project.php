@@ -144,8 +144,8 @@ class Project {
 
     public static function create($creator, $title, $goal, $start_date, $end_date) {
         $creator = (int)$creator;
-        $title = mysql_real_escape_string($title);
-        $goal = mysql_real_escape_string($goal);
+        $title = real_escape_string($title);
+        $goal = real_escape_string($goal);
         $q = "INSERT INTO " . DB_PREFIX . "projects (creator, title, goal, start_date, end_date, created, updated) VALUES ($creator, '$title', '$goal', FROM_UNIXTIME('$start_date'), FROM_UNIXTIME('$end_date'), NOW(), NOW())";
         $uid = query_insert($q);
         if ($uid) {
@@ -158,8 +158,8 @@ class Project {
     }
 
     public static function update($project, $title, $goal) {
-        $title = mysql_real_escape_string($title);
-        $goal = mysql_real_escape_string($goal);
+        $title = real_escape_string($title);
+        $goal = real_escape_string($goal);
         $q = "UPDATE " . DB_PREFIX . "projects SET title='$title', goal='$goal' WHERE id = {$project->getId()}";
         $updated = query_update($q);
         if ($updated) {

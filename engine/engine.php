@@ -1,4 +1,8 @@
 <?php
+// Require composer autoload
+require_once(dirname(dirname(__FILE__)) . '/vendor/autoload.php');
+use Facebook\FacebookSession;
+
 require_once(dirname(dirname(__FILE__))."/config/config.php");
 if (defined("SESSION_SAVE_PATH")) {
     if (file_exists(SESSION_SAVE_PATH)) {
@@ -18,7 +22,6 @@ require_once(dirname(__FILE__)."/lib/handler/handler.php");
 require_once(dirname(__FILE__)."/lib/firephp/FirePHP.class.php");
 
 DEFINE("PLUGIN_ROOT", WWW_ROOT.'includes/'.PLUGIN.'/');
-
 
 /**************
 * Page Loader *
@@ -63,14 +66,7 @@ if (is_file(dirname(dirname(__FILE__))."/includes/".PLUGIN."/".PLUGIN.".php")) {
  ******************/
 
 if (FACEBOOK) {
-    require_once(dirname(__FILE__)."/lib/facebook/facebook.php");
-    $facebook = new Facebook(array(
-        'appId' => FACEBOOK_APP_ID,
-        'secret' => FACEBOOK_APP_SECRET,
-        'fileUpload' => false,
-        'cookie' => true
-    ));
-    $TeKe->facebook = $facebook;
+    FacebookSession::setDefaultApplication(FACEBOOK_APP_ID, FACEBOOK_APP_SECRET);
 }
 
 if (isset($_REQUEST["set_language"]) && isset($_REQUEST["language"]) && in_array($_REQUEST["language"], array_keys($TeKe->getAvailableLanguages()))) {
@@ -122,6 +118,17 @@ function forward($location) {
     exit;
 }
 
+/**
+ * Escapes string for database query.
+ * Used database object method behind scenes.
+ * @param string $string String to escape.
+ * @return string
+ */
+function real_escape_string($string) {
+    global $TeKe;
+    return $TeKe->db->real_escape_string($string);
+}
+
 function query($sql) {
     global $TeKe;
     return $TeKe->db->query($sql);
@@ -133,7 +140,7 @@ function query_row($sql, $classname = NULL) {
     }
     $res = query($sql);
     if ($res) {
-        $ret = mysql_fetch_object($res, $classname);
+        $ret = mysqli_fetch_object($res, $classname);
         return $ret;
     }
     return false;
@@ -145,8 +152,8 @@ function query_rows($sql, $classname = NULL) {
     }
     $res = query($sql);
     $rows = array();
-    if(mysql_num_rows($res)) {
-        while($row = mysql_fetch_object($res, $classname)) {
+    if(mysqli_num_rows($res)) {
+        while($row = mysqli_fetch_object($res, $classname)) {
             $rows []= $row;
         }
     }
@@ -154,9 +161,11 @@ function query_rows($sql, $classname = NULL) {
 }
 
 function query_insert($sql) {
+    global $TeKe;
+
     $res = query($sql);
     if ($res) {
-        return mysql_insert_id();
+        return $TeKe->db->insert_id();
     }
     return false;
 }
@@ -170,9 +179,11 @@ function query_update($sql) {
 }
 
 function query_delete($sql) {
+    global $TeKe;
+
     $res = query($sql);
     if ($res) {
-        return mysql_affected_rows();
+        return $TeKe->db->affected_rows();
     }
     return false;
 }
@@ -209,11 +220,13 @@ function get_file($input) {
 
 function get_logged_in_user() {
     global $TeKe;
+
     return $TeKe->user;
 }
 
 function get_logged_in_user_id() {
     global $TeKe;
+
     if ($TeKe->is_logged_in()) {
         return $TeKe->user->getId();
     }
@@ -222,6 +235,7 @@ function get_logged_in_user_id() {
 
 function is_admin() {
     global $TeKe;
+
     return $TeKe->is_admin();
 }
 
