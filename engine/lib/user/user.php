@@ -87,11 +87,8 @@ class User {
             if (!(isset($size) || $size || in_array($size, $sizes))) {
                 $size = 'square';
             }
-            $profile_name = $this->username;
-            if ($this->username == "fb.{$this->facebook_id}") {
-                $profile_name = $this->facebook_id;
-            }
-            return "http://graph.facebook.com/$profile_name/picture?type=$size";
+
+            return "http://graph.facebook.com/{$this->facebook_id}/picture?type=$size";
         }
         
         // TODO possibly not needed
