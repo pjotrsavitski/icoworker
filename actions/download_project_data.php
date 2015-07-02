@@ -7,7 +7,7 @@ global $TeKe;
 if (!($TeKe->is_logged_in() && $TeKe->is_admin())) {
     header($_SERVER["SERVER_PROTOCOL"] . ' 403 Forbidden');
     exit;
-}    
+}
 
 $project = ProjectManager::getProjectById(get_input('project_id'));
 
@@ -15,6 +15,26 @@ if (!($project instanceof Project)) {
     header($_SERVER["SERVER_PROTOCOL"] . ' 404 Not Found');
     exit;
 }
+
+$resource_types = [
+    1 => 'url',
+    2 => 'text',
+    3 => 'spreadsheet',
+    4 => 'presentation',
+];
+$color_types = [
+    1 => 'red',
+    2 => 'violet',
+    3 => 'green',
+    4 => 'blue',
+    5 => 'orange',
+    6 => 'black',
+];
+$version_types = [
+    1 => 'live',
+    2 => 'ready',
+    3 => 'dropped',
+];
 
 $members = $project->getMembers();
 $tasks = ProjectManager::getProjectTasks($project->id);
@@ -94,7 +114,7 @@ if ($resources && is_array($resources)) {
             'title' => $resource->title,
             'description' => $resource->description,
             'url' => $resource->url,
-            'resource_type' => (int)$resource->resource_type, // default (url), text, spreadsheet, presentation
+            'resource_type' => $resource_types[(int)$resource->resource_type], // default (url), text, spreadsheet, presentation
             'created' => format_date_for_js($resource->created),
             'updated' => format_date_for_js($resource->updated),
         ];
@@ -109,7 +129,7 @@ if ($milestones && is_array($milestones)) {
             'title' => $milestone->title,
             'description' => $milestone->notes,
             'date' => format_date_for_js($milestone->milestone_date),
-            'color' => (int)$milestone->flag_color, // red, violet, green, blue, orange, black
+            'color' => $color_types[(int)$milestone->flag_color], // red, violet, green, blue, orange, black
             'created' => format_date_for_js($milestone->created),
             'updated' => format_date_for_js($milestone->updated),
         ];
@@ -130,7 +150,7 @@ if ($documents && is_array($documents)) {
                     'description' => $single->notes,
                     'url' => $single->url,
                     'created' => format_date_for_js($single->created),
-                    'version_type' => (int)$single->version_type, // live, ready, dropped
+                    'version_type' => $version_types[(int)$single->version_type], // live, ready, dropped
                 ];
             }
         }
@@ -163,7 +183,7 @@ if ($comments && is_array($comments)) {
         ];
     }
 }
-
+header('Content-Disposition: attachment; filename=project_data.json');
 header('Content-Type: application/json');
 echo json_encode($project_data, JSON_PRETTY_PRINT);
 exit;
