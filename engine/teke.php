@@ -12,16 +12,16 @@ class TeKe {
     public $plugin;
     public $plugin_loaded = false;
     public $firephp;
-    
+
     public function __construct($page) {
-        
+
     }
-    
-    public function getTemplate() {  
-        $this->setTranslator();    
+
+    public function getTemplate() {
+        $this->setTranslator();
         $this->setTemplate();
     }
-    
+
     private function setTemplate() {
         $this->template = new PHPTAL();
         if (defined("PHPTAL_TMP")) {
@@ -30,13 +30,13 @@ class TeKe {
         $this->setTemplateRepository();
         $this->template->setTranslator($this->getTranslator());
     }
-    
+
     private function setTemplateRepository() {
         $repository_folders = array("templates", "user", "project", "ajax", "pages", "administrate");
         $repos_path = dirname(dirname(__FILE__));
         if (is_dir(dirname(dirname(__FILE__))."/includes/".PLUGIN)) {
              $this->plugin_loaded = dirname(dirname(__FILE__))."/includes/".PLUGIN."/";
-        } 
+        }
         foreach ($repository_folders as $repository_folder) {
             if ($this->plugin_loaded && is_dir($this->plugin_loaded.'/views/'.$repository_folder)) {
                 $this->template->setTemplateRepository($this->plugin_loaded.'/views/'.$repository_folder.'/');
@@ -44,7 +44,7 @@ class TeKe {
             $this->template->setTemplateRepository(dirname(dirname(__FILE__)).'/views/'.$repository_folder.'/');
         }
     }
-    
+
     private function setTranslator() {
         $language = DEFAULT_LANGUAGE;
         if (isset($_SESSION['language']) && in_array($_SESSION['language'], array_keys($this->getAvailableLanguages()))) {
@@ -58,7 +58,7 @@ class TeKe {
         $tr->useDomain(DEFAULT_DOMAIN);
         $this->translator = $tr;
     }
-    
+
     function getTranslator() {
         return $this->translator;
     }
@@ -79,7 +79,7 @@ class TeKe {
         }
         return false;
     }
-    
+
     /************
     * Page View *
     ************/
@@ -89,7 +89,7 @@ class TeKe {
             $this->template->request = $_GET;
             $input_values = array();
             if (isset($_SESSION['input_values'])) {
-                $input_values = $_SESSION['input_values']; 
+                $input_values = $_SESSION['input_values'];
                 unset($_SESSION['input_values']);
             }
             $this->template->input_values = $input_values;
@@ -135,7 +135,7 @@ class TeKe {
             $this->view();
         }
     }
-    
+
     public function execute_page() {
         $request_uri = $_SERVER["REQUEST_URI"];
         if (substr_count($request_uri, "/actions/") || substr_count($request_uri, "/includes/".PLUGIN."/actions/")) {
@@ -168,18 +168,18 @@ class TeKe {
     }
 
 	public function get_navigation_items() {
-        if (is_object($this->handler)) { 
+        if (is_object($this->handler)) {
             return $this->handler->navigation;
         }
     }
-    
+
     public function test_to_put() {
 		if (isset($_SESSION['test_to_put'])) {
 			return $_SESSION['test_to_put'];
 		}
 		return false;
     }
-    
+
     public function from_clipboard() {
 		$cb = array();
 		if (isset($_SESSION['clipboard'])) {
@@ -187,7 +187,7 @@ class TeKe {
 		}
 		return $cb;
     }
-    
+
     public function to_clipboard($ids) {
 		if (isset($_SESSION['clipboard'])) {
 		    unset($_SESSION['clipboard']);
@@ -195,11 +195,11 @@ class TeKe {
 		if (!is_array($ids)) $ids = array($ids);
 		$_SESSION['clipboard'] = $ids;
     }
-    
+
     public function clear_clipboard() {
         unset($_SESSION['clipboard']);
     }
-	
+
 	public function add_system_message($message, $type='success') {
 		$messages = array();
 		if (!in_array($type, array('success', 'error'))) {
@@ -213,7 +213,7 @@ class TeKe {
 
 		$_SESSION['system_messages'] = $messages;
 	}
-	
+
 	public function get_system_messages() {
 		$messages = array();
 		if (isset($_SESSION['system_messages'])) {
@@ -222,7 +222,7 @@ class TeKe {
 		}
 		return $messages;
     }
-    
+
     public function is_logged_in() {
         if (isset($_SESSION['user'])) {
             return true;
@@ -239,16 +239,16 @@ class TeKe {
         }
         return false;
     }
-    
+
     public function is_admin() {
         return $this->has_access(9);
     }
 
     function has_access($level) {
         if ($this->user->level >= $level) return true;
-        return false; 
+        return false;
     }
-    
+
     function get_language() {
         if (isset($_SESSION['language'])) return $_SESSION['language'];
         return DEFAULT_LANGUAGE;
@@ -318,9 +318,10 @@ class TeKe {
 
     public function getFacebookLogoutURL() {
         $session = FacebookSession::newAppSession();
-        $helper = new FacebookRedirectLoginHelper(WWW_ROOT . "actions/login.php");
-        return $helper->getLogoutUrl($session, WWW_ROOT . "actions/logout.php");
-
+        if (!$session->getAccessToken()->isAppSession()) {
+            $helper = new FacebookRedirectLoginHelper(WWW_ROOT . "actions/login.php");
+            return $helper->getLogoutUrl($session, WWW_ROOT . "actions/logout.php");
+        }
     }
 
     public function getTranslatedWelcomeImageURL() {
