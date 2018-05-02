@@ -1,8 +1,6 @@
 <?php
 // Require composer autoload
 require_once(dirname(dirname(__FILE__)) . '/vendor/autoload.php');
-use Facebook\FacebookSession;
-
 require_once(dirname(dirname(__FILE__))."/config/config.php");
 if (defined("SESSION_SAVE_PATH")) {
     if (file_exists(SESSION_SAVE_PATH)) {
@@ -15,7 +13,7 @@ session_start();
 require_once(dirname(__FILE__)."/lib/phptal/PHPTAL.php");
 require_once(dirname(__FILE__)."/lib/database/database.php");
 require_once(dirname(__FILE__)."/lib/ajax/AJAXResponse.php");
-// TODO Consider making UserManager as with Projectand ProjectManager
+// TODO Consider making UserManager as with Project and ProjectManager
 require_once(dirname(__FILE__)."/lib/user/user.php");
 require_once(dirname(__FILE__)."/lib/project/ProjectManager.php");
 require_once(dirname(__FILE__)."/lib/handler/handler.php");
@@ -51,7 +49,7 @@ $TeKe->getTemplate();
 ob_start();
 $TeKe->firephp = FirePHP::getInstance(true);
 if (!DEV_MODE) {
-    $TeKe->firephp->setEnabled(false);    
+    $TeKe->firephp->setEnabled(false);
 }
 
 /****************
@@ -59,14 +57,6 @@ if (!DEV_MODE) {
 ****************/
 if (is_file(dirname(dirname(__FILE__))."/includes/".PLUGIN."/".PLUGIN.".php")) {
     require_once(dirname(dirname(__FILE__))."/includes/".PLUGIN."/".PLUGIN.".php");
-}
-
-/*******************
- * FACEBOOK LOADER *
- ******************/
-
-if (FACEBOOK) {
-    FacebookSession::setDefaultApplication(FACEBOOK_APP_ID, FACEBOOK_APP_SECRET);
 }
 
 if (isset($_REQUEST["set_language"]) && isset($_REQUEST["language"]) && in_array($_REQUEST["language"], array_keys($TeKe->getAvailableLanguages()))) {
@@ -81,7 +71,7 @@ if (isset($_REQUEST["set_language"]) && isset($_REQUEST["language"]) && in_array
 
 /**************
 * TeKe Plugin *
-**************/ 
+**************/
 $plugin = ucfirst(PLUGIN);
 if (class_exists($plugin)) {
     $TeKe->plugin = new $plugin($page);
@@ -89,11 +79,11 @@ if (class_exists($plugin)) {
 
 /**************
 * TeKe Engine *
-**************/ 
+**************/
 if ($TeKe->is_logged_in() || (count($page) > 0 && in_array($page[0], array()))) {
-    
+
     $handler = get_input("handler", "pages");
-    
+
     if (is_array($page) AND count($page)>0) {
         $TeKe->view_page($page, $handler);
     } else if ($handler=="test"){

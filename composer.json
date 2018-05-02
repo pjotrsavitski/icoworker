@@ -1,5 +1,6 @@
 {
     "require": {
-        "facebook/php-sdk-v4" : "4.0.*"
+        "facebook/graph-sdk": "^5.6",
+        "paragonie/random_compat": "^2.0"
     }
 }
