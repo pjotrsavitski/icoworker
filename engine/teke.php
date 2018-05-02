@@ -322,6 +322,8 @@ class TeKe {
             $helper = new FacebookRedirectLoginHelper(WWW_ROOT . "actions/login.php");
             return $helper->getLogoutUrl($session, WWW_ROOT . "actions/logout.php");
         }
+
+        return WWW_ROOT . "actions/logout.php";
     }
 
     public function getTranslatedWelcomeImageURL() {
