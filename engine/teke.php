@@ -1,6 +1,4 @@
 <?php
-use Facebook\FacebookSession;
-use Facebook\FacebookRedirectLoginHelper;
 
 class TeKe {
     public $title = "TeKe";
@@ -311,16 +309,34 @@ class TeKe {
         return $lang;
     }
 
+    public function getFacebookService() {
+        // TODO Consider throwing an exception if configuration is missing
+        return new Facebook\Facebook([
+            'app_id' => FACEBOOK_APP_ID,
+            'app_secret' => FACEBOOK_APP_SECRET,
+            'default_graph_version' => 'v3.0',
+        ]);
+    }
+
+    public function getFacebookRedirectLoginHelper() {
+        return $this->getFacebookService()->getRedirectLoginHelper();
+    }
+
     public function getFacebookLoginURL() {
-        $helper = new FacebookRedirectLoginHelper(WWW_ROOT . "actions/login.php");
-        return $helper->getLoginUrl(array('email'));
+        $helper = $this->getFacebookRedirectLoginHelper();
+
+        return $helper->getLoginUrl(WWW_ROOT . "actions/login.php", ['public_profile', 'email',]);
     }
 
     public function getFacebookLogoutURL() {
-        $session = FacebookSession::newAppSession();
-        if (!$session->getAccessToken()->isAppSession()) {
-            $helper = new FacebookRedirectLoginHelper(WWW_ROOT . "actions/login.php");
-            return $helper->getLogoutUrl($session, WWW_ROOT . "actions/logout.php");
+        // TODO See if logging out of faceboo is even needed, no need to store the token if not
+        if (isset($_SESSION['facebook_access_token'])) {
+            $accessToken = new Facebook\Authentication\AccessToken($_SESSION['facebook_access_token']);
+            $helper = $this->getFacebookRedirectLoginHelper();
+
+            if ($accessToken && !$accessToken->isAppAccessToken()) {
+                return $helper->getLogoutUrl($accessToken, WWW_ROOT . "actions/logout.php");
+            }
         }
 
         return WWW_ROOT . "actions/logout.php";
