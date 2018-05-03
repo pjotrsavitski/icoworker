@@ -329,16 +329,13 @@ class TeKe {
     }
 
     public function getFacebookLogoutURL() {
-        // TODO See if logging out of faceboo is even needed, no need to store the token if not
-        if (isset($_SESSION['facebook_access_token'])) {
-            $accessToken = new Facebook\Authentication\AccessToken($_SESSION['facebook_access_token']);
-            $helper = $this->getFacebookRedirectLoginHelper();
+        // The following code would allow a user to log out of Facebook along with logging out of the app
+        /**$accessToken = new Facebook\Authentication\AccessToken(<FACEBOOK-TOKEN>);
+        $helper = $this->getFacebookRedirectLoginHelper();
 
-            if ($accessToken && !$accessToken->isAppAccessToken()) {
-                return $helper->getLogoutUrl($accessToken, WWW_ROOT . "actions/logout.php");
-            }
-        }
-
+        if ($accessToken && !$accessToken->isAppAccessToken()) {
+            return $helper->getLogoutUrl($accessToken, WWW_ROOT . "actions/logout.php");
+        }**/
         return WWW_ROOT . "actions/logout.php";
     }
 
