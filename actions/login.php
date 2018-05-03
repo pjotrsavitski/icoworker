@@ -15,7 +15,6 @@
     }
 
     if (isset($accessToken) && $accessToken) {
-        $_SESSION['facebook_access_token'] = (string) $accessToken;
         try {
             $response = $fb->get('/me?fields=id,email,first_name,last_name', $accessToken);
             $user = $response->getGraphUser();
